@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -792,11 +794,15 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchBarActionPerformed
 
     private void SearchBarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyPressed
-            String textToSearch = SearchBar.getText().toLowerCase();
+            String text = SearchBar.getText();
+            String textToSearch = text.toLowerCase();
             JPopupMenu matchesList = new JPopupMenu();
+            matchesList.setFocusable(true);
+            String[] matches = containedIn(textToSearch);
 
             ActionListener menuListener = (ActionEvent event) -> {
                     String valueSelected = event.getActionCommand();
+                    System.out.println(">" + valueSelected);
                     for (int j = 0; j < movies.getMovies().size(); j++) {
                             if (moviesList.getModel().getElementAt(j).matches(valueSelected)) {
                                     moviesList.setSelectedIndex(j);
@@ -805,22 +811,23 @@ public class Frame extends javax.swing.JFrame {
                             }
                     }
             };
-
-            String[] matches = containedIn(textToSearch);
+            
+/*
             for (int i = 0; i < matches.length; i++) {
                     System.out.println(i + 1 + ". " + matches[i]);
             }
+*/            
 
             //Add matches to popup menu
             for (int i = 0; i < matches.length; i++) {
                     JMenuItem item = new JMenuItem(matches[i]);
                     item.addActionListener(menuListener);
+                    item.doClick();
                     matchesList.add(item);
             }
 
-            if (evt.getKeyCode() == 10) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                     System.out.println("Enter Pressed\nText: " + textToSearch);
-
             }
 
             //Make popup visible
@@ -828,7 +835,7 @@ public class Frame extends javax.swing.JFrame {
             matchesList.show(this, 501, 93);
 
             SearchBar.requestFocus();
-            SearchBar.setText(textToSearch);
+            SearchBar.setText(text);
     }//GEN-LAST:event_SearchBarKeyPressed
 
         private String[] containedIn(String s) {
