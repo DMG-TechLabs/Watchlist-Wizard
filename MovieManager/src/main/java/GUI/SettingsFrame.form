@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JFileChooser" name="jFileChooser1">
+      <Properties>
+        <Property name="fileSelectionMode" type="int" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFileChooser" name="jFileChooser2">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="settingsPanel" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="settingsPanel" alignment="1" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="settingsPanel">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="background" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel7" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="fontsList" min="-2" pref="365" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="themesList" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="fileDirectory" alignment="0" pref="283" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="customThemeButton" pref="97" max="32767" attributes="0"/>
+                                      <Component id="changeFDbtn" pref="97" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel6" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="extensionField" min="-2" pref="283" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" pref="73" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="mediaPlayerPath" min="-2" pref="283" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel8" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" min="-2" pref="283" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="changeMPbtn" pref="97" max="32767" attributes="0"/>
+                              <Component id="addbtn2" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="removebtn2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fontsList" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="themesList" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="customThemeButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileDirectory" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="changeFDbtn" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mediaPlayerPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="changeMPbtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="extensionField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="addbtn2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane2" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <Component id="removebtn2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="180" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="File Directory:"/>
+            <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="fileDirectory">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="textbox" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fileDirectoryKeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Themes:"/>
+            <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="themesList">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Default"/>
+                <StringItem index="1" value="Dark"/>
+              </StringArray>
+            </Property>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="themesListActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Media Player:"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[41, 16]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[41, 16]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="mediaPlayerPath">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="textbox" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mediaPlayerPathKeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Font:"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[43, 16]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[43, 16]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[43, 16]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="fontsList">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="230">
+                <StringItem index="0" value="Agency FB"/>
+                <StringItem index="1" value="Algerian"/>
+                <StringItem index="2" value="Arial"/>
+                <StringItem index="3" value="Arial Black"/>
+                <StringItem index="4" value="Arial Narrow"/>
+                <StringItem index="5" value="Arial Rounded MT Bold"/>
+                <StringItem index="6" value="Arial Unicode MS"/>
+                <StringItem index="7" value="Bahnschrift"/>
+                <StringItem index="8" value="Baskerville Old Face"/>
+                <StringItem index="9" value="Bauhaus 93"/>
+                <StringItem index="10" value="Bell MT"/>
+                <StringItem index="11" value="Berlin Sans FB"/>
+                <StringItem index="12" value="Berlin Sans FB Demi"/>
+                <StringItem index="13" value="Bernard MT Condensed"/>
+                <StringItem index="14" value="Blackadder ITC"/>
+                <StringItem index="15" value="Bodoni MT"/>
+                <StringItem index="16" value="Bodoni MT Black"/>
+                <StringItem index="17" value="Bodoni MT Condensed"/>
+                <StringItem index="18" value="Bodoni MT Poster Compressed"/>
+                <StringItem index="19" value="Book Antiqua"/>
+                <StringItem index="20" value="Bookman Old Style"/>
+                <StringItem index="21" value="Bookshelf Symbol 7"/>
+                <StringItem index="22" value="Bradley Hand ITC"/>
+                <StringItem index="23" value="Britannic Bold"/>
+                <StringItem index="24" value="Broadway"/>
+                <StringItem index="25" value="Brush Script MT"/>
+                <StringItem index="26" value="Calibri"/>
+                <StringItem index="27" value="Calibri Light"/>
+                <StringItem index="28" value="Californian FB"/>
+                <StringItem index="29" value="Calisto MT"/>
+                <StringItem index="30" value="Cambria"/>
+                <StringItem index="31" value="Cambria Math"/>
+                <StringItem index="32" value="Candara"/>
+                <StringItem index="33" value="Candara Light"/>
+                <StringItem index="34" value="Castellar"/>
+                <StringItem index="35" value="Centaur"/>
+                <StringItem index="36" value="Century"/>
+                <StringItem index="37" value="Century Gothic"/>
+                <StringItem index="38" value="Century Schoolbook"/>
+                <StringItem index="39" value="Chiller"/>
+                <StringItem index="40" value="Colonna MT"/>
+                <StringItem index="41" value="Comic Sans MS"/>
+                <StringItem index="42" value="Consolas"/>
+                <StringItem index="43" value="Constantia"/>
+                <StringItem index="44" value="Cooper Black"/>
+                <StringItem index="45" value="Copperplate Gothic Bold"/>
+                <StringItem index="46" value="Copperplate Gothic Light"/>
+                <StringItem index="47" value="Corbel"/>
+                <StringItem index="48" value="Corbel Light"/>
+                <StringItem index="49" value="Courier New"/>
+                <StringItem index="50" value="Curlz MT"/>
+                <StringItem index="51" value="Dialog"/>
+                <StringItem index="52" value="DialogInput"/>
+                <StringItem index="53" value="Dubai"/>
+                <StringItem index="54" value="Dubai Light"/>
+                <StringItem index="55" value="Dubai Medium"/>
+                <StringItem index="56" value="Ebrima"/>
+                <StringItem index="57" value="Edwardian Script ITC"/>
+                <StringItem index="58" value="Elephant"/>
+                <StringItem index="59" value="Engravers MT"/>
+                <StringItem index="60" value="Eras Bold ITC"/>
+                <StringItem index="61" value="Eras Demi ITC"/>
+                <StringItem index="62" value="Eras Light ITC"/>
+                <StringItem index="63" value="Eras Medium ITC"/>
+                <StringItem index="64" value="Felix Titling"/>
+                <StringItem index="65" value="Footlight MT Light"/>
+                <StringItem index="66" value="Forte"/>
+                <StringItem index="67" value="ForteClassic"/>
+                <StringItem index="68" value="ForteFolk"/>
+                <StringItem index="69" value="ForteInk"/>
+                <StringItem index="70" value="ForteJazz"/>
+                <StringItem index="71" value="ForteSamba"/>
+                <StringItem index="72" value="Franklin Gothic Book"/>
+                <StringItem index="73" value="Franklin Gothic Demi"/>
+                <StringItem index="74" value="Franklin Gothic Demi Cond"/>
+                <StringItem index="75" value="Franklin Gothic Heavy"/>
+                <StringItem index="76" value="Franklin Gothic Medium"/>
+                <StringItem index="77" value="Franklin Gothic Medium Cond"/>
+                <StringItem index="78" value="Freestyle Script"/>
+                <StringItem index="79" value="French Script MT"/>
+                <StringItem index="80" value="Gabriola"/>
+                <StringItem index="81" value="Gadugi"/>
+                <StringItem index="82" value="Garamond"/>
+                <StringItem index="83" value="Georgia"/>
+                <StringItem index="84" value="Gigi"/>
+                <StringItem index="85" value="Gill Sans MT"/>
+                <StringItem index="86" value="Gill Sans MT Condensed"/>
+                <StringItem index="87" value="Gill Sans MT Ext Condensed Bold"/>
+                <StringItem index="88" value="Gill Sans Ultra Bold"/>
+                <StringItem index="89" value="Gill Sans Ultra Bold Condensed"/>
+                <StringItem index="90" value="Gloucester MT Extra Condensed"/>
+                <StringItem index="91" value="Goudy Old Style"/>
+                <StringItem index="92" value="Goudy Stout"/>
+                <StringItem index="93" value="Haettenschweiler"/>
+                <StringItem index="94" value="Harlow Solid Italic"/>
+                <StringItem index="95" value="Harrington"/>
+                <StringItem index="96" value="High Tower Text"/>
+                <StringItem index="97" value="HoloLens MDL2 Assets"/>
+                <StringItem index="98" value="Impact"/>
+                <StringItem index="99" value="Imprint MT Shadow"/>
+                <StringItem index="100" value="Informal Roman"/>
+                <StringItem index="101" value="Ink Free"/>
+                <StringItem index="102" value="Javanese Text"/>
+                <StringItem index="103" value="Jokerman"/>
+                <StringItem index="104" value="Juice ITC"/>
+                <StringItem index="105" value="Kristen ITC"/>
+                <StringItem index="106" value="Kunstler Script"/>
+                <StringItem index="107" value="Leelawadee UI"/>
+                <StringItem index="108" value="Leelawadee UI Semilight"/>
+                <StringItem index="109" value="Lucida Bright"/>
+                <StringItem index="110" value="Lucida Calligraphy"/>
+                <StringItem index="111" value="Lucida Console"/>
+                <StringItem index="112" value="Lucida Fax"/>
+                <StringItem index="113" value="Lucida Handwriting"/>
+                <StringItem index="114" value="Lucida Sans"/>
+                <StringItem index="115" value="Lucida Sans Typewriter"/>
+                <StringItem index="116" value="Lucida Sans Unicode"/>
+                <StringItem index="117" value="Magneto"/>
+                <StringItem index="118" value="Maiandra GD"/>
+                <StringItem index="119" value="Malgun Gothic"/>
+                <StringItem index="120" value="Malgun Gothic Semilight"/>
+                <StringItem index="121" value="Marlett"/>
+                <StringItem index="122" value="Matura MT Script Capitals"/>
+                <StringItem index="123" value="Microsoft Himalaya"/>
+                <StringItem index="124" value="Microsoft JhengHei"/>
+                <StringItem index="125" value="Microsoft JhengHei Light"/>
+                <StringItem index="126" value="Microsoft JhengHei UI"/>
+                <StringItem index="127" value="Microsoft JhengHei UI Light"/>
+                <StringItem index="128" value="Microsoft New Tai Lue"/>
+                <StringItem index="129" value="Microsoft PhagsPa"/>
+                <StringItem index="130" value="Microsoft Sans Serif"/>
+                <StringItem index="131" value="Microsoft Tai Le"/>
+                <StringItem index="132" value="Microsoft YaHei"/>
+                <StringItem index="133" value="Microsoft YaHei Light"/>
+                <StringItem index="134" value="Microsoft YaHei UI"/>
+                <StringItem index="135" value="Microsoft YaHei UI Light"/>
+                <StringItem index="136" value="Microsoft Yi Baiti"/>
+                <StringItem index="137" value="MidiGuitar"/>
+                <StringItem index="138" value="Midisoft Classic"/>
+                <StringItem index="139" value="MingLiU-ExtB"/>
+                <StringItem index="140" value="MingLiU_HKSCS-ExtB"/>
+                <StringItem index="141" value="Mistral"/>
+                <StringItem index="142" value="Modern No. 20"/>
+                <StringItem index="143" value="Mongolian Baiti"/>
+                <StringItem index="144" value="Monospaced"/>
+                <StringItem index="145" value="Monotype Corsiva"/>
+                <StringItem index="146" value="MS Gothic"/>
+                <StringItem index="147" value="MS Outlook"/>
+                <StringItem index="148" value="MS PGothic"/>
+                <StringItem index="149" value="MS Reference Sans Serif"/>
+                <StringItem index="150" value="MS Reference Specialty"/>
+                <StringItem index="151" value="MS UI Gothic"/>
+                <StringItem index="152" value="MT Extra"/>
+                <StringItem index="153" value="MusicScoreSc"/>
+                <StringItem index="154" value="MusicScoreSce"/>
+                <StringItem index="155" value="MV Boli"/>
+                <StringItem index="156" value="Myanmar Text"/>
+                <StringItem index="157" value="Niagara Engraved"/>
+                <StringItem index="158" value="Niagara Solid"/>
+                <StringItem index="159" value="Nirmala UI"/>
+                <StringItem index="160" value="Nirmala UI Semilight"/>
+                <StringItem index="161" value="NSimSun"/>
+                <StringItem index="162" value="OCR A Extended"/>
+                <StringItem index="163" value="Old English Text MT"/>
+                <StringItem index="164" value="Onyx"/>
+                <StringItem index="165" value="Palace Script MT"/>
+                <StringItem index="166" value="Palatino Linotype"/>
+                <StringItem index="167" value="Papyrus"/>
+                <StringItem index="168" value="Parchment"/>
+                <StringItem index="169" value="Perpetua"/>
+                <StringItem index="170" value="Perpetua Titling MT"/>
+                <StringItem index="171" value="Playbill"/>
+                <StringItem index="172" value="PMingLiU-ExtB"/>
+                <StringItem index="173" value="Poor Richard"/>
+                <StringItem index="174" value="Pristina"/>
+                <StringItem index="175" value="Rage Italic"/>
+                <StringItem index="176" value="Ravie"/>
+                <StringItem index="177" value="Rockwell"/>
+                <StringItem index="178" value="Rockwell Condensed"/>
+                <StringItem index="179" value="Rockwell Extra Bold"/>
+                <StringItem index="180" value="ROG Fonts"/>
+                <StringItem index="181" value="Sans Serif Collection"/>
+                <StringItem index="182" value="SansSerif"/>
+                <StringItem index="183" value="Script MT Bold"/>
+                <StringItem index="184" value="Segoe Fluent Icons"/>
+                <StringItem index="185" value="Segoe MDL2 Assets"/>
+                <StringItem index="186" value="Segoe Print"/>
+                <StringItem index="187" value="Segoe Script"/>
+                <StringItem index="188" value="Segoe UI"/>
+                <StringItem index="189" value="Segoe UI Black"/>
+                <StringItem index="190" value="Segoe UI Emoji"/>
+                <StringItem index="191" value="Segoe UI Historic"/>
+                <StringItem index="192" value="Segoe UI Light"/>
+                <StringItem index="193" value="Segoe UI Semibold"/>
+                <StringItem index="194" value="Segoe UI Semilight"/>
+                <StringItem index="195" value="Segoe UI Symbol"/>
+                <StringItem index="196" value="Segoe UI Variable"/>
+                <StringItem index="197" value="Serif"/>
+                <StringItem index="198" value="Showcard Gothic"/>
+                <StringItem index="199" value="SimSun"/>
+                <StringItem index="200" value="SimSun-ExtB"/>
+                <StringItem index="201" value="Sitka Text"/>
+                <StringItem index="202" value="Snap ITC"/>
+                <StringItem index="203" value="Stencil"/>
+                <StringItem index="204" value="Sylfaen"/>
+                <StringItem index="205" value="Symbol"/>
+                <StringItem index="206" value="Tahoma"/>
+                <StringItem index="207" value="TeamViewer15"/>
+                <StringItem index="208" value="Tempus Sans ITC"/>
+                <StringItem index="209" value="Times New Roman"/>
+                <StringItem index="210" value="Trebuchet MS"/>
+                <StringItem index="211" value="Tw Cen MT"/>
+                <StringItem index="212" value="Tw Cen MT Condensed"/>
+                <StringItem index="213" value="Tw Cen MT Condensed Extra Bold"/>
+                <StringItem index="214" value="Verdana"/>
+                <StringItem index="215" value="Viner Hand ITC"/>
+                <StringItem index="216" value="Vivaldi"/>
+                <StringItem index="217" value="Vladimir Script"/>
+                <StringItem index="218" value="Webdings"/>
+                <StringItem index="219" value="Wide Latin"/>
+                <StringItem index="220" value="Wingdings"/>
+                <StringItem index="221" value="Wingdings 2"/>
+                <StringItem index="222" value="Wingdings 3"/>
+                <StringItem index="223" value="Yu Gothic"/>
+                <StringItem index="224" value="Yu Gothic Light"/>
+                <StringItem index="225" value="Yu Gothic Medium"/>
+                <StringItem index="226" value="Yu Gothic UI"/>
+                <StringItem index="227" value="Yu Gothic UI Light"/>
+                <StringItem index="228" value="Yu Gothic UI Semibold"/>
+                <StringItem index="229" value="Yu Gothic UI Semilight"/>
+              </StringArray>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fontsListActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Extension:"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[42, 16]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[42, 16]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[42, 16]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="extensionField">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="textbox" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="extensionFieldKeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Extension list:"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[42, 16]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[42, 16]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[42, 16]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JList" name="extensionsList">
+              <Properties>
+                <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="textbox" noResource="true"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="changeFDbtn">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a6" green="a6" red="a6" type="rgb"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeFDbtnMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeFDbtnMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeFDbtnMouseExited"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="changeFDLabel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="changeFDLabel" alignment="1" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="changeFDLabel">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f0" green="8c" red="8c" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Change"/>
+                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeFDLabelMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeFDLabelMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeFDLabelMouseExited"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="changeMPbtn">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a6" green="a6" red="a6" type="rgb"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeMPbtnMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeMPbtnMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeMPbtnMouseExited"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="changeMPLabel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="changeMPLabel" alignment="0" pref="25" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="changeMPLabel">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Change"/>
+                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="addbtn2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a6" green="a6" red="a6" type="rgb"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addbtn2MouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addbtn2MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addbtn2MouseExited"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="addLabel2" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="addLabel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="addLabel2">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Add"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[73, 25]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[73, 25]"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[97, 25]"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="removebtn2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a6" green="a6" red="a6" type="rgb"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[97, 25]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removebtn2MouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removebtn2MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removebtn2MouseExited"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="removeLabel2" alignment="1" pref="97" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="removeLabel2" alignment="0" pref="25" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="removeLabel2">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Remove"/>
+                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="customThemeButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a6" green="a6" red="a6" type="rgb"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[73, 25]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customThemeButtonMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customThemeButtonMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customThemeButtonMouseExited"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="themeLabel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="themeLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="themeLabel">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Custom Theme"/>
+                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[73, 25]"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

@@ -1,0 +1,11 @@
+/MovieManager/target/
+/MovieManager/.classpath
+/MovieManager/.project
+/MovieManager/.settings/org.eclipse.jdt.core.prefs
+/MovieManager/nb-configuration.xml
+/MovieManager/.settings/org.eclipse.jdt.apt.core.prefs
+/MovieManager/.settings/org.eclipse.m2e.core.prefs
+/MovieManager/data/api_key.txt
+/MovieManager/data/MoviesDatabase.accdb
+/MovieManager/data/
+.vscode/
