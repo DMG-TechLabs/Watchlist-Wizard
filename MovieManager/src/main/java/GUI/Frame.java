@@ -822,7 +822,6 @@ public class Frame extends javax.swing.JFrame {
             for (int i = 0; i < matches.length; i++) {
                     JMenuItem item = new JMenuItem(matches[i]);
                     item.addActionListener(menuListener);
-                    item.doClick();
                     matchesList.add(item);
             }
 
@@ -831,7 +830,7 @@ public class Frame extends javax.swing.JFrame {
             }
 
             //Make popup visible
-            matchesList.setSize(8000, 8000);
+            matchesList.setSize(SearchBar.getWidth(), 8000);
             matchesList.show(this, 501, 93);
 
             SearchBar.requestFocus();
