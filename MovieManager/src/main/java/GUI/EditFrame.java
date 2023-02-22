@@ -601,6 +601,7 @@ public class EditFrame extends javax.swing.JFrame {
                 }
                 f.refreshMoviesList();
                 this.setVisible(false);
+                GUIMethods.dialog("Movie deleted successfully only from our database", "Movie deleted", "Success");
         }
 
         private void yesButtonMouseEntered(JPanel yesButton) {

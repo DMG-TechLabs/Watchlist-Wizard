@@ -115,8 +115,8 @@ public class GUIMethods {
 
                 return arr;
         }
-
-        public static void dialogError(String error) {
+        
+        public static void dialog(String message, String subtitleMessage, String title){
                 JDialog dialog = new JDialog();
 
                 Theme selectedTheme = null;
@@ -125,12 +125,12 @@ public class GUIMethods {
                 Color textColor = new Color(0, 0, 0);
                 Color bgColor = new Color(255, 255, 255);
                 JLabel errorLabel = new JLabel();
-                JLabel subtitle = new JLabel("An error has occured!");
+                JLabel subtitle = new JLabel(subtitleMessage);
                 JPanel bg = new JPanel();
                 FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 100, 20);
 
                 dialog.setSize(300, 200);
-                dialog.setTitle("Error");
+                dialog.setTitle(title);
                 dialog.setResizable(false);
                 dialog.add(bg);
                 dialog.setLocationRelativeTo(null);
@@ -142,7 +142,7 @@ public class GUIMethods {
                 bg.setLayout(layout);
 
                 errorLabel.setName("label");
-                errorLabel.setText(breakString(error, 2));
+                errorLabel.setText(breakString(message, 2));
                 errorLabel.setAlignmentY(200);
                 errorLabel.setForeground(textColor);
                 errorLabel.setFont(font);
@@ -151,7 +151,8 @@ public class GUIMethods {
                 subtitle.setFont(font.deriveFont(Font.BOLD));
 
                 try {
-                        String themeName = (String)Database.db().SELECT("Settings", "Font").get(0);
+                        String themeName = (String)Database.db().SELECT("Settings", "Theme").get(0);
+                        System.out.println(themeName);
                         selectedTheme = new ThemeCollection().matchThemes(themeName);
 
                 } catch (SQLException ex) {
@@ -160,6 +161,10 @@ public class GUIMethods {
 
                 ThemeCollection.implementTheme(dialog, selectedTheme);
                 dialog.setVisible(true);
+        }
+        
+        public static void dialogError(String error) {
+                dialog(error, "An error has occured!", "Error");
         }
 
         public static String breakString(String text, int rows) {
