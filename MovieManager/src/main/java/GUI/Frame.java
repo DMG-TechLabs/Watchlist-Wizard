@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -53,7 +54,6 @@ public class Frame extends javax.swing.JFrame {
                 //Components setup
                 moviesList.setFixedCellHeight(CELL_HEIGHT);
                 moviesList.setFocusable(false);
-
 
                 try {
                         Frame.dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
@@ -775,7 +775,6 @@ public class Frame extends javax.swing.JFrame {
                 moviesList.setModel(listModel);
         }
 
-
         private void moviesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moviesListMouseClicked
                 if (evt.getButton() == 1) { //Left Click
                         if (!sorted) {
@@ -786,7 +785,6 @@ public class Frame extends javax.swing.JFrame {
                 } else if (evt.getButton() == 3) { //Right Click
                 }
 
-
         }//GEN-LAST:event_moviesListMouseClicked
 
     private void SearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBarActionPerformed
@@ -794,45 +792,61 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchBarActionPerformed
 
     private void SearchBarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyPressed
-            ArrayList<String> moviesFound = new ArrayList<>();
-            JPopupMenu moviesFoundList = new JPopupMenu();
-            JMenuItem movieFound;
-            ActionListener menuListener;
+            String textToSearch = SearchBar.getText().toLowerCase();
+            JPopupMenu matchesList = new JPopupMenu();
 
-            if (evt.getKeyCode() == 10) { //Enter
-                    for (int i = 0; i < moviesList.getModel().getSize(); i++) {
-                            if (moviesList.getModel().getElementAt(i).toLowerCase().contains(SearchBar.getText().toLowerCase())) {
-                                    //moviesList.setSelectedIndex(i);
-                                    //showInfo(i);
-                                    moviesFound.add(moviesList.getModel().getElementAt(i));
-                                    movieFound = new JMenuItem(moviesList.getModel().getElementAt(i));
-
-                                    menuListener = (ActionEvent event) -> {
-                                            String valueSelected = event.getActionCommand();
-                                            for (int j = 0; j < movies.getMovies().size(); j++) {
-                                                    if (moviesList.getModel().getElementAt(j).matches(valueSelected)) {
-                                                            moviesList.setSelectedIndex(j);
-                                                            showInfo(j);
-                                                    }
-                                            }
-                                    };
-
-                                    movieFound.addActionListener(menuListener);
-
-                                    moviesFoundList.add(movieFound);
+            ActionListener menuListener = (ActionEvent event) -> {
+                    String valueSelected = event.getActionCommand();
+                    for (int j = 0; j < movies.getMovies().size(); j++) {
+                            if (moviesList.getModel().getElementAt(j).matches(valueSelected)) {
+                                    moviesList.setSelectedIndex(j);
+                                    showInfo(j);
+                                    this.getRootPane().requestFocus(); //Lose focus
                             }
                     }
+            };
 
-                    if (moviesFound.isEmpty()) {
-                            GUIMethods.dialogError("Movie not found");
-                            throw new MovieNotFoundException("Movie not found");
-                    }
-                    moviesFoundList.setSize(8000, 8000);
-                    moviesFoundList.show(this, 501, 93);
-
-                    this.getRootPane().requestFocus(); //Lose focus
+            String[] matches = containedIn(textToSearch);
+            for (int i = 0; i < matches.length; i++) {
+                    System.out.println(i + 1 + ". " + matches[i]);
             }
+
+            //Add matches to popup menu
+            for (int i = 0; i < matches.length; i++) {
+                    JMenuItem item = new JMenuItem(matches[i]);
+                    item.addActionListener(menuListener);
+                    matchesList.add(item);
+            }
+
+            if (evt.getKeyCode() == 10) {
+                    System.out.println("Enter Pressed\nText: " + textToSearch);
+
+            }
+
+            //Make popup visible
+            matchesList.setSize(8000, 8000);
+            matchesList.show(this, 501, 93);
+
+            SearchBar.requestFocus();
+            SearchBar.setText(textToSearch);
     }//GEN-LAST:event_SearchBarKeyPressed
+
+        private String[] containedIn(String s) {
+                ArrayList<String> tempArray = new ArrayList<>();
+                for (int i = 0; i < movies.getMovies().size(); i++) {
+                        if (movies.getMovies().get(i).getTitle().toLowerCase().contains(s.toLowerCase())) {
+                                tempArray.add(movies.getMovies().get(i).getTitle());
+                        }
+                }
+                Object[] objectList = tempArray.toArray();
+                String[] found = new String[objectList.length];
+
+                for (int i = 0; i < found.length; i++) {
+                        found[i] = (String) objectList[i];
+                }
+
+                return found;
+        }
 
     private void SearchBarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBarFocusGained
             SearchBar.setText("");
@@ -1125,6 +1139,7 @@ public class Frame extends javax.swing.JFrame {
                                 new Frame().setVisible(true);
                         }
                 });
+
         }
 
         public void setInfoTabPane(JTabbedPane infoTabPane) {
