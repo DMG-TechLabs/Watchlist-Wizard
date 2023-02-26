@@ -818,7 +818,7 @@ public class Frame extends javax.swing.JFrame {
             JPopupMenu matchesList = new JPopupMenu();
             matchesList.setFocusable(true);
             matchesList.setSize(SearchBar.getWidth(), 8000);
-
+            
             if (!textToSearch.isBlank() && !textToSearch.isEmpty()) {
                     matches = containedIn(textToSearch);
             } else {
@@ -835,7 +835,8 @@ public class Frame extends javax.swing.JFrame {
                                     this.getRootPane().requestFocus(); //Lose focus
                             }
                     }
-                    SearchBar.setText("");
+                    SearchBar.setText("Search");
+                    matchesList.setVisible(false);
             };
 
             /*
@@ -853,7 +854,8 @@ public class Frame extends javax.swing.JFrame {
             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                     SearchBar.requestFocus();
                     SearchBar.setText("Search");
-                    System.out.println("Enter Pressed\nText: " + text);
+                    matchesList.setVisible(false);
+
                     for (int j = 0; j < movies.getMovies().size(); j++) {
                             if (matches.length < 0) {
                                     break;
