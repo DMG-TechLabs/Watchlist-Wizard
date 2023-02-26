@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -61,6 +63,24 @@ public class Frame extends javax.swing.JFrame {
                 }
 
                 fl = new FilesList(dir);
+
+                SearchBar.addFocusListener(new FocusListener() {
+                        @Override
+                        public void focusGained(FocusEvent e) {
+                                if (SearchBar.getText().equals("Search")) {
+                                        SearchBar.setText("");
+                                        SearchBar.setForeground(theme.getTextBoxForeground());
+                                }
+                        }
+
+                        @Override
+                        public void focusLost(FocusEvent e) {
+                                if (SearchBar.getText().isEmpty()) {
+                                        SearchBar.setForeground(theme.getTextBoxForeground());
+                                        SearchBar.setText("Search");
+                                }
+                        }
+                });
 
         }
 
@@ -793,10 +813,17 @@ public class Frame extends javax.swing.JFrame {
     private void SearchBarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyPressed
             String text = SearchBar.getText();
             String textToSearch = text.toLowerCase();
-            String[] matches = containedIn(textToSearch);
+            String[] matches = null;
+
             JPopupMenu matchesList = new JPopupMenu();
             matchesList.setFocusable(true);
             matchesList.setSize(SearchBar.getWidth(), 8000);
+
+            if (!textToSearch.isBlank() && !textToSearch.isEmpty()) {
+                    matches = containedIn(textToSearch);
+            } else {
+                    return;
+            }
 
             ActionListener menuListener = (ActionEvent event) -> {
                     String valueSelected = event.getActionCommand();
@@ -808,6 +835,7 @@ public class Frame extends javax.swing.JFrame {
                                     this.getRootPane().requestFocus(); //Lose focus
                             }
                     }
+                    SearchBar.setText("");
             };
 
             /*
@@ -823,14 +851,20 @@ public class Frame extends javax.swing.JFrame {
             }
 
             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    SearchBar.requestFocus();
+                    SearchBar.setText("Search");
                     System.out.println("Enter Pressed\nText: " + text);
                     for (int j = 0; j < movies.getMovies().size(); j++) {
+                            if (matches.length < 0) {
+                                    break;
+                            }
                             if (moviesList.getModel().getElementAt(j).matches(matches[0])) {
                                     moviesList.setSelectedIndex(j);
                                     showInfo(j);
                                     this.getRootPane().requestFocus(); //Lose focus
                             }
                     }
+                    return;
             }
 
             //Make popup visible
@@ -858,11 +892,11 @@ public class Frame extends javax.swing.JFrame {
         }
 
     private void SearchBarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBarFocusGained
-            SearchBar.setText("");
+//            SearchBar.setText("");
     }//GEN-LAST:event_SearchBarFocusGained
 
     private void SearchBarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBarFocusLost
-            SearchBar.setText("Search");
+//            SearchBar.setText("Search");
     }//GEN-LAST:event_SearchBarFocusLost
 
         private void settingsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsButtonMouseClicked
