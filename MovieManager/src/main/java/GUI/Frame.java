@@ -1058,6 +1058,7 @@ public class Frame extends javax.swing.JFrame {
         //--THANASIS--
         System.out.println("(" + SearchBar.getText() + ")");
 
+        ArrayList<String> tempArray = new ArrayList<>();
         JPopupMenu moviesFoundList = new JPopupMenu();
 
         ActionListener menuListener = (ActionEvent event) -> {
@@ -1072,10 +1073,28 @@ public class Frame extends javax.swing.JFrame {
 
         for (int i = 0; i < moviesList.getModel().getSize(); i++) {
             if (moviesList.getModel().getElementAt(i).toLowerCase().contains(SearchBar.getText().toLowerCase())) {
+                tempArray.add(moviesList.getModel().getElementAt(i));
                 JMenuItem item = new JMenuItem(moviesList.getModel().getElementAt(i));
                 item.addActionListener(menuListener);
                 moviesFoundList.add(item);
             }
+        }
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SearchBar.requestFocus();
+            SearchBar.setText("Search");
+            System.out.println("Enter Pressed\nText: " + SearchBar.getText());
+            for (int j = 0; j < movies.getMovies().size(); j++) {
+                if (tempArray.size() < 0) {
+                    break;
+                }
+                if (moviesList.getModel().getElementAt(j).matches(tempArray.get(0))) {
+                    moviesList.setSelectedIndex(j);
+                    showInfo(j);
+                    this.getRootPane().requestFocus(); //Lose focus
+                }
+            }
+            return;
         }
 
         if (!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()) {
