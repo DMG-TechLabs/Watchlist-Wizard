@@ -658,8 +658,8 @@
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\thana\Programming\projects\java\Movie-Manager\MovieManager\assets\play-solid.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/play-solid.png&quot;)" type="code"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Play"/>
                     <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
@@ -806,8 +806,8 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\thana\Programming\projects\java\Movie-Manager\MovieManager\assets\gear-solid.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/gear-solid.png&quot;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Settings"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
@@ -856,8 +856,8 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\thana\Programming\projects\java\Movie-Manager\MovieManager\assets\pen-to-square-solid.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/pen-to-square-solid.png&quot;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
@@ -906,8 +906,8 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\thana\Programming\projects\java\Movie-Manager\MovieManager\assets\arrow-up-a-z-solid.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/arrow-up-a-z-solid.png&quot;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sort"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
@@ -955,9 +955,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\thana\Programming\projects\java\Movie-Manager\MovieManager\assets\cloud-arrow-down-solid.png"/>
+                <Property name="horizontalAlignment" type="int" value="0" postCode="sortLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/cloud-arrow-down-solid.png&quot;));"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/cloud-arrow-down-solid.png&quot;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Scrape"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
@@ -990,24 +990,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sortLabel2" alignment="0" pref="71" max="32767" attributes="0"/>
+                  <Component id="refreshLabel" alignment="0" pref="71" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sortLabel2" alignment="0" pref="23" max="32767" attributes="0"/>
+                  <Component id="refreshLabel" alignment="0" pref="23" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="sortLabel2">
+            <Component class="javax.swing.JLabel" name="refreshLabel">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\thana\Programming\projects\java\Movie-Manager\MovieManager\assets\arrow-rotate-right-solid.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/arrow-rotate-right-solid.png&quot;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
