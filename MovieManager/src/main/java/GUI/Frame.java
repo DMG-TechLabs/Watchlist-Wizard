@@ -81,6 +81,8 @@ public class Frame extends javax.swing.JFrame {
                                 }
                         }
                 });
+                
+                
         }
 
         /**
@@ -462,316 +464,309 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel.setForeground(java.awt.Color.white);
             buttonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            buttonLabel.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/play-solid.png"));
-                buttonLabel.setText("Play");
-                buttonLabel.setName("buttonLabel"); // NOI18N
+            buttonLabel.setText("Play");
+            buttonLabel.setName("buttonLabel"); // NOI18N
 
-                javax.swing.GroupLayout playButtonLayout = new javax.swing.GroupLayout(playButton);
-                playButton.setLayout(playButtonLayout);
-                playButtonLayout.setHorizontalGroup(
-                    playButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                );
-                playButtonLayout.setVerticalGroup(
-                    playButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                );
+            javax.swing.GroupLayout playButtonLayout = new javax.swing.GroupLayout(playButton);
+            playButton.setLayout(playButtonLayout);
+            playButtonLayout.setHorizontalGroup(
+                playButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(buttonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+            );
+            playButtonLayout.setVerticalGroup(
+                playButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(buttonLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            );
 
-                javax.swing.GroupLayout info1BackgroundLayout = new javax.swing.GroupLayout(info1Background);
-                info1Background.setLayout(info1BackgroundLayout);
-                info1BackgroundLayout.setHorizontalGroup(
-                    info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info1BackgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
-                        .addGroup(info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(playButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(infoPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                );
-                info1BackgroundLayout.setVerticalGroup(
-                    info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(info1BackgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(info1BackgroundLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(178, Short.MAX_VALUE))
-                );
+            javax.swing.GroupLayout info1BackgroundLayout = new javax.swing.GroupLayout(info1Background);
+            info1Background.setLayout(info1BackgroundLayout);
+            info1BackgroundLayout.setHorizontalGroup(
+                info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info1BackgroundLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                    .addGroup(info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(playButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(infoPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap())
+            );
+            info1BackgroundLayout.setVerticalGroup(
+                info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(info1BackgroundLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(info1BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(info1BackgroundLayout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(178, Short.MAX_VALUE))
+            );
 
-                infoTabPane.addTab("Info", info1Background);
+            infoTabPane.addTab("Info", info1Background);
 
-                toolbarPanel.setBackground(new java.awt.Color(68, 94, 147));
-                toolbarPanel.setName("toolbar"); // NOI18N
+            toolbarPanel.setBackground(new java.awt.Color(68, 94, 147));
+            toolbarPanel.setName("toolbar"); // NOI18N
 
-                logo.setBackground(new java.awt.Color(249, 57, 67));
+            logo.setBackground(new java.awt.Color(249, 57, 67));
 
-                javax.swing.GroupLayout logoLayout = new javax.swing.GroupLayout(logo);
-                logo.setLayout(logoLayout);
-                logoLayout.setHorizontalGroup(
-                    logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 100, Short.MAX_VALUE)
-                );
-                logoLayout.setVerticalGroup(
-                    logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 102, Short.MAX_VALUE)
-                );
+            javax.swing.GroupLayout logoLayout = new javax.swing.GroupLayout(logo);
+            logo.setLayout(logoLayout);
+            logoLayout.setHorizontalGroup(
+                logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 100, Short.MAX_VALUE)
+            );
+            logoLayout.setVerticalGroup(
+                logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 102, Short.MAX_VALUE)
+            );
 
-                SearchBar.setForeground(new java.awt.Color(50, 50, 50));
-                SearchBar.setText("Search");
-                SearchBar.setName("textbox"); // NOI18N
-                SearchBar.setPreferredSize(new java.awt.Dimension(476, 22));
-                SearchBar.addFocusListener(new java.awt.event.FocusAdapter() {
-                    public void focusGained(java.awt.event.FocusEvent evt) {
-                        SearchBarFocusGained(evt);
-                    }
-                    public void focusLost(java.awt.event.FocusEvent evt) {
-                        SearchBarFocusLost(evt);
-                    }
-                });
-                SearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyPressed(java.awt.event.KeyEvent evt) {
-                        SearchBarKeyPressed(evt);
-                    }
-                    public void keyReleased(java.awt.event.KeyEvent evt) {
-                        SearchBarKeyReleased(evt);
-                    }
-                });
+            SearchBar.setForeground(new java.awt.Color(50, 50, 50));
+            SearchBar.setText("Search");
+            SearchBar.setName("textbox"); // NOI18N
+            SearchBar.setPreferredSize(new java.awt.Dimension(476, 22));
+            SearchBar.addFocusListener(new java.awt.event.FocusAdapter() {
+                public void focusGained(java.awt.event.FocusEvent evt) {
+                    SearchBarFocusGained(evt);
+                }
+                public void focusLost(java.awt.event.FocusEvent evt) {
+                    SearchBarFocusLost(evt);
+                }
+            });
+            SearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    SearchBarKeyPressed(evt);
+                }
+                public void keyReleased(java.awt.event.KeyEvent evt) {
+                    SearchBarKeyReleased(evt);
+                }
+            });
 
-                settingsButton.setBackground(new java.awt.Color(55, 63, 81));
-                settingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                settingsButton.setName("button"); // NOI18N
-                settingsButton.setPreferredSize(new java.awt.Dimension(75, 25));
-                settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        settingsButtonMouseClicked(evt);
-                    }
-                    public void mouseEntered(java.awt.event.MouseEvent evt) {
-                        settingsButtonMouseEntered(evt);
-                    }
-                    public void mouseExited(java.awt.event.MouseEvent evt) {
-                        settingsButtonMouseExited(evt);
-                    }
-                });
+            settingsButton.setBackground(new java.awt.Color(55, 63, 81));
+            settingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            settingsButton.setName("button"); // NOI18N
+            settingsButton.setPreferredSize(new java.awt.Dimension(75, 25));
+            settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    settingsButtonMouseClicked(evt);
+                }
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    settingsButtonMouseEntered(evt);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    settingsButtonMouseExited(evt);
+                }
+            });
 
-                buttonLabel1.setForeground(java.awt.Color.white);
-                buttonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                buttonLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/gear-solid.png"));
-                    buttonLabel1.setText("Settings");
-                    buttonLabel1.setName("buttonLabel"); // NOI18N
+            buttonLabel1.setForeground(java.awt.Color.white);
+            buttonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            buttonLabel1.setText("Settings");
+            buttonLabel1.setName("buttonLabel"); // NOI18N
 
-                    javax.swing.GroupLayout settingsButtonLayout = new javax.swing.GroupLayout(settingsButton);
-                    settingsButton.setLayout(settingsButtonLayout);
-                    settingsButtonLayout.setHorizontalGroup(
-                        settingsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    );
-                    settingsButtonLayout.setVerticalGroup(
-                        settingsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                    );
+            javax.swing.GroupLayout settingsButtonLayout = new javax.swing.GroupLayout(settingsButton);
+            settingsButton.setLayout(settingsButtonLayout);
+            settingsButtonLayout.setHorizontalGroup(
+                settingsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(buttonLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+            );
+            settingsButtonLayout.setVerticalGroup(
+                settingsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(buttonLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            );
 
-                    editButton.setBackground(new java.awt.Color(55, 63, 81));
-                    editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                    editButton.setName("button"); // NOI18N
-                    editButton.setPreferredSize(new java.awt.Dimension(75, 25));
-                    editButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                            editButtonMouseClicked(evt);
-                        }
-                        public void mouseEntered(java.awt.event.MouseEvent evt) {
-                            editButtonMouseEntered(evt);
-                        }
-                        public void mouseExited(java.awt.event.MouseEvent evt) {
-                            editButtonMouseExited(evt);
-                        }
-                    });
+            editButton.setBackground(new java.awt.Color(55, 63, 81));
+            editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            editButton.setName("button"); // NOI18N
+            editButton.setPreferredSize(new java.awt.Dimension(75, 25));
+            editButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    editButtonMouseClicked(evt);
+                }
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    editButtonMouseEntered(evt);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    editButtonMouseExited(evt);
+                }
+            });
 
-                    buttonLabel2.setForeground(java.awt.Color.white);
-                    buttonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                    buttonLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/pen-to-square-solid.png"));
-                        buttonLabel2.setText("Edit");
-                        buttonLabel2.setName("buttonLabel"); // NOI18N
+            buttonLabel2.setForeground(java.awt.Color.white);
+            buttonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            buttonLabel2.setText("Edit");
+            buttonLabel2.setName("buttonLabel"); // NOI18N
 
-                        javax.swing.GroupLayout editButtonLayout = new javax.swing.GroupLayout(editButton);
-                        editButton.setLayout(editButtonLayout);
-                        editButtonLayout.setHorizontalGroup(
-                            editButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                        );
-                        editButtonLayout.setVerticalGroup(
-                            editButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                        );
+            javax.swing.GroupLayout editButtonLayout = new javax.swing.GroupLayout(editButton);
+            editButton.setLayout(editButtonLayout);
+            editButtonLayout.setHorizontalGroup(
+                editButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(buttonLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            );
+            editButtonLayout.setVerticalGroup(
+                editButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(buttonLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            );
 
-                        sortButton.setBackground(new java.awt.Color(55, 63, 81));
-                        sortButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                        sortButton.setName("button"); // NOI18N
-                        sortButton.setPreferredSize(new java.awt.Dimension(75, 25));
-                        sortButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                sortButtonMouseClicked(evt);
-                            }
-                            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                                sortButtonMouseEntered(evt);
-                            }
-                            public void mouseExited(java.awt.event.MouseEvent evt) {
-                                sortButtonMouseExited(evt);
-                            }
-                        });
+            sortButton.setBackground(new java.awt.Color(55, 63, 81));
+            sortButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            sortButton.setName("button"); // NOI18N
+            sortButton.setPreferredSize(new java.awt.Dimension(75, 25));
+            sortButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    sortButtonMouseClicked(evt);
+                }
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    sortButtonMouseEntered(evt);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    sortButtonMouseExited(evt);
+                }
+            });
 
-                        sortLabel.setForeground(java.awt.Color.white);
-                        sortLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                        sortLabel.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/arrow-up-a-z-solid.png"));
-                            sortLabel.setText("Sort");
-                            sortLabel.setName("buttonLabel"); // NOI18N
+            sortLabel.setForeground(java.awt.Color.white);
+            sortLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            sortLabel.setText("Sort");
+            sortLabel.setName("buttonLabel"); // NOI18N
 
-                            javax.swing.GroupLayout sortButtonLayout = new javax.swing.GroupLayout(sortButton);
-                            sortButton.setLayout(sortButtonLayout);
-                            sortButtonLayout.setHorizontalGroup(
-                                sortButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(sortLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                            );
-                            sortButtonLayout.setVerticalGroup(
-                                sortButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(sortLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                            );
+            javax.swing.GroupLayout sortButtonLayout = new javax.swing.GroupLayout(sortButton);
+            sortButton.setLayout(sortButtonLayout);
+            sortButtonLayout.setHorizontalGroup(
+                sortButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(sortLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+            );
+            sortButtonLayout.setVerticalGroup(
+                sortButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(sortLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            );
 
-                            scrapeButton.setBackground(new java.awt.Color(55, 63, 81));
-                            scrapeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                            scrapeButton.setName("button"); // NOI18N
-                            scrapeButton.setPreferredSize(new java.awt.Dimension(75, 25));
-                            scrapeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                    scrapeButtonMouseClicked(evt);
-                                }
-                                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                                    scrapeButtonMouseEntered(evt);
-                                }
-                                public void mouseExited(java.awt.event.MouseEvent evt) {
-                                    scrapeButtonMouseExited(evt);
-                                }
-                            });
+            scrapeButton.setBackground(new java.awt.Color(55, 63, 81));
+            scrapeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            scrapeButton.setName("button"); // NOI18N
+            scrapeButton.setPreferredSize(new java.awt.Dimension(75, 25));
+            scrapeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    scrapeButtonMouseClicked(evt);
+                }
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    scrapeButtonMouseEntered(evt);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    scrapeButtonMouseExited(evt);
+                }
+            });
 
-                            sortLabel1.setForeground(java.awt.Color.white);
-                            sortLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                            sortLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/cloud-arrow-down-solid.png"));
-                                sortLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/cloud-arrow-down-solid.png"));
-                                    sortLabel1.setText("Scrape");
-                                    sortLabel1.setName("buttonLabel"); // NOI18N
+            sortLabel1.setForeground(java.awt.Color.white);
+            sortLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            sortLabel1.setText("Scrape");
+            sortLabel1.setName("buttonLabel"); // NOI18N
 
-                                    javax.swing.GroupLayout scrapeButtonLayout = new javax.swing.GroupLayout(scrapeButton);
-                                    scrapeButton.setLayout(scrapeButtonLayout);
-                                    scrapeButtonLayout.setHorizontalGroup(
-                                        scrapeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(sortLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                                    );
-                                    scrapeButtonLayout.setVerticalGroup(
-                                        scrapeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(sortLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                                    );
+            javax.swing.GroupLayout scrapeButtonLayout = new javax.swing.GroupLayout(scrapeButton);
+            scrapeButton.setLayout(scrapeButtonLayout);
+            scrapeButtonLayout.setHorizontalGroup(
+                scrapeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(sortLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+            );
+            scrapeButtonLayout.setVerticalGroup(
+                scrapeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(sortLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            );
 
-                                    refreshButton.setBackground(new java.awt.Color(55, 63, 81));
-                                    refreshButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                                    refreshButton.setName("button"); // NOI18N
-                                    refreshButton.setPreferredSize(new java.awt.Dimension(75, 25));
-                                    refreshButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                            refreshButtonMouseClicked(evt);
-                                        }
-                                        public void mouseEntered(java.awt.event.MouseEvent evt) {
-                                            refreshButtonMouseEntered(evt);
-                                        }
-                                        public void mouseExited(java.awt.event.MouseEvent evt) {
-                                            refreshButtonMouseExited(evt);
-                                        }
-                                    });
+            refreshButton.setBackground(new java.awt.Color(55, 63, 81));
+            refreshButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            refreshButton.setName("button"); // NOI18N
+            refreshButton.setPreferredSize(new java.awt.Dimension(75, 25));
+            refreshButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    refreshButtonMouseClicked(evt);
+                }
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    refreshButtonMouseEntered(evt);
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    refreshButtonMouseExited(evt);
+                }
+            });
 
-                                    refreshLabel.setForeground(java.awt.Color.white);
-                                    refreshLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                                    refreshLabel.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/arrow-rotate-right-solid.png"));
-                                        refreshLabel.setText("Refresh");
-                                        refreshLabel.setName("buttonLabel"); // NOI18N
+            refreshLabel.setForeground(java.awt.Color.white);
+            refreshLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            refreshLabel.setText("Refresh");
+            refreshLabel.setName("buttonLabel"); // NOI18N
 
-                                        javax.swing.GroupLayout refreshButtonLayout = new javax.swing.GroupLayout(refreshButton);
-                                        refreshButton.setLayout(refreshButtonLayout);
-                                        refreshButtonLayout.setHorizontalGroup(
-                                            refreshButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(refreshLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                                        );
-                                        refreshButtonLayout.setVerticalGroup(
-                                            refreshButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(refreshLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                                        );
+            javax.swing.GroupLayout refreshButtonLayout = new javax.swing.GroupLayout(refreshButton);
+            refreshButton.setLayout(refreshButtonLayout);
+            refreshButtonLayout.setHorizontalGroup(
+                refreshButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(refreshLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+            );
+            refreshButtonLayout.setVerticalGroup(
+                refreshButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(refreshLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            );
 
-                                        javax.swing.GroupLayout toolbarPanelLayout = new javax.swing.GroupLayout(toolbarPanel);
-                                        toolbarPanel.setLayout(toolbarPanelLayout);
-                                        toolbarPanelLayout.setHorizontalGroup(
-                                            toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(toolbarPanelLayout.createSequentialGroup()
-                                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(45, 45, 45)
-                                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(55, 55, 55)
-                                                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(48, 48, 48))
-                                        );
-                                        toolbarPanelLayout.setVerticalGroup(
-                                            toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(toolbarPanelLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolbarPanelLayout.createSequentialGroup()
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(toolbarPanelLayout.createSequentialGroup()
-                                                        .addGap(1, 1, 1)
-                                                        .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(36, 36, 36))
-                                        );
+            javax.swing.GroupLayout toolbarPanelLayout = new javax.swing.GroupLayout(toolbarPanel);
+            toolbarPanel.setLayout(toolbarPanelLayout);
+            toolbarPanelLayout.setHorizontalGroup(
+                toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(toolbarPanelLayout.createSequentialGroup()
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(45, 45, 45)
+                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(55, 55, 55)
+                    .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(48, 48, 48))
+            );
+            toolbarPanelLayout.setVerticalGroup(
+                toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(toolbarPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolbarPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(toolbarPanelLayout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(36, 36, 36))
+            );
 
-                                        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                                        getContentPane().setLayout(layout);
-                                        layout.setHorizontalGroup(
-                                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(listTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(infoTabPane)
-                                                .addContainerGap())
-                                            .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        );
-                                        layout.setVerticalGroup(
-                                            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(toolbarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(listTabPane)
-                                                    .addComponent(infoTabPane)))
-                                        );
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(listTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(infoTabPane)
+                    .addContainerGap())
+                .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(toolbarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(listTabPane)
+                        .addComponent(infoTabPane)))
+            );
 
-                                        pack();
-                                    }// </editor-fold>//GEN-END:initComponents
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
         public void refreshMoviesList() {
                 clearInfo();
@@ -912,6 +907,11 @@ public class Frame extends javax.swing.JFrame {
                 }
 
                 sf = new SettingsFrame(this, ef);
+                
+                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/gear-solid.png");
+                
+                sf.setIconImage(img.getImage());
+                
                 sf.setVisible(true);
         }//GEN-LAST:event_settingsButtonMouseClicked
 
@@ -935,6 +935,11 @@ public class Frame extends javax.swing.JFrame {
                 }
 
                 ef = new EditFrame(this, index);
+                
+                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/pen-to-square-solid.png");
+                
+                ef.setIconImage(img.getImage());
+                
                 ef.setVisible(true);
         }//GEN-LAST:event_editButtonMouseClicked
 
