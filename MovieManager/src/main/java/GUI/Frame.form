@@ -658,9 +658,6 @@
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/play-solid.png&quot;)" type="code"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Play"/>
                     <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
                   </Properties>
@@ -806,9 +803,6 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/gear-solid.png&quot;)" type="code"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Settings"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -856,9 +850,6 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/pen-to-square-solid.png&quot;)" type="code"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -906,9 +897,6 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/arrow-up-a-z-solid.png&quot;)" type="code"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Sort"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -955,10 +943,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
-                <Property name="horizontalAlignment" type="int" value="0" postCode="sortLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/cloud-arrow-down-solid.png&quot;));"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/cloud-arrow-down-solid.png&quot;)" type="code"/>
-                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Scrape"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -1006,9 +991,6 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;).replaceAll(Pattern.quote(&quot;\\&quot;), &quot;/&quot;) + &quot;/assets/arrow-rotate-right-solid.png&quot;)" type="code"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
