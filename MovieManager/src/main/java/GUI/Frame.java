@@ -462,7 +462,7 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel.setForeground(java.awt.Color.white);
             buttonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            buttonLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\play-solid.png")); // NOI18N
+            buttonLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Programming\\projects\\java\\Movie-Manager\\MovieManager\\assets\\play-solid.png")); // NOI18N
             buttonLabel.setText("Play");
             buttonLabel.setName("buttonLabel"); // NOI18N
 
@@ -561,7 +561,7 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel1.setForeground(java.awt.Color.white);
             buttonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            buttonLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\gear-solid.png")); // NOI18N
+            buttonLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Programming\\projects\\java\\Movie-Manager\\MovieManager\\assets\\gear-solid.png")); // NOI18N
             buttonLabel1.setText("Settings");
             buttonLabel1.setName("buttonLabel"); // NOI18N
 
@@ -594,7 +594,7 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel2.setForeground(java.awt.Color.white);
             buttonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            buttonLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\pen-to-square-solid.png")); // NOI18N
+            buttonLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Programming\\projects\\java\\Movie-Manager\\MovieManager\\assets\\pen-to-square-solid.png")); // NOI18N
             buttonLabel2.setText("Edit");
             buttonLabel2.setName("buttonLabel"); // NOI18N
 
@@ -627,7 +627,7 @@ public class Frame extends javax.swing.JFrame {
 
             sortLabel.setForeground(java.awt.Color.white);
             sortLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            sortLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\arrow-up-a-z-solid.png")); // NOI18N
+            sortLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Programming\\projects\\java\\Movie-Manager\\MovieManager\\assets\\arrow-up-a-z-solid.png")); // NOI18N
             sortLabel.setText("Sort");
             sortLabel.setName("buttonLabel"); // NOI18N
 
@@ -635,7 +635,7 @@ public class Frame extends javax.swing.JFrame {
             sortButton.setLayout(sortButtonLayout);
             sortButtonLayout.setHorizontalGroup(
                 sortButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(sortLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addComponent(sortLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
             );
             sortButtonLayout.setVerticalGroup(
                 sortButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,6 +660,7 @@ public class Frame extends javax.swing.JFrame {
 
             sortLabel1.setForeground(java.awt.Color.white);
             sortLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            sortLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Programming\\projects\\java\\Movie-Manager\\MovieManager\\assets\\cloud-arrow-down-solid.png")); // NOI18N
             sortLabel1.setText("Scrape");
             sortLabel1.setName("buttonLabel"); // NOI18N
 
@@ -667,7 +668,7 @@ public class Frame extends javax.swing.JFrame {
             scrapeButton.setLayout(scrapeButtonLayout);
             scrapeButtonLayout.setHorizontalGroup(
                 scrapeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(sortLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addComponent(sortLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
             );
             scrapeButtonLayout.setVerticalGroup(
                 scrapeButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -692,7 +693,7 @@ public class Frame extends javax.swing.JFrame {
 
             sortLabel2.setForeground(java.awt.Color.white);
             sortLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            sortLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\arrow-rotate-right-solid.png")); // NOI18N
+            sortLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Programming\\projects\\java\\Movie-Manager\\MovieManager\\assets\\arrow-rotate-right-solid.png")); // NOI18N
             sortLabel2.setText("Refresh");
             sortLabel2.setName("buttonLabel"); // NOI18N
 
@@ -716,10 +717,10 @@ public class Frame extends javax.swing.JFrame {
                     .addGap(45, 45, 45)
                     .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(55, 55, 55)
                     .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
