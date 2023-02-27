@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
@@ -80,7 +81,6 @@ public class Frame extends javax.swing.JFrame {
                                 }
                         }
                 });
-
         }
 
         /**
@@ -462,6 +462,7 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel.setForeground(java.awt.Color.white);
             buttonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            buttonLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\play-solid.png")); // NOI18N
             buttonLabel.setText("Play");
             buttonLabel.setName("buttonLabel"); // NOI18N
 
@@ -560,6 +561,7 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel1.setForeground(java.awt.Color.white);
             buttonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            buttonLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\gear-solid.png")); // NOI18N
             buttonLabel1.setText("Settings");
             buttonLabel1.setName("buttonLabel"); // NOI18N
 
@@ -592,6 +594,7 @@ public class Frame extends javax.swing.JFrame {
 
             buttonLabel2.setForeground(java.awt.Color.white);
             buttonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            buttonLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\pen-to-square-solid.png")); // NOI18N
             buttonLabel2.setText("Edit");
             buttonLabel2.setName("buttonLabel"); // NOI18N
 
@@ -624,6 +627,7 @@ public class Frame extends javax.swing.JFrame {
 
             sortLabel.setForeground(java.awt.Color.white);
             sortLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            sortLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\arrow-up-a-z-solid.png")); // NOI18N
             sortLabel.setText("Sort");
             sortLabel.setName("buttonLabel"); // NOI18N
 
@@ -688,6 +692,7 @@ public class Frame extends javax.swing.JFrame {
 
             sortLabel2.setForeground(java.awt.Color.white);
             sortLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            sortLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thana\\Downloads\\arrow-rotate-right-solid.png")); // NOI18N
             sortLabel2.setText("Refresh");
             sortLabel2.setName("buttonLabel"); // NOI18N
 
@@ -695,7 +700,7 @@ public class Frame extends javax.swing.JFrame {
             refreshButton.setLayout(refreshButtonLayout);
             refreshButtonLayout.setHorizontalGroup(
                 refreshButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(sortLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addComponent(sortLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
             );
             refreshButtonLayout.setVerticalGroup(
                 refreshButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -709,8 +714,8 @@ public class Frame extends javax.swing.JFrame {
                 .addGroup(toolbarPanelLayout.createSequentialGroup()
                     .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(45, 45, 45)
-                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(scrapeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(sortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)

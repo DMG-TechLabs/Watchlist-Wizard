@@ -658,6 +658,9 @@
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\thana\Downloads\play-solid.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Play"/>
                     <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
                   </Properties>
@@ -682,8 +685,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="logo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="refreshButton" min="-2" pref="60" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="refreshButton" min="-2" pref="71" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="scrapeButton" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sortButton" min="-2" pref="60" max="-2" attributes="0"/>
@@ -803,6 +806,9 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\thana\Downloads\gear-solid.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Settings"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -850,6 +856,9 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\thana\Downloads\pen-to-square-solid.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -897,6 +906,9 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\thana\Downloads\arrow-up-a-z-solid.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Sort"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
@@ -975,7 +987,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="sortLabel2" alignment="0" pref="60" max="32767" attributes="0"/>
+                  <Component id="sortLabel2" alignment="0" pref="71" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -991,6 +1003,9 @@
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\thana\Downloads\arrow-rotate-right-solid.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
                 <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
               </Properties>
