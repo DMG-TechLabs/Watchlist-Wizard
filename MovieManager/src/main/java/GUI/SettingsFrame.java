@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import kdesp73.madb.Condition;
 import main.MovieCollection;
 
@@ -686,6 +688,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
         private void customThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseClicked
                 tf = new CustomThemeFrame(f);
+                
+                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/palette-solid.png");
+                
+                tf.setIconImage(img.getImage());
+                
                 tf.setVisible(true);
         }//GEN-LAST:event_customThemeButtonMouseClicked
 
