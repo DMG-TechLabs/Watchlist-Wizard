@@ -58,6 +58,11 @@
                         <artifactId>MADB</artifactId>
                         <version>1.0.4-SNAPSHOT</version>
                 </dependency>
+                <dependency>
+                        <groupId>com.github.holgerbrandl</groupId>
+                        <artifactId>themoviedbapi</artifactId>
+                        <version>1.12</version>
+                </dependency>
         </dependencies>
 
         <name>MovieManager</name>
