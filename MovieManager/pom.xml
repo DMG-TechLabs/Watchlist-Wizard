@@ -9,7 +9,7 @@
                                 <!-- Build an executable JAR -->
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-jar-plugin</artifactId>
-                                <version>2.3.2</version>
+                                <version>2.4</version>
                                 <configuration>
                                         <archive>
                                                 <manifest>
@@ -20,18 +20,17 @@
                                 </configuration>
                         </plugin>
                 </plugins>
-	
         </build>
+
         <modelVersion>4.0.0</modelVersion>
         <groupId>com.MovieManager</groupId>
         <artifactId>MovieManager</artifactId>
-        <version>1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <properties>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <maven.compiler.source>16</maven.compiler.source>
                 <maven.compiler.target>16</maven.compiler.target>
                 <exec.mainClass>GUI.LoadingFrame</exec.mainClass>
-                <jxbrowser.version>7.28.1</jxbrowser.version>
         </properties>
         
 		
