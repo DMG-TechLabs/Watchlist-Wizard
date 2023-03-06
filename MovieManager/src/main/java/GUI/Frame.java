@@ -1083,7 +1083,7 @@ public class Frame extends javax.swing.JFrame {
             }
         }
         
-        if (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SearchBar.requestFocus();
             SearchBar.setText("Search");
             System.out.println("Enter Pressed\nText: " + SearchBar.getText());
@@ -1101,7 +1101,7 @@ public class Frame extends javax.swing.JFrame {
         }
 
         if (!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()) {
-            moviesFoundList.show(this, 501, 93);
+            moviesFoundList.show(this, 496, 95);
         }
         
         SearchBar.requestFocus();
