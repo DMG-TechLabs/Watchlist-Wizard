@@ -19,11 +19,11 @@ public class Utils {
             String[] pros = new String[2];
             Dictionary table = new Hashtable();
             String item1,item2;
-            System.out.println("Utiles\n\n");
+            //System.out.println("Utiles\n\n");
             String s = input.replaceAll("\"[a-zA-Z]+\":\\Q[{\\E", "");
             s = s.replaceAll(Pattern.quote("{"), "");
             s = s.replaceAll(Pattern.quote("}"), "");
-            System.out.println(s);
+            //System.out.println(s);
             
             for(String sp:s.split("\",\"|[e],\"|\\],\"|,\"")){//  |[0-9],\"|\":\\[
                 
@@ -119,7 +119,7 @@ public class Utils {
 
         public static ArrayList<String> searchMovie(MovieCollection movies, String title) {
                 ArrayList<Movie> m = movies.getMovies();
-                ArrayList<String> ids = new ArrayList<>();
+                ArrayList<String> ids = new ArrayList<String>();
 
                 for (int i = 0; i < m.size(); i++) {
                         if (m.get(i).getTitle().contains(title)) {
