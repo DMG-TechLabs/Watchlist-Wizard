@@ -9,13 +9,6 @@ import Database.Database;
 import Exceptions.MovieNotFoundException;
 import GUI.GUIMethods;
 import Utils.Utils;
-import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.TmdbSearch;
-import info.movito.themoviedbapi.model.Genre;
-import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import info.movito.themoviedbapi.model.people.PersonCast;
-import info.movito.themoviedbapi.model.people.PersonCrew;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.ConnectException;
@@ -26,10 +19,12 @@ import java.util.regex.Pattern;
 import kdesp73.madb.Condition;
 //mport org.json.simple.JSONValue;
 //import org.json.*;
-
+import java.util.Random;
 import main.Movie;
 import main.MovieCollection;
-import static main.MovieManager.searchMovie;
+//import static main.MovieManager.searchMovie;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class API {
 
@@ -47,22 +42,29 @@ public class API {
         public String getTitle() {
                 return title;
         }
-        
-        public static List<MovieDb> searchMovie(String api_key, String movieName, String language, boolean adult, int page){
-            TmdbSearch search = new TmdbApi(api_key).getSearch();
-            MovieResultsPage movies = search.searchMovie(movieName, null, language, adult, page);
-            List<MovieDb> movieList = movies.getResults();
-            return movieList;
-        }
 
         //Methods
         public String GET(String title) throws IOException, InterruptedException, SQLException {
                 setTitle(title);
-                System.out.println("Title: " + title);
+                this.title = title.replaceAll(Pattern.quote("."), " ");
+                this.title = this.title.replaceAll(Pattern.quote("_"), " ");
+                this.title = this.title.replaceAll(Pattern.quote("1080p"), "");
+                this.title = this.title.replaceAll(Pattern.quote("BluRay"), "");
+                this.title = this.title.replaceAll(Pattern.quote("x264"), "");
+                this.title = this.title.replaceAll(Pattern.quote("H264"), "");
+                this.title = this.title.replaceAll(Pattern.quote("AAC-RARBG"), "");
+                this.title = this.title.replaceAll(Pattern.quote("-[YTS AM]"), "");
+                this.title = this.title.replaceAll(Pattern.quote("[YTS AM]"), "");
+                this.title = this.title.replaceAll(Pattern.quote("BrRip"), "");
+                this.title = this.title.replaceAll(Pattern.quote("BOKUTOX"), "");
+                this.title = this.title.replaceAll(Pattern.quote("   "), "");
+                this.title = this.title.replaceAll(Pattern.quote("264"), "");
+                this.title = this.title.replaceAll(Pattern.quote("YIFY"), "");
+                System.out.println("Title: " + this.title);
                 String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
                 
                 String FinalJson;
-                /*
+                
                 try {
                         request = HttpRequest.newBuilder()
                                 .uri(URI.create("https://api.themoviedb.org/3/search/multi?api_key=" + api_key + "&language=en-US&query=" + getTitle() + "&include_adult=false"))
@@ -122,16 +124,22 @@ public class API {
                 }
 
                 table = Utils.JsonToDictionary(response.body());
-                */
                 
-                System.out.println("Title for search: "+title.replaceAll(Pattern.quote("."), " "));
-                List<MovieDb> movieList = searchMovie(api_key, title.replaceAll(Pattern.quote("."), " "), "en", false, 1);
+                
+                
+                /*
+                System.out.println("Title for search: "+this.title);
+                List<MovieDb> movieList = searchMovie(api_key, this.title, "en", false, 1);
                 MovieDb movie = movieList.get(0);
                 System.out.println(movieList);
+                System.out.println("API title: "+movie.getTitle());
+                String overview = movie.getOverview().replaceAll(Pattern.quote("'"), "");
+                String debug_plot = overview.replaceAll(Pattern.quote("\""), "");
+                System.out.println(debug_plot);
                 List<Genre> genres = movie.getGenres();
                 String genre = "";
                 if(genres != null){
-                    for(int i=0;i<genres.size();i++){
+                    for(int i=0;i<genres.size()-1;i++){
                         if(i!=genres.size()-1) genre += genres.get(i).getName()+",";
                         else genre += genres.get(i).getName();
                     }
@@ -139,8 +147,8 @@ public class API {
                 
                 List<PersonCast> casts = movie.getCast();
                 String cast = "";
-                if(genres != null){
-                    for(int i=0;i<casts.size();i++){
+                if(casts != null){
+                    for(int i=0;i<casts.size()-1;i++){
                         if(i!=casts.size()-2) cast += casts.get(i).getName()+",";
                         else cast += casts.get(i).getName();
                     }
@@ -151,13 +159,13 @@ public class API {
                 String director = "";
                 
                 if(crew != null){
-                    for(int i=0;i<crew.size();i++){
+                    for(int i=0;i<crew.size()-1;i++){
                         if(crew.get(i).getDepartment() != "Writing") continue;
                         if(i!=crew.size()-2) writer += crew.get(i).getName()+",";
                         else writer += crew.get(i).getName();
                     }
 
-                    for(int i=0;i<crew.size();i++){
+                    for(int i=0;i<crew.size()-1;i++){
                         if(crew.get(i).getDepartment() != "Directing") continue;
                         if(i!=crew.size()-2) director += crew.get(i).getName()+",";
                         else director += crew.get(i).getName();
@@ -165,29 +173,31 @@ public class API {
                 }
                 
                 String rated = "";
-                if(movie.getReleases() != null) rated = movie.getReleases().get(0).getReleaseDates().get(0).getCertification();
+                if(movie.getReleases() != null) rated =(String) movie.getReleases().get(0).getReleaseDates().get(0).getCertification();
                 
                 String country = "";
                 if(movie.getProductionCountries() != null) country = movie.getProductionCountries().get(0).getName();
-                
+                */
+                //String overview = table.get("overview").replaceAll(Pattern.quote("'"), "");
+                //Random rand = new Random(); 
                 FinalJson = "{"
-                        + " \"Title\":\"" + movie.getTitle() //
-                        + "\" ,\"Year\":\"" + (movie.getReleaseDate().split("-"))[0]//table.get("release_date").toString().split(Pattern.quote("-"))[0] //
-                        + "\" ,\"Rated\":\"" + rated
-                        + "\" ,\"Released\":\"" + movie.getReleaseDate()
-                        + "\" ,\"Runtime\":\"" + movie.getRuntime()
-                        + "\" ,\"Genre\":\"" + genre
-                        + "\" ,\"Director\":\"" + director
-                        + "\" ,\"Writer\":\"" + writer
-                        + "\" ,\"Actors\":\"" + cast
-                        + "\" ,\"Plot\":\"" + movie.getOverview()
-                        + "\" ,\"Language\":\"" + movie.getOriginalLanguage()
-                        + "\" ,\"Country\":\"" + country
-                        + "\" ,\"Awards\":\"" + ""
-                        + "\" ,\"Poster\":\"" + movie.getPosterPath()
-                        + "\" ,\"Type\":\"" + movie.getMediaType()
-                        + "\" ,\"imdbRating\":\"" + movie.getVoteAverage()
-                        + "\" ,\"imdbID\":\"" + movie.getImdbID()
+                        + " \"Title\":\"" + table.get("title") //
+                        + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
+                        + "\" ,\"Rated\":\"" + table.get("id")
+                        + "\" ,\"Released\":\"" + table.get("release_date")
+                        + "\" ,\"Runtime\":\"" + table.get("runtime")
+                        + "\" ,\"Genre\":\"" + genre_names
+                        + "\" ,\"Director\":\"" + table.get("id")
+                        + "\" ,\"Writer\":\"" + table.get("id")
+                        + "\" ,\"Actors\":\"" + table.get("id")
+                        + "\" ,\"Plot\":\"" + table.get("overview")//StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
+                        + "\" ,\"Language\":\"" + table.get("original_language")
+                        + "\" ,\"Country\":\"" + table.get("iso_3166_1")//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
+                        + "\" ,\"Awards\":\"" + table.get("id")
+                        + "\" ,\"Poster\":\"" + table.get("poster_path")
+                        + "\" ,\"Type\":\"" + media_type
+                        + "\" ,\"imdbRating\":\"" + table.get("vote_average")
+                        + "\" ,\"imdbID\":\"" + table.get("imdb_id")
                         + "\"}";
                 return FinalJson;
         }
@@ -198,9 +208,9 @@ public class API {
                         //System.out.println(movies.get(i).toString());
 
                         //Movie parsed = Utils.parseJSON(GET(movies.get(i).getTitle()));
-                        if (movies.get(i).getImdbID() == null) {
+                        if (movies.get(i).getImdbID() == null || movies.get(i).getImdbID() == "") {
                                 String old_title = movies.get(i).getTitle();
-                                //System.out.println(old_title);
+                                System.out.println("OLD titile: "+old_title);
                                 String json = "";
                                 try {
                                         json = GET(old_title);
@@ -211,7 +221,7 @@ public class API {
                                 //System.out.println(json);
                                 Movie parsed = Utils.parseMovieJSON(json);
                                 movies.set(i, parsed);
-                                //Database.db().UPDATE("Scraped", "API_Done", true, new Condition("Filepath", movies.get(i).getDirectory()));
+                                Database.db().UPDATE("Scraped", "API_Done", true, new Condition("Filepath", movies.get(i).getDirectory()));
                                 Database.db().DELETE("Movies", "Title", old_title);
                                 DBMethods.insertMovie(movies.get(i));
                         }

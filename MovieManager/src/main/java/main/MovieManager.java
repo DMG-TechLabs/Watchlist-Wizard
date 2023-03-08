@@ -1,21 +1,8 @@
 package main;
 
 import API.API;
-import static API.API.searchMovie;
+//import static API.API.searchMovie;
 import Database.DBMethods;
-import info.movito.themoviedbapi.TmdbAccount;
-import info.movito.themoviedbapi.TmdbAccount.MovieListResultsPage;
-import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.TmdbMovies;
-import info.movito.themoviedbapi.TmdbSearch;
-import info.movito.themoviedbapi.TmdbSearch.MultiListResultsPage;
-import info.movito.themoviedbapi.model.Genre;
-import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.Multi;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.people.PersonCast;
-import info.movito.themoviedbapi.model.people.PersonCrew;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -83,93 +70,11 @@ public class MovieManager {
                     && (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
         }
         
-        public static List<MovieDb> searchMovie(String movieName, int year, String language, boolean adult, int page){
-            String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
-            TmdbSearch search = new TmdbApi(api_key).getSearch();
-            MovieResultsPage movies = search.searchMovie(movieName, year, language, adult, page);
-            List<MovieDb> movieList = movies.getResults();
-            return movieList;
-        }
-        
-        public static List<MovieDb> searchMovie(String api_key, String movieName, String language, boolean adult, int page){
-            
-            TmdbSearch search = new TmdbApi(api_key).getSearch();
-            MovieResultsPage movies = search.searchMovie(movieName, null, language, adult, page);
-            List<MovieDb> movieList = movies.getResults();
-            return movieList;
-        }
+       
         
         public static void main(String[] args) throws SQLException {
-                //DBMethods.formatDatabase();
-                String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
-                String title = "Cop Secret";
-                String FinalJson;
-                System.out.println("Title for search: "+title.replaceAll(Pattern.quote("."), " "));
-                List<MovieDb> movieList = searchMovie(api_key, title.replaceAll(Pattern.quote("."), " "), "en", false, 1);
-                MovieDb movie = movieList.get(0);
-                System.out.println(movieList);
-                List<Genre> genres = movie.getGenres();
-                String genre = "";
-                if(genres != null){
-                    for(int i=0;i<genres.size();i++){
-                        if(i!=genres.size()-1) genre += genres.get(i).getName()+",";
-                        else genre += genres.get(i).getName();
-                    }
-                }
-                
-                List<PersonCast> casts = movie.getCast();
-                String cast = "";
-                if(genres != null){
-                    for(int i=0;i<casts.size();i++){
-                        if(i!=casts.size()-2) cast += casts.get(i).getName()+",";
-                        else cast += casts.get(i).getName();
-                    }
-                }
-                
-                List<PersonCrew> crew = movie.getCrew();
-                String writer = "";
-                String director = "";
-                
-                if(crew != null){
-                    for(int i=0;i<crew.size();i++){
-                        if(crew.get(i).getDepartment() != "Writing") continue;
-                        if(i!=crew.size()-2) writer += crew.get(i).getName()+",";
-                        else writer += crew.get(i).getName();
-                    }
-
-                    for(int i=0;i<crew.size();i++){
-                        if(crew.get(i).getDepartment() != "Directing") continue;
-                        if(i!=crew.size()-2) director += crew.get(i).getName()+",";
-                        else director += crew.get(i).getName();
-                    }
-                }
-                
-                String rated = "";
-                if(movie.getReleases() != null) rated = movie.getReleases().get(0).getReleaseDates().get(0).getCertification();
-                
-                String country = "";
-                if(movie.getProductionCountries() != null) country = movie.getProductionCountries().get(0).getName();
-                
-                FinalJson = "{"
-                        + " \"Title\":\"" + movie.getTitle() //
-                        + "\" ,\"Year\":\"" + (movie.getReleaseDate().split("-"))[0]
-                        + "\" ,\"Rated\":\"" + rated
-                        + "\" ,\"Released\":\"" + movie.getReleaseDate()
-                        + "\" ,\"Runtime\":\"" + movie.getRuntime()
-                        + "\" ,\"Genre\":\"" + genre
-                        + "\" ,\"Director\":\"" + director
-                        + "\" ,\"Writer\":\"" + writer
-                        + "\" ,\"Actors\":\"" + cast
-                        + "\" ,\"Plot\":\"" + movie.getOverview()
-                        + "\" ,\"Language\":\"" + movie.getOriginalLanguage()
-                        + "\" ,\"Country\":\"" + country
-                        + "\" ,\"Awards\":\"" + ""
-                        + "\" ,\"Poster\":\"" + movie.getPosterPath()
-                        + "\" ,\"Type\":\"" + movie.getMediaType()
-                        + "\" ,\"imdbRating\":\"" + movie.getVoteAverage()
-                        + "\" ,\"imdbID\":\"" + movie.getImdbID()
-                        + "\"}";
-                System.out.println(FinalJson);
+                DBMethods.formatDatabase();
+               
         }
 }
 
