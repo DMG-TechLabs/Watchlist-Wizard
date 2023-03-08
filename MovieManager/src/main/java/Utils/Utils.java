@@ -119,7 +119,7 @@ public class Utils {
 
         public static ArrayList<String> searchMovie(MovieCollection movies, String title) {
                 ArrayList<Movie> m = movies.getMovies();
-                ArrayList<String> ids = new ArrayList<>();
+                ArrayList<String> ids = new ArrayList<String>();
 
                 for (int i = 0; i < m.size(); i++) {
                         if (m.get(i).getTitle().contains(title)) {
