@@ -73,7 +73,8 @@ public class MovieManager {
        
         
         public static void main(String[] args) throws SQLException {
-                DBMethods.formatDatabase();
+                System.out.println("asd  iudjd aisudj 2000".replaceAll(" [0-9][0-9][0-9][0-9]", ""));
+                //DBMethods.formatDatabase();
                
         }
 }

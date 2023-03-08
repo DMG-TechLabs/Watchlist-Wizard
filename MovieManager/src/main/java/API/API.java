@@ -49,17 +49,28 @@ public class API {
                 this.title = title.replaceAll(Pattern.quote("."), " ");
                 this.title = this.title.replaceAll(Pattern.quote("_"), " ");
                 this.title = this.title.replaceAll(Pattern.quote("1080p"), "");
+                this.title = this.title.replaceAll(Pattern.quote("720p"), "");
                 this.title = this.title.replaceAll(Pattern.quote("BluRay"), "");
+                this.title = this.title.replaceAll(Pattern.quote("Bluray"), "");
+                this.title = this.title.replaceAll(Pattern.quote("BRRip"), "");
+                this.title = this.title.replaceAll(Pattern.quote("WEBRip"), "");
                 this.title = this.title.replaceAll(Pattern.quote("x264"), "");
                 this.title = this.title.replaceAll(Pattern.quote("H264"), "");
                 this.title = this.title.replaceAll(Pattern.quote("AAC-RARBG"), "");
+                //this.title = this.title.replaceAll("-[YTS \\w\\w]", "");
                 this.title = this.title.replaceAll(Pattern.quote("-[YTS AM]"), "");
+                this.title = this.title.replaceAll(Pattern.quote("-[YTS LS]"), "");
+                this.title = this.title.replaceAll(Pattern.quote("-[YTS LT]"), "");
+                this.title = this.title.replaceAll(Pattern.quote("-[YTS AG"), "");
                 this.title = this.title.replaceAll(Pattern.quote("[YTS AM]"), "");
+                this.title = this.title.replaceAll("HomeMB|DD5|GalaxyRG", "");
                 this.title = this.title.replaceAll(Pattern.quote("BrRip"), "");
                 this.title = this.title.replaceAll(Pattern.quote("BOKUTOX"), "");
-                this.title = this.title.replaceAll(Pattern.quote("   "), "");
+                this.title = this.title.replaceAll(Pattern.quote("mkv-muxed"), "");
+                this.title = this.title.replaceAll("( )+", " ");
                 this.title = this.title.replaceAll(Pattern.quote("264"), "");
                 this.title = this.title.replaceAll(Pattern.quote("YIFY"), "");
+                this.title = this.title.replaceAll(" [0-9][0-9][0-9][0-9]", "");
                 System.out.println("Title: " + this.title);
                 String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
                 
@@ -67,7 +78,7 @@ public class API {
                 
                 try {
                         request = HttpRequest.newBuilder()
-                                .uri(URI.create("https://api.themoviedb.org/3/search/multi?api_key=" + api_key + "&language=en-US&query=" + getTitle() + "&include_adult=false"))
+                                .uri(URI.create("https://api.themoviedb.org/3/search/multi?api_key=" + api_key + "&language=en-US&query=" + getTitle().replaceAll(" ", "%20") + "&include_adult=false"))
                                 .method("GET", HttpRequest.BodyPublishers.noBody())
                                 .build();
 
@@ -178,10 +189,11 @@ public class API {
                 String country = "";
                 if(movie.getProductionCountries() != null) country = movie.getProductionCountries().get(0).getName();
                 */
-                //String overview = table.get("overview").replaceAll(Pattern.quote("'"), "");
+                String overview = table.get("overview").toString();
+                overview = overview.replaceAll(Pattern.quote("'"), "");
                 //Random rand = new Random(); 
                 FinalJson = "{"
-                        + " \"Title\":\"" + table.get("title") //
+                        + " \"Title\":\"" + table.get("title").toString().replaceAll("'s","") //
                         + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
                         + "\" ,\"Rated\":\"" + table.get("id")
                         + "\" ,\"Released\":\"" + table.get("release_date")
@@ -190,7 +202,7 @@ public class API {
                         + "\" ,\"Director\":\"" + table.get("id")
                         + "\" ,\"Writer\":\"" + table.get("id")
                         + "\" ,\"Actors\":\"" + table.get("id")
-                        + "\" ,\"Plot\":\"" + table.get("overview")//StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
+                        + "\" ,\"Plot\":\"" + StringUtils.substring(overview.replaceAll(Pattern.quote("\""), ""), 0, 254) //StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
                         + "\" ,\"Language\":\"" + table.get("original_language")
                         + "\" ,\"Country\":\"" + table.get("iso_3166_1")//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
                         + "\" ,\"Awards\":\"" + table.get("id")
