@@ -21,7 +21,7 @@ A movie manager project made with Java and Java Swing, using the TMDb api.
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
+See [Contributing.md](https://github.com/DMG-TechLabs/Movie-Manager/blob/main/Contributing.md) for ways to get started.
 
 
 ## Feedback
