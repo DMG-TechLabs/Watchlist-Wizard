@@ -11,7 +11,10 @@ import GUI.GUIMethods;
 import Utils.Utils;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.net.ConnectException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
@@ -20,6 +23,7 @@ import kdesp73.madb.Condition;
 //mport org.json.simple.JSONValue;
 //import org.json.*;
 import java.util.Random;
+import java.util.Scanner;
 import main.Movie;
 import main.MovieCollection;
 //import static main.MovieManager.searchMovie;
@@ -73,10 +77,11 @@ public class API {
                 this.title = this.title.replaceAll(Pattern.quote("YIFY"), "");
                 this.title = this.title.replaceAll(" [0-9][0-9][0-9][0-9]", "");
                 System.out.println("Title: " + this.title);
-                String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
-                
+                //String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
+                String api_key = ApiUtils.getKey("https://users.iee.ihu.gr/~iee2021035/api_key.txt");
+
                 String FinalJson;
-                
+
                 try {
                         request = HttpRequest.newBuilder()
                                 .uri(URI.create("https://api.themoviedb.org/3/search/multi?api_key=" + api_key + "&language=en-US&query=" + getTitle().replaceAll(" ", "%20") + "&include_adult=false"))
@@ -167,23 +172,24 @@ public class API {
                 String release_dates = response.body();
                 
                 
+
                 String overview = table.get("overview").toString();
                 overview = overview.replaceAll(Pattern.quote("'"), "''");
-                String director = FileUtils.find_in_api(credids,"job","Director").replaceAll(Pattern.quote("'"), "''");
-                String writer = FileUtils.find_in_api(credids,"job", "Screenplay").replaceAll(Pattern.quote("'"), "''");
+                String director = ApiUtils.find_in_api(credids,"job","Director").replaceAll(Pattern.quote("'"), "''");
+                String writer = ApiUtils.find_in_api(credids,"job", "Screenplay").replaceAll(Pattern.quote("'"), "''");
                 //System.out.println("\n\n\nDirecting: "+director);
                 //System.out.println("\n\n\nWriting: "+writer);
                 //Random rand = new Random(); 
                 FinalJson = "{"
-                        + " \"Title\":\"" + table.get("title").toString().replaceAll("'s","") //
+                        + " \"Title\":\"" + table.get("title").toString().replaceAll("'s", "") //
                         + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
-                        + "\" ,\"Rated\":\"" + FileUtils.find_rated(release_dates)
+                        + "\" ,\"Rated\":\"" + ApiUtils.find_rated(release_dates)
                         + "\" ,\"Released\":\"" + table.get("release_date")
                         + "\" ,\"Runtime\":\"" + table.get("runtime")
                         + "\" ,\"Genre\":\"" + genre_names
                         + "\" ,\"Director\":\"" + director
                         + "\" ,\"Writer\":\"" + writer
-                        + "\" ,\"Actors\":\"" + (FileUtils.find_actors(credids).replaceAll("\"", "\"\"")).replaceAll("'", "''")
+                        + "\" ,\"Actors\":\"" + (ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")).replaceAll("'", "''")
                         + "\" ,\"Plot\":\"" + StringUtils.substring(overview.replaceAll(Pattern.quote("\""), ""), 0, 254) //StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
                         + "\" ,\"Language\":\"" + table.get("original_language")
                         + "\" ,\"Country\":\"" + table.get("iso_3166_1")//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
@@ -204,7 +210,7 @@ public class API {
                         //Movie parsed = Utils.parseJSON(GET(movies.get(i).getTitle()));
                         if (movies.get(i).getImdbID() == null || movies.get(i).getImdbID() == "") {
                                 String old_title = movies.get(i).getTitle();
-                                System.out.println("OLD titile: "+old_title);
+                                System.out.println("OLD titile: " + old_title);
                                 String json = "";
                                 try {
                                         json = GET(old_title);
@@ -230,7 +236,7 @@ public class API {
                 return s;
         }
 
-        private class FileUtils {
+        private class ApiUtils {
 
                 public static String find_in_api(String json,String stringToFind1,String stringToFind2){
                         String[] jsonlist;// = new String[json.split(",").length-1];
@@ -312,34 +318,13 @@ public class API {
                         }
                         return null;
                 }
+
+                public static String getKey(String urlString) throws MalformedURLException, IOException {
+                        URL url = new URL(urlString);
+                        InputStream inputStream = url.openStream();
+
+                        Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+                        return s.hasNext() ? s.next() : "";
+                }
         }
 }
-
-/*
-{
-      "adult": false,
-      "gender": 2,
-      "id": 7467,
-      "known_for_department": "Directing",
-      "name": "David Fincher",
-      "original_name": "David Fincher",
-      "popularity": 9.756,
-      "profile_path": "/wdBeQXDNbbjkIKXHeEZtQShwSDM.jpg",
-      "credit_id": "52fe4250c3a36847f8014a47",
-      "department": "Directing",
-      "job": "Director"
-    },
-       {
-      "adult": false,
-      "gender": 2,
-      "id": 7469,
-      "known_for_department": "Writing",
-      "name": "Jim Uhls",
-      "original_name": "Jim Uhls",
-      "popularity": 1.284,
-      "profile_path": "/eJPUwP933EiwEWqxEBzPv6Xf0nC.jpg",
-      "credit_id": "56380f0cc3a3681b5c0200be",
-      "department": "Writing",
-      "job": "Screenplay"
-    },
-*/
