@@ -1278,7 +1278,7 @@ public class Frame extends javax.swing.JFrame {
         public void setTheme(Theme theme) {
                 this.theme = theme;
         }
-
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Movies;
     private javax.swing.JTextField SearchBar;
