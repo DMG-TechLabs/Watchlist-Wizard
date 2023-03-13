@@ -128,6 +128,7 @@ public class LoadingFrame extends javax.swing.JFrame {
          * @param args the command line arguments
          */
         public static void main(String args[]) {
+                System.setProperty("prism.allowhidpi", "false");
                 LoadingFrame lf = new LoadingFrame();
                 lf.setVisible(true);
 
