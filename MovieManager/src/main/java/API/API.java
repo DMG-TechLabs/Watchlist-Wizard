@@ -11,7 +11,10 @@ import GUI.GUIMethods;
 import Utils.Utils;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.net.ConnectException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
@@ -20,6 +23,7 @@ import kdesp73.madb.Condition;
 //mport org.json.simple.JSONValue;
 //import org.json.*;
 import java.util.Random;
+import java.util.Scanner;
 import main.Movie;
 import main.MovieCollection;
 //import static main.MovieManager.searchMovie;
@@ -72,10 +76,11 @@ public class API {
                 this.title = this.title.replaceAll(Pattern.quote("YIFY"), "");
                 this.title = this.title.replaceAll(" [0-9][0-9][0-9][0-9]", "");
                 System.out.println("Title: " + this.title);
-                String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
-                
+                //String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
+                String api_key = ApiUtils.getKey("https://users.iee.ihu.gr/~iee2021035/api_key.txt");
+
                 String FinalJson;
-                
+
                 try {
                         request = HttpRequest.newBuilder()
                                 .uri(URI.create("https://api.themoviedb.org/3/search/multi?api_key=" + api_key + "&language=en-US&query=" + getTitle().replaceAll(" ", "%20") + "&include_adult=false"))
@@ -135,9 +140,7 @@ public class API {
                 }
 
                 table = Utils.JsonToDictionary(response.body());
-                
-                
-                
+
                 /*
                 System.out.println("Title for search: "+this.title);
                 List<MovieDb> movieList = searchMovie(api_key, this.title, "en", false, 1);
@@ -188,12 +191,12 @@ public class API {
                 
                 String country = "";
                 if(movie.getProductionCountries() != null) country = movie.getProductionCountries().get(0).getName();
-                */
+                 */
                 String overview = table.get("overview").toString();
                 overview = overview.replaceAll(Pattern.quote("'"), "");
                 //Random rand = new Random(); 
                 FinalJson = "{"
-                        + " \"Title\":\"" + table.get("title").toString().replaceAll("'s","") //
+                        + " \"Title\":\"" + table.get("title").toString().replaceAll("'s", "") //
                         + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
                         + "\" ,\"Rated\":\"" + table.get("id")
                         + "\" ,\"Released\":\"" + table.get("release_date")
@@ -222,7 +225,7 @@ public class API {
                         //Movie parsed = Utils.parseJSON(GET(movies.get(i).getTitle()));
                         if (movies.get(i).getImdbID() == null || movies.get(i).getImdbID() == "") {
                                 String old_title = movies.get(i).getTitle();
-                                System.out.println("OLD titile: "+old_title);
+                                System.out.println("OLD titile: " + old_title);
                                 String json = "";
                                 try {
                                         json = GET(old_title);
@@ -248,7 +251,7 @@ public class API {
                 return s;
         }
 
-        private class FileUtils {
+        private class ApiUtils {
 
                 public static String read(String name, String dir) {
                         BufferedReader reader;
@@ -268,6 +271,14 @@ public class API {
                         } catch (IOException e) {
                         }
                         return null;
+                }
+
+                public static String getKey(String urlString) throws MalformedURLException, IOException {
+                        URL url = new URL(urlString);
+                        InputStream inputStream = url.openStream();
+
+                        Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+                        return s.hasNext() ? s.next() : "";
                 }
         }
 }
