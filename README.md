@@ -26,7 +26,7 @@ See [Contributing.md](https://github.com/DMG-TechLabs/Movie-Manager/blob/main/Co
 
 ## Feedback
 
-Visit our [website](https://dmg-techlabs.github.io/Movie-Manager-Website/report-issues.html). We would love to hear from you!
+Visit our [report-an-issue](https://dmg-techlabs.github.io/Movie-Manager-Website/report-issues.html) page. We would love to hear from you!
 
 
 ## License
