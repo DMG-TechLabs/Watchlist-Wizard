@@ -153,6 +153,7 @@ public class DBMethods {
                 Database.db().DELETE("Movies");
                 Database.db().DELETE("Filepaths");
                 Database.db().DELETE("Scraped");
+                Database.db().DELETE("Category_Matching");
         }
 
         private class DBUtils {

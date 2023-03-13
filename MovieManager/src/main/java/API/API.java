@@ -29,6 +29,7 @@ import main.MovieCollection;
 //import static main.MovieManager.searchMovie;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.xalan.templates.ElemOtherwise;
 
 public class API {
 
@@ -138,77 +139,61 @@ public class API {
                         String error = "{\"message\":\"No Internet Connection\"}";
                         return error;
                 }
-
                 table = Utils.JsonToDictionary(response.body());
 
-                /*
-                System.out.println("Title for search: "+this.title);
-                List<MovieDb> movieList = searchMovie(api_key, this.title, "en", false, 1);
-                MovieDb movie = movieList.get(0);
-                System.out.println(movieList);
-                System.out.println("API title: "+movie.getTitle());
-                String overview = movie.getOverview().replaceAll(Pattern.quote("'"), "");
-                String debug_plot = overview.replaceAll(Pattern.quote("\""), "");
-                System.out.println(debug_plot);
-                List<Genre> genres = movie.getGenres();
-                String genre = "";
-                if(genres != null){
-                    for(int i=0;i<genres.size()-1;i++){
-                        if(i!=genres.size()-1) genre += genres.get(i).getName()+",";
-                        else genre += genres.get(i).getName();
-                    }
-                }
-                
-                List<PersonCast> casts = movie.getCast();
-                String cast = "";
-                if(casts != null){
-                    for(int i=0;i<casts.size()-1;i++){
-                        if(i!=casts.size()-2) cast += casts.get(i).getName()+",";
-                        else cast += casts.get(i).getName();
-                    }
-                }
-                
-                List<PersonCrew> crew = movie.getCrew();
-                String writer = "";
-                String director = "";
-                
-                if(crew != null){
-                    for(int i=0;i<crew.size()-1;i++){
-                        if(crew.get(i).getDepartment() != "Writing") continue;
-                        if(i!=crew.size()-2) writer += crew.get(i).getName()+",";
-                        else writer += crew.get(i).getName();
-                    }
+                try {
+                        String url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "/credits?api_key=" + api_key + "&language=en-US";
+                        request = HttpRequest.newBuilder()
+                                .uri(URI.create(url))
+                                .method("GET", HttpRequest.BodyPublishers.noBody())
+                                .build();
 
-                    for(int i=0;i<crew.size()-1;i++){
-                        if(crew.get(i).getDepartment() != "Directing") continue;
-                        if(i!=crew.size()-2) director += crew.get(i).getName()+",";
-                        else director += crew.get(i).getName();
-                    }
+                        response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+                } catch (ConnectException e) {
+                        String error = "{\"message\":\"No Internet Connection\"}";
+                        return error;
                 }
                 
-                String rated = "";
-                if(movie.getReleases() != null) rated =(String) movie.getReleases().get(0).getReleaseDates().get(0).getCertification();
+                String credids = response.body();
+
+                try {
+                        String url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "/release_dates?api_key="+ api_key;
+                        request = HttpRequest.newBuilder()
+                                .uri(URI.create(url))
+                                .method("GET", HttpRequest.BodyPublishers.noBody())
+                                .build();
+
+                        response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+                } catch (ConnectException e) {
+                        String error = "{\"message\":\"No Internet Connection\"}";
+                        return error;
+                }
                 
-                String country = "";
-                if(movie.getProductionCountries() != null) country = movie.getProductionCountries().get(0).getName();
-                 */
+                String release_dates = response.body();
+                
+                
+
                 String overview = table.get("overview").toString();
-                overview = overview.replaceAll(Pattern.quote("'"), "");
+                overview = overview.replaceAll(Pattern.quote("'"), "''");
+                String director = ApiUtils.find_in_api(credids,"job","Director").replaceAll(Pattern.quote("'"), "''");
+                String writer = ApiUtils.find_in_api(credids,"job", "Screenplay").replaceAll(Pattern.quote("'"), "''");
+                //System.out.println("\n\n\nDirecting: "+director);
+                //System.out.println("\n\n\nWriting: "+writer);
                 //Random rand = new Random(); 
                 FinalJson = "{"
                         + " \"Title\":\"" + table.get("title").toString().replaceAll("'s", "") //
                         + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
-                        + "\" ,\"Rated\":\"" + table.get("id")
+                        + "\" ,\"Rated\":\"" + ApiUtils.find_rated(release_dates)
                         + "\" ,\"Released\":\"" + table.get("release_date")
                         + "\" ,\"Runtime\":\"" + table.get("runtime")
                         + "\" ,\"Genre\":\"" + genre_names
-                        + "\" ,\"Director\":\"" + table.get("id")
-                        + "\" ,\"Writer\":\"" + table.get("id")
-                        + "\" ,\"Actors\":\"" + table.get("id")
+                        + "\" ,\"Director\":\"" + director
+                        + "\" ,\"Writer\":\"" + writer
+                        + "\" ,\"Actors\":\"" + (ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")).replaceAll("'", "''")
                         + "\" ,\"Plot\":\"" + StringUtils.substring(overview.replaceAll(Pattern.quote("\""), ""), 0, 254) //StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
                         + "\" ,\"Language\":\"" + table.get("original_language")
                         + "\" ,\"Country\":\"" + table.get("iso_3166_1")//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
-                        + "\" ,\"Awards\":\"" + table.get("id")
+                        + "\" ,\"Awards\":\"" + ""
                         + "\" ,\"Poster\":\"" + table.get("poster_path")
                         + "\" ,\"Type\":\"" + media_type
                         + "\" ,\"imdbRating\":\"" + table.get("vote_average")
@@ -252,6 +237,67 @@ public class API {
         }
 
         private class ApiUtils {
+
+                public static String find_in_api(String json,String stringToFind1,String stringToFind2){
+                        String[] jsonlist;// = new String[json.split(",").length-1];
+                        String temp;
+                        jsonlist = json.split(",");
+                        
+                        for(int i=0;i<jsonlist.length;i++){
+                                
+                                if(jsonlist[i].contains(stringToFind1)&&jsonlist[i].contains(stringToFind2)){
+                                        temp = jsonlist[i-6];
+                                        temp = StringUtils.substring(temp, 8, temp.length()-1);
+                                        return temp;
+                                }
+                        }
+                        return "";
+                }
+
+                public static String find_actors(String json){
+                        String[] jsonlist;// = new String[json.split(",").length-1];
+                        ArrayList<String> names = new ArrayList<>();
+                        String namesString = "";
+                        String temp;
+                        jsonlist = json.split(",");
+                        
+                        for(int i=0;i<jsonlist.length;i++){
+                                
+                                if(jsonlist[i].contains("order")){
+                                        temp = jsonlist[i-7];
+                                        temp = StringUtils.substring(temp, 8, temp.length()-1);
+                                        names.add(temp);
+                                        if(names.size()==3) break;
+                                }
+                        }
+                        for(String name: names){
+                                namesString += name+",";
+                        }
+                        return StringUtils.substring(namesString, 0, namesString.length()-1);
+                }
+
+                public static String find_rated(String json){
+                        String[] jsonlist;// = new String[json.split(",").length-1];
+                        ArrayList<String> names = new ArrayList<>();
+                        String namesString = "";
+                        String temp;
+                        jsonlist = json.split(",");
+                        
+                        for(int i=0;i<jsonlist.length;i++){
+                                
+                                if(jsonlist[i].contains("iso_3166_1")&&jsonlist[i].contains("US")){
+                                        temp = jsonlist[i+1];
+                                        temp = StringUtils.substring(temp, 37, temp.length()-1);
+                                        names.add(temp);
+                                        if(names.size()==3) break;
+                                }
+                        }
+                        for(String name: names){
+                                namesString += name+",";
+                        }
+                        if(namesString.length()<1) return "";
+                        else return StringUtils.substring(namesString, 0, namesString.length()-1);
+                }
 
                 public static String read(String name, String dir) {
                         BufferedReader reader;
