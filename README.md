@@ -5,7 +5,10 @@ A movie manager project made with Java and Java Swing, using the TMDb api.
 
 [Project Website](https://dmg-techlabs.github.io/Movie-Manager-Website/)
 
+![movie_manager_graph](https://user-images.githubusercontent.com/63654361/224777391-277cabf1-cb34-43a7-b1a8-83daf5f48f2b.png)
+
 ## Acknowledgements
+
 
  - [TMDb Api](https://www.themoviedb.org/)
 
