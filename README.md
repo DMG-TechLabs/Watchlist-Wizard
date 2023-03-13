@@ -3,13 +3,11 @@
 
 A movie manager project made with Java and Java Swing, using the TMDb api.
 
-
-
+[Project Website](https://dmg-techlabs.github.io/Movie-Manager-Website/)
 
 ## Acknowledgements
 
  - [TMDb Api](https://www.themoviedb.org/)
-
 
 
 ## Authors
@@ -24,8 +22,6 @@ A movie manager project made with Java and Java Swing, using the TMDb api.
 Contributions are always welcome!
 
 See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
 
 
 ## Feedback
