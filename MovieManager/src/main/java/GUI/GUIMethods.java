@@ -8,10 +8,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.logging.Level;
@@ -28,7 +32,27 @@ import org.imgscalr.Scalr;
 
 public class GUIMethods {
 
-        
+        private static boolean openWebpage(URI uri) {
+                Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+                if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+                        try {
+                                desktop.browse(uri);
+                                return true;
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+                }
+                return false;
+        }
+
+        public static boolean openWebpage(URL url) {
+                try {
+                        return openWebpage(url.toURI());
+                } catch (URISyntaxException e) {
+                }
+                return false;
+        }
+
         public static Theme setupFrame(JFrame frame, Dimension dimension, String title) {
                 Theme theme = null;
 
@@ -43,7 +67,7 @@ public class GUIMethods {
                 }
 
                 try {
-                        String themeName = (String)Database.db().SELECT("Settings", "Theme").get(0);
+                        String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
                         theme = new ThemeCollection().matchThemes(themeName);
                         ThemeCollection.implementTheme(frame, theme);
 
@@ -52,7 +76,7 @@ public class GUIMethods {
                 }
 
                 try {
-                        GUIMethods.changeGlobalFont(new Component[]{frame}, 1, (String)Database.db().SELECT("Settings", "Font").get(0));
+                        GUIMethods.changeGlobalFont(new Component[]{frame}, 1, (String) Database.db().SELECT("Settings", "Font").get(0));
                 } catch (SQLException ex) {
                         Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -74,7 +98,7 @@ public class GUIMethods {
                 }
 
                 try {
-                        String themeName = (String)Database.db().SELECT("Settings", "Theme").get(0);
+                        String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
                         theme = new ThemeCollection().matchThemes(themeName);
                         ThemeCollection.implementTheme(dialog, theme);
 
@@ -83,7 +107,7 @@ public class GUIMethods {
                 }
 
                 try {
-                        GUIMethods.changeGlobalFont(new Component[]{dialog}, 0, (String)Database.db().SELECT("Settings", "Font").get(0));
+                        GUIMethods.changeGlobalFont(new Component[]{dialog}, 0, (String) Database.db().SELECT("Settings", "Font").get(0));
                 } catch (SQLException ex) {
                         Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -115,8 +139,8 @@ public class GUIMethods {
 
                 return arr;
         }
-        
-        public static void dialog(String message, String subtitleMessage, String title){
+
+        public static void dialog(String message, String subtitleMessage, String title) {
                 JDialog dialog = new JDialog();
 
                 Theme selectedTheme = null;
@@ -151,7 +175,7 @@ public class GUIMethods {
                 subtitle.setFont(font.deriveFont(Font.BOLD));
 
                 try {
-                        String themeName = (String)Database.db().SELECT("Settings", "Theme").get(0);
+                        String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
                         System.out.println(themeName);
                         selectedTheme = new ThemeCollection().matchThemes(themeName);
 
@@ -162,7 +186,7 @@ public class GUIMethods {
                 ThemeCollection.implementTheme(dialog, selectedTheme);
                 dialog.setVisible(true);
         }
-        
+
         public static void dialogError(String error) {
                 dialog(error, "An error has occured!", "Error");
         }
