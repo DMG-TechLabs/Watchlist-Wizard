@@ -36,7 +36,7 @@
     <Container class="javax.swing.JPanel" name="background">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="32" green="20" red="8" type="rgb"/>
+          <Color blue="4a" green="1e" red="2b" type="rgb"/>
         </Property>
       </Properties>
 
@@ -45,12 +45,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace pref="55" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="icon" max="32767" attributes="0"/>
-                          <Component id="progressBar" pref="355" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="title" pref="355" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="icon" max="32767" attributes="0"/>
+                              <Component id="progressBar" pref="355" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="task" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="task" min="-2" pref="226" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="55" max="32767" attributes="0"/>
               </Group>
@@ -61,11 +64,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="icon" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="title" min="-2" pref="74" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" pref="19" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="task" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="103" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,20 +92,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="iconLabel" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="355" max="32767" attributes="0"/>
+                  <Component id="iconLabel" alignment="0" pref="355" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="iconLabel">
+            </Component>
+          </SubComponents>
         </Container>
         <Component class="javax.swing.JProgressBar" name="progressBar">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="32" green="cd" red="32" type="rgb"/>
+              <Color blue="6b" green="d3" red="fe" type="rgb"/>
             </Property>
             <Property name="value" type="int" value="68"/>
           </Properties>
@@ -111,6 +120,18 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Task in progress"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="title">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Matura MT Script Capitals" size="36" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Watchlist Wizard"/>
           </Properties>
         </Component>
       </SubComponents>

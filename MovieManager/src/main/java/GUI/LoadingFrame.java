@@ -1,9 +1,12 @@
 package GUI;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 
 public class LoadingFrame extends javax.swing.JFrame {
         public LoadingFrame() {
@@ -12,7 +15,10 @@ public class LoadingFrame extends javax.swing.JFrame {
                 GUIMethods.setupFrame(this, this.getPreferredSize(), "Loading...");
                 progressBar.setBorderPainted(false);
                 progressBar.setValue(0);
-
+                
+                iconLabel.setIcon(new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/ww-logo-png-355-purple.png"));
+                title.setFont(new Font("Matura Script MT Capitals", Font.PLAIN, 36));
+                
         }
 
         @SuppressWarnings("unchecked")
@@ -21,12 +27,14 @@ public class LoadingFrame extends javax.swing.JFrame {
 
                 background = new javax.swing.JPanel();
                 icon = new RoundedPanel();
+                iconLabel = new javax.swing.JLabel();
                 progressBar = new javax.swing.JProgressBar();
                 task = new javax.swing.JLabel();
+                title = new javax.swing.JLabel();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-                background.setBackground(new java.awt.Color(8, 32, 50));
+                background.setBackground(new java.awt.Color(43, 30, 74));
 
                 icon.setBackground(new java.awt.Color(255, 255, 255));
                 icon.setPreferredSize(new java.awt.Dimension(355, 355));
@@ -35,18 +43,23 @@ public class LoadingFrame extends javax.swing.JFrame {
                 icon.setLayout(iconLayout);
                 iconLayout.setHorizontalGroup(
                         iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 );
                 iconLayout.setVerticalGroup(
                         iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 355, Short.MAX_VALUE)
+                        .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                 );
 
-                progressBar.setForeground(new java.awt.Color(50, 205, 50));
+                progressBar.setForeground(new java.awt.Color(254, 211, 107));
                 progressBar.setValue(68);
 
                 task.setForeground(new java.awt.Color(255, 255, 255));
                 task.setText("Task in progress");
+
+                title.setFont(new java.awt.Font("Matura MT Script Capitals", 0, 36)); // NOI18N
+                title.setForeground(new java.awt.Color(255, 255, 255));
+                title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                title.setText("Watchlist Wizard");
 
                 javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
                 background.setLayout(backgroundLayout);
@@ -54,11 +67,13 @@ public class LoadingFrame extends javax.swing.JFrame {
                         backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(backgroundLayout.createSequentialGroup()
                                 .addContainerGap(55, Short.MAX_VALUE)
-                                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
-                                        .addComponent(task, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
+                                                .addComponent(task, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(55, Short.MAX_VALUE))
                 );
                 backgroundLayout.setVerticalGroup(
@@ -66,11 +81,13 @@ public class LoadingFrame extends javax.swing.JFrame {
                         .addGroup(backgroundLayout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
+                                .addGap(18, 18, 18)
+                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(task)
-                                .addContainerGap(103, Short.MAX_VALUE))
+                                .addGap(52, 52, 52))
                 );
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,7 +159,9 @@ public class LoadingFrame extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel background;
         private javax.swing.JPanel icon;
+        private javax.swing.JLabel iconLabel;
         private javax.swing.JProgressBar progressBar;
         private javax.swing.JLabel task;
+        private javax.swing.JLabel title;
         // End of variables declaration//GEN-END:variables
 }

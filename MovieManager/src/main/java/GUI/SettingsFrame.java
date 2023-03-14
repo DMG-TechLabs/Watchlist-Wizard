@@ -2,6 +2,8 @@ package GUI;
 
 import Database.Database;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.font.TextAttribute;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,6 +13,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -91,6 +95,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                         Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                Font font = issuesLinkLabel.getFont();
+                Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+                attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+                issuesLinkLabel.setFont(font.deriveFont(attributes));
         }
 
         /**
@@ -693,7 +702,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                         String dir = mediaPlayerPath.getText();
 
                         try {
-                                Database.db().UPDATE("Settings", "Media_Player", dir,new Condition("Αναγνωριστικό", 1));
+                                Database.db().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
                         } catch (SQLException ex) {
                                 Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -705,11 +714,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
         private void customThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseClicked
                 tf = new CustomThemeFrame(f);
-                
+
                 ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/palette-solid.png");
-                
+
                 tf.setIconImage(img.getImage());
-                
+
                 tf.setVisible(true);
         }//GEN-LAST:event_customThemeButtonMouseClicked
 
@@ -722,11 +731,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_customThemeButtonMouseExited
 
     private void extensionFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extensionFieldKeyPressed
-        String ext = extensionField.getText().trim();
-        
-        if (evt.getKeyCode() == 10){
-            lm.addElement(ext);
-        }
+            String ext = extensionField.getText().trim();
+
+            if (evt.getKeyCode() == 10) {
+                    lm.addElement(ext);
+            }
     }//GEN-LAST:event_extensionFieldKeyPressed
 
         private void issuesLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issuesLinkLabelMouseClicked
@@ -745,9 +754,9 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                         Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 for (Object obj : objectList) {
-                        themeNames.add((String)obj);
+                        themeNames.add((String) obj);
                 }
 
                 themeNames.add(0, "Default");
