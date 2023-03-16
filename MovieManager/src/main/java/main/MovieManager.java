@@ -1,20 +1,16 @@
 package main;
 
-import API.API;
-//import static API.API.searchMovie;
-import Database.DBMethods;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-
+import Files.*;
 //import java.util.regex;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.List;
 
 
 
@@ -74,7 +70,9 @@ public class MovieManager {
         
         public static void main(String[] args) throws SQLException {
                 //System.out.println("asd  iudjd aisudj 2000".replaceAll(" [0-9][0-9][0-9][0-9]", ""));
-                DBMethods.formatDatabase();
+                //DBMethods.formatDatabase();
+                
+                ImagesUtils.imageToDatabase("tt0434409");
                
         }
 }
