@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import Database.DBMethods;
 import Database.Database;
 import Exceptions.MovieNotFoundException;
+import Files.ImagesUtils;
 import GUI.GUIMethods;
 import Utils.Utils;
 import java.io.BufferedReader;
@@ -184,6 +185,7 @@ public class API {
                 //System.out.println("\n\n\nDirecting: "+director);
                 //System.out.println("\n\n\nWriting: "+writer);
                 //Random rand = new Random(); 
+                
                 FinalJson = "{"
                         + " \"Title\":\"" + table.get("title").toString().replaceAll("'s", "") //
                         + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
@@ -228,6 +230,7 @@ public class API {
                                 Database.db().UPDATE("Scraped", "API_Done", true, new Condition("Filepath", movies.get(i).getDirectory()));
                                 Database.db().DELETE("Movies", "Title", old_title);
                                 DBMethods.insertMovie(movies.get(i));
+                                ImagesUtils.imageToDatabase(movies.get(i).getImdbID());
                         }
 
                 }
