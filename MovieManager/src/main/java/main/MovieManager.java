@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import API.API;
+import Database.DBMethods;
 import Files.*;
 //import java.util.regex;
 
@@ -70,9 +73,17 @@ public class MovieManager {
         
         public static void main(String[] args) throws SQLException {
                 //System.out.println("asd  iudjd aisudj 2000".replaceAll(" [0-9][0-9][0-9][0-9]", ""));
-                //DBMethods.formatDatabase();
-                
-                ImagesUtils.imageToDatabase("tt0434409");
+                DBMethods.formatDatabase();
+                /*API api;
+                try {
+                        api = new API();
+                        System.out.println(api.GET("V for vendeta"));
+                        
+                } catch (IOException | InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }*/
+                //ImagesUtils.imageToDatabase("tt0434409");
                
         }
 }

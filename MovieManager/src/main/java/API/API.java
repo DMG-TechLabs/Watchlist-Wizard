@@ -109,6 +109,7 @@ public class API {
                         }
                 } catch (NullPointerException e) {
                 }
+                
                 //System.out.println("API multi search table: " + table);
                 String media_type = "";
                 try {
@@ -139,6 +140,8 @@ public class API {
                         String error = "{\"message\":\"No Internet Connection\"}";
                         return error;
                 }
+
+                System.out.println("Response Status: " + response.statusCode());
                 table = Utils.JsonToDictionary(response.body());
 
                 try {
@@ -153,7 +156,8 @@ public class API {
                         String error = "{\"message\":\"No Internet Connection\"}";
                         return error;
                 }
-                
+                System.out.println("Response Status: " + response.statusCode());
+
                 String credids = response.body();
 
                 try {
@@ -279,24 +283,25 @@ public class API {
                 public static String find_rated(String json){
                         String[] jsonlist;// = new String[json.split(",").length-1];
                         ArrayList<String> names = new ArrayList<>();
-                        String namesString = "";
+                        String rated = "";
                         String temp;
                         jsonlist = json.split(",");
                         
                         for(int i=0;i<jsonlist.length;i++){
                                 
                                 if(jsonlist[i].contains("iso_3166_1")&&jsonlist[i].contains("US")){
+                                        System.out.println("yes");
+                                        System.out.println(jsonlist[i]);
+                                        System.out.println(jsonlist[i+1]);
                                         temp = jsonlist[i+1];
-                                        temp = StringUtils.substring(temp, 37, temp.length()-1);
-                                        names.add(temp);
-                                        if(names.size()==3) break;
+                                        //temp = temp.replaceAll("( )", "");
+                                        temp = StringUtils.substring(temp, 35, temp.length()-1);
+                                        rated = temp;
                                 }
                         }
-                        for(String name: names){
-                                namesString += name+",";
-                        }
-                        if(namesString.length()<1) return "";
-                        else return StringUtils.substring(namesString, 0, namesString.length()-1);
+                        return rated;
+                        //if(rated.length()<1) return "s";
+                        //else return StringUtils.substring(rated, 0, rated.length()-1);
                 }
 
                 public static String read(String name, String dir) {

@@ -154,6 +154,7 @@ public class DBMethods {
                 Database.db().DELETE("Filepaths");
                 Database.db().DELETE("Scraped");
                 Database.db().DELETE("Category_Matching");
+                Database.db().DELETE("Images");
         }
 
         private class DBUtils {
