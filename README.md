@@ -34,6 +34,9 @@ See [Contributing.md](https://github.com/DMG-TechLabs/Movie-Manager/blob/main/Co
 
 Visit our [report-an-issue](https://dmg-techlabs.github.io/Movie-Manager-Website/report-issues.html) page. We would love to hear from you!
 
+OR
+
+File an [issue](https://github.com/DMG-TechLabs/Movie-Manager/issues) here on Github
 
 ## License
 
