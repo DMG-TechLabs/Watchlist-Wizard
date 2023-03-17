@@ -1000,6 +1000,7 @@ public class Frame extends javax.swing.JFrame {
                 }
 
                 refreshMoviesList();
+                System.gc();
         }//GEN-LAST:event_scrapeButtonMouseClicked
 
         private void scrapeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseEntered
@@ -1014,6 +1015,7 @@ public class Frame extends javax.swing.JFrame {
                 movies.setDir(dir);
                 movies.refreshMovies();
                 refreshMoviesList();
+                System.gc();
         }//GEN-LAST:event_refreshButtonMouseClicked
 
         private void refreshButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshButtonMouseEntered

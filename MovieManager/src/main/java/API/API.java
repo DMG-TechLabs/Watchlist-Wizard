@@ -227,11 +227,11 @@ public class API {
                                 Database.db().UPDATE("Scraped", "API_Done", true, new Condition("Filepath", movies.get(i).getDirectory()));
                                 Database.db().DELETE("Movies", "Title", old_title);
                                 DBMethods.insertMovie(movies.get(i));
-                                ImagesUtils.imageToDatabase(movies.get(i).getImdbID());
+                                String imdb_id = movies.get(i).getImdbID();
+                                if(imdb_id != null) ImagesUtils.imageToDatabase(imdb_id);
                         }
 
                 }
-
         }
 
         private String setupString(String s) {
