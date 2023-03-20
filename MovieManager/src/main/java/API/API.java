@@ -184,23 +184,23 @@ public class API {
                 //Random rand = new Random(); 
                 
                 FinalJson = "{"
-                        + " \"Title\":\"" + table.get("title").toString().replaceAll("'s", "") //
-                        + "\" ,\"Year\":\"" + table.get("release_date").toString().split(Pattern.quote("-"))[0] //
+                        + " \"Title\":\"" + ApiUtils.some_error_handling(table.get("title").toString().replaceAll("'s", ""))  //
+                        + "\" ,\"Year\":\"" + ApiUtils.some_error_handling(table.get("release_date").toString().split(Pattern.quote("-"))[0])
                         + "\" ,\"Rated\":\"" + ApiUtils.find_rated(release_dates)
-                        + "\" ,\"Released\":\"" + table.get("release_date")
-                        + "\" ,\"Runtime\":\"" + table.get("runtime")
+                        + "\" ,\"Released\":\"" + ApiUtils.some_error_handling(table.get("release_date"))
+                        + "\" ,\"Runtime\":\"" + ApiUtils.some_error_handling(table.get("runtime"))
                         + "\" ,\"Genre\":\"" + genre_names
                         + "\" ,\"Director\":\"" + director
                         + "\" ,\"Writer\":\"" + writer
                         + "\" ,\"Actors\":\"" + (ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")).replaceAll("'", "''")
-                        + "\" ,\"Plot\":\"" + overview.replaceAll(Pattern.quote("\""), "")//StringUtils.substring(overview.replaceAll(Pattern.quote("\""), ""), 0, 254) //StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
-                        + "\" ,\"Language\":\"" + table.get("original_language")
-                        + "\" ,\"Country\":\"" + table.get("iso_3166_1")//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
+                        + "\" ,\"Plot\":\"" + ApiUtils.some_error_handling(overview.replaceAll(Pattern.quote("\""), ""))
+                        + "\" ,\"Language\":\"" + ApiUtils.some_error_handling(table.get("original_language"))
+                        + "\" ,\"Country\":\"" + ApiUtils.some_error_handling(table.get("iso_3166_1"))//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
                         + "\" ,\"Awards\":\"" + ""
-                        + "\" ,\"Poster\":\"" + table.get("poster_path")
+                        + "\" ,\"Poster\":\"" + ApiUtils.some_error_handling(table.get("poster_path"))
                         + "\" ,\"Type\":\"" + media_type
-                        + "\" ,\"imdbRating\":\"" + table.get("vote_average")
-                        + "\" ,\"imdbID\":\"" + table.get("imdb_id")
+                        + "\" ,\"imdbRating\":\"" + ApiUtils.some_error_handling(table.get("vote_average"))
+                        + "\" ,\"imdbID\":\"" + ApiUtils.some_error_handling(table.get("imdb_id"))
                         + "\"}";
                 return FinalJson;
         }
@@ -256,6 +256,11 @@ public class API {
                                 }
                         }
                         return "";
+                }
+
+                public static String some_error_handling(Object obj){
+                        if (obj==null) return "";
+                        else return obj.toString();
                 }
 
                 public static String find_actors(String json){
