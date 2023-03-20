@@ -260,7 +260,8 @@ public class API {
 
                 public static String some_error_handling(Object obj){
                         if (obj==null) return "";
-                        else return obj.toString();
+                        
+                        return obj.toString();
                 }
 
                 public static String find_actors(String json){

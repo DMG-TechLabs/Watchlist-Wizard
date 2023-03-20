@@ -255,7 +255,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 changeFDbtn.setLayout(changeFDbtnLayout);
                 changeFDbtnLayout.setHorizontalGroup(
                         changeFDbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(changeFDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(changeFDLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 );
                 changeFDbtnLayout.setVerticalGroup(
                         changeFDbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +288,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 changeMPbtn.setLayout(changeMPbtnLayout);
                 changeMPbtnLayout.setHorizontalGroup(
                         changeMPbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(changeMPLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(changeMPLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 );
                 changeMPbtnLayout.setVerticalGroup(
                         changeMPbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +323,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 addbtn2.setLayout(addbtn2Layout);
                 addbtn2Layout.setHorizontalGroup(
                         addbtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(addLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 );
                 addbtn2Layout.setVerticalGroup(
                         addbtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +358,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 removebtn2.setLayout(removebtn2Layout);
                 removebtn2Layout.setHorizontalGroup(
                         removebtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(removeLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                        .addComponent(removeLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 );
                 removebtn2Layout.setVerticalGroup(
                         removebtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,67 +418,60 @@ public final class SettingsFrame extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(settingsPanelLayout.createSequentialGroup()
-                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel4)
-                                                        .addComponent(jLabel3))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(fontsList, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(settingsPanelLayout.createSequentialGroup()
-                                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                        .addComponent(themesList, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(fileDirectory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(customThemeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                                                        .addComponent(changeFDbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))))
-                                        .addGroup(settingsPanelLayout.createSequentialGroup()
                                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(87, 87, 87)
+                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(fontsList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(settingsPanelLayout.createSequentialGroup()
-                                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(31, 31, 31)
-                                                                .addComponent(extensionField, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(settingsPanelLayout.createSequentialGroup()
-                                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(mediaPlayerPath, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, settingsPanelLayout.createSequentialGroup()
-                                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addComponent(extensionField, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                .addComponent(fileDirectory, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(mediaPlayerPath, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                                                                .addComponent(themesList, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(customThemeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                                                        .addComponent(changeFDbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                                                        .addComponent(changeMPbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(settingsPanelLayout.createSequentialGroup()
+                                                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(changeMPbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                                        .addComponent(addbtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(removebtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(addbtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(removebtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(issuesLinkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())
+                                                .addComponent(issuesLinkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18))
                 );
                 settingsPanelLayout.setVerticalGroup(
                         settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(settingsPanelLayout.createSequentialGroup()
-                                .addContainerGap(41, Short.MAX_VALUE)
+                                .addContainerGap(53, Short.MAX_VALUE)
                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(fontsList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel4)
                                                 .addComponent(themesList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(customThemeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel3)
                                                 .addComponent(fileDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(changeFDbtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,7 +488,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(removebtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                                 .addComponent(issuesLinkLabel)
                                 .addContainerGap())
                 );
@@ -514,188 +507,177 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-        public Theme getTheme() {
-                return theme;
-        }
+        private void issuesLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issuesLinkLabelMouseClicked
+                try {
+                        GUIMethods.openWebpage(new URL("https://dmg-techlabs.github.io/Movie-Manager-Website/report-issues.html"));
+                } catch (MalformedURLException ex) {
+                        Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }//GEN-LAST:event_issuesLinkLabelMouseClicked
 
-        public void setTheme(Theme theme) {
-                this.theme = theme;
-                ThemeCollection.implementTheme(this, theme);
-        }
+        private void customThemeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseExited
+                customThemeButton.setBackground(theme.getButton());
+        }//GEN-LAST:event_customThemeButtonMouseExited
 
-    private void themesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themesListActionPerformed
-            String themeName = themesList.getSelectedItem().toString();
-            Theme selectedTheme = new ThemeCollection().matchThemes(themeName);
+        private void customThemeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseEntered
+                customThemeButton.setBackground(theme.getButtonHover());
+        }//GEN-LAST:event_customThemeButtonMouseEntered
 
-            System.out.println("Selected Theme: " + themeName);
+        private void customThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseClicked
+                tf = new CustomThemeFrame(f);
 
-            try {
-                    Database.db().UPDATE("Settings", "Theme", themeName, new Condition("Αναγνωριστικό", 1));
-            } catch (SQLException ex) {
-                    Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/palette-solid.png");
 
-            f.setTheme(selectedTheme);
-            ef.setTheme(selectedTheme);
-            this.theme = selectedTheme;
-            ThemeCollection.implementTheme(this, selectedTheme);
-            ThemeCollection.implementTheme(f, selectedTheme);
-            ThemeCollection.implementTheme(ef, selectedTheme);
-    }//GEN-LAST:event_themesListActionPerformed
+                        tf.setIconImage(img.getImage());
 
-    private void fontsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontsListActionPerformed
-            String s = fontsList.getSelectedItem().toString();
-            GUIMethods.changeGlobalFont(new Component[]{this, f}, 0, s);
+                        tf.setVisible(true);
+        }//GEN-LAST:event_customThemeButtonMouseClicked
 
-            try {
-                    Database.db().UPDATE("Settings", "Font", s, new Condition("Αναγνωριστικό", 1));
-            } catch (SQLException ex) {
-                    Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        private void removebtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseExited
+                removebtn2.setBackground(theme.getButton());
+        }//GEN-LAST:event_removebtn2MouseExited
 
-    }//GEN-LAST:event_fontsListActionPerformed
+        private void removebtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseEntered
+                removebtn2.setBackground(theme.getButtonHover());
+        }//GEN-LAST:event_removebtn2MouseEntered
 
-    private void changeFDbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseClicked
-            String dir = "";
-            int UserChoice = jFileChooser1.showOpenDialog(SettingsFrame.this);
+        private void removebtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseClicked
+                int i = extensionsList.getSelectedIndex();
+                String ext = extensionsList.getSelectedValue();
 
-            if (UserChoice == JFileChooser.APPROVE_OPTION) {
-                    File SelectedFile = jFileChooser1.getSelectedFile();
-                    dir = SelectedFile.getPath();
-                    fileDirectory.setText(dir);
-            }
+                lm.remove(i);
 
-            if (UserChoice == JFileChooser.CANCEL_OPTION) {
-                    fileDirectory.setText("No File Selected");
-            }
+                try {
+                        Database.db().DELETE("Extensions", "Extension", ext);
+                } catch (SQLException ex) {
+                        Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-            try {
-                    Database.db().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
-            } catch (SQLException ex) {
-                    Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            f.dir = dir;
-    }//GEN-LAST:event_changeFDbtnMouseClicked
+                f.movies.removeExtension(ext);
+                f.movies.refreshMovies();
+                f.refreshMoviesList();
+        }//GEN-LAST:event_removebtn2MouseClicked
 
-    private void changeFDbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseEntered
-            changeFDbtn.setBackground(theme.getButtonHover());
-    }//GEN-LAST:event_changeFDbtnMouseEntered
+        private void addbtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseExited
+                addbtn2.setBackground(theme.getButton());
+        }//GEN-LAST:event_addbtn2MouseExited
 
-    private void changeFDbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseExited
-            changeFDbtn.setBackground(theme.getButton());
-    }//GEN-LAST:event_changeFDbtnMouseExited
+        private void addbtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseEntered
+                addbtn2.setBackground(theme.getButtonHover());
+        }//GEN-LAST:event_addbtn2MouseEntered
 
-    private void changeMPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseClicked
-            String dir = "";
-            int UserChoice = jFileChooser2.showOpenDialog(SettingsFrame.this);
+        private void addbtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseClicked
+                String ext = extensionField.getText().trim();
 
-            if (UserChoice == JFileChooser.APPROVE_OPTION) {
-                    File SelectedFile = jFileChooser2.getSelectedFile();
-                    dir = SelectedFile.getPath();
-                    mediaPlayerPath.setText(dir);
-            }
+                if (ext == null || ext.isBlank() || ext.isEmpty()) {
+                        return;
+                }
 
-            if (UserChoice == JFileChooser.CANCEL_OPTION) {
-                    mediaPlayerPath.setText("No File Selected");
-            }
+                lm.addElement(ext);
 
-            try {
-                    Database.db().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
-            } catch (SQLException ex) {
-                    Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_changeMPbtnMouseClicked
+                try {
+                        Database.db().INSERT("Extensions", "Extension", ext);
+                } catch (SQLException ex) {
+                        Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-    private void changeMPbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseEntered
-            changeMPbtn.setBackground(theme.getButtonHover());
-    }//GEN-LAST:event_changeMPbtnMouseEntered
+                f.movies.addExtension(ext);
+                f.movies.setDir(f.dir);
 
-    private void changeMPbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseExited
-            changeMPbtn.setBackground(theme.getButton());
-    }//GEN-LAST:event_changeMPbtnMouseExited
+                f.movies.refreshMovies();
+                f.refreshMoviesList();
+                extensionField.setText("");
+        }//GEN-LAST:event_addbtn2MouseClicked
 
-    private void addbtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseClicked
-            String ext = extensionField.getText().trim();
+        private void changeMPbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseExited
+                changeMPbtn.setBackground(theme.getButton());
+        }//GEN-LAST:event_changeMPbtnMouseExited
 
-            if (ext == null || ext.isBlank() || ext.isEmpty()) {
-                    return;
-            }
+        private void changeMPbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseEntered
+                changeMPbtn.setBackground(theme.getButtonHover());
+        }//GEN-LAST:event_changeMPbtnMouseEntered
 
-            lm.addElement(ext);
+        private void changeMPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseClicked
+                String dir = "";
+                int UserChoice = jFileChooser2.showOpenDialog(SettingsFrame.this);
 
-            try {
-                    Database.db().INSERT("Extensions", "Extension", ext);
-            } catch (SQLException ex) {
-                    Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                if (UserChoice == JFileChooser.APPROVE_OPTION) {
+                        File SelectedFile = jFileChooser2.getSelectedFile();
+                        dir = SelectedFile.getPath();
+                        mediaPlayerPath.setText(dir);
+                }
 
-            f.movies.addExtension(ext);
-            f.movies.setDir(f.dir);
+                if (UserChoice == JFileChooser.CANCEL_OPTION) {
+                        mediaPlayerPath.setText("No File Selected");
+                }
 
-            f.movies.refreshMovies();
-            f.refreshMoviesList();
-            extensionField.setText("");
-    }//GEN-LAST:event_addbtn2MouseClicked
+                try {
+                        Database.db().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
+                } catch (SQLException ex) {
+                        Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }//GEN-LAST:event_changeMPbtnMouseClicked
 
-    private void addbtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseEntered
-            addbtn2.setBackground(theme.getButtonHover());
-    }//GEN-LAST:event_addbtn2MouseEntered
+        private void changeFDbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseExited
+                changeFDbtn.setBackground(theme.getButton());
+        }//GEN-LAST:event_changeFDbtnMouseExited
 
-    private void addbtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseExited
-            addbtn2.setBackground(theme.getButton());
-    }//GEN-LAST:event_addbtn2MouseExited
-
-    private void removebtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseClicked
-            int i = extensionsList.getSelectedIndex();
-            String ext = extensionsList.getSelectedValue();
-
-            lm.remove(i);
-
-            try {
-                    Database.db().DELETE("Extensions", "Extension", ext);
-            } catch (SQLException ex) {
-                    Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            f.movies.removeExtension(ext);
-            f.movies.refreshMovies();
-            f.refreshMoviesList();
-    }//GEN-LAST:event_removebtn2MouseClicked
-
-    private void removebtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseEntered
-            removebtn2.setBackground(theme.getButtonHover());
-    }//GEN-LAST:event_removebtn2MouseEntered
-
-    private void removebtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseExited
-            removebtn2.setBackground(theme.getButton());
-    }//GEN-LAST:event_removebtn2MouseExited
-
-        private void changeFDLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseClicked
-                changeFDbtnMouseClicked(evt);
-        }//GEN-LAST:event_changeFDLabelMouseClicked
-
-        private void changeFDLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseEntered
+        private void changeFDbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseEntered
                 changeFDbtn.setBackground(theme.getButtonHover());
-        }//GEN-LAST:event_changeFDLabelMouseEntered
+        }//GEN-LAST:event_changeFDbtnMouseEntered
+
+        private void changeFDbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseClicked
+                String dir = "";
+                int UserChoice = jFileChooser1.showOpenDialog(SettingsFrame.this);
+
+                if (UserChoice == JFileChooser.APPROVE_OPTION) {
+                        File SelectedFile = jFileChooser1.getSelectedFile();
+                        dir = SelectedFile.getPath();
+                        fileDirectory.setText(dir);
+                }
+
+                if (UserChoice == JFileChooser.CANCEL_OPTION) {
+                        fileDirectory.setText("No File Selected");
+                }
+
+                try {
+                        Database.db().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
+                } catch (SQLException ex) {
+                        Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                f.dir = dir;
+        }//GEN-LAST:event_changeFDbtnMouseClicked
 
         private void changeFDLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseExited
                 changeFDbtn.setBackground(theme.getButton());
         }//GEN-LAST:event_changeFDLabelMouseExited
 
-        private void fileDirectoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fileDirectoryKeyPressed
+        private void changeFDLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseEntered
+                changeFDbtn.setBackground(theme.getButtonHover());
+        }//GEN-LAST:event_changeFDLabelMouseEntered
+
+        private void changeFDLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseClicked
+                changeFDbtnMouseClicked(evt);
+        }//GEN-LAST:event_changeFDLabelMouseClicked
+
+        private void extensionFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extensionFieldKeyPressed
+                String ext = extensionField.getText().trim();
+
                 if (evt.getKeyCode() == 10) {
-                        String dir = fileDirectory.getText();
-
-                        try {
-                                Database.db().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
-                        } catch (SQLException ex) {
-                                Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        fileDirectory.setText(dir);
-                        this.getRootPane().requestFocus();
+                        lm.addElement(ext);
                 }
-        }//GEN-LAST:event_fileDirectoryKeyPressed
+        }//GEN-LAST:event_extensionFieldKeyPressed
+
+        private void fontsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontsListActionPerformed
+                String s = fontsList.getSelectedItem().toString();
+                GUIMethods.changeGlobalFont(new Component[]{this, f}, 4, s);
+
+                try {
+                        Database.db().UPDATE("Settings", "Font", s, new Condition("Αναγνωριστικό", 1));
+                } catch (SQLException ex) {
+                        Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }//GEN-LAST:event_fontsListActionPerformed
 
         private void mediaPlayerPathKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mediaPlayerPathKeyPressed
                 if (evt.getKeyCode() == 10) {
@@ -712,39 +694,49 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 }
         }//GEN-LAST:event_mediaPlayerPathKeyPressed
 
-        private void customThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseClicked
-                tf = new CustomThemeFrame(f);
+        private void themesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themesListActionPerformed
+                String themeName = themesList.getSelectedItem().toString();
+                Theme selectedTheme = new ThemeCollection().matchThemes(themeName);
 
-                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/palette-solid.png");
+                System.out.println("Selected Theme: " + themeName);
 
-                tf.setIconImage(img.getImage());
-
-                tf.setVisible(true);
-        }//GEN-LAST:event_customThemeButtonMouseClicked
-
-        private void customThemeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseEntered
-                customThemeButton.setBackground(theme.getButtonHover());
-        }//GEN-LAST:event_customThemeButtonMouseEntered
-
-        private void customThemeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseExited
-                customThemeButton.setBackground(theme.getButton());
-        }//GEN-LAST:event_customThemeButtonMouseExited
-
-    private void extensionFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extensionFieldKeyPressed
-            String ext = extensionField.getText().trim();
-
-            if (evt.getKeyCode() == 10) {
-                    lm.addElement(ext);
-            }
-    }//GEN-LAST:event_extensionFieldKeyPressed
-
-        private void issuesLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issuesLinkLabelMouseClicked
                 try {
-                        GUIMethods.openWebpage(new URL("https://dmg-techlabs.github.io/Movie-Manager-Website/report-issues.html"));
-                } catch (MalformedURLException ex) {
+                        Database.db().UPDATE("Settings", "Theme", themeName, new Condition("Αναγνωριστικό", 1));
+                } catch (SQLException ex) {
                         Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        }//GEN-LAST:event_issuesLinkLabelMouseClicked
+
+                f.setTheme(selectedTheme);
+                ef.setTheme(selectedTheme);
+                this.theme = selectedTheme;
+                ThemeCollection.implementTheme(this, selectedTheme);
+                ThemeCollection.implementTheme(f, selectedTheme);
+                ThemeCollection.implementTheme(ef, selectedTheme);
+        }//GEN-LAST:event_themesListActionPerformed
+
+        private void fileDirectoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fileDirectoryKeyPressed
+                if (evt.getKeyCode() == 10) {
+                        String dir = fileDirectory.getText();
+
+                        try {
+                                Database.db().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
+                        } catch (SQLException ex) {
+                                Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        fileDirectory.setText(dir);
+                        this.getRootPane().requestFocus();
+                }
+        }//GEN-LAST:event_fileDirectoryKeyPressed
+
+        public Theme getTheme() {
+                return theme;
+        }
+
+        public void setTheme(Theme theme) {
+                this.theme = theme;
+                ThemeCollection.implementTheme(this, theme);
+        }
 
         public void refreshThemeCombo() {
                 ArrayList<String> themeNames = new ArrayList<>();

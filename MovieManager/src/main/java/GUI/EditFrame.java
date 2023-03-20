@@ -648,7 +648,7 @@ public class EditFrame extends javax.swing.JFrame {
                 String imdbrating = imdbratingField.getText();
                 String imdbid = imdbidField.getText();
 
-                if (title.length() > 255 || director.length() > 255 || writers.length() > 255 || plot.length() > 255 || language.length() > 255 || rated.length() > 255 || runtime.length() > 255 || actors.length() > 255 || country.length() > 255 || awards.length() > 255 || imdbrating.length() > 255 || imdbid.length() > 255) {
+                if (title.length() > 255 || director.length() > 255 || writers.length() > 255 /*|| plot.length() > 255*/ || language.length() > 255 || rated.length() > 255 || runtime.length() > 255 || actors.length() > 255 || country.length() > 255 || awards.length() > 255 || imdbrating.length() > 255 || imdbid.length() > 255) {
                         GUIMethods.dialogError("String with more than 255 characters");
                         throw new DatabaseStringOverflowException("String with more than 255 characters");
                 }
