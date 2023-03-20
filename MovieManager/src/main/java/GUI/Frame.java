@@ -992,11 +992,6 @@ public class Frame extends javax.swing.JFrame {
 
                 try {
                         api = new API();
-                } catch (IOException | InterruptedException | SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                try {
                         api.scrape(movies);
                 } catch (IOException | InterruptedException | SQLException ex) {
                         Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
