@@ -107,7 +107,7 @@ public class GUIMethods {
                 }
 
                 try {
-                        GUIMethods.changeGlobalFont(new Component[]{dialog}, 0, (String) Database.db().SELECT("Settings", "Font").get(0));
+                        GUIMethods.changeGlobalFont(new Component[]{dialog}, 4, (String) Database.db().SELECT("Settings", "Font").get(0));
                 } catch (SQLException ex) {
                         Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
                 }

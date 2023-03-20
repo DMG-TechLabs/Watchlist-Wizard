@@ -142,6 +142,9 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 issuesLinkLabel = new javax.swing.JLabel();
 
                 jFileChooser1.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+                jFileChooser1.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
+
+                jFileChooser2.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 

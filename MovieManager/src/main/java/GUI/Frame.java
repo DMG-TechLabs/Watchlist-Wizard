@@ -977,14 +977,6 @@ public class Frame extends javax.swing.JFrame {
         }//GEN-LAST:event_sortButtonMouseExited
 
         private void scrapeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseClicked
-                JDialog firstDialog = GUIMethods.dialog("Scrape has started", "Please wait", "Scrape");
-                
-                try {
-                        TimeUnit.MILLISECONDS.sleep(1000);
-                } catch (InterruptedException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
                 API api = null;
 
                 clearInfo();
@@ -1005,7 +997,6 @@ public class Frame extends javax.swing.JFrame {
                 refreshMoviesList();
                 System.gc();
                 
-                firstDialog.setVisible(false);
                 GUIMethods.dialog("Scrape finished", "Information received successfully", "Scrape");
         }//GEN-LAST:event_scrapeButtonMouseClicked
 
