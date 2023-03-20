@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 
+import Database.Database;
+
 public class LoadingFrame extends javax.swing.JFrame {
         public LoadingFrame() {
                 this.setUndecorated(true);
@@ -115,7 +117,19 @@ public class LoadingFrame extends javax.swing.JFrame {
                 TimeUnit.MILLISECONDS.sleep(500);
 
                 task.setText("Searching directory...");
-                mainFrame.movies.refreshMovies();
+                String dir = "";
+                try {
+                        dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
+                } catch (SQLException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
+
+                System.out.println(dir);
+                if(dir != "" || dir != null){
+                        mainFrame.movies.refreshMovies();
+                }
+                
                 TimeUnit.MILLISECONDS.sleep(1000);
                 progressBar.setValue(75);
 

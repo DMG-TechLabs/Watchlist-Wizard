@@ -32,11 +32,10 @@ public class FilesList {
     public FilesList(String dir, ArrayList<String> exts){
         DirFiles paths = new DirFiles(dir, exts);
         try {
+            if(dir != "" || dir != null || paths != null){
             path = paths.FindFiles();
-            names = paths.GetNames(path);
-        } catch (IOException ex) {
-            path = null;
-            names = null;
+            names = paths.GetNames(path);}
+        } catch (IOException | NullPointerException ex) {
             System.out.println("The directory was not found");
         }
     }
