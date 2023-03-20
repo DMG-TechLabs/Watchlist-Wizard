@@ -18,19 +18,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Dictionary;
-import java.util.List;
 import java.util.regex.Pattern;
 import kdesp73.madb.Condition;
 //mport org.json.simple.JSONValue;
 //import org.json.*;
-import java.util.Random;
 import java.util.Scanner;
 import main.Movie;
 import main.MovieCollection;
 //import static main.MovieManager.searchMovie;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.xalan.templates.ElemOtherwise;
 
 public class API {
 
