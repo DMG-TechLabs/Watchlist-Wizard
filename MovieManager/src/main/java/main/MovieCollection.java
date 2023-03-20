@@ -124,7 +124,7 @@ public class MovieCollection {
                 }
                 
                 for (int i=0; i < filepathsInDB.size(); i++){
-                    if(!exts.contains(DirFiles.GetExt(filepathsInDB.get(i)))){
+                    if(!exts.contains(DirFiles.GetExt(filepathsInDB.get(i))) || !paths.contains(filepathsInDB.get(i))){
                         try {
                             
                             String titleToDelete = (String) Database.db().SELECT("Filepaths", "Title", new Condition("Filepath", filepathsInDB.get(i)));
