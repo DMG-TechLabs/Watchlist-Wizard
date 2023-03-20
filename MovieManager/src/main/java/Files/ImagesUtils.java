@@ -41,6 +41,26 @@ public class ImagesUtils {
                 
                 return ImageName;
         }
+
+        public static String SaveImg(String path, String url, String rescale) throws IOException {
+                //url = url.replaceAll(Pattern.quote("\\"), "");
+                //url = url.replaceAll(Pattern.quote("300"), "700");
+                //String ImageName = FilesList.GetOnlyPath(path, name)+name+".jpg";
+                String ImageName = generateRandomString(10) + ".jpg";
+                System.out.println(ImageName);
+                if (url.contains("media-amazon")) {
+                        url = url.replaceAll(Pattern.quote("\\"), "");
+                        url = url.replaceAll(Pattern.quote("300"), "229");
+                } else {
+                        url = "https://image.tmdb.org/t/p/"+ rescale + "/" + url;
+                }
+
+                try ( InputStream in = new URL(url).openStream()) {
+                        Files.copy(in, Paths.get(path + "\\"+ ImageName));
+                }
+                
+                return ImageName;
+        }
         
         public static void imageToDatabase(String imdbID) throws SQLException{
                 String path = (String) Database.db().SELECT("Settings", "Directory").get(0);
@@ -54,7 +74,7 @@ public class ImagesUtils {
                 String imageName = "";
                 
                 try {
-                        imageName = SaveImg(path, url);
+                        imageName = SaveImg(path, url, "w185");
                 } catch (IOException ex) {
                         Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
                 }
