@@ -171,13 +171,18 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="image" min="-2" pref="243" max="-2" attributes="0"/>
-                      <EmptySpace pref="261" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="playButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="infoPanel" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="image" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="162" max="32767" attributes="0"/>
+                              <Component id="infoPanel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="playButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -188,15 +193,18 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="image" min="-2" pref="351" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="infoPanel" min="-2" pref="434" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="playButton" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="image" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                              <Component id="infoPanel" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="playButton" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -209,19 +217,19 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="background" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[300, 411]"/>
+                  <Dimension value="[342, 513]"/>
                 </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="imageLabel" alignment="0" pref="243" max="32767" attributes="0"/>
+                      <Component id="imageLabel" alignment="0" pref="342" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="imageLabel" alignment="0" pref="351" max="32767" attributes="0"/>
+                      <Component id="imageLabel" alignment="0" pref="513" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -256,84 +264,68 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="ratedIndicator" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="runtimeIndicator" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="directorIndicator" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="titleIndicator" max="32767" attributes="0"/>
-                                                  <Component id="yearIndicator" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="actorsIndicator" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="writersIndicator" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="plot" min="-2" pref="493" max="-2" attributes="0"/>
+                                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                                          <Component id="tmdbLogo" min="-2" pref="140" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="countryIndicator" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="languageIndicator" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="genreIndicator" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="imdbidIndicator" min="-2" pref="129" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="imdbid" min="-2" pref="398" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="awardsIndicator" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="imdbratingIndicator" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="plotIndicator" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="awardsIndicator" max="32767" attributes="0"/>
+                                          <Component id="languageIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="countryIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="genreIndicator" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="titleIndicator" max="32767" attributes="0"/>
+                                          <Component id="yearIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ratedIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="runtimeIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="directorIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="writersIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="actorsIndicator" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="imdbratingIndicator" min="-2" pref="129" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="imdbrating" linkSize="1" pref="410" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="title" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="year" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="rated" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="runtime" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="director" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
+                                                  <Component id="writers" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="actors" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
+                                                  <Component id="genre" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="language" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="country" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="awards" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="title" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="year" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="rated" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="runtime" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="director" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
-                              <Component id="writers" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="actors" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
-                              <Component id="genre" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="language" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="country" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="awards" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
-                              <Component id="imdbrating" linkSize="1" alignment="1" pref="410" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="imdbidIndicator" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="imdbid" min="-2" pref="398" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="plotIndicator" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="plot" min="-2" pref="493" max="-2" attributes="0"/>
-                                  <EmptySpace pref="42" max="32767" attributes="0"/>
-                                  <Component id="tmdbLogo" min="-2" pref="140" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -407,12 +399,12 @@
                               <Component id="imdbidIndicator" min="-2" max="-2" attributes="0"/>
                               <Component id="imdbid" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="plotIndicator" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="plot" min="-2" pref="82" max="-2" attributes="0"/>
-                              <Component id="tmdbLogo" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tmdbLogo" pref="104" max="32767" attributes="0"/>
+                              <Component id="plot" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -647,7 +639,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="buttonLabel" alignment="1" pref="23" max="32767" attributes="0"/>
+                      <Component id="buttonLabel" alignment="0" pref="28" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
