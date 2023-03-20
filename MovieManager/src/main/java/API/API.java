@@ -196,7 +196,7 @@ public class API {
                         + "\" ,\"Director\":\"" + director
                         + "\" ,\"Writer\":\"" + writer
                         + "\" ,\"Actors\":\"" + (ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")).replaceAll("'", "''")
-                        + "\" ,\"Plot\":\"" + StringUtils.substring(overview.replaceAll(Pattern.quote("\""), ""), 0, 254) //StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
+                        + "\" ,\"Plot\":\"" + overview.replaceAll(Pattern.quote("\""), "")//StringUtils.substring(overview.replaceAll(Pattern.quote("\""), ""), 0, 254) //StringUtils.substring(table.get("overview").replaceAll(Pattern.quote("\""), ""), 0, 254)
                         + "\" ,\"Language\":\"" + table.get("original_language")
                         + "\" ,\"Country\":\"" + table.get("iso_3166_1")//(table.get("origin_country").toString()).replace(Pattern.quote(",id"),"")//
                         + "\" ,\"Awards\":\"" + ""
