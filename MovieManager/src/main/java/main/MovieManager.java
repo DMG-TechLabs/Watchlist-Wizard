@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import API.API;
 import Database.DBMethods;
-import Files.*;
 //import java.util.regex;
 
 import java.util.Dictionary;

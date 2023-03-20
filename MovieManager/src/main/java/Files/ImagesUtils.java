@@ -74,7 +74,13 @@ public class ImagesUtils {
                 String imageName = "";
                 
                 try {
-                        imageName = SaveImg(path, url, "w185");
+                        imageName = SaveImg(path, url, "w342");
+                } catch (IOException ex) {
+                        Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                try {
+                        SaveImg(path, url, "original");
                 } catch (IOException ex) {
                         Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
                 }
