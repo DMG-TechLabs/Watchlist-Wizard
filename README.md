@@ -13,7 +13,7 @@ A movie manager project made with Java and Java Swing, using the TMDb api.
 
 ## Prerequirements
 
-[Java](https://www.java.com/en/download/)
+Download [Java](https://www.java.com/en/download/) and restart your PC
 
 ## Acknowledgements
 
