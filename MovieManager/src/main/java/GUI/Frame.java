@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -977,6 +978,8 @@ public class Frame extends javax.swing.JFrame {
         }//GEN-LAST:event_sortButtonMouseExited
 
         private void scrapeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseClicked
+                JDialog firstDialog = GUIMethods.dialog("Scrape has started", "Please wait", "Scrape");
+                
                 API api = null;
 
                 clearInfo();
@@ -1001,6 +1004,9 @@ public class Frame extends javax.swing.JFrame {
 
                 refreshMoviesList();
                 System.gc();
+                
+                firstDialog.setVisible(false);
+                GUIMethods.dialog("Scrape finished", "Information received successfully", "Scrape");
         }//GEN-LAST:event_scrapeButtonMouseClicked
 
         private void scrapeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseEntered
