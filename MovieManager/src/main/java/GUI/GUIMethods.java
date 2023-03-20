@@ -140,7 +140,7 @@ public class GUIMethods {
                 return arr;
         }
 
-        public static void dialog(String message, String subtitleMessage, String title) {
+        public static JDialog dialog(String message, String subtitleMessage, String title) {
                 JDialog dialog = new JDialog();
 
                 Theme selectedTheme = null;
@@ -185,6 +185,8 @@ public class GUIMethods {
 
                 ThemeCollection.implementTheme(dialog, selectedTheme);
                 dialog.setVisible(true);
+                
+                return dialog;
         }
 
         public static void dialogError(String error) {
