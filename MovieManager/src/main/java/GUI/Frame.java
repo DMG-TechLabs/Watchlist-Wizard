@@ -64,7 +64,10 @@ public class Frame extends javax.swing.JFrame {
                         Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                fl = new FilesList(dir);
+
+                if(dir != null) 
+                        fl = new FilesList(dir);
+               
 
                 SearchBar.addFocusListener(new FocusListener() {
                         @Override

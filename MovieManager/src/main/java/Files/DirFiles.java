@@ -59,6 +59,7 @@ public class DirFiles {
         }
 
         public List<String> FindFiles() throws IOException {
+                //if (this.directoryName == "") return pathsList;
                 try ( Stream<Path> paths = Files.walk(Path.of(this.directoryName), 10)) {
                         List<String> pathlist = paths
                                 .map(path -> Files.isDirectory(path) ? path.toString() + '/' : path.toString())
