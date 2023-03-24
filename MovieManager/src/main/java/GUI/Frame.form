@@ -174,12 +174,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="image" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="162" max="32767" attributes="0"/>
+                              <EmptySpace pref="211" max="32767" attributes="0"/>
                               <Component id="infoPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="playButton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -264,19 +264,19 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="plot" min="-2" pref="493" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="tmdbLogo" min="-2" pref="140" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
                                           <Component id="imdbidIndicator" min="-2" pref="129" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="imdbid" min="-2" pref="398" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="plotScrollPane" min="-2" pref="368" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="tmdbLogo" min="-2" pref="140" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -398,11 +398,13 @@
                               <Component id="imdbid" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="plotIndicator" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tmdbLogo" pref="104" max="32767" attributes="0"/>
-                              <Component id="plot" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="plotIndicator" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tmdbLogo" min="-2" pref="104" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="plotScrollPane" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -581,11 +583,6 @@
                     <Property name="name" type="java.lang.String" value="label" noResource="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="plot">
-                  <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="genreIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Genre:"/>
@@ -605,6 +602,23 @@
                     </Property>
                   </Properties>
                 </Component>
+                <Container class="javax.swing.JScrollPane" name="plotScrollPane">
+                  <Properties>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Default Cursor"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="scrollPane" noResource="true"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="plot">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="playButton">

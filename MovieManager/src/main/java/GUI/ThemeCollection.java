@@ -12,6 +12,7 @@ import Utils.Utils;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JScrollPane;
 
 /*
 * **Create new Theme**
@@ -98,6 +99,11 @@ public class ThemeCollection {
 //                                        break;
                                 case "toolbar":
                                         component.setBackground(theme.getToolbar());
+                                        break;
+                                case "scrollPane":
+                                        if(component instanceof JScrollPane){
+                                                ((JScrollPane) component).getViewport().setBackground(theme.getSecBackground());
+                                        }
                                 default:
                                         break;
                         }
