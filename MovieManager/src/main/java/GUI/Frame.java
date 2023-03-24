@@ -1,5 +1,6 @@
 package GUI;
 
+import Exceptions.NoMediaPlayerDirectoryException;
 import Exceptions.NoMovieSelectedException;
 import API.API;
 import Database.Database;
@@ -1032,6 +1033,17 @@ public class Frame extends javax.swing.JFrame {
         }//GEN-LAST:event_playButtonMouseEntered
 
         private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
+                String mediaPlayerDir = null;
+                try {
+                        mediaPlayerDir = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
+                } catch (SQLException ex) {
+                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(mediaPlayerDir.equals("") || mediaPlayerDir == null) {
+                        throw new NoMediaPlayerDirectoryException("Media player directory not found");
+                }
+                
                 if (moviesList.getSelectedIndex() < 0) {
                         throw new NoMovieSelectedException("No movie Selected");
                 }

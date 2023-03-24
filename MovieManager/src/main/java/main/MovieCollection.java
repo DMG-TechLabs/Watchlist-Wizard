@@ -230,9 +230,12 @@ public class MovieCollection {
                 if (!"".equals(imdbid) && imdbid != null) {
                         Database.db().DELETE("Category_Matching", "IMDb_ID", imdbid);
                 }
+                
+                System.out.println("IMDb_ID: " + imdbid);
 
                 Database.db().DELETE("Filepaths", "Filepath", m.getDirectory());
                 Database.db().DELETE("Scraped", "Filepath", m.getDirectory());
+                Database.db().DELETE("Images", "IMDb_ID", imdbid);
 
                 movies.remove(m);
 
