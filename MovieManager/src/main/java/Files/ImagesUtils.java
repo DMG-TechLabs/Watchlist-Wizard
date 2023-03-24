@@ -5,6 +5,7 @@
 package Files;
 
 import Database.Database;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -79,11 +80,11 @@ public class ImagesUtils {
                         Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                try {
-                        SaveImg(path, url, "original");
-                } catch (IOException ex) {
-                        Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                try {
+//                        SaveImg(path, url, "original");
+//                } catch (IOException ex) {
+//                        Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
+//                }
                 
                 Database.db().INSERT("Images", new String[]{"Image_Directory", "IMDb_ID"}, new String[]{path +"\\"+ imageName, imdbID});
         }
@@ -94,6 +95,17 @@ public class ImagesUtils {
                 String imgDir = (String) Database.db().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbID));
                 
                 return imgDir;
+        }
+        
+        public static File delete(String dir) {
+                File file = new File(dir);
+                if (file.delete()) {
+                        System.out.println("Deleted the file: " + file.getName());
+                        return file;
+                } else {
+                        System.out.println("Failed to delete the file.");
+                }
+                return null;
         }
         
         
