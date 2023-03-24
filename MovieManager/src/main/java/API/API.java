@@ -188,7 +188,7 @@ public class API {
                         + "\" ,\"Year\":\"" + ApiUtils.some_error_handling(table.get("release_date").toString().split(Pattern.quote("-"))[0])
                         + "\" ,\"Rated\":\"" + ApiUtils.find_rated(release_dates)
                         + "\" ,\"Released\":\"" + ApiUtils.some_error_handling(table.get("release_date"))
-                        + "\" ,\"Runtime\":\"" + ApiUtils.some_error_handling(table.get("runtime"))
+                        + "\" ,\"Runtime\":\"" + ApiUtils.some_error_handling(table.get("runtime")) + "min"
                         + "\" ,\"Genre\":\"" + genre_names
                         + "\" ,\"Director\":\"" + director
                         + "\" ,\"Writer\":\"" + writer
