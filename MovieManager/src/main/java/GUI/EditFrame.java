@@ -2,6 +2,7 @@ package GUI;
 
 import Exceptions.DatabaseStringOverflowException;
 import Database.Database;
+import Files.ImagesUtils;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import kdesp73.madb.Condition;
 import main.MovieCollection;
 
 /**
@@ -594,6 +596,7 @@ public class EditFrame extends javax.swing.JFrame {
         }
 
         private void yesButtonMouseClicked(java.awt.event.MouseEvent evt) {
+                String imdbid = f.movies.getMovies().get(index).getImdbID();
                 try {
                         f.movies.deleteMovie(f.movies.getMovies().get(index));
                 } catch (SQLException ex) {
@@ -602,6 +605,8 @@ public class EditFrame extends javax.swing.JFrame {
                 f.refreshMoviesList();
                 this.setVisible(false);
                 GUIMethods.dialog("Movie deleted successfully only from our database", "Movie deleted", "Success");
+                
+                f.clearInfo();
         }
 
         private void yesButtonMouseEntered(JPanel yesButton) {

@@ -1225,7 +1225,7 @@ public class Frame extends javax.swing.JFrame {
                 }
         }
 
-        private void clearInfo() {
+        public void clearInfo() {
                 title.setText("");
                 year.setText("");
                 rated.setText("");
@@ -1240,6 +1240,8 @@ public class Frame extends javax.swing.JFrame {
                 imdbrating.setText("");
                 plot.setText("");
                 imdbid.setText("");
+                
+                imageLabel.setIcon(null);
         }
 
         public JTabbedPane getInfoTabPane() {

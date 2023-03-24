@@ -4,6 +4,7 @@ import Database.Database;
 import Database.DBMethods;
 import Files.DirFiles;
 import Files.FilesList;
+import Files.ImagesUtils;
 import GUI.GUIMethods;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -225,18 +226,16 @@ public class MovieCollection {
                 String title = m.getTitle();
                 String imdbid = m.getImdbID();
 
-                Database.db().DELETE("Movies", "Title", title);
-
                 if (!"".equals(imdbid) && imdbid != null) {
+                        ImagesUtils.delete( (String) Database.db().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbid))); //Delete image from directory
                         Database.db().DELETE("Category_Matching", "IMDb_ID", imdbid);
+                        Database.db().DELETE("Images", "IMDb_ID", imdbid); // Delete image from database
                 }
-                
-                System.out.println("IMDb_ID: " + imdbid);
-
+     
+                Database.db().DELETE("Movies", "Title", title);
                 Database.db().DELETE("Filepaths", "Filepath", m.getDirectory());
                 Database.db().DELETE("Scraped", "Filepath", m.getDirectory());
-                Database.db().DELETE("Images", "IMDb_ID", imdbid);
-
+                
                 movies.remove(m);
 
                 System.out.println("Movie removed completely");
