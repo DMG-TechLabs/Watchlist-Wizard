@@ -488,7 +488,7 @@ public class EditFrame extends javax.swing.JFrame {
 
         private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
                 JDialog deleteDialog = new JDialog(this);
-                Dimension SIZE = new Dimension(390, 142);
+                Dimension SIZE = new Dimension(430, 150);
                 JLabel message = new JLabel();
                 JPanel noButton = new RoundedPanel();
                 JLabel noLabel = new JLabel();
