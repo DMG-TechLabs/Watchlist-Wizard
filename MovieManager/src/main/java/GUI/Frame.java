@@ -33,11 +33,13 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import main.Movie;
 import main.MovieCollection;
+import kdesp73.themeLib.Theme;
+
 
 public class Frame extends javax.swing.JFrame {
 
 	static final String TITLE = "Movie-Manager";
-	Theme theme;
+	Theme theme = null;
 
 	static String dir = "$HOME";
 	MovieCollection movies;
@@ -73,14 +75,14 @@ public class Frame extends javax.swing.JFrame {
 			public void focusGained(FocusEvent e) {
 				if (SearchBar.getText().equals("Search")) {
 					SearchBar.setText("");
-					SearchBar.setForeground(theme.getTextBoxForeground());
+					SearchBar.setForeground(theme.getTextbox_fg());
 				}
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (SearchBar.getText().isEmpty()) {
-					SearchBar.setForeground(theme.getTextBoxForeground());
+					SearchBar.setForeground(theme.getTextbox_fg());
 					SearchBar.setText("Search");
 				}
 			}
@@ -1101,11 +1103,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_settingsButtonMouseClicked
 
 	private void settingsButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseEntered
-		settingsButton.setBackground(theme.getButtonHover());
+		settingsButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_settingsButtonMouseEntered
 
 	private void settingsButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseExited
-		settingsButton.setBackground(theme.getButton());
+		settingsButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_settingsButtonMouseExited
 
 	private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editButtonMouseClicked
@@ -1130,11 +1132,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_editButtonMouseClicked
 
 	private void editButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editButtonMouseEntered
-		editButton.setBackground(theme.getButtonHover());
+		editButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_editButtonMouseEntered
 
 	private void editButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editButtonMouseExited
-		editButton.setBackground(theme.getButton());
+		editButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_editButtonMouseExited
 
 	private void sortButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseClicked
@@ -1150,11 +1152,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_sortButtonMouseClicked
 
 	private void sortButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseEntered
-		sortButton.setBackground(theme.getButtonHover());
+		sortButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_sortButtonMouseEntered
 
 	private void sortButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseExited
-		sortButton.setBackground(theme.getButton());
+		sortButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_sortButtonMouseExited
 
 	private void scrapeButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_scrapeButtonMouseClicked
@@ -1183,11 +1185,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_scrapeButtonMouseClicked
 
 	private void scrapeButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_scrapeButtonMouseEntered
-		scrapeButton.setBackground(theme.getButtonHover());
+		scrapeButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_scrapeButtonMouseEntered
 
 	private void scrapeButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_scrapeButtonMouseExited
-		scrapeButton.setBackground(theme.getButton());
+		scrapeButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_scrapeButtonMouseExited
 
 	private void refreshButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_refreshButtonMouseClicked
@@ -1198,19 +1200,19 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_refreshButtonMouseClicked
 
 	private void refreshButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_refreshButtonMouseEntered
-		refreshButton.setBackground(theme.getButtonHover());
+		refreshButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_refreshButtonMouseEntered
 
 	private void refreshButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_refreshButtonMouseExited
-		refreshButton.setBackground(theme.getButton());
+		refreshButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_refreshButtonMouseExited
 
 	private void playButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseExited
-		playButton.setBackground(theme.getButton());
+		playButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_playButtonMouseExited
 
 	private void playButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseEntered
-		playButton.setBackground(theme.getButtonHover());
+		playButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_playButtonMouseEntered
 
 	private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseClicked

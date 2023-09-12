@@ -17,7 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import kdesp73.madb.Condition;
+import kdesp73.themeLib.*;
 import main.MovieCollection;
+
 
 /**
  *
@@ -619,11 +621,11 @@ public class EditFrame extends javax.swing.JFrame {
 	}
 
 	private void noButtonMouseEntered(JPanel noButton) {
-		noButton.setBackground(f.theme.getButtonHover());
+		noButton.setBackground(f.theme.getExtras().get(0));
 	}
 
 	private void noButtonMouseExited(JPanel noButton) {
-		noButton.setBackground(f.theme.getButton());
+		noButton.setBackground(f.theme.getBtn());
 	}
 
 	private void yesButtonMouseClicked(java.awt.event.MouseEvent evt) {
@@ -631,19 +633,19 @@ public class EditFrame extends javax.swing.JFrame {
 	}
 
 	private void yesButtonMouseEntered(JPanel yesButton) {
-		yesButton.setBackground(f.theme.getButtonHover());
+		yesButton.setBackground(f.theme.getExtras().get(0));
 	}
 
 	private void yesButtonMouseExited(JPanel yesButton) {
-		yesButton.setBackground(f.theme.getButton());
+		yesButton.setBackground(f.theme.getBtn());
 	}
 
 	private void deleteButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_deleteButtonMouseEntered
-		deleteButton.setBackground(theme.getButtonHover());
+		deleteButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_deleteButtonMouseEntered
 
 	private void deleteButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_deleteButtonMouseExited
-		deleteButton.setBackground(theme.getButton());
+		deleteButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_deleteButtonMouseExited
 
 	private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_cancelButtonMouseClicked
@@ -651,11 +653,11 @@ public class EditFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_cancelButtonMouseClicked
 
 	private void cancelButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_cancelButtonMouseEntered
-		cancelButton.setBackground(theme.getButtonHover());
+		cancelButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_cancelButtonMouseEntered
 
 	private void cancelButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_cancelButtonMouseExited
-		cancelButton.setBackground(theme.getButton());
+		cancelButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_cancelButtonMouseExited
 
 	private void applyButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseClicked
@@ -712,11 +714,11 @@ public class EditFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_applyButtonMouseClicked
 
 	private void applyButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseEntered
-		applyButton.setBackground(theme.getButtonHover());
+		applyButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_applyButtonMouseEntered
 
 	private void applyButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseExited
-		applyButton.setBackground(theme.getButton());
+		applyButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_applyButtonMouseExited
 
 	/**

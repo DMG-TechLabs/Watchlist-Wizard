@@ -12,6 +12,7 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,6 +31,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicArrowButton;
 import org.imgscalr.Scalr;
+import kdesp73.themeLib.*;
+import java.util.regex.Pattern;
 
 public class GUIMethods {
 
@@ -70,8 +73,10 @@ public class GUIMethods {
 
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
-			theme = new ThemeCollection().matchThemes(themeName);
-			ThemeCollection.implementTheme(frame, theme);
+			ThemeCollection themes = new ThemeCollection();
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+			theme = themes.matchTheme(themeName);
+			ThemeCollection.applyTheme(frame, theme);
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,8 +108,11 @@ public class GUIMethods {
 
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
-			theme = new ThemeCollection().matchThemes(themeName);
-			ThemeCollection.implementTheme(dialog, theme);
+			ThemeCollection themes = new ThemeCollection();
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+			theme = themes.matchTheme(themeName);
+			ThemeCollection.applyTheme(dialog, theme);
+
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,13 +190,15 @@ public class GUIMethods {
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
 			System.out.println(themeName);
-			selectedTheme = new ThemeCollection().matchThemes(themeName);
+			ThemeCollection themes = new ThemeCollection();
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+			selectedTheme = themes.matchTheme(themeName);
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		ThemeCollection.implementTheme(dialog, selectedTheme);
+		ThemeCollection.applyTheme(dialog, selectedTheme);
 		dialog.setVisible(true);
 
 		return dialog;

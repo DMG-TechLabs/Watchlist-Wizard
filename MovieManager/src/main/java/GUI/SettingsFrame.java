@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import kdesp73.madb.Condition;
+import kdesp73.themeLib.*;
 import main.MovieCollection;
 
 /**
@@ -95,7 +96,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                         Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 Font font = issuesLinkLabel.getFont();
                 Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
                 attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
@@ -519,11 +520,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_issuesLinkLabelMouseClicked
 
         private void customThemeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseExited
-                customThemeButton.setBackground(theme.getButton());
+                customThemeButton.setBackground(theme.getBtn());
         }//GEN-LAST:event_customThemeButtonMouseExited
 
         private void customThemeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseEntered
-                customThemeButton.setBackground(theme.getButtonHover());
+                customThemeButton.setBackground(theme.getExtras().get(0));
         }//GEN-LAST:event_customThemeButtonMouseEntered
 
         private void customThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customThemeButtonMouseClicked
@@ -537,11 +538,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_customThemeButtonMouseClicked
 
         private void removebtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseExited
-                removebtn2.setBackground(theme.getButton());
+                removebtn2.setBackground(theme.getBtn());
         }//GEN-LAST:event_removebtn2MouseExited
 
         private void removebtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseEntered
-                removebtn2.setBackground(theme.getButtonHover());
+                removebtn2.setBackground(theme.getExtras().get(0));
         }//GEN-LAST:event_removebtn2MouseEntered
 
         private void removebtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebtn2MouseClicked
@@ -562,11 +563,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_removebtn2MouseClicked
 
         private void addbtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseExited
-                addbtn2.setBackground(theme.getButton());
+                addbtn2.setBackground(theme.getBtn());
         }//GEN-LAST:event_addbtn2MouseExited
 
         private void addbtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseEntered
-                addbtn2.setBackground(theme.getButtonHover());
+                addbtn2.setBackground(theme.getExtras().get(0));
         }//GEN-LAST:event_addbtn2MouseEntered
 
         private void addbtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtn2MouseClicked
@@ -593,11 +594,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_addbtn2MouseClicked
 
         private void changeMPbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseExited
-                changeMPbtn.setBackground(theme.getButton());
+                changeMPbtn.setBackground(theme.getBtn());
         }//GEN-LAST:event_changeMPbtnMouseExited
 
         private void changeMPbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseEntered
-                changeMPbtn.setBackground(theme.getButtonHover());
+                changeMPbtn.setBackground(theme.getExtras().get(0));
         }//GEN-LAST:event_changeMPbtnMouseEntered
 
         private void changeMPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeMPbtnMouseClicked
@@ -622,11 +623,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_changeMPbtnMouseClicked
 
         private void changeFDbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseExited
-                changeFDbtn.setBackground(theme.getButton());
+                changeFDbtn.setBackground(theme.getBtn());
         }//GEN-LAST:event_changeFDbtnMouseExited
 
         private void changeFDbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseEntered
-                changeFDbtn.setBackground(theme.getButtonHover());
+                changeFDbtn.setBackground(theme.getExtras().get(0));
         }//GEN-LAST:event_changeFDbtnMouseEntered
 
         private void changeFDbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDbtnMouseClicked
@@ -652,11 +653,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_changeFDbtnMouseClicked
 
         private void changeFDLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseExited
-                changeFDbtn.setBackground(theme.getButton());
+                changeFDbtn.setBackground(theme.getBtn());
         }//GEN-LAST:event_changeFDLabelMouseExited
 
         private void changeFDLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseEntered
-                changeFDbtn.setBackground(theme.getButtonHover());
+                changeFDbtn.setBackground(theme.getExtras().get(0));
         }//GEN-LAST:event_changeFDLabelMouseEntered
 
         private void changeFDLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeFDLabelMouseClicked
@@ -699,7 +700,9 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
         private void themesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themesListActionPerformed
                 String themeName = themesList.getSelectedItem().toString();
-                Theme selectedTheme = new ThemeCollection().matchThemes(themeName);
+				ThemeCollection themes = new ThemeCollection();
+				themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+                Theme selectedTheme = themes.matchTheme(themeName);
 
                 System.out.println("Selected Theme: " + themeName);
 
@@ -712,9 +715,9 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 f.setTheme(selectedTheme);
                 ef.setTheme(selectedTheme);
                 this.theme = selectedTheme;
-                ThemeCollection.implementTheme(this, selectedTheme);
-                ThemeCollection.implementTheme(f, selectedTheme);
-                ThemeCollection.implementTheme(ef, selectedTheme);
+                ThemeCollection.applyTheme(this, selectedTheme);
+                ThemeCollection.applyTheme(f, selectedTheme);
+                ThemeCollection.applyTheme(ef, selectedTheme);
         }//GEN-LAST:event_themesListActionPerformed
 
         private void fileDirectoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fileDirectoryKeyPressed
@@ -738,7 +741,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
         public void setTheme(Theme theme) {
                 this.theme = theme;
-                ThemeCollection.implementTheme(this, theme);
+                ThemeCollection.applyTheme(this, theme);
         }
 
         public void refreshThemeCombo() {
