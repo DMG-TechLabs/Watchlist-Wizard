@@ -73,7 +73,6 @@ public class GUIMethods {
 
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
-			System.out.println("Theme in DB: " + themeName);
 			ThemeCollection themes = new ThemeCollection();
 			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
 			theme = themes.matchTheme(themeName);
