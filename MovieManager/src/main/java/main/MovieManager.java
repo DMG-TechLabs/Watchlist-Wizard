@@ -5,13 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
-
-import Database.DBMethods;
-//import java.util.regex;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.regex.Pattern;
+
+import Utils.Utils;
+import kdesp73.themeLib.ThemeCollection;
+import Database.Database;
 
 public class MovieManager {
 
@@ -67,7 +67,7 @@ public class MovieManager {
 	public static void main(String[] args) throws SQLException {
 		// System.out.println("asd iudjd aisudj 2000".replaceAll("
 		// [0-9][0-9][0-9][0-9]", ""));
-		DBMethods.formatDatabase();
+		// DBMethods.formatDatabase();
 		/*
 		 * API api;
 		 * try {
@@ -80,6 +80,37 @@ public class MovieManager {
 		 * }
 		 */
 		// ImagesUtils.imageToDatabase("tt0434409");
+
+	ArrayList<String> themeJsons = new ArrayList<>();
+		ArrayList<Object> objectList = new ArrayList<>();
+		ArrayList<String> names = new ArrayList<>();
+		try {
+			objectList = Database.db().SELECT("Themes", "JSON");
+		} catch (SQLException ex) {
+		}
+
+		for (Object obj : objectList) {
+			themeJsons.add((String) obj);
+		}
+
+		objectList.clear();
+
+		try {
+			objectList = Database.db().SELECT("Themes", "Theme_Name");
+		} catch (SQLException ex) {
+		}
+
+		for (Object obj : objectList) {
+			names.add((String) obj);
+		}
+
+		for (int index = 0; index < names.size(); index++) {
+			System.out.println("Name: " + names.get(index));
+			System.out.println(themeJsons.get(index));
+			System.out.println("---");
+		}
+
+
 
 	}
 }

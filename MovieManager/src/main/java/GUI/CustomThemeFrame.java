@@ -1498,7 +1498,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 		JTextField input = new JTextField();
 		Dimension SIZE = new Dimension(279, 120);
 
-		bg.setName("background");
+		bg.setName("bg");
 
 		input.setText("Name your Theme!");
 		input.setName("textbox");
@@ -1521,7 +1521,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 		});
 
 		save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		save.setName("button"); // NOI18N
+		save.setName("btn"); // NOI18N
 		save.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1541,7 +1541,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 
 		label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		label.setText("Save");
-		label.setName("buttonLabel"); // NOI18N
+		label.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout saveButtonLayout = new javax.swing.GroupLayout(save);
 		save.setLayout(saveButtonLayout);
@@ -1646,7 +1646,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 
 	private void loadThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_loadThemeButtonMouseClicked
 		ThemeCollection themes = new ThemeCollection();
-		themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+		themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
 		initValues(themes.matchTheme(themesToLoadCombo.getSelectedItem().toString()));
 	}// GEN-LAST:event_loadThemeButtonMouseClicked
 

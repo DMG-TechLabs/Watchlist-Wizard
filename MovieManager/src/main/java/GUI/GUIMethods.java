@@ -73,8 +73,9 @@ public class GUIMethods {
 
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
+			System.out.println("Theme in DB: " + themeName);
 			ThemeCollection themes = new ThemeCollection();
-			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
 			theme = themes.matchTheme(themeName);
 			ThemeCollection.applyTheme(frame, theme);
 
@@ -109,7 +110,7 @@ public class GUIMethods {
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
 			ThemeCollection themes = new ThemeCollection();
-			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
 			theme = themes.matchTheme(themeName);
 			ThemeCollection.applyTheme(dialog, theme);
 
@@ -191,7 +192,7 @@ public class GUIMethods {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
 			System.out.println(themeName);
 			ThemeCollection themes = new ThemeCollection();
-			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
 			selectedTheme = themes.matchTheme(themeName);
 
 		} catch (SQLException ex) {

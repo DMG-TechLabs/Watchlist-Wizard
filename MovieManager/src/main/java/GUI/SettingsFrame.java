@@ -149,10 +149,10 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-                settingsPanel.setName("background"); // NOI18N
+                settingsPanel.setName("bg"); // NOI18N
 
                 jLabel3.setText("File Directory:");
-                jLabel3.setName("label"); // NOI18N
+                jLabel3.setName("fg"); // NOI18N
 
                 fileDirectory.setName("textbox"); // NOI18N
                 fileDirectory.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -162,7 +162,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 });
 
                 jLabel4.setText("Themes:");
-                jLabel4.setName("label"); // NOI18N
+                jLabel4.setName("bg"); // NOI18N
 
                 themesList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Dark" }));
                 themesList.setName(""); // NOI18N
@@ -175,7 +175,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 jLabel1.setText("Media Player:");
                 jLabel1.setMaximumSize(new java.awt.Dimension(41, 16));
                 jLabel1.setMinimumSize(new java.awt.Dimension(41, 16));
-                jLabel1.setName("label"); // NOI18N
+                jLabel1.setName("fg"); // NOI18N
 
                 mediaPlayerPath.setName("textbox"); // NOI18N
                 mediaPlayerPath.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -187,7 +187,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 jLabel7.setText("Font:");
                 jLabel7.setMaximumSize(new java.awt.Dimension(43, 16));
                 jLabel7.setMinimumSize(new java.awt.Dimension(43, 16));
-                jLabel7.setName("label"); // NOI18N
+                jLabel7.setName("fg"); // NOI18N
                 jLabel7.setPreferredSize(new java.awt.Dimension(43, 16));
 
                 fontsList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agency FB", "Algerian", "Arial", "Arial Black", "Arial Narrow", "Arial Rounded MT Bold", "Arial Unicode MS", "Bahnschrift", "Baskerville Old Face", "Bauhaus 93", "Bell MT", "Berlin Sans FB", "Berlin Sans FB Demi", "Bernard MT Condensed", "Blackadder ITC", "Bodoni MT", "Bodoni MT Black", "Bodoni MT Condensed", "Bodoni MT Poster Compressed", "Book Antiqua", "Bookman Old Style", "Bookshelf Symbol 7", "Bradley Hand ITC", "Britannic Bold", "Broadway", "Brush Script MT", "Calibri", "Calibri Light", "Californian FB", "Calisto MT", "Cambria", "Cambria Math", "Candara", "Candara Light", "Castellar", "Centaur", "Century", "Century Gothic", "Century Schoolbook", "Chiller", "Colonna MT", "Comic Sans MS", "Consolas", "Constantia", "Cooper Black", "Copperplate Gothic Bold", "Copperplate Gothic Light", "Corbel", "Corbel Light", "Courier New", "Curlz MT", "Dialog", "DialogInput", "Dubai", "Dubai Light", "Dubai Medium", "Ebrima", "Edwardian Script ITC", "Elephant", "Engravers MT", "Eras Bold ITC", "Eras Demi ITC", "Eras Light ITC", "Eras Medium ITC", "Felix Titling", "Footlight MT Light", "Forte", "ForteClassic", "ForteFolk", "ForteInk", "ForteJazz", "ForteSamba", "Franklin Gothic Book", "Franklin Gothic Demi", "Franklin Gothic Demi Cond", "Franklin Gothic Heavy", "Franklin Gothic Medium", "Franklin Gothic Medium Cond", "Freestyle Script", "French Script MT", "Gabriola", "Gadugi", "Garamond", "Georgia", "Gigi", "Gill Sans MT", "Gill Sans MT Condensed", "Gill Sans MT Ext Condensed Bold", "Gill Sans Ultra Bold", "Gill Sans Ultra Bold Condensed", "Gloucester MT Extra Condensed", "Goudy Old Style", "Goudy Stout", "Haettenschweiler", "Harlow Solid Italic", "Harrington", "High Tower Text", "HoloLens MDL2 Assets", "Impact", "Imprint MT Shadow", "Informal Roman", "Ink Free", "Javanese Text", "Jokerman", "Juice ITC", "Kristen ITC", "Kunstler Script", "Leelawadee UI", "Leelawadee UI Semilight", "Lucida Bright", "Lucida Calligraphy", "Lucida Console", "Lucida Fax", "Lucida Handwriting", "Lucida Sans", "Lucida Sans Typewriter", "Lucida Sans Unicode", "Magneto", "Maiandra GD", "Malgun Gothic", "Malgun Gothic Semilight", "Marlett", "Matura MT Script Capitals", "Microsoft Himalaya", "Microsoft JhengHei", "Microsoft JhengHei Light", "Microsoft JhengHei UI", "Microsoft JhengHei UI Light", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Sans Serif", "Microsoft Tai Le", "Microsoft YaHei", "Microsoft YaHei Light", "Microsoft YaHei UI", "Microsoft YaHei UI Light", "Microsoft Yi Baiti", "MidiGuitar", "Midisoft Classic", "MingLiU-ExtB", "MingLiU_HKSCS-ExtB", "Mistral", "Modern No. 20", "Mongolian Baiti", "Monospaced", "Monotype Corsiva", "MS Gothic", "MS Outlook", "MS PGothic", "MS Reference Sans Serif", "MS Reference Specialty", "MS UI Gothic", "MT Extra", "MusicScoreSc", "MusicScoreSce", "MV Boli", "Myanmar Text", "Niagara Engraved", "Niagara Solid", "Nirmala UI", "Nirmala UI Semilight", "NSimSun", "OCR A Extended", "Old English Text MT", "Onyx", "Palace Script MT", "Palatino Linotype", "Papyrus", "Parchment", "Perpetua", "Perpetua Titling MT", "Playbill", "PMingLiU-ExtB", "Poor Richard", "Pristina", "Rage Italic", "Ravie", "Rockwell", "Rockwell Condensed", "Rockwell Extra Bold", "ROG Fonts", "Sans Serif Collection", "SansSerif", "Script MT Bold", "Segoe Fluent Icons", "Segoe MDL2 Assets", "Segoe Print", "Segoe Script", "Segoe UI", "Segoe UI Black", "Segoe UI Emoji", "Segoe UI Historic", "Segoe UI Light", "Segoe UI Semibold", "Segoe UI Semilight", "Segoe UI Symbol", "Segoe UI Variable", "Serif", "Showcard Gothic", "SimSun", "SimSun-ExtB", "Sitka Text", "Snap ITC", "Stencil", "Sylfaen", "Symbol", "Tahoma", "TeamViewer15", "Tempus Sans ITC", "Times New Roman", "Trebuchet MS", "Tw Cen MT", "Tw Cen MT Condensed", "Tw Cen MT Condensed Extra Bold", "Verdana", "Viner Hand ITC", "Vivaldi", "Vladimir Script", "Webdings", "Wide Latin", "Wingdings", "Wingdings 2", "Wingdings 3", "Yu Gothic", "Yu Gothic Light", "Yu Gothic Medium", "Yu Gothic UI", "Yu Gothic UI Light", "Yu Gothic UI Semibold", "Yu Gothic UI Semilight" }));
@@ -202,7 +202,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 jLabel6.setText("Extension:");
                 jLabel6.setMaximumSize(new java.awt.Dimension(42, 16));
                 jLabel6.setMinimumSize(new java.awt.Dimension(42, 16));
-                jLabel6.setName("label"); // NOI18N
+                jLabel6.setName("fg"); // NOI18N
                 jLabel6.setPreferredSize(new java.awt.Dimension(42, 16));
 
                 extensionField.setName("textbox"); // NOI18N
@@ -215,7 +215,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 jLabel8.setText("Extension list:");
                 jLabel8.setMaximumSize(new java.awt.Dimension(42, 16));
                 jLabel8.setMinimumSize(new java.awt.Dimension(42, 16));
-                jLabel8.setName("label"); // NOI18N
+                jLabel8.setName("fg"); // NOI18N
                 jLabel8.setPreferredSize(new java.awt.Dimension(42, 16));
 
                 extensionsList.setName("textbox"); // NOI18N
@@ -225,7 +225,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 changeFDbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 changeFDbtn.setMaximumSize(new java.awt.Dimension(73, 25));
                 changeFDbtn.setMinimumSize(new java.awt.Dimension(73, 25));
-                changeFDbtn.setName("button"); // NOI18N
+                changeFDbtn.setName("btn"); // NOI18N
                 changeFDbtn.setPreferredSize(new java.awt.Dimension(73, 25));
                 changeFDbtn.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -242,7 +242,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 changeFDLabel.setBackground(new java.awt.Color(140, 140, 240));
                 changeFDLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 changeFDLabel.setText("Change");
-                changeFDLabel.setName("buttonLabel"); // NOI18N
+                changeFDLabel.setName("btn_fg"); // NOI18N
                 changeFDLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 changeFDLabelMouseClicked(evt);
@@ -270,7 +270,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 changeMPbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 changeMPbtn.setMaximumSize(new java.awt.Dimension(73, 25));
                 changeMPbtn.setMinimumSize(new java.awt.Dimension(73, 25));
-                changeMPbtn.setName("button"); // NOI18N
+                changeMPbtn.setName("btn"); // NOI18N
                 changeMPbtn.setPreferredSize(new java.awt.Dimension(73, 25));
                 changeMPbtn.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,7 +286,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
                 changeMPLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 changeMPLabel.setText("Change");
-                changeMPLabel.setName("buttonLabel"); // NOI18N
+                changeMPLabel.setName("btn_fg"); // NOI18N
 
                 javax.swing.GroupLayout changeMPbtnLayout = new javax.swing.GroupLayout(changeMPbtn);
                 changeMPbtn.setLayout(changeMPbtnLayout);
@@ -303,7 +303,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 addbtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 addbtn2.setMaximumSize(new java.awt.Dimension(73, 25));
                 addbtn2.setMinimumSize(new java.awt.Dimension(73, 25));
-                addbtn2.setName("button"); // NOI18N
+                addbtn2.setName("btn"); // NOI18N
                 addbtn2.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 addbtn2MouseClicked(evt);
@@ -320,7 +320,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 addLabel2.setText("Add");
                 addLabel2.setMaximumSize(new java.awt.Dimension(73, 25));
                 addLabel2.setMinimumSize(new java.awt.Dimension(73, 25));
-                addLabel2.setName("buttonLabel"); // NOI18N
+                addLabel2.setName("btn_fg"); // NOI18N
                 addLabel2.setPreferredSize(new java.awt.Dimension(97, 25));
 
                 javax.swing.GroupLayout addbtn2Layout = new javax.swing.GroupLayout(addbtn2);
@@ -340,7 +340,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 removebtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 removebtn2.setMaximumSize(new java.awt.Dimension(73, 25));
                 removebtn2.setMinimumSize(new java.awt.Dimension(73, 25));
-                removebtn2.setName("button"); // NOI18N
+                removebtn2.setName("btn"); // NOI18N
                 removebtn2.setPreferredSize(new java.awt.Dimension(97, 25));
                 removebtn2.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -356,7 +356,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
                 removeLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 removeLabel2.setText("Remove");
-                removeLabel2.setName("buttonLabel"); // NOI18N
+                removeLabel2.setName("btn_fg"); // NOI18N
 
                 javax.swing.GroupLayout removebtn2Layout = new javax.swing.GroupLayout(removebtn2);
                 removebtn2.setLayout(removebtn2Layout);
@@ -373,7 +373,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
                 customThemeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 customThemeButton.setMaximumSize(new java.awt.Dimension(73, 25));
                 customThemeButton.setMinimumSize(new java.awt.Dimension(73, 25));
-                customThemeButton.setName("button"); // NOI18N
+                customThemeButton.setName("btn_fg"); // NOI18N
                 customThemeButton.setPreferredSize(new java.awt.Dimension(73, 25));
                 customThemeButton.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -389,7 +389,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
                 themeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 themeLabel.setText("Custom Theme");
-                themeLabel.setName("buttonLabel"); // NOI18N
+                themeLabel.setName("btn_fg"); // NOI18N
                 themeLabel.setPreferredSize(new java.awt.Dimension(73, 25));
 
                 javax.swing.GroupLayout customThemeButtonLayout = new javax.swing.GroupLayout(customThemeButton);
@@ -407,7 +407,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
                 issuesLinkLabel.setText("Report an issue");
                 issuesLinkLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                issuesLinkLabel.setName("label"); // NOI18N
+                issuesLinkLabel.setName("fg"); // NOI18N
                 issuesLinkLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 issuesLinkLabelMouseClicked(evt);
@@ -701,7 +701,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
         private void themesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themesListActionPerformed
                 String themeName = themesList.getSelectedItem().toString();
 				ThemeCollection themes = new ThemeCollection();
-				themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes"));
+				themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
                 Theme selectedTheme = themes.matchTheme(themeName);
 
                 System.out.println("Selected Theme: " + themeName);

@@ -176,34 +176,34 @@ public class EditFrame extends javax.swing.JFrame {
 		background.setName("background"); // NOI18N
 
 		jLabel1.setText("Title: ");
-		jLabel1.setName("label"); // NOI18N
+		jLabel1.setName("fg"); // NOI18N
 
 		titleField.setName("textbox"); // NOI18N
 
 		jLabel3.setText("Year:");
-		jLabel3.setName("label"); // NOI18N
+		jLabel3.setName("fg"); // NOI18N
 
 		yearSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 		yearSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		yearSpinner.setName("spinner"); // NOI18N
 
 		jLabel4.setText("Director: ");
-		jLabel4.setName("label"); // NOI18N
+		jLabel4.setName("fg"); // NOI18N
 
 		directorField.setName("textbox"); // NOI18N
 
 		jLabel5.setText("Writers:");
-		jLabel5.setName("label"); // NOI18N
+		jLabel5.setName("fg"); // NOI18N
 
 		writersField.setName("textbox"); // NOI18N
 
 		jLabel6.setText("Language: ");
-		jLabel6.setName("label"); // NOI18N
+		jLabel6.setName("fg"); // NOI18N
 
 		langField.setName("textbox"); // NOI18N
 
 		jLabel2.setText("Plot:");
-		jLabel2.setName("label"); // NOI18N
+		jLabel2.setName("fg"); // NOI18N
 
 		plotArea.setColumns(20);
 		plotArea.setRows(5);
@@ -211,7 +211,7 @@ public class EditFrame extends javax.swing.JFrame {
 		jScrollPane1.setViewportView(plotArea);
 
 		jLabel7.setText("Rated:");
-		jLabel7.setName("label"); // NOI18N
+		jLabel7.setName("fg"); // NOI18N
 
 		ratedField.setName("textbox"); // NOI18N
 		ratedField.addActionListener(new java.awt.event.ActionListener() {
@@ -221,17 +221,17 @@ public class EditFrame extends javax.swing.JFrame {
 		});
 
 		jLabel8.setText("Runtime:");
-		jLabel8.setName("label"); // NOI18N
+		jLabel8.setName("fg"); // NOI18N
 
 		runtimeField.setName("textbox"); // NOI18N
 
 		jLabel9.setText("Actors:");
-		jLabel9.setName("label"); // NOI18N
+		jLabel9.setName("fg"); // NOI18N
 
 		actorsField.setName("textbox"); // NOI18N
 
 		jLabel11.setText("Country:");
-		jLabel11.setName("label"); // NOI18N
+		jLabel11.setName("fg"); // NOI18N
 
 		countryField.setName("textbox"); // NOI18N
 		countryField.addActionListener(new java.awt.event.ActionListener() {
@@ -241,12 +241,12 @@ public class EditFrame extends javax.swing.JFrame {
 		});
 
 		jLabel12.setText("Awards:");
-		jLabel12.setName("label"); // NOI18N
+		jLabel12.setName("fg"); // NOI18N
 
 		awardsField.setName("textbox"); // NOI18N
 
 		jLabel13.setText("IMDb Rating:");
-		jLabel13.setName("label"); // NOI18N
+		jLabel13.setName("fg"); // NOI18N
 
 		imdbratingField.setName("textbox"); // NOI18N
 		imdbratingField.addActionListener(new java.awt.event.ActionListener() {
@@ -256,13 +256,13 @@ public class EditFrame extends javax.swing.JFrame {
 		});
 
 		jLabel14.setText("IMDb ID:");
-		jLabel14.setName("label"); // NOI18N
+		jLabel14.setName("fg"); // NOI18N
 
 		imdbidField.setName("textbox"); // NOI18N
 
 		deleteButton.setBackground(new java.awt.Color(68, 68, 68));
 		deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		deleteButton.setName("button"); // NOI18N
+		deleteButton.setName("btn"); // NOI18N
 		deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				deleteButtonMouseClicked(evt);
@@ -280,7 +280,7 @@ public class EditFrame extends javax.swing.JFrame {
 		jLabel15.setForeground(new java.awt.Color(255, 255, 255));
 		jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel15.setText("Delete");
-		jLabel15.setName("buttonLabel"); // NOI18N
+		jLabel15.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
 		deleteButton.setLayout(deleteButtonLayout);
@@ -293,7 +293,7 @@ public class EditFrame extends javax.swing.JFrame {
 
 		cancelButton.setBackground(new java.awt.Color(68, 68, 68));
 		cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		cancelButton.setName("button"); // NOI18N
+		cancelButton.setName("btn"); // NOI18N
 		cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				cancelButtonMouseClicked(evt);
@@ -311,7 +311,7 @@ public class EditFrame extends javax.swing.JFrame {
 		jLabel16.setForeground(new java.awt.Color(255, 255, 255));
 		jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel16.setText("Cancel");
-		jLabel16.setName("buttonLabel"); // NOI18N
+		jLabel16.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout cancelButtonLayout = new javax.swing.GroupLayout(cancelButton);
 		cancelButton.setLayout(cancelButtonLayout);
@@ -325,7 +325,7 @@ public class EditFrame extends javax.swing.JFrame {
 
 		applyButton.setBackground(new java.awt.Color(68, 68, 68));
 		applyButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		applyButton.setName("button"); // NOI18N
+		applyButton.setName("btn"); // NOI18N
 		applyButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				applyButtonMouseClicked(evt);
@@ -343,7 +343,7 @@ public class EditFrame extends javax.swing.JFrame {
 		jLabel17.setForeground(new java.awt.Color(255, 255, 255));
 		jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel17.setText("Apply");
-		jLabel17.setName("buttonLabel"); // NOI18N
+		jLabel17.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout applyButtonLayout = new javax.swing.GroupLayout(applyButton);
 		applyButton.setLayout(applyButtonLayout);
