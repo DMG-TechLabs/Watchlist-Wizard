@@ -17,10 +17,10 @@ public class LoadingFrame extends javax.swing.JFrame {
                 GUIMethods.setupFrame(this, this.getPreferredSize(), "Loading...");
                 progressBar.setBorderPainted(false);
                 progressBar.setValue(0);
-                
+
                 iconLabel.setIcon(new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/ww-logo-png-355-purple.png"));
                 title.setFont(new Font("Matura Script MT Capitals", Font.PLAIN, 36));
-                
+
         }
 
         @SuppressWarnings("unchecked")
@@ -129,7 +129,7 @@ public class LoadingFrame extends javax.swing.JFrame {
                 if(dir != "" || dir != null){
                         mainFrame.movies.refreshMovies();
                 }
-                
+
                 TimeUnit.MILLISECONDS.sleep(1000);
                 progressBar.setValue(75);
 

@@ -19,6 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
+
 import kdesp73.madb.Condition;
 //mport org.json.simple.JSONValue;
 //import org.json.*;
@@ -96,7 +99,8 @@ public class API {
 
                 if (response.statusCode() == 401) {
                         System.out.println("Invalid key");
-                        GUIMethods.dialogError("There is an invalid key in the database ");
+						JOptionPane.showMessageDialog(null, "There is an invalid key in the database", "Error", JOptionPane.ERROR_MESSAGE, null);
+                       	// GUIMethods.dialogError("There is an invalid key in the database ");
                 }
 
                 Dictionary table = Utils.JsonToDictionary(response.body());
@@ -107,7 +111,7 @@ public class API {
                         }
                 } catch (NullPointerException e) {
                 }
-                
+
                 //System.out.println("API multi search table: " + table);
                 String media_type = "";
                 try {
@@ -170,10 +174,10 @@ public class API {
                         String error = "{\"message\":\"No Internet Connection\"}";
                         return error;
                 }
-                
+
                 String release_dates = response.body();
-                
-                
+
+
 
                 String overview = table.get("overview").toString();
                 overview = overview.replaceAll(Pattern.quote("'"), "''");
@@ -181,8 +185,8 @@ public class API {
                 String writer = ApiUtils.find_in_api(credids,"job", "Screenplay").replaceAll(Pattern.quote("'"), "''");
                 //System.out.println("\n\n\nDirecting: "+director);
                 //System.out.println("\n\n\nWriting: "+writer);
-                //Random rand = new Random(); 
-                
+                //Random rand = new Random();
+
                 FinalJson = "{"
                         + " \"Title\":\"" + ApiUtils.some_error_handling(table.get("title").toString().replaceAll("'s", ""))  //
                         + "\" ,\"Year\":\"" + ApiUtils.some_error_handling(table.get("release_date").toString().split(Pattern.quote("-"))[0])
@@ -246,9 +250,9 @@ public class API {
                         String[] jsonlist;// = new String[json.split(",").length-1];
                         String temp;
                         jsonlist = json.split(",");
-                        
+
                         for(int i=0;i<jsonlist.length;i++){
-                                
+
                                 if(jsonlist[i].contains(stringToFind1)&&jsonlist[i].contains(stringToFind2)){
                                         temp = jsonlist[i-6];
                                         temp = StringUtils.substring(temp, 8, temp.length()-1);
@@ -260,7 +264,7 @@ public class API {
 
                 public static String some_error_handling(Object obj){
                         if (obj==null) return "";
-                        
+
                         return obj.toString();
                 }
 
@@ -270,9 +274,9 @@ public class API {
                         String namesString = "";
                         String temp;
                         jsonlist = json.split(",");
-                        
+
                         for(int i=0;i<jsonlist.length;i++){
-                                
+
                                 if(jsonlist[i].contains("order")){
                                         temp = jsonlist[i-7];
                                         temp = StringUtils.substring(temp, 8, temp.length()-1);
@@ -292,9 +296,9 @@ public class API {
                         String rated = "";
                         String temp;
                         jsonlist = json.split(",");
-                        
+
                         for(int i=0;i<jsonlist.length;i++){
-                                
+
                                 if(jsonlist[i].contains("iso_3166_1")&&jsonlist[i].contains("US")){
                                         System.out.println("yes");
                                         System.out.println(jsonlist[i]);

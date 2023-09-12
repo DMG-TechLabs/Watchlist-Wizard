@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-            
+
 
         <build>
                 <plugins>
@@ -19,7 +19,7 @@
                                         </archive>
                                 </configuration>
                         </plugin>
-                </plugins>   
+                </plugins>
         </build>
 
         <modelVersion>4.0.0</modelVersion>
@@ -28,14 +28,14 @@
         <version>1.0.0-SNAPSHOT</version>
         <properties>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <maven.compiler.source>16</maven.compiler.source>
-                <maven.compiler.target>16</maven.compiler.target>
+                <maven.compiler.source>17</maven.compiler.source>
+                <maven.compiler.target>17</maven.compiler.target>
                 <exec.mainClass>GUI.LoadingFrame</exec.mainClass>
         </properties>
-        
-		
 
-        
+
+
+
 
         <dependencies>
                 <dependency>
@@ -56,7 +56,7 @@
                 <dependency>
                         <groupId>kdesp73.madb</groupId>
                         <artifactId>MADB</artifactId>
-                        <version>1.0.7-SNAPSHOT</version>
+                        <version>1.0.6-SNAPSHOT</version>
                 </dependency>
                 <dependency>
                         <groupId>com.github.holgerbrandl</groupId>
@@ -66,5 +66,5 @@
         </dependencies>
 
         <name>MovieManager</name>
-        
+
 </project>
