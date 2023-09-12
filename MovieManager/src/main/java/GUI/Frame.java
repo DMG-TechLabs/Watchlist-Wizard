@@ -1,11 +1,5 @@
 package GUI;
 
-import Exceptions.NoMediaPlayerDirectoryException;
-import Exceptions.NoMovieSelectedException;
-import API.API;
-import Database.Database;
-import Files.FilesList;
-import Files.ImagesUtils;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -31,9 +26,18 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import API.API;
+import Database.Database;
+import Exceptions.NoMediaPlayerDirectoryException;
+import Exceptions.NoMovieSelectedException;
+import Files.FilesList;
+import Files.ImagesUtils;
+import kdesp73.themeLib.JsonString;
+import kdesp73.themeLib.Theme;
+import kdesp73.themeLib.ThemeCollection;
 import main.Movie;
 import main.MovieCollection;
-import kdesp73.themeLib.Theme;
 
 
 public class Frame extends javax.swing.JFrame {

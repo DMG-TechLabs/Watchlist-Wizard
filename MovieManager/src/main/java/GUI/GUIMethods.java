@@ -82,6 +82,12 @@ public class GUIMethods {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
+		if(theme == null) {
+			System.err.println("Theme is null");
+			theme = new Theme(new JsonString("{\"list_focus\":\"120821\",\"fg\":\"ffffff\",\"scrollbar\":\"0b3948\",\"textbox\":\"381863\",\"bg\":\"120821\",\"progress_bar\":\"44af69\",\"list\":\"381863\",\"extra_1\":\"120821\",\"extra_2\":\"000002\",\"extra_0\":\"6a5d8c\",\"textbox_fg\":\"ffffff\",\"extra_5\":\"000005\",\"btn_fg\":\"ffffff\",\"extra_6\":\"000006\",\"bg_2\":\"381863\",\"extra_3\":\"000003\",\"extra_4\":\"000004\",\"name\":\"Dark\",\"extra_9\":\"000009\",\"list_fg\":\"ffffff\",\"extra_7\":\"000007\",\"fg_2\":\"ffffff\",\"extra_8\":\"000008\",\"btn\":\"381863\"}"));
+			ThemeCollection.applyTheme(frame, theme);
+		}
+
 		try {
 			GUIMethods.changeGlobalFont(new Component[] { frame }, 4,
 					(String) Database.db().SELECT("Settings", "Font").get(0));

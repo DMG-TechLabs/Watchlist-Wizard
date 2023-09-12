@@ -10,7 +10,9 @@ import java.util.Hashtable;
 import java.util.regex.Pattern;
 
 import Utils.Utils;
+import kdesp73.themeLib.Theme;
 import kdesp73.themeLib.ThemeCollection;
+import kdesp73.themeLib.YamlFile;
 import Database.Database;
 
 public class MovieManager {
@@ -81,34 +83,11 @@ public class MovieManager {
 		 */
 		// ImagesUtils.imageToDatabase("tt0434409");
 
-	ArrayList<String> themeJsons = new ArrayList<>();
-		ArrayList<Object> objectList = new ArrayList<>();
-		ArrayList<String> names = new ArrayList<>();
-		try {
-			objectList = Database.db().SELECT("Themes", "JSON");
-		} catch (SQLException ex) {
-		}
+		YamlFile y = new YamlFile(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/dark.yml");
 
-		for (Object obj : objectList) {
-			themeJsons.add((String) obj);
-		}
+		Theme t = new Theme(y);
 
-		objectList.clear();
-
-		try {
-			objectList = Database.db().SELECT("Themes", "Theme_Name");
-		} catch (SQLException ex) {
-		}
-
-		for (Object obj : objectList) {
-			names.add((String) obj);
-		}
-
-		for (int index = 0; index < names.size(); index++) {
-			System.out.println("Name: " + names.get(index));
-			System.out.println(themeJsons.get(index));
-			System.out.println("---");
-		}
+		System.out.println(t.generateJson().getJson());
 
 
 
