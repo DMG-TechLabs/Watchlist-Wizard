@@ -1,7 +1,6 @@
 package GUI;
 
 import Database.Database;
-import Utils.Utils;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

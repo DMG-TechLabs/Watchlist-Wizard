@@ -2,21 +2,15 @@ package GUI;
 
 import Exceptions.DatabaseStringOverflowException;
 import Database.Database;
-import Files.ImagesUtils;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import kdesp73.madb.Condition;
 import kdesp73.themeLib.*;
 import main.MovieCollection;
 

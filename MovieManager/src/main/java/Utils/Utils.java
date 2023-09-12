@@ -1,6 +1,5 @@
 package Utils;
 
-import GUI.GUIMethods;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +8,6 @@ import java.util.Hashtable;
 import java.util.regex.Pattern;
 import main.Movie;
 import main.MovieCollection;
-import org.json.simple.JSONObject;
-import kdesp73.themeLib.*;
 
 public class Utils {
 
