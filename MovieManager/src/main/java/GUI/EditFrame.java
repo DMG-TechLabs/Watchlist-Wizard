@@ -678,7 +678,9 @@ public class EditFrame extends javax.swing.JFrame {
 				|| language.length() > 255 || rated.length() > 255 || runtime.length() > 255 || actors.length() > 255
 				|| country.length() > 255 || awards.length() > 255 || imdbrating.length() > 255
 				|| imdbid.length() > 255) {
-			GUIMethods.dialogError("String with more than 255 characters");
+
+			JOptionPane.showMessageDialog(this, "String with more than 255 characters", "Error", JOptionPane.ERROR_MESSAGE, null);
+			// GUIMethods.dialogError("String with more than 255 characters");
 			throw new DatabaseStringOverflowException("String with more than 255 characters");
 		}
 
