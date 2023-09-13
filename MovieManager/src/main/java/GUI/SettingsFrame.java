@@ -45,6 +45,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		initComponents();
 		this.setResizable(false);
 		this.theme = GUIMethods.setupFrame(this, this.getPreferredSize(), TITLE);
+		this.themeCollection = GUIMethods.getThemes();
 
 		// Components setup
 		movies = new MovieCollection();

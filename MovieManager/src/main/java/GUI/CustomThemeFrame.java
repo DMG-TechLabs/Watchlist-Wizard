@@ -43,6 +43,8 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	Color textBoxForeground;
 	Color secBackground;
 
+	Theme loadedTheme = null;
+
 	public CustomThemeFrame() {
 		initComponents();
 		this.setResizable(false);
@@ -60,26 +62,22 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 
 		// Setup Components
 		this.f = f;
-		this.buttonHover = f.sf.themeCollection.getThemes().get(0).getExtras().get(0);
-		this.button = f.sf.themeCollection.getThemes().get(0).getBtn();
-
+		this.buttonHover = f.theme.getExtras().get(0);
+		this.button = f.theme.getBtn();
+		this.loadedTheme = f.theme;
 		refreshThemeCombo();
-		initValues(f.sf.themeCollection.getThemes().get(0));
+		initValues(f.theme);
 	}
 
 	public void refreshThemeCombo() {
 		ArrayList<String> themeNames = new ArrayList<>();
 
-		try {
-			ArrayList<Object> objectList = Database.db().SELECT("Themes", "Theme_Name");
-			for (Object obj : objectList) {
-				themeNames.add((String) obj);
-			}
-		} catch (SQLException ex) {
-			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		ThemeCollection tc = new ThemeCollection();
+		tc.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
 
-		themeNames.add(0, "Default");
+		for(Theme theme : tc.getThemes()){
+			themeNames.add(theme.getName());
+		}
 
 		themesToLoadCombo.setModel(new DefaultComboBoxModel(themeNames.toArray()));
 	}
@@ -1306,7 +1304,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_buttonPrevMouseClicked
 
 	private void bgColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_bgColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getBg());
+		Color newColor = createChooser(loadedTheme.getBg());
 
 		if (newColor == null) {
 			return;
@@ -1319,7 +1317,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_bgColorMouseClicked
 
 	private void fgColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_fgColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getFg());
+		Color newColor = createChooser(loadedTheme.getFg());
 
 		if (newColor == null) {
 			return;
@@ -1332,7 +1330,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_fgColorMouseClicked
 
 	private void listColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_listColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getList());
+		Color newColor = createChooser(loadedTheme.getList());
 
 		if (newColor == null) {
 			return;
@@ -1345,7 +1343,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_listColorMouseClicked
 
 	private void listFgColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_listFgColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getList_fg());
+		Color newColor = createChooser(loadedTheme.getList_fg());
 
 		if (newColor == null) {
 			return;
@@ -1359,7 +1357,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_listFgColorMouseClicked
 
 	private void listFocusColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_listFocusColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getList_focus());
+		Color newColor = createChooser(loadedTheme.getList_focus());
 
 		if (newColor == null) {
 			return;
@@ -1372,7 +1370,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_listFocusColorMouseClicked
 
 	private void toolbarColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_toolbarColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getExtras().get(1));
+		Color newColor = createChooser(loadedTheme.getExtras().get(1));
 
 		if (newColor == null) {
 			return;
@@ -1385,7 +1383,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_toolbarColorMouseClicked
 
 	private void buttonColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getBtn());
+		Color newColor = createChooser(loadedTheme.getBtn());
 
 		if (newColor == null) {
 			return;
@@ -1398,7 +1396,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_buttonColorMouseClicked
 
 	private void buttonFgColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonFgColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getBtn_fg());
+		Color newColor = createChooser(loadedTheme.getBtn_fg());
 
 		if (newColor == null) {
 			return;
@@ -1411,7 +1409,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_buttonFgColorMouseClicked
 
 	private void buttonHoverColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonHoverColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getExtras().get(0));
+		Color newColor = createChooser(loadedTheme.getExtras().get(0));
 
 		if (newColor == null) {
 			return;
@@ -1423,7 +1421,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_buttonHoverColorMouseClicked
 
 	private void textboxColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_textboxColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getTextbox());
+		Color newColor = createChooser(loadedTheme.getTextbox());
 
 		if (newColor == null) {
 			return;
@@ -1436,7 +1434,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_textboxColorMouseClicked
 
 	private void textboxFgColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_textboxFgColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getTextbox_fg());
+		Color newColor = createChooser(loadedTheme.getTextbox_fg());
 
 		if (newColor == null) {
 			return;
@@ -1449,7 +1447,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_textboxFgColorMouseClicked
 
 	private void secBgColorMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_secBgColorMouseClicked
-		Color newColor = createChooser(f.sf.themeCollection.getThemes().get(0).getBg_2());
+		Color newColor = createChooser(loadedTheme.getBg_2());
 
 		if (newColor == null) {
 			return;
@@ -1462,15 +1460,15 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_secBgColorMouseClicked
 
 	private void resetButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_resetButtonMouseClicked
-		initValues(f.sf.themeCollection.getThemes().get(0));
+		initValues(f.theme);
 	}// GEN-LAST:event_resetButtonMouseClicked
 
 	private void resetButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_resetButtonMouseEntered
-		resetButton.setBackground(f.sf.themeCollection.getThemes().get(0).getExtras().get(0));
+		resetButton.setBackground(f.theme.getExtras().get(0));
 	}// GEN-LAST:event_resetButtonMouseEntered
 
 	private void resetButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_resetButtonMouseExited
-		resetButton.setBackground(f.sf.themeCollection.getThemes().get(0).getBtn());
+		resetButton.setBackground(f.theme.getBtn());
 	}// GEN-LAST:event_resetButtonMouseExited
 
 	private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_saveButtonMouseClicked
@@ -1597,6 +1595,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 		nameThemeDialog.setResizable(false);
 	}// GEN-LAST:event_saveButtonMouseClicked
 
+	// TODO: save to yml file
 	private void saveTheme(JDialog dialog, Theme newTheme, JTextField textField) {
 		String themeName = textField.getText();
 		if (themeName == null || themeName.isBlank()) {
@@ -1636,25 +1635,26 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 	}
 
 	private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_saveButtonMouseEntered
-		saveButton.setBackground(f.sf.themeCollection.getThemes().get(0).getExtras().get(0));
+		saveButton.setBackground(f.theme.getExtras().get(0));
 	}// GEN-LAST:event_saveButtonMouseEntered
 
 	private void saveButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_saveButtonMouseExited
-		saveButton.setBackground(f.sf.themeCollection.getThemes().get(0).getBtn());
+		saveButton.setBackground(f.theme.getBtn());
 	}// GEN-LAST:event_saveButtonMouseExited
 
 	private void loadThemeButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_loadThemeButtonMouseClicked
-		ThemeCollection themes = new ThemeCollection();
-		themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
-		initValues(themes.matchTheme(themesToLoadCombo.getSelectedItem().toString()));
+		ThemeCollection themes = GUIMethods.getThemes();
+		Theme themeToLoad = themes.matchTheme(themesToLoadCombo.getSelectedItem().toString());
+		initValues(themeToLoad);
+		loadedTheme = themeToLoad;
 	}// GEN-LAST:event_loadThemeButtonMouseClicked
 
 	private void loadThemeButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_loadThemeButtonMouseEntered
-		loadThemeButton.setBackground(f.sf.themeCollection.getThemes().get(0).getExtras().get(0));
+		loadThemeButton.setBackground(f.theme.getExtras().get(0));
 	}// GEN-LAST:event_loadThemeButtonMouseEntered
 
 	private void loadThemeButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_loadThemeButtonMouseExited
-		loadThemeButton.setBackground(f.sf.themeCollection.getThemes().get(0).getBtn());
+		loadThemeButton.setBackground(f.theme.getBtn());
 	}// GEN-LAST:event_loadThemeButtonMouseExited
 
 	private Color createChooser(Color c) throws HeadlessException {
