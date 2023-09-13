@@ -18,6 +18,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -1486,7 +1487,14 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 		newTheme.setTextbox(textBox);
 		newTheme.setTextbox_fg(textBoxForeground);
 		newTheme.setBg_2(secBackground);
-		newTheme.generateJson();
+		// newTheme.generateJson();
+
+		String themeName = JOptionPane.showInputDialog("Name your theme");
+		newTheme.setName(themeName);
+
+		saveTheme(newTheme);
+
+		/*
 
 		JDialog nameThemeDialog = new JDialog(this);
 		JPanel bg = new JPanel();
@@ -1544,48 +1552,48 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 		save.setLayout(saveButtonLayout);
 		saveButtonLayout.setHorizontalGroup(
 				saveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE));
-		saveButtonLayout.setVerticalGroup(
-				saveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE));
+				.addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE));
+				saveButtonLayout.setVerticalGroup(
+					saveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+					.addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE));
 
-		javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(bg);
-		bg.setLayout(backgroundLayout);
-		backgroundLayout.setHorizontalGroup(
-				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+					javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(bg);
+					bg.setLayout(backgroundLayout);
+					backgroundLayout.setHorizontalGroup(
+						backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(backgroundLayout.createSequentialGroup()
 								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(input, javax.swing.GroupLayout.Alignment.TRAILING,
-														javax.swing.GroupLayout.PREFERRED_SIZE, 247,
+									backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+									.addComponent(input, javax.swing.GroupLayout.Alignment.TRAILING,
+									javax.swing.GroupLayout.PREFERRED_SIZE, 247,
 														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(save, javax.swing.GroupLayout.Alignment.TRAILING,
+														.addComponent(save, javax.swing.GroupLayout.Alignment.TRAILING,
 														javax.swing.GroupLayout.PREFERRED_SIZE,
 														javax.swing.GroupLayout.DEFAULT_SIZE,
 														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addContainerGap()));
+														.addContainerGap()));
 		backgroundLayout.setVerticalGroup(
 				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(backgroundLayout.createSequentialGroup()
 								.addContainerGap()
 								.addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addGap(18, 18, 18)
 								.addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addContainerGap(35, Short.MAX_VALUE)));
 
-		// javax.swing.GroupLayout layout = new
+								// javax.swing.GroupLayout layout = new
 		// javax.swing.GroupLayout(getContentPane());
 		// getContentPane().setLayout(layout);
 		// layout.setHorizontalGroup(
-		// layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			// layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 		// .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE,
 		// javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		// );
 		// layout.setVerticalGroup(
-		// layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			// layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 		// .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE,
 		// javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 		// );
@@ -1593,45 +1601,51 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 		GUIMethods.setupDialog(nameThemeDialog, SIZE, "Name Theme");
 		nameThemeDialog.setVisible(true);
 		nameThemeDialog.setResizable(false);
+		*/
 	}// GEN-LAST:event_saveButtonMouseClicked
 
-	// TODO: save to yml file
-	private void saveTheme(JDialog dialog, Theme newTheme, JTextField textField) {
-		String themeName = textField.getText();
+	private void saveTheme(Theme newTheme) {
+		// String themeName = textField.getText();
+		String themeName = newTheme.getName();
 		if (themeName == null || themeName.isBlank()) {
 			GUIMethods.dialogError("Empty Name!");
-			dialog.dispose();
 			return;
 		}
 		for (int i = 0; i < f.sf.themeCollection.getThemes().size(); i++) {
 			if (themeName.equals(f.sf.themeCollection.getThemes().get(i).getName())) {
 				GUIMethods.dialogError("This name is already taken. Please pick another one");
-				dialog.dispose();
 				return;
 			}
 		}
 		int MAX = 30;
 		if (themeName.length() > MAX) {
 			GUIMethods.dialogError("Name too long. Try a shorter one");
-			dialog.dispose();
 			return;
 		}
-		newTheme.setName(themeName);
+		// newTheme.setName(themeName);
 		for (int i = 0; i < f.sf.themeCollection.getThemes().size(); i++) {
 			// TODO: compare themes
 			if (newTheme.generateJson().getJson()
 					.equals(f.sf.themeCollection.getThemes().get(i).getJson().replaceAll(", ", ","))) {
 				GUIMethods.dialogError("This theme already exists with another name: "
 						+ f.sf.themeCollection.getThemes().get(i).getName());
-				dialog.dispose();
 				return;
 			}
 		}
-		f.sf.themeCollection.addTheme(newTheme);
+
+		System.out.println("Your theme name: " + themeName);;
+		System.out.println("Not yet implemented");
+		return;
+
+		// TODO save to yaml file
+/*		f.sf.themeCollection.addTheme(newTheme);
+
+
+
 		System.out.println("Theme added");
 		f.sf.refreshThemeCombo();
 		f.sf.tf.refreshThemeCombo();
-		dialog.dispose();
+		*/
 	}
 
 	private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_saveButtonMouseEntered
