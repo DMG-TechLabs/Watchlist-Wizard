@@ -181,7 +181,8 @@ public class Movie implements Comparable<Movie>{
         }
 
         public void setImdbID(String imdbID) {
-                this.imdbID = imdbID;
+                if(imdbID == "") this.imdbID = null;
+                else this.imdbID = imdbID;
         }
 
         public String getType() {
