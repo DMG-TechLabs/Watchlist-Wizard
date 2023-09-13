@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -1494,114 +1495,7 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 
 		saveTheme(newTheme);
 
-		/*
 
-		JDialog nameThemeDialog = new JDialog(this);
-		JPanel bg = new JPanel();
-		JPanel save = new RoundedPanel();
-		JLabel label = new JLabel("Save");
-		JTextField input = new JTextField();
-		Dimension SIZE = new Dimension(279, 120);
-
-		bg.setName("bg");
-
-		input.setText("Name your Theme!");
-		input.setName("textbox");
-		input.setSize(108, 22);
-		input.addFocusListener(new java.awt.event.FocusAdapter() {
-			@Override
-			public void focusGained(java.awt.event.FocusEvent evt) {
-				input.setText("");
-			}
-		});
-		input.addKeyListener(new java.awt.event.KeyAdapter() {
-			@Override
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				if (evt.getKeyCode() != 10) {
-					return;
-				}
-
-				saveTheme(nameThemeDialog, newTheme, input);
-			}
-		});
-
-		save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		save.setName("btn"); // NOI18N
-		save.addMouseListener(new java.awt.event.MouseAdapter() {
-			@Override
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				saveTheme(nameThemeDialog, newTheme, input);
-			}
-
-			@Override
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				save.setBackground(theme.getExtras().get(0));
-			}
-
-			@Override
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				save.setBackground(theme.getBtn());
-			}
-		});
-
-		label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		label.setText("Save");
-		label.setName("btn_fg"); // NOI18N
-
-		javax.swing.GroupLayout saveButtonLayout = new javax.swing.GroupLayout(save);
-		save.setLayout(saveButtonLayout);
-		saveButtonLayout.setHorizontalGroup(
-				saveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE));
-				saveButtonLayout.setVerticalGroup(
-					saveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-					.addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE));
-
-					javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(bg);
-					bg.setLayout(backgroundLayout);
-					backgroundLayout.setHorizontalGroup(
-						backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(backgroundLayout.createSequentialGroup()
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(
-									backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-									.addComponent(input, javax.swing.GroupLayout.Alignment.TRAILING,
-									javax.swing.GroupLayout.PREFERRED_SIZE, 247,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(save, javax.swing.GroupLayout.Alignment.TRAILING,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addContainerGap()));
-		backgroundLayout.setVerticalGroup(
-				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(backgroundLayout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(18, 18, 18)
-								.addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(35, Short.MAX_VALUE)));
-
-								// javax.swing.GroupLayout layout = new
-		// javax.swing.GroupLayout(getContentPane());
-		// getContentPane().setLayout(layout);
-		// layout.setHorizontalGroup(
-			// layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		// .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE,
-		// javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		// );
-		// layout.setVerticalGroup(
-			// layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		// .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE,
-		// javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		// );
-		nameThemeDialog.add(bg);
-		GUIMethods.setupDialog(nameThemeDialog, SIZE, "Name Theme");
-		nameThemeDialog.setVisible(true);
-		nameThemeDialog.setResizable(false);
-		*/
 	}// GEN-LAST:event_saveButtonMouseClicked
 
 	private void saveTheme(Theme newTheme) {
@@ -1633,19 +1527,21 @@ public class CustomThemeFrame extends javax.swing.JFrame {
 			}
 		}
 
-		System.out.println("Your theme name: " + themeName);;
-		System.out.println("Not yet implemented");
-		return;
+		try {
+			newTheme.generateYaml(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/" + newTheme.getName().toLowerCase() + ".yml");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		f.sf.themeCollection.addTheme(newTheme);
 
-		// TODO save to yaml file
-/*		f.sf.themeCollection.addTheme(newTheme);
 
 
-
-		System.out.println("Theme added");
 		f.sf.refreshThemeCombo();
 		f.sf.tf.refreshThemeCombo();
-		*/
+		JOptionPane.showMessageDialog(this.f, "Theme saved", "Saved", JOptionPane.INFORMATION_MESSAGE);
+		System.out.println("Theme added");
+		this.dispose();
 	}
 
 	private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_saveButtonMouseEntered
