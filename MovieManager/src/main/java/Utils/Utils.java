@@ -14,10 +14,10 @@ import org.json.simple.JSONObject;
 
 public class Utils {
 
-        public static Dictionary JsonToDictionary(String input){
+        public static Dictionary<String, String> JsonToDictionary(String input){
 
             String[] pros = new String[2];
-            Dictionary table = new Hashtable();
+            Dictionary<String, String> table = new Hashtable<String, String>();
             String item1,item2;
             //System.out.println("Utiles\n\n");
             String s = input.replaceAll("\"[a-zA-Z]+\":\\Q[{\\E", "");
