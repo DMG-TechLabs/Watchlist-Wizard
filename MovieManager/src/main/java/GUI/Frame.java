@@ -1,11 +1,5 @@
 package GUI;
 
-import Exceptions.NoMediaPlayerDirectoryException;
-import Exceptions.NoMovieSelectedException;
-import API.API;
-import Database.Database;
-import Files.FilesList;
-import Files.ImagesUtils;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -31,13 +26,24 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import API.API;
+import Database.Database;
+import Exceptions.NoMediaPlayerDirectoryException;
+import Exceptions.NoMovieSelectedException;
+import Files.FilesList;
+import Files.ImagesUtils;
+import kdesp73.themeLib.JsonString;
+import kdesp73.themeLib.Theme;
+import kdesp73.themeLib.ThemeCollection;
 import main.Movie;
 import main.MovieCollection;
+
 
 public class Frame extends javax.swing.JFrame {
 
 	static final String TITLE = "Movie-Manager";
-	Theme theme;
+	Theme theme = null;
 
 	static String dir = "$HOME";
 	MovieCollection movies;
@@ -73,14 +79,14 @@ public class Frame extends javax.swing.JFrame {
 			public void focusGained(FocusEvent e) {
 				if (SearchBar.getText().equals("Search")) {
 					SearchBar.setText("");
-					SearchBar.setForeground(theme.getTextBoxForeground());
+					SearchBar.setForeground(theme.getTextbox_fg());
 				}
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (SearchBar.getText().isEmpty()) {
-					SearchBar.setForeground(theme.getTextBoxForeground());
+					SearchBar.setForeground(theme.getTextbox_fg());
 					SearchBar.setText("Search");
 				}
 			}
@@ -206,10 +212,10 @@ public class Frame extends javax.swing.JFrame {
 
 		infoTabPane.setName("tabpane"); // NOI18N
 
-		info1Background.setName("background"); // NOI18N
+		info1Background.setName("bg"); // NOI18N
 
 		image.setBackground(new java.awt.Color(255, 255, 255));
-		image.setName("background"); // NOI18N
+		image.setName("bg"); // NOI18N
 		image.setPreferredSize(new java.awt.Dimension(342, 513));
 
 		imageLabel.setMaximumSize(new java.awt.Dimension(229, 338));
@@ -226,95 +232,95 @@ public class Frame extends javax.swing.JFrame {
 
 		infoPanel.setBackground(new java.awt.Color(255, 255, 255));
 		infoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-		infoPanel.setName("background2"); // NOI18N
+		infoPanel.setName("bg_2"); // NOI18N
 
-		title.setName("label"); // NOI18N
+		title.setName("fg"); // NOI18N
 
-		year.setName("label"); // NOI18N
+		year.setName("fg"); // NOI18N
 
 		titleIndicator.setText("Title:");
-		titleIndicator.setName("label"); // NOI18N
+		titleIndicator.setName("fg"); // NOI18N
 		titleIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
 		yearIndicator.setText("Year:");
-		yearIndicator.setName("label"); // NOI18N
+		yearIndicator.setName("fg"); // NOI18N
 		yearIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
 		ratedIndicator.setText("Rated:");
-		ratedIndicator.setName("label"); // NOI18N
+		ratedIndicator.setName("fg"); // NOI18N
 		ratedIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		rated.setName("label"); // NOI18N
+		rated.setName("fg"); // NOI18N
 
 		runtimeIndicator.setText("Runtime:");
-		runtimeIndicator.setName("label"); // NOI18N
+		runtimeIndicator.setName("fg"); // NOI18N
 		runtimeIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		runtime.setName("label"); // NOI18N
+		runtime.setName("fg"); // NOI18N
 
 		directorIndicator.setText("Director:");
-		directorIndicator.setName("label"); // NOI18N
+		directorIndicator.setName("fg"); // NOI18N
 		directorIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
 		director.setBackground(java.awt.Color.white);
-		director.setName("label"); // NOI18N
+		director.setName("fg"); // NOI18N
 
 		writersIndicator.setText("Writers:");
-		writersIndicator.setName("label"); // NOI18N
+		writersIndicator.setName("fg"); // NOI18N
 		writersIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		writers.setName("label"); // NOI18N
+		writers.setName("fg"); // NOI18N
 
 		actorsIndicator.setText("Actors:");
-		actorsIndicator.setName("label"); // NOI18N
+		actorsIndicator.setName("fg"); // NOI18N
 		actorsIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		actors.setName("label"); // NOI18N
+		actors.setName("fg"); // NOI18N
 
 		languageIndicator.setText("Language:");
-		languageIndicator.setName("label"); // NOI18N
+		languageIndicator.setName("fg"); // NOI18N
 		languageIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		genre.setName("label"); // NOI18N
+		genre.setName("fg"); // NOI18N
 
 		countryIndicator.setText("Country:");
-		countryIndicator.setName("label"); // NOI18N
+		countryIndicator.setName("fg"); // NOI18N
 		countryIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		language.setName("label"); // NOI18N
+		language.setName("fg"); // NOI18N
 
 		awardsIndicator.setText("Awards:");
-		awardsIndicator.setName("label"); // NOI18N
+		awardsIndicator.setName("fg"); // NOI18N
 		awardsIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-		country.setName("label"); // NOI18N
+		country.setName("fg"); // NOI18N
 
 		imdbratingIndicator.setText("IMDb Rating:");
-		imdbratingIndicator.setName("label"); // NOI18N
+		imdbratingIndicator.setName("fg"); // NOI18N
 
-		awards.setName("label"); // NOI18N
+		awards.setName("fg"); // NOI18N
 
 		imdbidIndicator.setText("IMDb ID:");
-		imdbidIndicator.setName("label"); // NOI18N
+		imdbidIndicator.setName("fg"); // NOI18N
 
-		imdbrating.setName("label"); // NOI18N
+		imdbrating.setName("fg"); // NOI18N
 
 		plotIndicator.setText("Plot:");
-		plotIndicator.setName("label"); // NOI18N
+		plotIndicator.setName("fg"); // NOI18N
 
 		genreIndicator.setText("Genre:");
-		genreIndicator.setName("label"); // NOI18N
+		genreIndicator.setName("fg"); // NOI18N
 
-		imdbid.setName("label"); // NOI18N
+		imdbid.setName("fg"); // NOI18N
 
 		tmdbLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		String IMGPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/tmdbLogo.png";
 		tmdbLogo.setIcon(new javax.swing.ImageIcon(IMGPATH));
 
 		plotScrollPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-		plotScrollPane.setName("scrollPane"); // NOI18N
+		plotScrollPane.setName("bg_2"); // NOI18N
 
-		plot.setName("label"); // NOI18N
+		plot.setName("fg"); // NOI18N
 		plotScrollPane.setViewportView(plot);
 
 		javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
@@ -591,7 +597,7 @@ public class Frame extends javax.swing.JFrame {
 
 		playButton.setBackground(new java.awt.Color(55, 63, 81));
 		playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		playButton.setName("button"); // NOI18N
+		playButton.setName("btn"); // NOI18N
 		playButton.setPreferredSize(new java.awt.Dimension(75, 25));
 		playButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -610,7 +616,7 @@ public class Frame extends javax.swing.JFrame {
 		buttonLabel.setForeground(java.awt.Color.white);
 		buttonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		buttonLabel.setText("Play");
-		buttonLabel.setName("buttonLabel"); // NOI18N
+		buttonLabel.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout playButtonLayout = new javax.swing.GroupLayout(playButton);
 		playButton.setLayout(playButtonLayout);
@@ -667,10 +673,10 @@ public class Frame extends javax.swing.JFrame {
 		infoTabPane.addTab("Info", info1Background);
 
 		toolbarPanel.setBackground(new java.awt.Color(68, 94, 147));
-		toolbarPanel.setName("toolbar"); // NOI18N
+		toolbarPanel.setName("extra_1"); // NOI18N
 
 		logo.setBackground(new java.awt.Color(249, 57, 67));
-		logo.setName("toolbar"); // NOI18N
+		logo.setName("extra_1"); // NOI18N
 		logo.setPreferredSize(new java.awt.Dimension(100, 100));
 
 		logoLabel.setName(""); // NOI18N
@@ -709,7 +715,7 @@ public class Frame extends javax.swing.JFrame {
 
 		settingsButton.setBackground(new java.awt.Color(55, 63, 81));
 		settingsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		settingsButton.setName("button"); // NOI18N
+		settingsButton.setName("btn"); // NOI18N
 		settingsButton.setPreferredSize(new java.awt.Dimension(75, 25));
 		settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -728,7 +734,7 @@ public class Frame extends javax.swing.JFrame {
 		buttonLabel1.setForeground(java.awt.Color.white);
 		buttonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		buttonLabel1.setText("Settings");
-		buttonLabel1.setName("buttonLabel"); // NOI18N
+		buttonLabel1.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout settingsButtonLayout = new javax.swing.GroupLayout(settingsButton);
 		settingsButton.setLayout(settingsButtonLayout);
@@ -741,7 +747,7 @@ public class Frame extends javax.swing.JFrame {
 
 		editButton.setBackground(new java.awt.Color(55, 63, 81));
 		editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		editButton.setName("button"); // NOI18N
+		editButton.setName("btn"); // NOI18N
 		editButton.setPreferredSize(new java.awt.Dimension(75, 25));
 		editButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -760,7 +766,7 @@ public class Frame extends javax.swing.JFrame {
 		buttonLabel2.setForeground(java.awt.Color.white);
 		buttonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		buttonLabel2.setText("Edit");
-		buttonLabel2.setName("buttonLabel"); // NOI18N
+		buttonLabel2.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout editButtonLayout = new javax.swing.GroupLayout(editButton);
 		editButton.setLayout(editButtonLayout);
@@ -774,7 +780,7 @@ public class Frame extends javax.swing.JFrame {
 
 		sortButton.setBackground(new java.awt.Color(55, 63, 81));
 		sortButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		sortButton.setName("button"); // NOI18N
+		sortButton.setName("btn"); // NOI18N
 		sortButton.setPreferredSize(new java.awt.Dimension(75, 25));
 		sortButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -793,7 +799,7 @@ public class Frame extends javax.swing.JFrame {
 		sortLabel.setForeground(java.awt.Color.white);
 		sortLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		sortLabel.setText("Sort");
-		sortLabel.setName("buttonLabel"); // NOI18N
+		sortLabel.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout sortButtonLayout = new javax.swing.GroupLayout(sortButton);
 		sortButton.setLayout(sortButtonLayout);
@@ -807,7 +813,7 @@ public class Frame extends javax.swing.JFrame {
 
 		scrapeButton.setBackground(new java.awt.Color(55, 63, 81));
 		scrapeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		scrapeButton.setName("button"); // NOI18N
+		scrapeButton.setName("btn"); // NOI18N
 		scrapeButton.setPreferredSize(new java.awt.Dimension(75, 25));
 		scrapeButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -826,7 +832,7 @@ public class Frame extends javax.swing.JFrame {
 		sortLabel1.setForeground(java.awt.Color.white);
 		sortLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		sortLabel1.setText("Scrape");
-		sortLabel1.setName("buttonLabel"); // NOI18N
+		sortLabel1.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout scrapeButtonLayout = new javax.swing.GroupLayout(scrapeButton);
 		scrapeButton.setLayout(scrapeButtonLayout);
@@ -839,7 +845,7 @@ public class Frame extends javax.swing.JFrame {
 
 		refreshButton.setBackground(new java.awt.Color(55, 63, 81));
 		refreshButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		refreshButton.setName("button"); // NOI18N
+		refreshButton.setName("btn"); // NOI18N
 		refreshButton.setPreferredSize(new java.awt.Dimension(75, 25));
 		refreshButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -858,7 +864,7 @@ public class Frame extends javax.swing.JFrame {
 		refreshLabel.setForeground(java.awt.Color.white);
 		refreshLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		refreshLabel.setText("Refresh");
-		refreshLabel.setName("buttonLabel"); // NOI18N
+		refreshLabel.setName("btn_fg"); // NOI18N
 
 		javax.swing.GroupLayout refreshButtonLayout = new javax.swing.GroupLayout(refreshButton);
 		refreshButton.setLayout(refreshButtonLayout);
@@ -1101,11 +1107,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_settingsButtonMouseClicked
 
 	private void settingsButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseEntered
-		settingsButton.setBackground(theme.getButtonHover());
+		settingsButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_settingsButtonMouseEntered
 
 	private void settingsButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseExited
-		settingsButton.setBackground(theme.getButton());
+		settingsButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_settingsButtonMouseExited
 
 	private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editButtonMouseClicked
@@ -1130,11 +1136,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_editButtonMouseClicked
 
 	private void editButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editButtonMouseEntered
-		editButton.setBackground(theme.getButtonHover());
+		editButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_editButtonMouseEntered
 
 	private void editButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editButtonMouseExited
-		editButton.setBackground(theme.getButton());
+		editButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_editButtonMouseExited
 
 	private void sortButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseClicked
@@ -1150,11 +1156,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_sortButtonMouseClicked
 
 	private void sortButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseEntered
-		sortButton.setBackground(theme.getButtonHover());
+		sortButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_sortButtonMouseEntered
 
 	private void sortButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseExited
-		sortButton.setBackground(theme.getButton());
+		sortButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_sortButtonMouseExited
 
 	private void scrapeButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_scrapeButtonMouseClicked
@@ -1183,11 +1189,11 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_scrapeButtonMouseClicked
 
 	private void scrapeButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_scrapeButtonMouseEntered
-		scrapeButton.setBackground(theme.getButtonHover());
+		scrapeButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_scrapeButtonMouseEntered
 
 	private void scrapeButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_scrapeButtonMouseExited
-		scrapeButton.setBackground(theme.getButton());
+		scrapeButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_scrapeButtonMouseExited
 
 	private void refreshButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_refreshButtonMouseClicked
@@ -1198,19 +1204,19 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_refreshButtonMouseClicked
 
 	private void refreshButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_refreshButtonMouseEntered
-		refreshButton.setBackground(theme.getButtonHover());
+		refreshButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_refreshButtonMouseEntered
 
 	private void refreshButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_refreshButtonMouseExited
-		refreshButton.setBackground(theme.getButton());
+		refreshButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_refreshButtonMouseExited
 
 	private void playButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseExited
-		playButton.setBackground(theme.getButton());
+		playButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_playButtonMouseExited
 
 	private void playButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseEntered
-		playButton.setBackground(theme.getButtonHover());
+		playButton.setBackground(theme.getExtras().get(0));
 	}// GEN-LAST:event_playButtonMouseEntered
 
 	private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseClicked

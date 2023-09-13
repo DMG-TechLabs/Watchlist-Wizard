@@ -5,13 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
-
-import Database.DBMethods;
-//import java.util.regex;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.regex.Pattern;
+
+import Utils.Utils;
+import kdesp73.themeLib.Theme;
+import kdesp73.themeLib.ThemeCollection;
+import kdesp73.themeLib.YamlFile;
+import Database.Database;
 
 public class MovieManager {
 
@@ -67,7 +69,7 @@ public class MovieManager {
 	public static void main(String[] args) throws SQLException {
 		// System.out.println("asd iudjd aisudj 2000".replaceAll("
 		// [0-9][0-9][0-9][0-9]", ""));
-		DBMethods.formatDatabase();
+		// DBMethods.formatDatabase();
 		/*
 		 * API api;
 		 * try {
@@ -80,6 +82,14 @@ public class MovieManager {
 		 * }
 		 */
 		// ImagesUtils.imageToDatabase("tt0434409");
+
+		YamlFile y = new YamlFile(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/dark.yml");
+
+		Theme t = new Theme(y);
+
+		System.out.println(t.generateJson().getJson());
+
+
 
 	}
 }

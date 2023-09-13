@@ -12,6 +12,7 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,6 +31,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicArrowButton;
 import org.imgscalr.Scalr;
+import kdesp73.themeLib.*;
+import java.util.regex.Pattern;
 
 public class GUIMethods {
 
@@ -70,11 +73,19 @@ public class GUIMethods {
 
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
-			theme = new ThemeCollection().matchThemes(themeName);
-			ThemeCollection.implementTheme(frame, theme);
+			ThemeCollection themes = new ThemeCollection();
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
+			theme = themes.matchTheme(themeName);
+			ThemeCollection.applyTheme(frame, theme);
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if(theme == null) {
+			System.err.println("Theme is null");
+			theme = new Theme(new JsonString("{\"list_focus\":\"120821\",\"fg\":\"ffffff\",\"scrollbar\":\"0b3948\",\"textbox\":\"381863\",\"bg\":\"120821\",\"progress_bar\":\"44af69\",\"list\":\"381863\",\"extra_1\":\"120821\",\"extra_2\":\"000002\",\"extra_0\":\"6a5d8c\",\"textbox_fg\":\"ffffff\",\"extra_5\":\"000005\",\"btn_fg\":\"ffffff\",\"extra_6\":\"000006\",\"bg_2\":\"381863\",\"extra_3\":\"000003\",\"extra_4\":\"000004\",\"name\":\"Dark\",\"extra_9\":\"000009\",\"list_fg\":\"ffffff\",\"extra_7\":\"000007\",\"fg_2\":\"ffffff\",\"extra_8\":\"000008\",\"btn\":\"381863\"}"));
+			ThemeCollection.applyTheme(frame, theme);
 		}
 
 		try {
@@ -103,8 +114,11 @@ public class GUIMethods {
 
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
-			theme = new ThemeCollection().matchThemes(themeName);
-			ThemeCollection.implementTheme(dialog, theme);
+			ThemeCollection themes = new ThemeCollection();
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
+			theme = themes.matchTheme(themeName);
+			ThemeCollection.applyTheme(dialog, theme);
+
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,13 +196,15 @@ public class GUIMethods {
 		try {
 			String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
 			System.out.println(themeName);
-			selectedTheme = new ThemeCollection().matchThemes(themeName);
+			ThemeCollection themes = new ThemeCollection();
+			themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/"));
+			selectedTheme = themes.matchTheme(themeName);
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		ThemeCollection.implementTheme(dialog, selectedTheme);
+		ThemeCollection.applyTheme(dialog, selectedTheme);
 		dialog.setVisible(true);
 
 		return dialog;
