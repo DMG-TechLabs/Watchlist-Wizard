@@ -102,7 +102,7 @@ public class ApiUtils {
         total_results = null;
         System.gc();
 
-    String media_type = "";
+        String media_type = "";
 
         // throws NullPointerException{
         media_type = table.get("media_type").toString();
