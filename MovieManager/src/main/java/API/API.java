@@ -26,6 +26,7 @@ public class API {
 	HttpRequest request;
 	HttpResponse<String> response;
 
+<<<<<<< HEAD
 	public API() throws IOException, InterruptedException, SQLException {
 	}
 
@@ -36,6 +37,17 @@ public class API {
 	public String getTitle() {
 		return title;
 	}
+=======
+        public API(){}
+
+        private void setTitle(String title) {
+                this.title = setupString(title);
+        }
+
+        private String getTitle() {
+                return title;
+        }
+>>>>>>> 10dbb63 (Clean Api)
 
         //Methods
         private String GET(String title) throws IOException, InterruptedException, SQLException {
@@ -100,7 +112,15 @@ public class API {
                 } catch (NullPointerException e){return "";}
         }
 
+<<<<<<< HEAD
 		String release_dates = response.body();
+=======
+        //TODO seperate scarepe info function and save function 
+        public void scrape(MovieCollection m) throws IOException, InterruptedException, SQLException {
+                ArrayList<Movie> movies = m.getMovies();
+                for (int i = 0; i < movies.size(); i++) {
+                        //System.out.println(movies.get(i).toString());
+>>>>>>> 10dbb63 (Clean Api)
 
 		String overview = table.get("overview").toString();
 		overview = overview.replaceAll(Pattern.quote("'"), "''");
