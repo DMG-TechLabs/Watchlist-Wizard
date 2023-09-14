@@ -8,6 +8,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import kdesp73.themeLib.Theme;
 
@@ -394,7 +395,8 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         this.titleLabel.setText(movies.get(index).get("title"));
         this.yearLabel.setText(movies.get(index).get("year"));
         
-//        GUIMethods.loadImage(this.imageLabel, System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/tmdbLogo.png");
+        // TODO: load coresponding image
+        GUIMethods.loadImage(this.imageLabel, System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/tmdbLogo.png");
     }
     
     /**
