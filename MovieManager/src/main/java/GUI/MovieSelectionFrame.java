@@ -55,6 +55,7 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         cancelLabel = new javax.swing.JLabel();
         prevButton = new RoundedPanel();
         prevLabel = new javax.swing.JLabel();
+        indexLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +108,7 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         confirmButton.setLayout(confirmButtonLayout);
         confirmButtonLayout.setHorizontalGroup(
             confirmButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(confirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+            .addComponent(confirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         confirmButtonLayout.setVerticalGroup(
             confirmButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,6 +202,10 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
             .addComponent(prevLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        indexLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        indexLabel.setText("Movie #1");
+        indexLabel.setName("fg_2"); // NOI18N
+
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
         infoPanelLayout.setHorizontalGroup(
@@ -212,12 +217,14 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
                     .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                         .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(indexLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         infoPanelLayout.setVerticalGroup(
@@ -227,7 +234,9 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(yearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addComponent(indexLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nextButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,6 +311,8 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonMouseExited
 
     private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmButtonMouseClicked
+        if(evt.getButton() == 3) return; // right click
+        
         System.out.println("Selected index: " + this.selectedMovieIndex);
         
         // Add movies info to db
@@ -310,12 +321,17 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmButtonMouseClicked
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
+        if(evt.getButton() == 3) return; // right click
+        
         this.selectedMovieIndex = (this.selectedMovieIndex == this.movieListSize - 1) ? this.selectedMovieIndex = 0 : this.selectedMovieIndex + 1;
         System.out.println(this.selectedMovieIndex);
+        this.indexLabel.setText("Movie #" + (selectedMovieIndex+1));
     }//GEN-LAST:event_nextButtonMouseClicked
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
-       int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to cancel the movie selection?", "Cancel?", JOptionPane.YES_NO_OPTION);
+        if(evt.getButton() == 3) return; // right click
+       
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to cancel the movie selection?", "Cancel?", JOptionPane.YES_NO_OPTION);
        System.out.println(choice);
        
         switch (choice) {
@@ -333,8 +349,11 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void prevButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseClicked
+        if(evt.getButton() == 3) return; // right click
+                
         this.selectedMovieIndex = (this.selectedMovieIndex == 0) ? this.selectedMovieIndex = this.movieListSize - 1 : this.selectedMovieIndex - 1;
         System.out.println(this.selectedMovieIndex);
+        this.indexLabel.setText("Movie #" + (selectedMovieIndex+1));
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void prevButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseEntered
@@ -389,6 +408,7 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
     private javax.swing.JPanel confirmButton;
     private javax.swing.JLabel confirmLabel;
     private javax.swing.JPanel imagePanel;
+    private javax.swing.JLabel indexLabel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JPanel nextButton;
     private javax.swing.JLabel nextLabel;
