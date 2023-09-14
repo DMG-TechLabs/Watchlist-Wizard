@@ -52,26 +52,24 @@ public class API {
                 return response.body();
         }
 
-        public Dictionary<Integer, String> getSearch(String title){
-                /*
-                 },{
-                */
-                Dictionary<Integer, String> table = new Hashtable<Integer, String>();
+        public ArrayList<Dictionary<String, String>> getSearch(String title){
+                ArrayList<Dictionary<String, String>> list = new ArrayList<Dictionary<String, String>>();
+                
                 try {
                         String s = search(title);
-                        int i =0;
-                        for(String sp:s.split(Pattern.quote("},{"))){
-                                table.put(i, sp);
-                                i = i+1;
-                        }
+                        for(String sp:s.split(Pattern.quote("},{"))) list.add(Utils.JsonToDictionary(sp));
+                        
+
+                        
                         
                 } catch (IOException | InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                 }
-                return table;
+                return list;
 
         }
+
 
         //Methods
         private String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
