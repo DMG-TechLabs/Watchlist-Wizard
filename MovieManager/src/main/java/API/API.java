@@ -24,14 +24,13 @@ public class API {
         HttpRequest request;
         HttpResponse<String> response;
 
-        public API() throws IOException, InterruptedException, SQLException {
-        }
+        public API(){}
 
-        public void setTitle(String title) {
+        private void setTitle(String title) {
                 this.title = setupString(title);
         }
 
-        public String getTitle() {
+        private String getTitle() {
                 return title;
         }
 
@@ -96,6 +95,7 @@ public class API {
                 } catch (NullPointerException e){return "";}
         }
 
+        //TODO seperate scarepe info function and save function 
         public void scrape(MovieCollection m) throws IOException, InterruptedException, SQLException {
                 ArrayList<Movie> movies = m.getMovies();
                 for (int i = 0; i < movies.size(); i++) {
