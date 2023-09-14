@@ -5,7 +5,9 @@
 package GUI;
 
 import java.awt.Cursor;
-import javax.swing.JFrame;
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import kdesp73.themeLib.Theme;
 
@@ -14,21 +16,36 @@ import kdesp73.themeLib.Theme;
  * @author konstantinos
  */
 public class MovieSelectionFrame extends javax.swing.JFrame {
-    Frame parentFrame;
     Theme activeTheme;
     int selectedMovieIndex = 0;
-    int movieListSize = 10;
+    int movieListSize;
+    ArrayList<HashMap<String, String>> movies;
     
     /**
      * Creates new form MovieSelectionFrame
      */
-    public MovieSelectionFrame(Frame f) {
+    public MovieSelectionFrame(ArrayList<HashMap<String, String>> movies) {
         initComponents();
         
-        this.parentFrame = f;
-        this.activeTheme = this.parentFrame.theme;
+       if(movies == null) {
+           System.err.println("Null list");
+           return;
+       }
+       
+       if(movies.size() <= 0) {
+           System.err.println("Empty list");
+           return;
+       }
         
-        GUIMethods.setupFrame(this, this.getSize(),  "Select Movie");
+        this.activeTheme = GUIMethods.setupFrame(this, this.getSize(),  "Select Movie");
+        this.movieListSize = movies.size();
+        this.movies = movies;
+        
+        this.titleLabel.setFont(new Font(this.getFont().getName(), Font.PLAIN, 25));
+        this.yearLabel.setFont(new Font(this.getFont().getName(), Font.PLAIN, 25));
+        
+       
+        showInfo(selectedMovieIndex);
     }
 
     /**
@@ -44,6 +61,7 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         imagePanel = new RoundedPanel();
+        imageLabel = new javax.swing.JLabel();
         infoPanel = new RoundedPanel();
         titleLabel = new javax.swing.JLabel();
         yearLabel = new javax.swing.JLabel();
@@ -62,16 +80,17 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         background.setName("bg"); // NOI18N
 
         imagePanel.setBackground(new java.awt.Color(22, 82, 212));
+        imagePanel.setName("bg_2"); // NOI18N
 
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
         imagePanelLayout.setHorizontalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 332, Short.MAX_VALUE)
+            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         infoPanel.setBackground(new java.awt.Color(69, 166, 55));
@@ -315,17 +334,19 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         
         System.out.println("Selected index: " + this.selectedMovieIndex);
         
-        // Add movies info to db
+        // Add movie info to db
+        System.out.println(movies.get(selectedMovieIndex));
         
         this.dispose();
     }//GEN-LAST:event_confirmButtonMouseClicked
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
-        if(evt.getButton() == 3) return; // right click
+        if(evt.getButton() == 3) return; // right click^
         
         this.selectedMovieIndex = (this.selectedMovieIndex == this.movieListSize - 1) ? this.selectedMovieIndex = 0 : this.selectedMovieIndex + 1;
         System.out.println(this.selectedMovieIndex);
         this.indexLabel.setText("Movie #" + (selectedMovieIndex+1));
+        showInfo(selectedMovieIndex);
     }//GEN-LAST:event_nextButtonMouseClicked
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
@@ -354,6 +375,7 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         this.selectedMovieIndex = (this.selectedMovieIndex == 0) ? this.selectedMovieIndex = this.movieListSize - 1 : this.selectedMovieIndex - 1;
         System.out.println(this.selectedMovieIndex);
         this.indexLabel.setText("Movie #" + (selectedMovieIndex+1));
+        showInfo(selectedMovieIndex);
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void prevButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseEntered
@@ -366,37 +388,35 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_prevButtonMouseExited
 
+    private void showInfo(int index){
+        if(index < 0 || index > movies.size() - 1) return;
+        
+        this.titleLabel.setText(movies.get(index).get("title"));
+        this.yearLabel.setText(movies.get(index).get("year"));
+        
+//        GUIMethods.loadImage(this.imageLabel, System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/tmdbLogo.png");
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MovieSelectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MovieSelectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MovieSelectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MovieSelectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
+        ArrayList<HashMap<String, String>> movies = new ArrayList<>();
+        
+        HashMap<String, String> m1 = new HashMap<>();
+        m1.put("title", "Se7en");
+        m1.put("year", "1997");
+        movies.add(m1);
+        
+        HashMap<String, String> m2 = new HashMap<>();
+        m2.put("title", "V for Vendetta");
+        m2.put("year", "2005");
+        movies.add(m2);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MovieSelectionFrame(new Frame()).setVisible(true);
+                new MovieSelectionFrame(movies).setVisible(true);
             }
         });
     }
@@ -407,6 +427,7 @@ public class MovieSelectionFrame extends javax.swing.JFrame {
     private javax.swing.JLabel cancelLabel;
     private javax.swing.JPanel confirmButton;
     private javax.swing.JLabel confirmLabel;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel imagePanel;
     private javax.swing.JLabel indexLabel;
     private javax.swing.JPanel infoPanel;
