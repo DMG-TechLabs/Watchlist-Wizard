@@ -99,8 +99,6 @@ public class ApiUtils {
             throw new MovieNotFoundException("Api was unable to find info for the video:" + title);
         }
         // }
-        total_results = null;
-        System.gc();
 
         String media_type = "";
 

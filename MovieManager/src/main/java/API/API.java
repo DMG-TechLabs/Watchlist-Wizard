@@ -1,17 +1,20 @@
 package API;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.http.*;
 import java.sql.SQLException;
 import Database.DBMethods;
 import Database.Database;
+import Exceptions.InvalidKeyException;
 import Exceptions.MovieNotFoundException;
 import Files.ImagesUtils;
 import Utils.Utils;
 import java.net.ConnectException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
@@ -20,8 +23,11 @@ import kdesp73.madb.Condition;
 import main.Movie;
 import main.MovieCollection;
 
+
+
 public class API {
 
+<<<<<<< HEAD
 	private String title;
 	HttpRequest request;
 	HttpResponse<String> response;
@@ -42,21 +48,61 @@ public class API {
 
         private void setTitle(String title) {
                 this.title = setupString(title);
+=======
+        private Dictionary<String, Movie> movies_info = new Hashtable<String, Movie>();
+        private String api_key = "";
+        private HttpResponse<String> response;
+
+        /**
+         * Api constractor. If it is unable to load the api key throws an error
+         * @throws MalformedURLException
+         * @throws IOException
+         */
+        public API() throws MalformedURLException, IOException {
+                this.api_key = ApiUtils.getKey("https://users.iee.ihu.gr/~iee2021035/api_key.txt");
+>>>>>>> 8c699d9 (Api rework (fix, clean up, code seperation))
         }
 
-        private String getTitle() {
-                return title;
+        public String search(String title) throws MalformedURLException, IOException, InterruptedException {
+                String title_to_get = title;
+                title_to_get = ApiUtils.prepare_string(title_to_get);
+                System.out.println("Title: " + title_to_get);
+                        
+                String url = "https://api.themoviedb.org/3/search/multi?api_key=" + this.api_key + "&language=en-US&query=" + setupString(title_to_get) + "&include_adult=false";
+                response = ApiUtils.http_get(url);
+                
+                System.out.println("Response Status: " + response.statusCode());
+                if (response.statusCode() == 401) throw new InvalidKeyException("Invalid key");
+                
+                return response.body();
+        }
+
+        public Dictionary<Integer, String> getSearch(String title){
+                /*
+                 },{
+                */
+                Dictionary<Integer, String> table = new Hashtable<Integer, String>();
+                try {
+                        String s = search(title);
+                        int i =0;
+                        for(String sp:s.split(Pattern.quote("},{"))){
+                                table.put(i, sp);
+                                i = i+1;
+                        }
+                        
+                } catch (IOException | InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
+                return table;
+
         }
 >>>>>>> 10dbb63 (Clean Api)
 
         //Methods
-        private String GET(String title) throws IOException, InterruptedException, SQLException {
-                setTitle(title);
-                this.title = ApiUtils.prepare_string(title);
-                System.out.println("Title: " + this.title);
-                //String api_key = FileUtils.read("api_key.txt", System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/data/");
-                String api_key = ApiUtils.getKey("https://users.iee.ihu.gr/~iee2021035/api_key.txt");
+        private String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
 
+<<<<<<< HEAD
                 try {
                         request = HttpRequest.newBuilder()
                                 .uri(URI.create("https://api.themoviedb.org/3/search/multi?api_key=" + api_key + "&language=en-US&query=" + getTitle().replaceAll(" ", "%20") + "&include_adult=false"))
@@ -81,11 +127,10 @@ public class API {
                 try {
                         Dictionary<String, String> info = ApiUtils.infoToMap(title, api_key, response.body()); 
                 
+=======
+                Dictionary<String, String> info = ApiUtils.infoToMap(title, this.api_key, search(title)); 
+>>>>>>> 8c699d9 (Api rework (fix, clean up, code seperation))
                         
-                
-                
-                
-                
                 return "{"
                         + " \"Title\":\""     +     info.get("Title")
                         + "\" ,\"Year\":\"" +       info.get("Year")
@@ -106,20 +151,40 @@ public class API {
                         + "\" ,\"imdbID\":\"" +     info.get("imdbID")
                         + "\"}";
 
-                } catch (ConnectException e) {
-                        String error = "{\"message\":\"No Internet Connection\"}";
-                        return error;
-                } catch (NullPointerException e){return "";}
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		String release_dates = response.body();
 =======
         //TODO seperate scarepe info function and save function 
         public void scrape(MovieCollection m) throws IOException, InterruptedException, SQLException {
+=======
+
+        public void saveToDatabase() throws SQLException{
+                //System.out.println(json);
+                for (String title : Collections.list(movies_info.keys())) {
+                        Movie movie = movies_info.get(title);
+                        Database.db().UPDATE("Scraped", "API_Done", true, new Condition("Filepath", movie.getDirectory()));
+                        Database.db().DELETE("Movies", "Title", title);
+                        DBMethods.insertMovie(movie);
+                        String imdb_id = movie.getImdbID();
+                        if(imdb_id != null) ImagesUtils.imageToDatabase(imdb_id);    
+                }
+        }
+
+        public void scrapeAndSave(MovieCollection m) throws SQLException, IOException, InterruptedException {
+                scrape(m);
+                saveToDatabase();
+        }
+
+        public ArrayList<Movie> scrape(MovieCollection m) throws IOException, InterruptedException, SQLException {
+>>>>>>> 8c699d9 (Api rework (fix, clean up, code seperation))
                 ArrayList<Movie> movies = m.getMovies();
+
                 for (int i = 0; i < movies.size(); i++) {
                         //System.out.println(movies.get(i).toString());
+<<<<<<< HEAD
 >>>>>>> 10dbb63 (Clean Api)
 
 		String overview = table.get("overview").toString();
@@ -157,6 +222,37 @@ public class API {
 		ArrayList<Movie> movies = m.getMovies();
 		for (int i = 0; i < movies.size(); i++) {
 			// System.out.println(movies.get(i).toString());
+=======
+                        //Movie parsed = Utils.parseJSON(GET(movies.get(i).getTitle()));
+                        if (movies.get(i).getImdbID() == null) {
+                                String title = movies.get(i).getTitle();
+                                System.out.println("Titile: " + title);
+                                String json = "";
+                                try {
+                                        json = GET(title);
+
+                                        Movie parsed = Utils.parseMovieJSON(json);
+                                        movies.set(i, parsed);
+                                        movies_info.put(title, parsed);
+                                } catch (MovieNotFoundException | IndexOutOfBoundsException | NullPointerException e) {
+                                        continue;
+                                } catch (InvalidKeyException e) {
+                                        System.err.println(e.toString());
+                                        GUIMethods.dialogError("There is an invalid key in the database ");
+                                        return m.getMovies();
+                                } catch (ConnectException e) {
+                                        System.err.println("No Internet Connection");
+                                        return m.getMovies();
+                                }
+
+                                
+                        }
+
+                }
+
+                return movies;
+        }
+>>>>>>> 8c699d9 (Api rework (fix, clean up, code seperation))
 
         private String setupString(String s) {
                 s = s.replaceAll(Pattern.quote("."), " ");
