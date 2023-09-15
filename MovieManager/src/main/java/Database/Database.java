@@ -8,7 +8,7 @@ import kdesp73.madb.MADB;
 
 public class Database {
         private static final String FILEPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/data/MoviesDatabase.accdb";
-        
+
         public static MADB db(){
                 try {
                         return new MADB(FILEPATH);

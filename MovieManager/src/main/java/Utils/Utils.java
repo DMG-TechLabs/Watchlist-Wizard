@@ -1,7 +1,5 @@
 package Utils;
 
-import GUI.GUIMethods;
-import GUI.Theme;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +8,6 @@ import java.util.Hashtable;
 import java.util.regex.Pattern;
 import main.Movie;
 import main.MovieCollection;
-import org.json.simple.JSONObject;
 
 public class Utils {
 
@@ -24,9 +21,9 @@ public class Utils {
             s = s.replaceAll(Pattern.quote("{"), "");
             s = s.replaceAll(Pattern.quote("}"), "");
             //System.out.println(s);
-            
+
             for(String sp:s.split("\",\"|[e],\"|\\],\"|,\"")){//  |[0-9],\"|\":\\[
-                
+
                 try{
                     sp = sp.replaceAll(Pattern.quote("\""), "");
                     sp = sp.replaceAll(Pattern.quote("["), "");
@@ -34,49 +31,49 @@ public class Utils {
                     sp = sp.replaceAll(Pattern.quote("{"), "");
                     sp = sp.replaceAll(Pattern.quote("}"), "");
                     pros = sp.split(Pattern.quote(":"));
-                    
+
                     item1 = pros[0];
                     item2 = pros[1];
-             
+
                     table.put(item1,item2);
                 }catch(Exception ex){
                     //continue;
                     table.put(sp,"");
                 }
             }
-            
+
             return table;
         }
-    
+
         public static Movie parseMovieJSON(String JsonString) {
                 return new Gson().fromJson(JsonString, Movie.class);
         }
 
-        public static Theme parseThemeJSON(String JsonString) {
-//                System.out.println("Parsing Json: " + JsonString);
-                JsonString = JsonString.replaceAll(",", ", ");
+//         public static Theme parseThemeJSON(String JsonString) {
+// //                System.out.println("Parsing Json: " + JsonString);
+//                 JsonString = JsonString.replaceAll(",", ", ");
 
-                Theme newTheme = new Theme();
+//                 Theme newTheme = new Theme();
 
-                //Changing values from hex string to Color object
-                newTheme.setBackground(GUIMethods.hexToColor(getJsonValue(JsonString, "bg").replaceAll("\"", "")));
-                newTheme.setForeground(GUIMethods.hexToColor(getJsonValue(JsonString, "fg").replaceAll("\"", "")));
-                newTheme.setList(GUIMethods.hexToColor(getJsonValue(JsonString, "list").replaceAll("\"", "")));
-                newTheme.setListFocus(GUIMethods.hexToColor(getJsonValue(JsonString, "listFocus").replaceAll("\"", "")));
-                newTheme.setListForeground(GUIMethods.hexToColor(getJsonValue(JsonString, "listFg").replaceAll("\"", "")));
-                newTheme.setButton(GUIMethods.hexToColor(getJsonValue(JsonString, "button").replaceAll("\"", "")));
-                newTheme.setButtonForeground(GUIMethods.hexToColor(getJsonValue(JsonString, "buttonFg").replaceAll("\"", "")));
-                newTheme.setButtonHover(GUIMethods.hexToColor(getJsonValue(JsonString, "buttonHover").replaceAll("\"", "")));
-                newTheme.setToolbar(GUIMethods.hexToColor(getJsonValue(JsonString, "toolbar").replaceAll("\"", "")));
-                newTheme.setTextBox(GUIMethods.hexToColor(getJsonValue(JsonString, "textBox").replaceAll("\"", "")));
-                newTheme.setTextBoxForeground(GUIMethods.hexToColor(getJsonValue(JsonString, "textBoxFg").replaceAll("\"", "")));
-                newTheme.setSecBackground(GUIMethods.hexToColor(getJsonValue(JsonString, "secBg").replaceAll("\"", "")));
-                newTheme.setJson(JsonString);
-                
-//                System.out.println("Process completed successfully\nTheme name: " + newTheme.getName());
+//                 //Changing values from hex string to Color object
+//                 newTheme.setBg(GUIMethods.hexToColor(getJsonValue(JsonString, "bg").replaceAll("\"", "")));
+//                 newTheme.setFg(GUIMethods.hexToColor(getJsonValue(JsonString, "fg").replaceAll("\"", "")));
+//                 newTheme.setList(GUIMethods.hexToColor(getJsonValue(JsonString, "list").replaceAll("\"", "")));
+//                 newTheme.setList_focus(GUIMethods.hexToColor(getJsonValue(JsonString, "listFocus").replaceAll("\"", "")));
+//                 newTheme.setList_fg(GUIMethods.hexToColor(getJsonValue(JsonString, "listFg").replaceAll("\"", "")));
+//                 newTheme.setBtn(GUIMethods.hexToColor(getJsonValue(JsonString, "button").replaceAll("\"", "")));
+//                 newTheme.setBtn_fg(GUIMethods.hexToColor(getJsonValue(JsonString, "buttonFg").replaceAll("\"", "")));
+//                 newTheme.setExtras(GUIMethods.hexToColor(getJsonValue(JsonString, "buttonHover").replaceAll("\"", "")));
+//                 newTheme.setToolbar(GUIMethods.hexToColor(getJsonValue(JsonString, "toolbar").replaceAll("\"", "")));
+//                 newTheme.setTextBox(GUIMethods.hexToColor(getJsonValue(JsonString, "textBox").replaceAll("\"", "")));
+//                 newTheme.setTextBoxForeground(GUIMethods.hexToColor(getJsonValue(JsonString, "textBoxFg").replaceAll("\"", "")));
+//                 newTheme.setSecBackground(GUIMethods.hexToColor(getJsonValue(JsonString, "secBg").replaceAll("\"", "")));
+//                 newTheme.setJson(JsonString);
 
-                return newTheme;
-        }
+// //                System.out.println("Process completed successfully\nTheme name: " + newTheme.getName());
+
+//                 return newTheme;
+//         }
 
         public static String getJsonValue(String JsonString, String tag) {
                 tag = "\"" + tag + "\"";
@@ -97,25 +94,25 @@ public class Utils {
                 return value.replaceAll("\\]", "").replaceAll("\\[", "").replaceAll("\\}", "").replaceAll("\n", "").strip();
         }
 
-        public static String themeToJson(Theme theme) {
-                JSONObject jsonString = new JSONObject();
-                
-//                jsonString.put("name", theme.getName());
-                jsonString.put("bg", GUIMethods.rgbToHex(theme.getBackground()));
-                jsonString.put("fg", GUIMethods.rgbToHex(theme.getForeground()));
-                jsonString.put("list", GUIMethods.rgbToHex(theme.getList()));
-                jsonString.put("listFocus", GUIMethods.rgbToHex(theme.getListFocus()));
-                jsonString.put("listFg", GUIMethods.rgbToHex(theme.getListForeground()));
-                jsonString.put("button", GUIMethods.rgbToHex(theme.getButton()));
-                jsonString.put("buttonFg", GUIMethods.rgbToHex(theme.getButtonForeground()));
-                jsonString.put("buttonHover", GUIMethods.rgbToHex(theme.getButtonHover()));
-                jsonString.put("textBox", GUIMethods.rgbToHex(theme.getTextBox()));
-                jsonString.put("textBoxFg", GUIMethods.rgbToHex(theme.getTextBoxForeground()));
-                jsonString.put("toolbar", GUIMethods.rgbToHex(theme.getToolbar()));
-                jsonString.put("secBg", GUIMethods.rgbToHex(theme.getSecBackground()));
+//         public static String themeToJson(Theme theme) {
+//                 JSONObject jsonString = new JSONObject();
 
-                return jsonString.toString();
-        }
+// //                jsonString.put("name", theme.getName());
+//                 jsonString.put("bg", GUIMethods.rgbToHex(theme.getBackground()));
+//                 jsonString.put("fg", GUIMethods.rgbToHex(theme.getForeground()));
+//                 jsonString.put("list", GUIMethods.rgbToHex(theme.getList()));
+//                 jsonString.put("listFocus", GUIMethods.rgbToHex(theme.getListFocus()));
+//                 jsonString.put("listFg", GUIMethods.rgbToHex(theme.getListForeground()));
+//                 jsonString.put("button", GUIMethods.rgbToHex(theme.getButton()));
+//                 jsonString.put("buttonFg", GUIMethods.rgbToHex(theme.getButtonForeground()));
+//                 jsonString.put("buttonHover", GUIMethods.rgbToHex(theme.getButtonHover()));
+//                 jsonString.put("textBox", GUIMethods.rgbToHex(theme.getTextBox()));
+//                 jsonString.put("textBoxFg", GUIMethods.rgbToHex(theme.getTextBoxForeground()));
+//                 jsonString.put("toolbar", GUIMethods.rgbToHex(theme.getToolbar()));
+//                 jsonString.put("secBg", GUIMethods.rgbToHex(theme.getSecBackground()));
+
+//                 return jsonString.toString();
+//         }
 
         public static ArrayList<String> searchMovie(MovieCollection movies, String title) {
                 ArrayList<Movie> m = movies.getMovies();

@@ -1,0 +1,34 @@
+name: Hot Dark
+
+# All values below should be in hex form without the '#'
+
+bg: "191919"
+fg: "EDEDED"
+
+bg_2: "444444"
+fg_2: "EDEDED"
+
+btn: "444444"
+btn_fg: "EDEDED"
+
+textbox: "444444"
+textbox_fg: "EDEDED"
+
+list: "DA0037"
+list_fg: "EDEDED"
+list_focus: "6D0101C"
+
+scrollbar: "0B3948"
+progress_bar: "44AF69"
+
+# extra slots for additional colors
+extra_0: "585858"
+extra_1: "191919"
+extra_2: "000002"
+extra_3: "000003"
+extra_4: "000004"
+extra_5: "000005"
+extra_6: "000006"
+extra_7: "000007"
+extra_8: "000008"
+extra_9: "000009"

@@ -1,7 +1,6 @@
 package Database;
 
 import Files.ImagesUtils;
-import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import main.Movie;
@@ -31,7 +30,7 @@ public class DBMethods {
                 return DBFields;
         }
 
-        public static int INSERT(Statement s, Movie m) throws SQLException { //Inserts movie to Database 
+        public static int INSERT(Statement s, Movie m) throws SQLException { //Inserts movie to Database
                 //Check if movie already exists
                 if (Database.db().valueExists("Movies", "IMDb_ID", m.getImdbID())) {
                         System.out.println("Movie already exists");
@@ -156,16 +155,16 @@ public class DBMethods {
                 Database.db().DELETE("Filepaths");
                 Database.db().DELETE("Scraped");
                 Database.db().DELETE("Category_Matching");
-                
+
                 ArrayList<Object> images = Database.db().SELECT("Images", "Image_Directory");
-                
+
                 for(Object obj : images){
                         ImagesUtils.delete(obj.toString());
                 }
-                
+
                 Database.db().DELETE("Images");
         }
-       
+
         private class DBUtils {
 
                 public static String arrayToList(int[] arr) {
