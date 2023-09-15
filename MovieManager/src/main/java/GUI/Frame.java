@@ -33,8 +33,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import main.Movie;
 import main.MovieCollection;
 
-public class Frame extends javax.swing.JFrame {
-
+public class Frame extends javax.swing.JFrame{
         static final String TITLE = "Movie-Manager";
         Theme theme;
 
@@ -46,47 +45,46 @@ public class Frame extends javax.swing.JFrame {
         static FilesList fl;
         static final int CELL_HEIGHT = 40;
 
-        public Frame() {
-                this.movies = new MovieCollection();
-                //Frame setup
-                initComponents();
-                this.getRootPane().requestFocus();
-                this.theme = GUIMethods.setupFrame(this, new Dimension(1280, 780), TITLE); //Sets theme, font, LookAndFeel, size, title and centers the frame
+        public Frame(){
+            this.movies = new MovieCollection();
+            
+            //Frame setup
+            initComponents();
+            this.getRootPane().requestFocus();
+            this.theme = GUIMethods.setupFrame(this, new Dimension(1280, 780), TITLE); //Sets theme, font, LookAndFeel, size, title and centers the frame
 
-                //Components setup
-                moviesList.setFixedCellHeight(CELL_HEIGHT);
-                moviesList.setFocusable(false);
+            //Components setup
+            moviesList.setFixedCellHeight(CELL_HEIGHT);
+            moviesList.setFocusable(false);
 
-                try {
-                        Frame.dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
-                } catch (SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            try{
+                Frame.dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
+            }catch(SQLException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
+            if(dir != null) fl = new FilesList(dir);
+
+            SearchBar.addFocusListener(new FocusListener(){
+                @Override
+                public void focusGained(FocusEvent e){
+                    if (SearchBar.getText().equals("Search")){
+                        SearchBar.setText("");
+                        SearchBar.setForeground(theme.getTextBoxForeground());
+                    }
                 }
 
+                @Override
+                public void focusLost(FocusEvent e){
+                    if(SearchBar.getText().isEmpty()){
+                        SearchBar.setForeground(theme.getTextBoxForeground());
+                        SearchBar.setText("Search");
+                    }
+                }
+            });
 
-                if(dir != null) 
-                        fl = new FilesList(dir);
-               
-
-                SearchBar.addFocusListener(new FocusListener() {
-                        @Override
-                        public void focusGained(FocusEvent e) {
-                                if (SearchBar.getText().equals("Search")) {
-                                        SearchBar.setText("");
-                                        SearchBar.setForeground(theme.getTextBoxForeground());
-                                }
-                        }
-
-                        @Override
-                        public void focusLost(FocusEvent e) {
-                                if (SearchBar.getText().isEmpty()) {
-                                        SearchBar.setForeground(theme.getTextBoxForeground());
-                                        SearchBar.setText("Search");
-                                }
-                        }
-                });
-
-                logoLabel.setIcon(new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/ww-logo-png-100-empty.png"));
+            logoLabel.setIcon(new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/ww-logo-png-100-empty.png"));
         }
 
         /**
@@ -777,130 +775,48 @@ public class Frame extends javax.swing.JFrame {
                         pack();
                 }// </editor-fold>//GEN-END:initComponents
 
-        public void refreshMoviesList() {
-                clearInfo();
-                try {
-                        movies.load();
-                } catch (SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        public void refreshMoviesList(){
+            clearInfo();
+            try{
+                movies.load();
+            }catch(SQLException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                DefaultListModel listModel = new DefaultListModel();
+            DefaultListModel listModel = new DefaultListModel();
 
-                for (int i = 0; i < movies.getMovies().size(); i++) {
-                        listModel.addElement(movies.getMovies().get(i).getTitle());
-                }
+            for(int i = 0; i < movies.getMovies().size(); i++){
+                listModel.addElement(movies.getMovies().get(i).getTitle());
+            }
 
-                moviesList.setModel(listModel);
+            moviesList.setModel(listModel);
         }
 
         public void refreshSorted() {
-                clearInfo();
-                ArrayList<Movie> sortedList = Utils.Utils.sortTitle(movies.getMovies());
+            clearInfo();
+            ArrayList<Movie> sortedList = Utils.Utils.sortTitle(movies.getMovies());
 
-                DefaultListModel listModel = new DefaultListModel();
+            DefaultListModel listModel = new DefaultListModel();
 
-                for (int i = 0; i < sortedList.size(); i++) {
-                        listModel.addElement(sortedList.get(i).getTitle());
-                }
+            for(int i = 0; i < sortedList.size(); i++){
+                listModel.addElement(sortedList.get(i).getTitle());
+            }
 
-                moviesList.setModel(listModel);
+            moviesList.setModel(listModel);
         }
 
         private void moviesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moviesListMouseClicked
-                if (evt.getButton() == 1) { //Left Click
-                        if (!sorted) {
-                                showInfo(moviesList, movies.getMovies());
-                        } else {
-                                showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
-                        }
-                } else if (evt.getButton() == 3) { //Right Click
-                }
+            if(evt.getButton() == 1){ //Left Click
+                if(!sorted) showInfo(moviesList, movies.getMovies());
+                
+                else showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
 
+            }else if(evt.getButton() == 3){ /*Right Click*/}
         }//GEN-LAST:event_moviesListMouseClicked
 
     private void SearchBarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyPressed
-//            String text = SearchBar.getText();
-//            String textToSearch = text.toLowerCase();
-//            String[] matches = null;
-//
-//            JPopupMenu matchesList = new JPopupMenu();
-//            matchesList.setFocusable(true);
-//            matchesList.setSize(SearchBar.getWidth(), 8000);
-//            
-//            if (!textToSearch.isBlank() && !textToSearch.isEmpty()) {
-//                    matches = containedIn(textToSearch);
-//            } else {
-//                    return;
-//            }
-//
-//            ActionListener menuListener = (ActionEvent event) -> {
-//                    String valueSelected = event.getActionCommand();
-//                    System.out.println(">" + valueSelected);
-//                    for (int j = 0; j < movies.getMovies().size(); j++) {
-//                            if (moviesList.getModel().getElementAt(j).matches(valueSelected)) {
-//                                    moviesList.setSelectedIndex(j);
-//                                    showInfo(j);
-//                                    this.getRootPane().requestFocus(); //Lose focus
-//                            }
-//                    }
-//                    SearchBar.setText("Search");
-//                    matchesList.setVisible(false);
-//            };
-//
-//            /*
-//            for (int i = 0; i < matches.length; i++) {
-//                    System.out.println(i + 1 + ". " + matches[i]);
-//            }
-//             */
-//            //Add matches to popup menu
-//            for (int i = 0; i < matches.length; i++) {
-//                    JMenuItem item = new JMenuItem(matches[i]);
-//                    item.addActionListener(menuListener);
-//                    matchesList.add(item);
-//            }
-//
-//            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//                    SearchBar.requestFocus();
-//                    SearchBar.setText("Search");
-//                    matchesList.setVisible(false);
-//
-//                    for (int j = 0; j < movies.getMovies().size(); j++) {
-//                            if (matches.length < 0) {
-//                                    break;
-//                            }
-//                            if (moviesList.getModel().getElementAt(j).matches(matches[0])) {
-//                                    moviesList.setSelectedIndex(j);
-//                                    showInfo(j);
-//                                    this.getRootPane().requestFocus(); //Lose focus
-//                            }
-//                    }
-//                    return;
-//            }
-//
-//            //Make popup visible
-//            matchesList.show(this, 501, 94);
-//
-//            SearchBar.setText(text);
-//            SearchBar.requestFocus();
+                       
     }//GEN-LAST:event_SearchBarKeyPressed
-
-//        private String[] containedIn(String s) {
-//                ArrayList<String> tempArray = new ArrayList<>();
-//                for (int i = 0; i < movies.getMovies().size(); i++) {
-//                        if (movies.getMovies().get(i).getTitle().toLowerCase().contains(s.toLowerCase())) {
-//                                tempArray.add(movies.getMovies().get(i).getTitle());
-//                        }
-//                }
-//                Object[] objectList = tempArray.toArray();
-//                String[] found = new String[objectList.length];
-//
-//                for (int i = 0; i < found.length; i++) {
-//                        found[i] = (String) objectList[i];
-//                }
-//
-//                return found;
-//        }
 
     private void SearchBarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBarFocusGained
 //            SearchBar.setText("");
@@ -911,345 +827,364 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchBarFocusLost
 
         private void settingsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsButtonMouseClicked
-                if (sf != null) {
-                        sf.dispose();
-                }
+            if(sf != null) sf.dispose();
 
-                sf = new SettingsFrame(this, ef);
+            sf = new SettingsFrame(this, ef);
 
-                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/gear-solid.png");
+            ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/gear-solid.png");
 
-                sf.setIconImage(img.getImage());
+            sf.setIconImage(img.getImage());
 
-                sf.setVisible(true);
+            sf.setVisible(true);
         }//GEN-LAST:event_settingsButtonMouseClicked
 
         private void settingsButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsButtonMouseEntered
-                settingsButton.setBackground(theme.getButtonHover());
+            settingsButton.setBackground(theme.getButtonHover());
         }//GEN-LAST:event_settingsButtonMouseEntered
 
         private void settingsButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsButtonMouseExited
-                settingsButton.setBackground(theme.getButton());
+            settingsButton.setBackground(theme.getButton());
         }//GEN-LAST:event_settingsButtonMouseExited
 
         private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseClicked
-                if (ef != null) {
-                        ef.dispose();
-                }
+            if(ef != null) ef.dispose();
 
-                int index = moviesList.getSelectedIndex();
-                if (index < 0) {
-                        GUIMethods.dialogError("No movie selected for editing");
-                        throw new NoMovieSelectedException("No movie selected for editing");
-                }
+            int index = moviesList.getSelectedIndex();
+            if(index < 0){
+                GUIMethods.dialogError("No movie selected for editing");
+                throw new NoMovieSelectedException("No movie selected for editing");
+            }
 
-                ef = new EditFrame(this, index);
+            ef = new EditFrame(this, index);
 
-                ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/pen-to-square-solid.png");
+            ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/pen-to-square-solid.png");
 
-                ef.setIconImage(img.getImage());
+            ef.setIconImage(img.getImage());
 
-                ef.setVisible(true);
+            ef.setVisible(true);
         }//GEN-LAST:event_editButtonMouseClicked
 
         private void editButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseEntered
-                editButton.setBackground(theme.getButtonHover());
+            editButton.setBackground(theme.getButtonHover());
         }//GEN-LAST:event_editButtonMouseEntered
 
         private void editButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseExited
-                editButton.setBackground(theme.getButton());
+            editButton.setBackground(theme.getButton());
         }//GEN-LAST:event_editButtonMouseExited
 
         private void sortButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortButtonMouseClicked
-                sorted = !sorted;
+            sorted = !sorted;
 
-                if (sorted) {
-                        refreshSorted();
-                        sortLabel.setText("Unsort");
-                } else {
-                        refreshMoviesList();
-                        sortLabel.setText("Sort");
-                }
+            if(sorted){
+                refreshSorted();
+                sortLabel.setText("Unsort");
+            }else{
+                refreshMoviesList();
+                sortLabel.setText("Sort");
+            }
         }//GEN-LAST:event_sortButtonMouseClicked
 
         private void sortButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortButtonMouseEntered
-                sortButton.setBackground(theme.getButtonHover());
+            sortButton.setBackground(theme.getButtonHover());
         }//GEN-LAST:event_sortButtonMouseEntered
 
         private void sortButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortButtonMouseExited
-                sortButton.setBackground(theme.getButton());
+            sortButton.setBackground(theme.getButton());
         }//GEN-LAST:event_sortButtonMouseExited
 
         private void scrapeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseClicked
-                API api = null;
+            API api = null;
 
-                clearInfo();
+            clearInfo();
 
-                try {
-                        movies.load();
-                } catch (SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try{
+                movies.load();
+            }catch(SQLException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                try {
-                        api = new API();
-                        api.scrape(movies);
-                } catch (IOException | InterruptedException | SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try{
+                api = new API();
+                api.scrape(movies);
+            }catch(IOException | InterruptedException | SQLException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                refreshMoviesList();
-                System.gc();
-                
-                GUIMethods.dialog("Scrape finished", "Information received successfully", "Scrape");
+            refreshMoviesList();
+            System.gc();
+
+            GUIMethods.dialog("Scrape finished", "Information received successfully", "Scrape");
         }//GEN-LAST:event_scrapeButtonMouseClicked
 
         private void scrapeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseEntered
-                scrapeButton.setBackground(theme.getButtonHover());
+            scrapeButton.setBackground(theme.getButtonHover());
         }//GEN-LAST:event_scrapeButtonMouseEntered
 
         private void scrapeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapeButtonMouseExited
-                scrapeButton.setBackground(theme.getButton());
+            scrapeButton.setBackground(theme.getButton());
         }//GEN-LAST:event_scrapeButtonMouseExited
 
         private void refreshButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshButtonMouseClicked
-                movies.setDir(dir);
-                movies.refreshMovies();
-                refreshMoviesList();
-                System.gc();
+            movies.setDir(dir);
+            movies.refreshMovies();
+            refreshMoviesList();
+            System.gc();
         }//GEN-LAST:event_refreshButtonMouseClicked
 
         private void refreshButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshButtonMouseEntered
-                refreshButton.setBackground(theme.getButtonHover());
+            refreshButton.setBackground(theme.getButtonHover());
         }//GEN-LAST:event_refreshButtonMouseEntered
 
         private void refreshButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshButtonMouseExited
-                refreshButton.setBackground(theme.getButton());
+            refreshButton.setBackground(theme.getButton());
         }//GEN-LAST:event_refreshButtonMouseExited
 
         private void playButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseExited
-                playButton.setBackground(theme.getButton());
+            playButton.setBackground(theme.getButton());
         }//GEN-LAST:event_playButtonMouseExited
 
         private void playButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseEntered
-                playButton.setBackground(theme.getButtonHover());
+            playButton.setBackground(theme.getButtonHover());
         }//GEN-LAST:event_playButtonMouseEntered
 
         private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
-                String mediaPlayerDir = null;
-                try {
-                        mediaPlayerDir = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
-                } catch (SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                if(mediaPlayerDir.equals("") || mediaPlayerDir == null) {
-                        throw new NoMediaPlayerDirectoryException("Media player directory not found");
-                }
-                
-                if (moviesList.getSelectedIndex() < 0) {
-                        throw new NoMovieSelectedException("No movie Selected");
-                }
+            String mediaPlayerDir = null;
+            try{
+                mediaPlayerDir = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
+            }catch(SQLException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                String MediaPlayerPath = null;
-                try {
-                        MediaPlayerPath = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
-                } catch (SQLException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            if(mediaPlayerDir.equals("") || mediaPlayerDir == null) throw new NoMediaPlayerDirectoryException("Media player directory not found");
 
-                System.out.println("\nMedia Player Path: " + MediaPlayerPath);
+            if(moviesList.getSelectedIndex() < 0) throw new NoMovieSelectedException("No movie Selected");
 
-                String FilePath = movies.getMovies().get(moviesList.getSelectedIndex()).getDirectory();
-                if ("".equals(FilePath)) {
-                        return;
-                }
+            String MediaPlayerPath = null;
+            try{
+                MediaPlayerPath = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
+            }catch (SQLException ex) {
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                System.out.println("File Path: " + FilePath);
+            System.out.println("\nMedia Player Path: " + MediaPlayerPath);
 
-                ProcessBuilder pb = new ProcessBuilder(MediaPlayerPath, FilePath);
-                try {
-                        pb.start();
-                        System.out.println("Proccess started");
-                } catch (IOException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            String FilePath = movies.getMovies().get(moviesList.getSelectedIndex()).getDirectory();
+            if("".equals(FilePath)) return;
 
-                System.exit(0); //Για καποιο λογο πρεπει να κλεισει το προγραμμα για να ξεκινήσει ο Player
+            System.out.println("File Path: " + FilePath);
+
+            ProcessBuilder pb = new ProcessBuilder(MediaPlayerPath, FilePath);
+            try{
+                pb.start();
+                System.out.println("Proccess started");
+            }catch(IOException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            System.exit(0); //Για καποιο λογο πρεπει να κλεισει το προγραμμα για να ξεκινήσει ο Player
         }//GEN-LAST:event_playButtonMouseClicked
 
     private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyReleased
-            System.out.println("(" + SearchBar.getText() + ")");
-
             ArrayList<String> tempArray = new ArrayList<>();
             JPopupMenu moviesFoundList = new JPopupMenu();
 
             ActionListener menuListener = (ActionEvent event) -> {
-                    String valueSelected = event.getActionCommand();
-                    for (int j = 0; j < movies.getMovies().size(); j++) {
-                            if (moviesList.getModel().getElementAt(j).matches(valueSelected)) {
-                                    moviesList.setSelectedIndex(j);
-                                    showInfo(j);
-                            }
+                String valueSelected = event.getActionCommand();
+                for(int i = 0; i < movies.getMovies().size(); i++){
+                    if(moviesList.getModel().getElementAt(i).matches(valueSelected)){
+                        moviesList.setSelectedIndex(i);
+                        SearchBar.setText(moviesList.getModel().getElementAt(i));
+                        showInfo(i);
                     }
+                }
             };
 
-            for (int i = 0; i < moviesList.getModel().getSize(); i++) {
-                    if (moviesList.getModel().getElementAt(i).toLowerCase().contains(SearchBar.getText().toLowerCase())) {
-                            tempArray.add(moviesList.getModel().getElementAt(i));
-                            JMenuItem item = new JMenuItem(moviesList.getModel().getElementAt(i));
-                            item.addActionListener(menuListener);
-                            moviesFoundList.add(item);
+            for(int i = 0; i < moviesList.getModel().getSize(); i++){
+                if(moviesList.getModel().getElementAt(i).toLowerCase().contains(SearchBar.getText().toLowerCase())){
+                    tempArray.add(moviesList.getModel().getElementAt(i));
+                    JMenuItem item = new JMenuItem(moviesList.getModel().getElementAt(i));
+                    item.addActionListener(menuListener);
+                    moviesFoundList.add(item);
+                }
+            }
+            
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                SearchBar.requestFocus();
+                SearchBar.setText("");
+                System.out.println("Enter Pressed\nText: " + SearchBar.getText());
+                for(int i = 0; i < tempArray.size(); i++){
+                    if(tempArray.size() < 0) break;
+                    //System.out.println(tempArray.get(i));
+                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
+                        if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
+                            SearchBar.setText(tempArray.get(i));                          
+                            moviesList.setSelectedIndex(j);
+                            showInfo(j); 
+                            tempArray.clear();
+                            this.getRootPane().requestFocus();
+                            return;
+                        }                       
                     }
+                }
+                return;               
+            }
+            
+            if(evt.getKeyCode() == KeyEvent.VK_UP){
+                SearchBar.requestFocus();
+                //SearchBar.setText("");
+                System.out.println("Up arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
+                for(int i = 0; i < tempArray.size(); i++){
+                    if(tempArray.size() < 0) break;
+                    //System.out.println(tempArray.get(i));
+                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
+                        if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
+                            SearchBar.requestFocus();
+                            //moviesList.setSelectedIndex(j);
+                            //showInfo(j);
+                            this.getRootPane().requestFocus();
+                            tempArray.clear();
+                            return;
+                        }                       
+                    }
+                }
+                return;               
+            }
+            
+            if(evt.getKeyCode() == KeyEvent.VK_DOWN){
+                SearchBar.requestFocus();
+                //SearchBar.setText("");
+                System.out.println("Down arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
+                for(int i = 0; i < tempArray.size(); i++){
+                    if(tempArray.size() < 0) break;
+                    //System.out.println(tempArray.get(i));
+                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
+                        if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
+                            SearchBar.requestFocus();  
+                            //moviesList.setSelectedIndex(j);
+                            //showInfo(j);
+                            this.getRootPane().requestFocus();
+                            tempArray.clear();
+                            return;
+                        }                       
+                    }
+                }
+                return;
             }
 
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                    SearchBar.requestFocus();
-                    SearchBar.setText("Search");
-                    System.out.println("Enter Pressed\nText: " + SearchBar.getText());
-                    for (int j = 0; j < movies.getMovies().size(); j++) {
-                            if (tempArray.size() < 0) {
-                                    break;
-                            }
-                            if (moviesList.getModel().getElementAt(j).matches(tempArray.get(0))) {
-                                    moviesList.setSelectedIndex(j);
-                                    showInfo(j);
-                                    this.getRootPane().requestFocus(); //Lose focus
-                            }
-                    }
-                    return;
-            }
-
-            if (!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()) {
-                    moviesFoundList.show(this, 496, 95);
-            }
+            if(!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()) moviesFoundList.show(this, 496, 95);
 
             SearchBar.requestFocus();
     }//GEN-LAST:event_SearchBarKeyReleased
 
         public void showInfo(JList list, ArrayList<Movie> m) {
-                int index = list.getSelectedIndex();
-                String imdbID = m.get(index).getImdbID();
+            int index = list.getSelectedIndex();
+            String imdbID = m.get(index).getImdbID();
 
-                if (index < 0) {
-                        throw new NoMovieSelectedException("No movie Selected");
+            if(index < 0) throw new NoMovieSelectedException("No movie Selected");
+
+            if(imdbID != null){
+                try{
+                    loadImage(ImagesUtils.matchImage(imdbID));
+                }catch(SQLException ex){
+                    Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }else imageLabel.setIcon(null);
 
-                if (imdbID != null) {
-                        try {
-                                loadImage(ImagesUtils.matchImage(imdbID));
-                        } catch (SQLException ex) {
-                                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                } else {
-                        imageLabel.setIcon(null);
-                }
+            title.setText(m.get(index).getTitle());
+            year.setText(m.get(index).getYear());
+            rated.setText(m.get(index).getRated());
+            runtime.setText(m.get(index).getRuntime());
+            director.setText(m.get(index).getDirector());
+            writers.setText(m.get(index).getWriter());
+            actors.setText(m.get(index).getActors());
+            genre.setText(m.get(index).getGenre());
+            language.setText(m.get(index).getLanguage());
+            country.setText(m.get(index).getCountry());
+            awards.setText(m.get(index).getAwards());
+            imdbrating.setText(m.get(index).getImdbRating());
+            imdbid.setText(m.get(index).getImdbID());
 
-                title.setText(m.get(index).getTitle());
-                year.setText(m.get(index).getYear());
-                rated.setText(m.get(index).getRated());
-                runtime.setText(m.get(index).getRuntime());
-                director.setText(m.get(index).getDirector());
-                writers.setText(m.get(index).getWriter());
-                actors.setText(m.get(index).getActors());
-                genre.setText(m.get(index).getGenre());
-                language.setText(m.get(index).getLanguage());
-                country.setText(m.get(index).getCountry());
-                awards.setText(m.get(index).getAwards());
-                imdbrating.setText(m.get(index).getImdbRating());
-                imdbid.setText(m.get(index).getImdbID());
-
-                printPlot(index);
-
+            printPlot(index);
         }
 
         public void showInfo(int idloc) {
-                if (idloc < 0) {
-                        throw new NoMovieSelectedException("No movie Selected");
-                }
+            if (idloc < 0) throw new NoMovieSelectedException("No movie Selected");
 
-                loadImage("C:\\Users\\kdesp\\Videos\\g.jpg");
+            loadImage("C:\\Users\\kdesp\\Videos\\g.jpg");
 
-                title.setText(movies.getMovies().get(idloc).getTitle());
-                year.setText(movies.getMovies().get(idloc).getYear());
-                rated.setText(movies.getMovies().get(idloc).getRated());
-                runtime.setText(movies.getMovies().get(idloc).getRuntime());
-                director.setText(movies.getMovies().get(idloc).getDirector());
-                writers.setText(movies.getMovies().get(idloc).getWriter());
-                actors.setText(movies.getMovies().get(idloc).getActors());
-                genre.setText(movies.getMovies().get(idloc).getGenre());
-                language.setText(movies.getMovies().get(idloc).getLanguage());
-                country.setText(movies.getMovies().get(idloc).getCountry());
-                awards.setText(movies.getMovies().get(idloc).getAwards());
-                imdbrating.setText(movies.getMovies().get(idloc).getImdbRating());
-                imdbid.setText(movies.getMovies().get(idloc).getImdbID());
+            title.setText(movies.getMovies().get(idloc).getTitle());
+            year.setText(movies.getMovies().get(idloc).getYear());
+            rated.setText(movies.getMovies().get(idloc).getRated());
+            runtime.setText(movies.getMovies().get(idloc).getRuntime());
+            director.setText(movies.getMovies().get(idloc).getDirector());
+            writers.setText(movies.getMovies().get(idloc).getWriter());
+            actors.setText(movies.getMovies().get(idloc).getActors());
+            genre.setText(movies.getMovies().get(idloc).getGenre());
+            language.setText(movies.getMovies().get(idloc).getLanguage());
+            country.setText(movies.getMovies().get(idloc).getCountry());
+            awards.setText(movies.getMovies().get(idloc).getAwards());
+            imdbrating.setText(movies.getMovies().get(idloc).getImdbRating());
+            imdbid.setText(movies.getMovies().get(idloc).getImdbID());
 
-                printPlot(idloc);
-
+            printPlot(idloc);
         }
 
         private void printPlot(int idloc) {
-                String plotString = movies.getMovies().get(idloc).getPlot();
+            String plotString = movies.getMovies().get(idloc).getPlot();
 
-                if (plotString == null) {
-                        plotString = "";
-                }
+            if(plotString == null) plotString = "";
 
-                if (plotString.length() <= 50) {
-                        plot.setText(GUIMethods.breakString(plotString, 1));
-                } else if (plotString.length() > 50 && plotString.length() <= 100) {
-                        plot.setText(GUIMethods.breakString(plotString, 2));
-                } else if (plotString.length() > 100) {
-                        plot.setText(GUIMethods.breakString(plotString, 3));
-                }
+            if(plotString.length() <= 50) plot.setText(GUIMethods.breakString(plotString, 1));
+            
+            else if(plotString.length() > 50 && plotString.length() <= 100) plot.setText(GUIMethods.breakString(plotString, 2));
+            
+            else if(plotString.length() > 100) plot.setText(GUIMethods.breakString(plotString, 3));
         }
 
         public void loadImage(String dir) {
-                ImageIcon imageIcon = new ImageIcon(dir);
-                imageLabel.setIcon(imageIcon);
+            ImageIcon imageIcon = new ImageIcon(dir);
+            imageLabel.setIcon(imageIcon);
         }
 
         public static void resizeImage(String imgDir, String imgName, Dimension prefferedImageSize) {
-                final String SCALED_IMAGE_NAME = imgName + "_scaled";
-                String source = imgDir + imgName + ".jpg";
-                System.out.println(source);
+            final String SCALED_IMAGE_NAME = imgName + "_scaled";
+            String source = imgDir + imgName + ".jpg";
+            System.out.println(source);
 
-                BufferedImage originalImage = null;
-                try {
-                        originalImage = ImageIO.read(new File(source));
-                } catch (IOException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                BufferedImage outputImage = GUIMethods.resizeImage(originalImage, prefferedImageSize.width, prefferedImageSize.height);
-                try {
-                        ImageIO.write(outputImage, "jpg", new File(imgDir + SCALED_IMAGE_NAME + ".jpg"));
-                } catch (IOException ex) {
-                        Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            BufferedImage originalImage = null;
+            try{
+                originalImage = ImageIO.read(new File(source));
+            }catch(IOException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            BufferedImage outputImage = GUIMethods.resizeImage(originalImage, prefferedImageSize.width, prefferedImageSize.height);
+            try{
+                ImageIO.write(outputImage, "jpg", new File(imgDir + SCALED_IMAGE_NAME + ".jpg"));
+            }catch(IOException ex){
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         public void clearInfo() {
-                title.setText("");
-                year.setText("");
-                rated.setText("");
-                runtime.setText("");
-                director.setText("");
-                writers.setText("");
-                actors.setText("");
-                genre.setText("");
-                language.setText("");
-                country.setText("");
-                awards.setText("");
-                imdbrating.setText("");
-                plot.setText("");
-                imdbid.setText("");
-                
-                imageLabel.setIcon(null);
+            title.setText("");
+            year.setText("");
+            rated.setText("");
+            runtime.setText("");
+            director.setText("");
+            writers.setText("");
+            actors.setText("");
+            genre.setText("");
+            language.setText("");
+            country.setText("");
+            awards.setText("");
+            imdbrating.setText("");
+            plot.setText("");
+            imdbid.setText("");
+
+            imageLabel.setIcon(null);
         }
 
-        public JTabbedPane getInfoTabPane() {
-                return infoTabPane;
-        }
 
         /**
          * @param args the command line arguments
@@ -1262,52 +1197,55 @@ public class Frame extends javax.swing.JFrame {
          * @throws
          * java.lang.IllegalAccessException
          */
-        public static void main(String args[]) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        public static void main(String args[]) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new Frame().setVisible(true);
-                        }
-                });
-
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable(){
+                public void run() {
+                    new Frame().setVisible(true);
+                }
+            });
         }
 
-        public void setInfoTabPane(JTabbedPane infoTabPane) {
-                this.infoTabPane = infoTabPane;
+        public JTabbedPane getInfoTabPane() {
+            return infoTabPane;
+        }
+        
+        public void setInfoTabPane(JTabbedPane infoTabPane){
+            this.infoTabPane = infoTabPane;
+        }
+        
+        public JTabbedPane getListTabPane(){
+            return listTabPane;
         }
 
-        public JTabbedPane getListTabPane() {
-                return listTabPane;
+        public void setListTabPane(JTabbedPane listTabPane){
+            this.listTabPane = listTabPane;
         }
 
-        public void setListTabPane(JTabbedPane listTabPane) {
-                this.listTabPane = listTabPane;
+        public JPanel getToolbarPanel(){
+            return toolbarPanel;
         }
 
-        public JPanel getToolbarPanel() {
-                return toolbarPanel;
+        public void setToolbarPanel(JPanel toolbarPanel){
+            this.toolbarPanel = toolbarPanel;
         }
 
-        public void setToolbarPanel(JPanel toolbarPanel) {
-                this.toolbarPanel = toolbarPanel;
+        public MovieCollection getMovies(){
+            return movies;
         }
 
-        public MovieCollection getMovies() {
-                return movies;
+        public void setMovies(MovieCollection movies){
+            this.movies = movies;
         }
 
-        public void setMovies(MovieCollection movies) {
-                this.movies = movies;
+        public Theme getTheme(){
+            return theme;
         }
 
-        public Theme getTheme() {
-                return theme;
-        }
-
-        public void setTheme(Theme theme) {
-                this.theme = theme;
+        public void setTheme(Theme theme){
+            this.theme = theme;
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
