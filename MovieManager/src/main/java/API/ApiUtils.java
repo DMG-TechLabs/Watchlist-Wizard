@@ -142,26 +142,28 @@ public class ApiUtils {
         String overview = table.get("overview").toString().replaceAll(Pattern.quote("'"), "''");
         String director = ApiUtils.find_in_api(credids, "job", "Director").replaceAll(Pattern.quote("'"), "''");
         String writer = ApiUtils.find_in_api(credids, "job", "Screenplay").replaceAll(Pattern.quote("'"), "''");
-        
+        String actors = ApiUtils.find_actors(credids).replaceAll("\"", "\"\"").replaceAll("'", "''");
+        String rated = ApiUtils.find_rated(release_dates);
+
         Dictionary<String, String> info_table = new Hashtable<String, String>(17);
 
-        info_table.put("Title", ApiUtils.some_error_handling(table.get("title").toString().replaceAll("'s", "")));
-        info_table.put("Year", ApiUtils.some_error_handling(table.get("release_date").toString().split(Pattern.quote("-"))[0]));
-        info_table.put("Rated", ApiUtils.find_rated(release_dates));
-        info_table.put("Released", ApiUtils.some_error_handling(table.get("release_date")));
-        info_table.put("Runtime", ApiUtils.some_error_handling(table.get("runtime")) + "min");
-        info_table.put("Genre", genre_names);
-        info_table.put("Director", director);
-        info_table.put("Writer", writer);
-        info_table.put("Actors", ApiUtils.find_actors(credids).replaceAll("\"", "\"\"").replaceAll("'", "''"));
-        info_table.put("Plot", ApiUtils.some_error_handling(overview.replaceAll(Pattern.quote("\""), "")));
-        info_table.put("Language", ApiUtils.some_error_handling(table.get("original_language")));
-        info_table.put("Country", ApiUtils.some_error_handling(table.get("iso_3166_1")));
-        info_table.put("Awards", "");
-        info_table.put("Poster", ApiUtils.some_error_handling(table.get("poster_path")));
-        info_table.put("Type", media_type);
+        info_table.put("Title",      ApiUtils.some_error_handling(table.get("title").toString().replaceAll("'s", "")));
+        info_table.put("Year",       ApiUtils.some_error_handling(table.get("release_date").toString().split(Pattern.quote("-"))[0]));
+        info_table.put("Rated",      ApiUtils.some_error_handling(rated));
+        info_table.put("Released",   ApiUtils.some_error_handling(table.get("release_date")));
+        info_table.put("Runtime",    ApiUtils.some_error_handling(table.get("runtime")) + "min");
+        info_table.put("Genre",      ApiUtils.some_error_handling(genre_names));
+        info_table.put("Director",   ApiUtils.some_error_handling(director));
+        info_table.put("Writer",     ApiUtils.some_error_handling(writer));
+        info_table.put("Actors",     ApiUtils.some_error_handling(actors));
+        info_table.put("Plot",       ApiUtils.some_error_handling(overview.replaceAll(Pattern.quote("\""), "")));
+        info_table.put("Language",   ApiUtils.some_error_handling(table.get("original_language")));
+        info_table.put("Country",    ApiUtils.some_error_handling(table.get("iso_3166_1")));
+        info_table.put("Awards",     "");
+        info_table.put("Poster",     ApiUtils.some_error_handling(table.get("poster_path")));
+        info_table.put("Type",       media_type);
         info_table.put("imdbRating", ApiUtils.some_error_handling(table.get("vote_average")));
-        info_table.put("imdbID", ApiUtils.some_error_handling(table.get("imdb_id")));
+        info_table.put("imdbID",     ApiUtils.some_error_handling(table.get("imdb_id")));
 
         return info_table;
     }
