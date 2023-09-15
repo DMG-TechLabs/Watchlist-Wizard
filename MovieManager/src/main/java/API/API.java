@@ -11,6 +11,7 @@ import Files.ImagesUtils;
 import Utils.Utils;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -58,7 +59,7 @@ public class API {
          * @throws MalformedURLException
          * @throws IOException
          */
-        public API() throws MalformedURLException, IOException {
+        public API() throws MalformedURLException, IOException, UnknownHostException {
                 this.api_key = ApiUtils.getKey("https://users.iee.ihu.gr/~iee2021035/api_key.txt");
 >>>>>>> 8c699d9 (Api rework (fix, clean up, code seperation))
         }
@@ -98,7 +99,7 @@ public class API {
 
 
         //Methods
-        private String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
+        public String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
 
 <<<<<<< HEAD
                 try {
