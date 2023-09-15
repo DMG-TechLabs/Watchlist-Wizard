@@ -10,7 +10,10 @@ import java.util.Hashtable;
 import java.util.regex.Pattern;
 import main.Movie;
 import main.MovieCollection;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 public class Utils {
 
