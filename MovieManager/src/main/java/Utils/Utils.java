@@ -8,6 +8,13 @@ import java.util.Hashtable;
 import java.util.regex.Pattern;
 import main.Movie;
 import main.MovieCollection;
+<<<<<<< HEAD
+=======
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+>>>>>>> 9f0bb7d (Utils to work with json strings)
 
 public class Utils {
 

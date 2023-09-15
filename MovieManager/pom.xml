@@ -58,6 +58,7 @@
 					<artifactId>themoviedbapi</artifactId>
 					<version>1.12</version>
                 </dependency>
+<<<<<<< HEAD
 				<dependency>
 						<groupId>kdesp73</groupId>
 						<artifactId>MADB</artifactId>
@@ -69,6 +70,19 @@
 					<version>1.0.1-SNAPSHOT</version>
 				</dependency>
 			</dependencies>
+=======
+                <dependency>
+                        <groupId>com.github.holgerbrandl</groupId>
+                        <artifactId>themoviedbapi</artifactId>
+                        <version>1.12</version>
+                </dependency>
+                <dependency>
+                        <groupId>com.googlecode.json-simple</groupId>  
+                        <artifactId>json-simple</artifactId>  
+                        <version>1.1</version>  
+                </dependency>
+        </dependencies>
+>>>>>>> 9f0bb7d (Utils to work with json strings)
 
         <name>Watchlist-Wizard</name>
 
