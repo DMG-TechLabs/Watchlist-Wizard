@@ -16,6 +16,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
 import kdesp73.madb.Condition;
@@ -53,12 +54,12 @@ public class API {
                 return response.body();
         }
 
-        public ArrayList<Dictionary<String, String>> getSearch(String title){
-                ArrayList<Dictionary<String, String>> list = new ArrayList<Dictionary<String, String>>();
+        public ArrayList<HashMap<String, String>> getSearchResults(String title){
+                ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
                 
                 try {
                         String s = search(title);
-                        for(String sp:s.split(Pattern.quote("},{"))) list.add(Utils.JsonToDictionary(sp));
+                        for(String sp:s.split(Pattern.quote("},{"))) list.add(HashMap.class.cast(Utils.JsonToDictionary(sp)));
                         
                 } catch (IOException | InterruptedException e) {
                         // TODO Auto-generated catch block
