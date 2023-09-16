@@ -1,6 +1,7 @@
 package Utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,8 +14,9 @@ public class JsonUtils {
     }
 
     public static String GetJsonValue(String json, ArrayList<String> list) throws Exception {
-        JSONObject jsonObjectdecode = JsonToJsonObject(json);
-        JSONArray jsonArray;
+        JSONObject jsonObjectdecode = null;
+        JSONArray jsonArray = null;
+        jsonObjectdecode = JsonToJsonObject(json);
 
         if (list.size() == 0)
             throw new Exception("Empty list");
@@ -35,7 +37,6 @@ public class JsonUtils {
                 i = i + 1;
             }
         }
-
         return jsonObjectdecode.get(list.get(list.size() - 1)).toString();
     }
 
@@ -65,5 +66,79 @@ public class JsonUtils {
         }
 
         return jsonArray.size();
+    }
+
+    public static ArrayList<String> getMultipleValues(String json, ArrayList<String> list, int pos_element) throws Exception {
+        ArrayList<String> temp = new ArrayList<String>();
+        ArrayList<String> results = new ArrayList<String>();
+        String value = "";
+
+        for (int i=0;i<list.size();i++) {
+            temp.add(list.get(i));
+        }
+        
+        int size = getJsonArraySize(json, temp);
+        
+        for (int i = 0; i < size; i++) {
+            list.set(pos_element, String.valueOf(i));
+            value = GetJsonValue(json, list);
+            results.add(value);
+        }
+
+        return results;
+    }
+
+    public static ArrayList<String> getMultipleValues(String json, ArrayList<String> list, String based_on, String equals_based_on, int pos_element) throws Exception {
+        ArrayList<String> temp = new ArrayList<String>();
+        ArrayList<String> results = new ArrayList<String>();
+        String value = "";
+
+        for (int i=0;i<=pos_element;i++) {
+            temp.add(list.get(i));
+        }
+        
+        int size = getJsonArraySize(json, temp);
+
+        temp = null;
+        System.gc();
+        temp = new ArrayList<String>(list);
+        temp.set(list.size()-1, based_on);
+        
+        for (int i = 0; i < size; i++) {
+            temp.set(pos_element, String.valueOf(i));
+            if(GetJsonValue(json, temp).equals(equals_based_on)) {
+                list.set(pos_element, String.valueOf(i));
+                value = GetJsonValue(json, list);
+                results.add(value);
+            }
+        }
+
+        return results;
+    }
+
+    public static ArrayList<String> getMultipleValues(String json, ArrayList<String> list, ArrayList<String> based_on, String equals_based_on, int pos_element) throws Exception {
+        ArrayList<String> temp = new ArrayList<String>();
+        ArrayList<String> results = new ArrayList<String>();
+        String value = "";
+
+        for (int i=0;i<=pos_element;i++) {
+            temp.add(list.get(i));
+        }
+        
+        int size = getJsonArraySize(json, temp);
+
+        temp = null;
+        System.gc();
+        
+        for (int i = 0; i < size; i++) {
+            based_on.set(pos_element, String.valueOf(i));
+            if(GetJsonValue(json, based_on).equals(equals_based_on)) {
+                list.set(pos_element, String.valueOf(i));
+                value = GetJsonValue(json, list);
+                results.add(value);
+            }
+        }
+
+        return results;
     }
 }

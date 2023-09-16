@@ -6,10 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import Database.Database;
 import Exceptions.MovieNotFoundException;
+import Utils.JsonUtils;
 import Utils.Utils;
 import kdesp73.madb.Condition;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.io.BufferedReader;
@@ -109,11 +111,11 @@ public class ApiUtils {
         String genre = table.get("genre_ids").toString();
         String genre_names = "";
         String current_gen;
-        for (String gen : genre.split(",")) {
-            // System.out.println("Genre_id: " + gen);
-            current_gen = (String) Database.db().SELECT("Categories", "Category", new Condition("TMDB_id", gen));
-            genre_names = genre_names + current_gen + ",";
-        }
+        // for (String gen : genre.split(",")) {
+        //     // System.out.println("Genre_id: " + gen);
+        //     current_gen = (String) Database.db().SELECT("Categories", "Category", new Condition("TMDB_id", gen));
+        //     genre_names = genre_names + current_gen + ",";
+        // }
 
         // Get Movie from movie id
         // if (media_type == "movie"){url =
@@ -140,10 +142,26 @@ public class ApiUtils {
 
         // Seperate info
         String overview = table.get("overview").toString().replaceAll(Pattern.quote("'"), "''");
-        String director = ApiUtils.find_in_api(credids, "job", "Director").replaceAll(Pattern.quote("'"), "''");
-        String writer = ApiUtils.find_in_api(credids, "job", "Screenplay").replaceAll(Pattern.quote("'"), "''");
-        String actors = ApiUtils.find_actors(credids).replaceAll("\"", "\"\"").replaceAll("'", "''");
-        String rated = ApiUtils.find_rated(release_dates);
+        // System.out.println(credids);
+        ArrayList<String> credits_list = new ArrayList<String>(Arrays.asList("crew","0","original_name")); //ApiUtils.find_in_api(credids, "job", "Director")
+        ArrayList<String> actors_list = new ArrayList<String>(Arrays.asList("cast","0","original_name")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
+        ArrayList<String> rated_list = new ArrayList<String>(Arrays.asList("results","0", "release_dates", "0","certification")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
+        ArrayList<String> rated_based_on_list = new ArrayList<String>(Arrays.asList("results","0","iso_3166_1")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
+
+        String director = "";
+        String writer = "";
+        String actors = "";
+        String rated = "";
+        
+        try{
+            director = JsonUtils.getMultipleValues(credids, credits_list, "job", "Director", 1).get(0).replaceAll(Pattern.quote("'"), "''");
+            writer   = JsonUtils.getMultipleValues(credids, credits_list, "job", "Screenplay", 1).get(0).replaceAll(Pattern.quote("'"), "''");
+            actors   = ApiUtils.find_actors(credids, actors_list, "order", "0", 1).replaceAll("'", "''");
+            rated    = JsonUtils.getMultipleValues(release_dates, rated_list, rated_based_on_list, "US", 1).get(0);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        // String rated = ApiUtils.find_rated(release_dates);
 
         Dictionary<String, String> info_table = new Hashtable<String, String>(17);
 
@@ -217,29 +235,6 @@ public class ApiUtils {
 
     /**
      * 
-     * @param json
-     * @param stringToFind1
-     * @param stringToFind2
-     * @return
-     */
-    public static String find_in_api(String json, String stringToFind1, String stringToFind2) {
-        String[] jsonlist;// = new String[json.split(",").length-1];
-        String temp;
-        jsonlist = json.split(",");
-
-        for (int i = 0; i < jsonlist.length; i++) {
-
-            if (jsonlist[i].contains(stringToFind1) && jsonlist[i].contains(stringToFind2)) {
-                temp = jsonlist[i - 6];
-                temp = StringUtils.substring(temp, 8, temp.length() - 1);
-                return temp;
-            }
-        }
-        return "";
-    }
-
-    /**
-     * 
      * @param obj
      * @return
      */
@@ -255,23 +250,10 @@ public class ApiUtils {
      * @param json
      * @return
      */
-    public static String find_actors(String json) {
-        String[] jsonlist;// = new String[json.split(",").length-1];
-        ArrayList<String> names = new ArrayList<>();
+    public static String find_actors(String json, ArrayList<String> list, String based_on, String equals_based_on, int pos_element) throws Exception {
+        ArrayList<String> names = JsonUtils.getMultipleValues(json, list, based_on, equals_based_on, pos_element);
         String namesString = "";
-        String temp;
-        jsonlist = json.split(",");
-
-        for (int i = 0; i < jsonlist.length; i++) {
-
-            if (jsonlist[i].contains("order")) {
-                temp = jsonlist[i - 7];
-                temp = StringUtils.substring(temp, 8, temp.length() - 1);
-                names.add(temp);
-                if (names.size() == 3)
-                    break;
-            }
-        }
+        
         for (String name : names) {
             namesString += name + ",";
         }
@@ -293,9 +275,9 @@ public class ApiUtils {
         for (int i = 0; i < jsonlist.length; i++) {
 
             if (jsonlist[i].contains("iso_3166_1") && jsonlist[i].contains("US")) {
-                System.out.println("yes");
-                System.out.println(jsonlist[i]);
-                System.out.println(jsonlist[i + 1]);
+                // System.out.println("yes");
+                // System.out.println(jsonlist[i]);
+                // System.out.println(jsonlist[i + 1]);
                 temp = jsonlist[i + 1];
                 // temp = temp.replaceAll("( )", "");
                 temp = StringUtils.substring(temp, 35, temp.length() - 1);

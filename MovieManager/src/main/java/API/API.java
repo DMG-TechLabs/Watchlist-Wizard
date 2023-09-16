@@ -60,9 +60,6 @@ public class API {
                         String s = search(title);
                         for(String sp:s.split(Pattern.quote("},{"))) list.add(Utils.JsonToDictionary(sp));
                         
-
-                        
-                        
                 } catch (IOException | InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
