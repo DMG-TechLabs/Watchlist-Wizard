@@ -5,6 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+import API.API;
+import Database.DBMethods;
+//import java.util.regex;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
@@ -25,73 +31,37 @@ public class MovieManager {
 
 	public static Dictionary JsonToDictionary(String input) {
 
-		ArrayList<String> list = new ArrayList<String>();
-		// String fs = input.replaceAll(Pattern.quote("{"),"");
-		String[] pros = new String[2];
-		Dictionary table = new Hashtable();
-		String item1, item2;
-		String s = input.replaceAll(Pattern.quote("\"results\":[{"), "");
-		s = s.replaceAll(Pattern.quote("{"), "");
-		s = s.replaceAll(Pattern.quote("}"), "");
+            return ((str != null) && (!str.equals(""))
+                    && (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
+        }
+        
+       
+        
+        public static void main(String[] args) throws SQLException {
+                //System.out.println("asd  iudjd aisudj 2000".replaceAll(" [0-9][0-9][0-9][0-9]", ""));
+                try {
+                        System.out.println("ssssss");
+                        API a = new API("");
+                        System.out.println("ssssss");
+                        a.GET("Avengers");
+                } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
 
-		for (String sp : s.split("\",\"|[e],\"|\\],\"|,\"")) {// |[0-9],\"|\":\\[
-			list.add(sp);
-			// for (String sp1:sp.split(Pattern.quote(",\""))){}
-			try {
-				sp = sp.replaceAll(Pattern.quote("\""), "");
-				sp = sp.replaceAll(Pattern.quote("["), "");
-				sp = sp.replaceAll(Pattern.quote("]"), "");
-				sp = sp.replaceAll(Pattern.quote("{"), "");
-				sp = sp.replaceAll(Pattern.quote("}"), "");
-				pros = sp.split(Pattern.quote(":"));
-
-				item1 = pros[0];
-				item2 = pros[1];
-
-				// if (pros[0] == "")
-				// if(item2.contains("{[")) continue;
-				table.put(item1, item2);
-			} catch (Exception ex) {
-				// continue;
-				table.put(sp, "");
-			}
-		}
-
-		return table;
-	}
-
-	public static boolean isStringOnlyAlphabet(String str) {
-
-		return ((str != null) && (!str.equals(""))
-				&& (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
-	}
-
-	public static void main(String[] args) throws SQLException {
-		// System.out.println("asd iudjd aisudj 2000".replaceAll("
-		// [0-9][0-9][0-9][0-9]", ""));
-		// DBMethods.formatDatabase();
-		/*
-		 * API api;
-		 * try {
-		 * api = new API();
-		 * System.out.println(api.GET("V for vendeta"));
-		 *
-		 * } catch (IOException | InterruptedException e) {
-		 * // TODO Auto-generated catch block
-		 * e.printStackTrace();
-		 * }
-		 */
-		// ImagesUtils.imageToDatabase("tt0434409");
-
-		YamlFile y = new YamlFile(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/dark.yml");
-
-		Theme t = new Theme(y);
-
-		System.out.println(t.generateJson().getJson());
-
-
-
-	}
+                
+                /*API api;
+                try {
+                        api = new API();
+                        System.out.println(api.GET("V for vendeta"));
+                        
+                } catch (IOException | InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }*/
+                //ImagesUtils.imageToDatabase("tt0434409");
+               
+        }
 }
 
 class FileUtils {
