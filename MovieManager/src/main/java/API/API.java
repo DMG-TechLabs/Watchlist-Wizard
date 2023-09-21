@@ -9,6 +9,7 @@ import Exceptions.InvalidKeyException;
 import Exceptions.MovieNotFoundException;
 import Files.ImagesUtils;
 import GUI.GUIMethods;
+import Utils.Logs;
 import Utils.Utils;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
@@ -26,6 +27,7 @@ import main.MovieCollection;
 
 
 public class API {
+        public static Logs logger = new Logs("API");
 
         private Dictionary<String, Movie> movies_info = new Hashtable<String, Movie>();
         private String api_key = "";
@@ -40,17 +42,21 @@ public class API {
                 this.api_key = ApiUtils.getKey("https://users.iee.ihu.gr/~iee2021035/api_key.txt");
         }
 
+        public API(String api_key) {
+                this.api_key = api_key;
+        }
+
         public String search(String title) throws MalformedURLException, IOException, InterruptedException {
                 String title_to_get = title;
                 title_to_get = ApiUtils.prepare_string(title_to_get);
                 System.out.println("Title: " + title_to_get);
-                        
+
                 String url = "https://api.themoviedb.org/3/search/multi?api_key=" + this.api_key + "&language=en-US&query=" + setupString(title_to_get) + "&include_adult=false";
                 response = ApiUtils.http_get(url);
-                
+
                 System.out.println("Response Status: " + response.statusCode());
                 if (response.statusCode() == 401) throw new InvalidKeyException("Invalid key");
-                
+
                 return response.body();
         }
 
@@ -63,20 +69,19 @@ public class API {
                         
                 } catch (IOException | InterruptedException e) {
                         // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        logger.logging("warning", "WARNING: "+e.toString());
                 }
                 return list;
-
         }
 
 
         //Methods
         public String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
-
+                logger.logging("info", "Getting info for: "+title);
                 Dictionary<String, String> info = ApiUtils.infoToMap(title, this.api_key, search(title)); 
-                        
+
                 return "{"
-                        + " \"Title\":\""     +     info.get("Title")
+                        + "    \"Title\":\"" +      info.get("Title")
                         + "\" ,\"Year\":\"" +       info.get("Year")
                         + "\" ,\"Rated\":\"" +      info.get("Rated")
                         + "\" ,\"Released\":\"" +   info.get("Released")
@@ -93,8 +98,7 @@ public class API {
                         + "\" ,\"Type\":\"" +       info.get("Type")
                         + "\" ,\"imdbRating\":\"" + info.get("imdbRating")
                         + "\" ,\"imdbID\":\"" +     info.get("imdbID")
-                        + "\"}";
-
+                        + "\" }";
         }
 
 
@@ -140,13 +144,9 @@ public class API {
                                 } catch (ConnectException e) {
                                         System.err.println("No Internet Connection");
                                         return m.getMovies();
-                                }
-
-                                
+                                }     
                         }
-
                 }
-
                 return movies;
         }
 

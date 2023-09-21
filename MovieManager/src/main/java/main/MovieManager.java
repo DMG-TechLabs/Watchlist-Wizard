@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import API.API;
 import Database.DBMethods;
 //import java.util.regex;
 
@@ -71,7 +72,17 @@ public class MovieManager {
         
         public static void main(String[] args) throws SQLException {
                 //System.out.println("asd  iudjd aisudj 2000".replaceAll(" [0-9][0-9][0-9][0-9]", ""));
-                DBMethods.formatDatabase();
+                try {
+                        System.out.println("ssssss");
+                        API a = new API("736cfa828e1aab39034bf71915232ec4");
+                        System.out.println("ssssss");
+                        a.GET("Avengers");
+                } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
+
+                
                 /*API api;
                 try {
                         api = new API();

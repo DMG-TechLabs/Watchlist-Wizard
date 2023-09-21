@@ -1,12 +1,15 @@
 package Utils;
 
 import GUI.GUIMethods;
+import GUI.LoadingFrame;
 import GUI.Theme;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import main.Movie;
 import main.MovieCollection;
@@ -181,5 +184,7 @@ public class Utils {
                         m.remove(index);
                 }
         }
+
+        
 
 }

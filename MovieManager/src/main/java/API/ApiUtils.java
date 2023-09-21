@@ -56,7 +56,8 @@ public class ApiUtils {
             .build();
         
         response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-
+        API.logger.logging("trace", "Url: "+url);
+        API.logger.logging("trace", "Responce: "+response.statusCode());
         return response;
     }
 
@@ -128,8 +129,7 @@ public class ApiUtils {
         table = Utils.JsonToDictionary(response.body());
 
         // Get movie credits
-        url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "/credits?api_key=" + api_key
-                + "&language=en-US";
+        url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "/credits?api_key=" + api_key + "&language=en-US";
         response = ApiUtils.http_get(url);
         String credids = response.body();
 
@@ -182,6 +182,8 @@ public class ApiUtils {
         info_table.put("Type",       media_type);
         info_table.put("imdbRating", ApiUtils.some_error_handling(table.get("vote_average")));
         info_table.put("imdbID",     ApiUtils.some_error_handling(table.get("imdb_id")));
+
+        API.logger.logging("", "info for "+title+" : "+info_table.toString());
 
         return info_table;
     }
