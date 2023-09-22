@@ -29,39 +29,39 @@ public class MovieManager {
 			"{\"Title\":\"Motherless Brooklyn\",\"Year\":\"2019\",\"Rated\":\"R\",\"Released\":\"01 Nov 2019\",\"Runtime\":\"144 min\",\"Genre\":\"Crime, Drama, Mystery\",\"Director\":\"Edward Norton\",\"Writer\":\"Edward Norton, Jonathan Lethem\",\"Actors\":\"Edward Norton, Gugu Mbatha-Raw, Alec Baldwin\",\"Plot\":\"In 1950s New York, a lonely private detective afflicted with Tourette's Syndrome ventures to solve the murder of his mentor and only friend.\",\"Language\":\"English, French\",\"Country\":\"United States\",\"Awards\":\"2 wins & 15 nominations\",\"Poster\":\"https:\\/\\/m.media-amazon.com\\/images\\/M\\/MV5BNzQ0Mjk1YjItNWI1Ny00NWE2LWFlYTAtYjViY2YzMTVlOGVmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg\",\"Ratings\":[{\"Source\":\"Internet Movie Database\",\"Value\":\"6.8\\/10\"},{\"Source\":\"Rotten Tomatoes\",\"Value\":\"64%\"},{\"Source\":\"Metacritic\",\"Value\":\"60\\/100\"}],\"Metascore\":\"60\",\"imdbRating\":\"6.8\",\"imdbVotes\":\"57,493\",\"imdbID\":\"tt0385887\",\"Type\":\"movie\",\"DVD\":\"01 Nov 2019\",\"BoxOffice\":\"$9,277,736\",\"Production\":\"N\\/A\",\"Website\":\"N\\/A\",\"Response\":\"True\"}"
 	};
 
-	public static Dictionary JsonToDictionary(String input) {
+	// public static Dictionary JsonToDictionary(String input) {
 
-            return ((str != null) && (!str.equals(""))
-                    && (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
-        }
-        
-       
-        
-        public static void main(String[] args) throws SQLException {
-                //System.out.println("asd  iudjd aisudj 2000".replaceAll(" [0-9][0-9][0-9][0-9]", ""));
-                try {
-                        System.out.println("ssssss");
-                        API a = new API("");
-                        System.out.println("ssssss");
-                        a.GET("Avengers");
-                } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
+	// 	return ((str != null) && (!str.equals(""))
+	// 			&& (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
+	// }
 
-                
-                /*API api;
-                try {
-                        api = new API();
-                        System.out.println(api.GET("V for vendeta"));
-                        
-                } catch (IOException | InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }*/
-                //ImagesUtils.imageToDatabase("tt0434409");
-               
-        }
+	public static void main(String[] args) throws SQLException {
+		// System.out.println("asd iudjd aisudj 2000".replaceAll("
+		// [0-9][0-9][0-9][0-9]", ""));
+		try {
+			System.out.println("ssssss");
+			API a = new API("");
+			System.out.println("ssssss");
+			a.GET("Avengers");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/*
+		 * API api;
+		 * try {
+		 * api = new API();
+		 * System.out.println(api.GET("V for vendeta"));
+		 *
+		 * } catch (IOException | InterruptedException e) {
+		 * // TODO Auto-generated catch block
+		 * e.printStackTrace();
+		 * }
+		 */
+		// ImagesUtils.imageToDatabase("tt0434409");
+
+	}
 }
 
 class FileUtils {
