@@ -1101,7 +1101,7 @@ public class Frame extends javax.swing.JFrame {
 		refreshMoviesList();
 		System.gc();
 
-		JOptionPane.showConfirmDialog(this, "Scrape finished. Information received successfully");
+		JOptionPane.showMessageDialog(this, "Scrape finished. Information received successfully");
 		// GUIMethods.dialog("Scrape finished", "Information received successfully", "Scrape");
 	}// GEN-LAST:event_scrapeButtonMouseClicked
 
