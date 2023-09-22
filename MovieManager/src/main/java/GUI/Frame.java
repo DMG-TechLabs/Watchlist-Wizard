@@ -1172,9 +1172,9 @@ public class Frame extends javax.swing.JFrame {
                	Process p = null;
 		try {
                     p = pb.start();
-                    System.out.println("Proccess started");        
+                    System.out.println("Proccess started");
                     this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-                    this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);                      
+                    this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 		} catch (IOException ex) {
                     Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -1190,7 +1190,7 @@ public class Frame extends javax.swing.JFrame {
                     if(moviesList.getModel().getElementAt(i).matches(valueSelected)){
                         moviesList.setSelectedIndex(i);
                         SearchBar.setText(moviesList.getModel().getElementAt(i));
-                        showInfo(i);
+                        showInfo(i, this.movies.getMovies());
                     }
                 }
             };
@@ -1213,16 +1213,16 @@ public class Frame extends javax.swing.JFrame {
                     //System.out.println(tempArray.get(i));
                     for(int j = 0; j < moviesList.getModel().getSize(); j++){
                         if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
-                            SearchBar.setText(tempArray.get(i));                          
+                            SearchBar.setText(tempArray.get(i));
                             moviesList.setSelectedIndex(j);
-                            showInfo(j); 
+                            showInfo(j, this.movies.getMovies());
                             tempArray.clear();
                             this.getRootPane().requestFocus();
                             return;
-                        }                       
+                        }
                     }
                 }
-                return;               
+                return;
             }
 
             if(evt.getKeyCode() == KeyEvent.VK_UP){
@@ -1240,10 +1240,10 @@ public class Frame extends javax.swing.JFrame {
                             this.getRootPane().requestFocus();
                             tempArray.clear();
                             return;
-                        }                       
+                        }
                     }
                 }
-                return;               
+                return;
             }
 
             if(evt.getKeyCode() == KeyEvent.VK_DOWN){
@@ -1255,13 +1255,13 @@ public class Frame extends javax.swing.JFrame {
                     //System.out.println(tempArray.get(i));
                     for(int j = 0; j < moviesList.getModel().getSize(); j++){
                         if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
-                            SearchBar.requestFocus();  
+                            SearchBar.requestFocus();
                             //moviesList.setSelectedIndex(j);
                             //showInfo(j);
                             this.getRootPane().requestFocus();
                             tempArray.clear();
                             return;
-                        }                       
+                        }
                     }
                 }
                 return;
@@ -1272,6 +1272,7 @@ public class Frame extends javax.swing.JFrame {
             SearchBar.requestFocus();
 	}// GEN-LAST:event_SearchBarKeyReleased
 
+	// The one in use
 	public void showInfo(JList list, ArrayList<Movie> m) {
 		int index = list.getSelectedIndex();
 		String imdbID = m.get(index).getImdbID();
@@ -1308,12 +1309,20 @@ public class Frame extends javax.swing.JFrame {
 
 	}
 
-	public void showInfo(int idloc) {
+	public void showInfo(int idloc, ArrayList<Movie> m) {
 		if (idloc < 0) {
 			throw new NoMovieSelectedException("No movie Selected");
 		}
+		String imdbID = m.get(idloc).getImdbID();
 
-		loadImage("C:\\Users\\kdesp\\Videos\\g.jpg");
+
+		if(imdbID != null){
+			try {
+				loadImage(ImagesUtils.matchImage(imdbID));
+			} catch (SQLException ex) {
+				Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
 
 		title.setText(movies.getMovies().get(idloc).getTitle());
 		year.setText(movies.getMovies().get(idloc).getYear());
