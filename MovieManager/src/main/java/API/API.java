@@ -149,6 +149,7 @@ public class API {
                         }
                 }
                 System.out.println("movies list:"+movies);
+                saveToDatabase();
                 return movies;
         }
 
