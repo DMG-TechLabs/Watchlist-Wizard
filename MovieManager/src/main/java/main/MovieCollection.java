@@ -110,8 +110,19 @@ public class MovieCollection {
         movies.clear();
         Movie m = null;
         FilesList filesList = new FilesList(dir, exts);
-        List<String> names = filesList.getNames();
-        List<String> paths = filesList.getPaths();
+        // FindMultipleFiles filesList = new FindMultipleFiles(dir, exts);
+        List<String> paths = new ArrayList<String>();
+        List<String> names = new ArrayList<String>();
+        try {
+            paths = filesList.getPaths();
+            names = filesList.getNames();
+        //TODO when add my lib make it IOexeption
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Can't find or open this directory!");
+        }
+        // List<String> names = filesList.getNames();
+        // List<String> paths = filesList.getPaths();
 
         ArrayList<String> filepathsInDB = new ArrayList<>();
         try {

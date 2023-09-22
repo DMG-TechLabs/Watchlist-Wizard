@@ -49,14 +49,15 @@ public class API {
         public String search(String title) throws MalformedURLException, IOException, InterruptedException {
                 String title_to_get = title;
                 title_to_get = ApiUtils.prepare_string(title_to_get);
-                System.out.println("Title: " + title_to_get);
+                System.out.println("Search Title: " + title_to_get);
 
                 String url = "https://api.themoviedb.org/3/search/multi?api_key=" + this.api_key + "&language=en-US&query=" + setupString(title_to_get) + "&include_adult=false";
                 response = ApiUtils.http_get(url);
 
                 System.out.println("Response Status: " + response.statusCode());
                 if (response.statusCode() == 401) throw new InvalidKeyException("Invalid key");
-
+                // System.out.println(url);
+                // System.out.println(response.body());
                 return response.body();
         }
 
@@ -147,6 +148,7 @@ public class API {
                                 }     
                         }
                 }
+                System.out.println("movies list:"+movies);
                 return movies;
         }
 

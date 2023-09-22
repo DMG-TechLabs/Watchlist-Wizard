@@ -3,6 +3,7 @@ package API;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
 
 import Database.Database;
 import Exceptions.MovieNotFoundException;
@@ -94,24 +95,45 @@ public class ApiUtils {
         HttpResponse<String> response;
 
         String url = "";
+        // JSONObject json = 
+        ArrayList<String> total_results_list = new ArrayList<String>(Arrays.asList("total_results")); 
+        ArrayList<String> media_type__list = new ArrayList<String>(Arrays.asList("results", "0", "media_type")); 
+        ArrayList<String> id_list = new ArrayList<String>(Arrays.asList("results", "0", "id")); 
+
         Dictionary<String, String> table = Utils.JsonToDictionary(movies_lists);
+        // JsonUtils.
 
         // throws NullPointerException{
-        String total_results = table.get("total_results").toString();
-        if (total_results.equals("0")) {
-            throw new MovieNotFoundException("Api was unable to find info for the video:" + title);
+        // String total_results = table.get("total_results").toString();
+        // if (total_results.equals("0")) {
+        try {
+            if (JsonUtils.GetJsonValue(movies_lists, total_results_list).equals("0")) {
+                throw new MovieNotFoundException("Api was unable to find info for the video:" + title);
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         // }
 
         String media_type = "";
+        String movie_id = "";
+        try {
+            media_type = JsonUtils.GetJsonValue(movies_lists, media_type__list);
+            movie_id = JsonUtils.GetJsonValue(movies_lists, id_list);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         // throws NullPointerException{
-        media_type = table.get("media_type").toString();
+        // media_type = table.get("media_type").toString();
         // }
 
         String genre = table.get("genre_ids").toString();
         String genre_names = "";
         String current_gen;
+        
         // for (String gen : genre.split(",")) {
         //     // System.out.println("Genre_id: " + gen);
         //     current_gen = (String) Database.db().SELECT("Categories", "Category", new Condition("TMDB_id", gen));
@@ -123,18 +145,18 @@ public class ApiUtils {
         // "https://api.themoviedb.org/3/movie/"+table.get("id")+"?api_key="+api_key+"&language=en-US";}
         // else{url =
         // "https://api.themoviedb.org/3/tv/"+table.get("id")+"?api_key="+api_key+"&language=en-US";}
-        url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "?api_key=" + api_key + "&language=en-US";
+        url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=" + api_key + "&language=en-US";
         response = ApiUtils.http_get(url);
         // Change table for movies list to movie info
         table = Utils.JsonToDictionary(response.body());
 
         // Get movie credits
-        url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "/credits?api_key=" + api_key + "&language=en-US";
+        url = "https://api.themoviedb.org/3/movie/" + movie_id + "/credits?api_key=" + api_key + "&language=en-US";
         response = ApiUtils.http_get(url);
         String credids = response.body();
 
         // Get movie release date
-        url = "https://api.themoviedb.org/3/movie/" + table.get("id") + "/release_dates?api_key=" + api_key;
+        url = "https://api.themoviedb.org/3/movie/" + movie_id + "/release_dates?api_key=" + api_key;
         response = ApiUtils.http_get(url);
 
         String release_dates = response.body();
