@@ -1,20 +1,25 @@
 package Utils;
 
+import GUI.GUIMethods;
+import GUI.LoadingFrame;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import main.Movie;
 import main.MovieCollection;
 
-public class Utils {
+import org.json.simple.JSONValue;
 
-        public static Dictionary JsonToDictionary(String input){
+public class Utils {
+        public static Dictionary<String, String> JsonToDictionary(String input){
 
             String[] pros = new String[2];
-            Dictionary table = new Hashtable();
+            Dictionary<String, String> table = new Hashtable<String, String>();
             String item1,item2;
             //System.out.println("Utiles\n\n");
             String s = input.replaceAll("\"[a-zA-Z]+\":\\Q[{\\E", "");
@@ -175,5 +180,7 @@ public class Utils {
                         m.remove(index);
                 }
         }
+
+
 
 }

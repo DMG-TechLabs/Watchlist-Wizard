@@ -5,6 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+import API.API;
+import Database.DBMethods;
+//import java.util.regex;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
@@ -23,53 +29,25 @@ public class MovieManager {
 			"{\"Title\":\"Motherless Brooklyn\",\"Year\":\"2019\",\"Rated\":\"R\",\"Released\":\"01 Nov 2019\",\"Runtime\":\"144 min\",\"Genre\":\"Crime, Drama, Mystery\",\"Director\":\"Edward Norton\",\"Writer\":\"Edward Norton, Jonathan Lethem\",\"Actors\":\"Edward Norton, Gugu Mbatha-Raw, Alec Baldwin\",\"Plot\":\"In 1950s New York, a lonely private detective afflicted with Tourette's Syndrome ventures to solve the murder of his mentor and only friend.\",\"Language\":\"English, French\",\"Country\":\"United States\",\"Awards\":\"2 wins & 15 nominations\",\"Poster\":\"https:\\/\\/m.media-amazon.com\\/images\\/M\\/MV5BNzQ0Mjk1YjItNWI1Ny00NWE2LWFlYTAtYjViY2YzMTVlOGVmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg\",\"Ratings\":[{\"Source\":\"Internet Movie Database\",\"Value\":\"6.8\\/10\"},{\"Source\":\"Rotten Tomatoes\",\"Value\":\"64%\"},{\"Source\":\"Metacritic\",\"Value\":\"60\\/100\"}],\"Metascore\":\"60\",\"imdbRating\":\"6.8\",\"imdbVotes\":\"57,493\",\"imdbID\":\"tt0385887\",\"Type\":\"movie\",\"DVD\":\"01 Nov 2019\",\"BoxOffice\":\"$9,277,736\",\"Production\":\"N\\/A\",\"Website\":\"N\\/A\",\"Response\":\"True\"}"
 	};
 
-	public static Dictionary JsonToDictionary(String input) {
+	// public static Dictionary JsonToDictionary(String input) {
 
-		ArrayList<String> list = new ArrayList<String>();
-		// String fs = input.replaceAll(Pattern.quote("{"),"");
-		String[] pros = new String[2];
-		Dictionary table = new Hashtable();
-		String item1, item2;
-		String s = input.replaceAll(Pattern.quote("\"results\":[{"), "");
-		s = s.replaceAll(Pattern.quote("{"), "");
-		s = s.replaceAll(Pattern.quote("}"), "");
-
-		for (String sp : s.split("\",\"|[e],\"|\\],\"|,\"")) {// |[0-9],\"|\":\\[
-			list.add(sp);
-			// for (String sp1:sp.split(Pattern.quote(",\""))){}
-			try {
-				sp = sp.replaceAll(Pattern.quote("\""), "");
-				sp = sp.replaceAll(Pattern.quote("["), "");
-				sp = sp.replaceAll(Pattern.quote("]"), "");
-				sp = sp.replaceAll(Pattern.quote("{"), "");
-				sp = sp.replaceAll(Pattern.quote("}"), "");
-				pros = sp.split(Pattern.quote(":"));
-
-				item1 = pros[0];
-				item2 = pros[1];
-
-				// if (pros[0] == "")
-				// if(item2.contains("{[")) continue;
-				table.put(item1, item2);
-			} catch (Exception ex) {
-				// continue;
-				table.put(sp, "");
-			}
-		}
-
-		return table;
-	}
-
-	public static boolean isStringOnlyAlphabet(String str) {
-
-		return ((str != null) && (!str.equals(""))
-				&& (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
-	}
+	// 	return ((str != null) && (!str.equals(""))
+	// 			&& (str.matches("\"[a-zA-Z]+\":\\Q{[\\E")));
+	// }
 
 	public static void main(String[] args) throws SQLException {
 		// System.out.println("asd iudjd aisudj 2000".replaceAll("
 		// [0-9][0-9][0-9][0-9]", ""));
-		// DBMethods.formatDatabase();
+		try {
+			System.out.println("ssssss");
+			API a = new API("");
+			System.out.println("ssssss");
+			a.GET("Avengers");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		/*
 		 * API api;
 		 * try {
@@ -82,14 +60,6 @@ public class MovieManager {
 		 * }
 		 */
 		// ImagesUtils.imageToDatabase("tt0434409");
-
-		YamlFile y = new YamlFile(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/themes/dark.yml");
-
-		Theme t = new Theme(y);
-
-		System.out.println(t.generateJson().getJson());
-
-
 
 	}
 }

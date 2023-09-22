@@ -18,12 +18,13 @@ public class DirFiles {
         private String directoryName = "";
 
         public DirFiles(String directory) {
+                
                 this.directoryName = directory;
                 //extList.add("qwerty123456");
         }
 
         public DirFiles(String directory, ArrayList<String> exts) {
-                this.directoryName = directory;
+                this(directory);
                 this.extList = exts;
                 /*
                 for (int i = 0; i < exts.size(); i++) {
@@ -82,7 +83,11 @@ public class DirFiles {
                 for (String path : pathsList) {
                         String[] final_path = new String[50];
                         String final_name;
-                        final_path = path.split(Pattern.quote("\\"));
+                        if (System.getProperty("os.name").equals("Linux")){
+                                final_path = path.split(Pattern.quote("/"));
+                        } else{
+                                final_path = path.split(Pattern.quote("\\"));
+                        }
                         final_name = final_path[final_path.length - 1];
                         final_name = final_name.substring(0, final_name.length() - 4);
                         NamesList.add(final_name);
@@ -100,7 +105,11 @@ public class DirFiles {
                         pathsName = "";
                 }
                 
-                final_path = pathsName.split(Pattern.quote("\\"));
+                if (System.getProperty("os.name").equals("Linux")){
+                        final_path = pathsName.split(Pattern.quote("/"));
+                } else{
+                        final_path = pathsName.split(Pattern.quote("\\"));
+                }
                 final_name = final_path[final_path.length - 1];
                 //final_name = (final_name.split(Pattern.quote(".")))[0];
                 final_name = final_name.substring(0, final_name.length() - 4);
@@ -113,7 +122,14 @@ public class DirFiles {
                 String[] final_path = new String[50];
                 String[] ext = new String[50];
                 String final_name;
-                final_path = pathsName.split(Pattern.quote("\\"));
+
+                
+                if (System.getProperty("os.name").equals("Linux")){
+                        final_path = pathsName.split(Pattern.quote("/"));
+                } else{
+                        final_path = pathsName.split(Pattern.quote("\\"));
+                }
+
                 final_name = final_path[final_path.length - 1];
                 ext = final_name.split(Pattern.quote("."));
                 final_name = ext[ext.length - 1];
