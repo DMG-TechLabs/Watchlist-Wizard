@@ -39,7 +39,7 @@ public class ImagesUtils {
                 try ( InputStream in = new URL(url).openStream()) {
                         Files.copy(in, Paths.get(path + "\\"+ ImageName));
                 }
-                
+
                 return ImageName;
         }
 
@@ -59,44 +59,44 @@ public class ImagesUtils {
                 try ( InputStream in = new URL(url).openStream()) {
                         Files.copy(in, Paths.get(path + "\\"+ ImageName));
                 }
-                
+
                 return ImageName;
         }
-        
+
         public static void imageToDatabase(String imdbID) throws SQLException{
-                String path = (String) Database.db().SELECT("Settings", "Directory").get(0);
-                String url = (String) Database.db().SELECT("Movies", "Poster_URL", new Condition("IMDb_ID", imdbID));
+                String path = (String) Database.connection().SELECT("Settings", "Directory").get(0);
+                String url = (String) Database.connection().SELECT("Movies", "Poster_URL", new Condition("IMDb_ID", imdbID));
                 //String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new Condition("Title", title));
-                
+
                 System.out.println("Path: " + path);
                 System.out.println("URL: " + url);
                 System.out.println("IMDb ID: " + imdbID);
-                
+
                 String imageName = "";
-                
+
                 try {
                         imageName = SaveImg(path, url, "w342");
                 } catch (IOException ex) {
                         Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
 //                try {
 //                        SaveImg(path, url, "original");
 //                } catch (IOException ex) {
 //                        Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-                
-                Database.db().INSERT("Images", new String[]{"Image_Directory", "IMDb_ID"}, new String[]{path +"\\"+ imageName, imdbID});
+
+                Database.connection().INSERT("Images", new String[]{"Image_Directory", "IMDb_ID"}, new String[]{path +"\\"+ imageName, imdbID});
         }
-        
+
         public static String matchImage(String imdbID) throws SQLException{
                 //String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new Condition("Title", title));
-                
-                String imgDir = (String) Database.db().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbID));
-                
+
+                String imgDir = (String) Database.connection().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbID));
+
                 return imgDir;
         }
-        
+
         public static File delete(String dir) {
                 File file = new File(dir);
                 if (file.delete()) {
@@ -107,15 +107,15 @@ public class ImagesUtils {
                 }
                 return null;
         }
-        
-        
+
+
         private static String generateRandomString(int length){
                 String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
                 String s = "";
                 for (int i = 0; i < length; i++) {
                         s = s + characters.charAt(new Random().nextInt(characters.length()));
                 }
-                
+
                 return s;
         }
 }

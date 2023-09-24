@@ -57,8 +57,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		}
 
 		try {
-			mediaPlayerPath.setText((String) Database.db().SELECT("Settings", "Media_Player").get(0));
-			fileDirectory.setText((String) Database.db().SELECT("Settings", "Directory").get(0));
+			mediaPlayerPath.setText((String) Database.connection().SELECT("Settings", "Media_Player").get(0));
+			fileDirectory.setText((String) Database.connection().SELECT("Settings", "Directory").get(0));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -86,14 +86,14 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		themesList.setSelectedItem(theme.getName());
 
 		try {
-			mediaPlayerPath.setText((String) Database.db().SELECT("Settings", "Media_Player").get(0));
-			fileDirectory.setText((String) Database.db().SELECT("Settings", "Directory").get(0));
+			mediaPlayerPath.setText((String) Database.connection().SELECT("Settings", "Media_Player").get(0));
+			fileDirectory.setText((String) Database.connection().SELECT("Settings", "Directory").get(0));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		try {
-			fontsList.setSelectedItem((String) Database.db().SELECT("Settings", "Font").get(0));
+			fontsList.setSelectedItem((String) Database.connection().SELECT("Settings", "Font").get(0));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -699,7 +699,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		lm.remove(i);
 
 		try {
-			Database.db().DELETE("Extensions", "Extension", ext);
+			Database.connection().DELETE("Extensions", "Extension", ext);
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -727,7 +727,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		lm.addElement(ext);
 
 		try {
-			Database.db().INSERT("Extensions", "Extension", ext);
+			Database.connection().INSERT("Extensions", "Extension", ext);
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -763,7 +763,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		}
 
 		try {
-			Database.db().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
+			Database.connection().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -792,7 +792,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		}
 
 		try {
-			Database.db().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
+			Database.connection().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -824,7 +824,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		GUIMethods.changeGlobalFont(new Component[] { this, f }, 4, s);
 
 		try {
-			Database.db().UPDATE("Settings", "Font", s, new Condition("Αναγνωριστικό", 1));
+			Database.connection().UPDATE("Settings", "Font", s, new Condition("Αναγνωριστικό", 1));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -835,7 +835,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 			String dir = mediaPlayerPath.getText();
 
 			try {
-				Database.db().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
+				Database.connection().UPDATE("Settings", "Media_Player", dir, new Condition("Αναγνωριστικό", 1));
 			} catch (SQLException ex) {
 				Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -854,7 +854,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		System.out.println("Selected Theme: " + themeName);
 
 		try {
-			Database.db().UPDATE("Settings", "Theme", themeName, new Condition("Αναγνωριστικό", 1));
+			Database.connection().UPDATE("Settings", "Theme", themeName, new Condition("Αναγνωριστικό", 1));
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -872,7 +872,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 			String dir = fileDirectory.getText();
 
 			try {
-				Database.db().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
+				Database.connection().UPDATE("Settings", "Directory", dir, new Condition("Αναγνωριστικό", 1));
 			} catch (SQLException ex) {
 				Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 			}

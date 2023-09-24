@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import kdesp73.madb.Condition;
 
 public class MovieCollection {
 
@@ -64,7 +63,7 @@ public class MovieCollection {
         ArrayList<Object> objectList = new ArrayList<>();
 
         try {
-            objectList = Database.db().SELECT("Extensions", "Extension");
+            objectList = Database.connection().SELECT("Extensions", "Extension");
         } catch (SQLException ex) {
             Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,7 +73,7 @@ public class MovieCollection {
         }
 
         try {
-            this.dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
+            this.dir = (String) Database.connection().SELECT("Settings", "Directory").get(0);
         } catch (SQLException ex) {
             Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,7 +92,7 @@ public class MovieCollection {
 
         ArrayList<Object> objectList = new ArrayList<>();
         try {
-            objectList = Database.db().SELECT("Extensions", "Extension");
+            objectList = Database.connection().SELECT("Extensions", "Extension");
         } catch (SQLException ex) {
             Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
             return;
@@ -126,7 +125,7 @@ public class MovieCollection {
 
         ArrayList<String> filepathsInDB = new ArrayList<>();
         try {
-            objectList = Database.db().SELECT("Filepaths", "Filepath");
+            objectList = Database.connection().SELECT("Filepaths", "Filepath");
         } catch (SQLException e1) {
             System.out.println("Movies exists in Database");
         }
@@ -139,10 +138,10 @@ public class MovieCollection {
             if(!exts.contains(DirFiles.GetExt(filepathsInDB.get(i))) || !paths.contains(filepathsInDB.get(i))){
                 try {
 
-                    String titleToDelete = (String) Database.db().SELECT("Filepaths", "Title", new Condition("Filepath", filepathsInDB.get(i)));
+                    String titleToDelete = (String) Database.connection().SELECT("Filepaths", "Title", new Condition("Filepath", filepathsInDB.get(i)));
 
-                    Database.db().DELETE("Movies", "Title", titleToDelete);
-                    Database.db().DELETE("Filepaths", "Title", titleToDelete);
+                    Database.connection().DELETE("Movies", "Title", titleToDelete);
+                    Database.connection().DELETE("Filepaths", "Title", titleToDelete);
                 } catch (SQLException ex) {
                     Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -159,8 +158,8 @@ public class MovieCollection {
                 m.setFilename(names.get(i));
                 movies.add(m);
 
-                Database.db().INSERT("Filepaths", new String[]{"Filepath", "Title"}, new String[]{paths.get(i), m.getTitle()});
-                Database.db().INSERT("Scraped", new String[]{"Filepath", "API_Done"}, new Object[]{movies.get(i).getDirectory(), false});
+                Database.connection().INSERT("Filepaths", new String[]{"Filepath", "Title"}, new String[]{paths.get(i), m.getTitle()});
+                Database.connection().INSERT("Scraped", new String[]{"Filepath", "API_Done"}, new Object[]{movies.get(i).getDirectory(), false});
 
             } catch (IOException | InterruptedException | SQLException | NullPointerException e) { //Make proper exceptions
                 System.out.println("Movie is null");
@@ -188,7 +187,7 @@ public class MovieCollection {
                     temp[j] = info[j];
                 }
                 if (j == 5) {
-                    temp[j] = MovieUtils.arrayToList(DBMethods.getCategories(Database.db().getStatement(), info[14]));
+                    temp[j] = MovieUtils.arrayToList(DBMethods.getCategories(Database.connection().getStatement(), info[14]));
                 }
                 if (j > 5) {
                     temp[j] = info[j - 1];
@@ -196,7 +195,7 @@ public class MovieCollection {
             }
 
             try {
-                temp[16] = (String) Database.db().SELECT("Filepaths", "Filepath", new Condition("Title", temp[0]));
+                temp[16] = (String) Database.connection().SELECT("Filepaths", "Filepath", new Condition("Title", temp[0]));
                 System.out.println(temp[16]);
                 temp[17] = Files.DirFiles.GetName(temp[16]);
             } catch (IndexOutOfBoundsException e) {
@@ -212,18 +211,18 @@ public class MovieCollection {
     public Movie insertMovie(String title) throws IOException, InterruptedException, SQLException {
         Movie m;
 
-        if (Database.db().valueExists("Movies", "Title", title) && Database.db().valueExists("Filepaths", "Title", title)) {
+        if (Database.connection().valueExists("Movies", "Title", title) && Database.connection().valueExists("Filepaths", "Title", title)) {
             System.out.println("Movie already exists");
             GUIMethods.dialogError("Movie already exists");
             return null;
-        } else if (Database.db().valueExists("Movies", "Title", title)) {
-            Database.db().DELETE("Movies", "Title", title);
+        } else if (Database.connection().valueExists("Movies", "Title", title)) {
+            Database.connection().DELETE("Movies", "Title", title);
         }
 
         m = new Movie(title);
         //movies.add(m);
         try {
-            Database.db().INSERT("Movies", "Title", title);
+            Database.connection().INSERT("Movies", "Title", title);
         } catch (SQLException | NullPointerException ex) {
             Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Movies insert error");
@@ -238,14 +237,14 @@ public class MovieCollection {
         String imdbid = m.getImdbID();
 
         if (!"".equals(imdbid) && imdbid != null) {
-            ImagesUtils.delete( (String) Database.db().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbid))); //Delete image from directory
-            Database.db().DELETE("Category_Matching", "IMDb_ID", imdbid);
-            Database.db().DELETE("Images", "IMDb_ID", imdbid); // Delete image from database
+            ImagesUtils.delete( (String) Database.connection().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbid))); //Delete image from directory
+            Database.connection().DELETE("Category_Matching", "IMDb_ID", imdbid);
+            Database.connection().DELETE("Images", "IMDb_ID", imdbid); // Delete image from database
         }
 
-        Database.db().DELETE("Movies", "Title", title);
-        Database.db().DELETE("Filepaths", "Filepath", m.getDirectory());
-        Database.db().DELETE("Scraped", "Filepath", m.getDirectory());
+        Database.connection().DELETE("Movies", "Title", title);
+        Database.connection().DELETE("Filepaths", "Filepath", m.getDirectory());
+        Database.connection().DELETE("Scraped", "Filepath", m.getDirectory());
 
         movies.remove(m);
 

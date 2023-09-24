@@ -14,7 +14,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import kdesp73.themeLib.*;
 import main.MovieCollection;
 
-
 /**
  *
  * @author Konstantinos
@@ -579,11 +578,12 @@ public class EditFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_imdbratingFieldActionPerformed
 
 	private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_deleteButtonMouseClicked
-		int choice = JOptionPane.showConfirmDialog(this, "Delete movie? (Only from DB)", "Delete", JOptionPane.WARNING_MESSAGE);
+		int choice = JOptionPane.showConfirmDialog(this, "Delete movie? (Only from DB)", "Delete",
+				JOptionPane.WARNING_MESSAGE);
 
 		// System.out.println(choice);
 
-		switch(choice){
+		switch (choice) {
 			case 0: // Confirm
 				deleteMovieFromDB();
 				break;
@@ -592,10 +592,9 @@ public class EditFrame extends javax.swing.JFrame {
 				break;
 		}
 
-
 	}// GEN-LAST:event_deleteButtonMouseClicked
 
-	private void deleteMovieFromDB(){
+	private void deleteMovieFromDB() {
 		String imdbid = f.movies.getMovies().get(index).getImdbID();
 		try {
 			f.movies.deleteMovie(f.movies.getMovies().get(index));
@@ -605,7 +604,8 @@ public class EditFrame extends javax.swing.JFrame {
 		f.refreshMoviesList();
 		this.setVisible(false);
 		JOptionPane.showMessageDialog(this, "Movie deleted successfully only from our database");
-		// GUIMethods.dialog("Movie deleted successfully only from our database", "Movie deleted", "Success");
+		// GUIMethods.dialog("Movie deleted successfully only from our database", "Movie
+		// deleted", "Success");
 
 		f.clearInfo();
 
@@ -675,7 +675,8 @@ public class EditFrame extends javax.swing.JFrame {
 				|| country.length() > 255 || awards.length() > 255 || imdbrating.length() > 255
 				|| imdbid.length() > 255) {
 
-			JOptionPane.showMessageDialog(this, "String with more than 255 characters", "Error", JOptionPane.ERROR_MESSAGE, null);
+			JOptionPane.showMessageDialog(this, "String with more than 255 characters", "Error",
+					JOptionPane.ERROR_MESSAGE, null);
 			// GUIMethods.dialogError("String with more than 255 characters");
 			throw new DatabaseStringOverflowException("String with more than 255 characters");
 		}
@@ -684,23 +685,18 @@ public class EditFrame extends javax.swing.JFrame {
 			year = "";
 		}
 
-		try {
-			Database db = new Database();
-			Statement s = Database.db().getStatement();
-			String query = "UPDATE Movies SET Title = \'" + title + "\', Director = \'" + director + "\', Writers = \'"
-					+ writers + "\', Plot = \'" + plot + "\', Completion_Year = \'" + year + "\', Language = \'"
-					+ language + "\', Actors = \'" + actors + "\', Rated = \'" + rated + "\', Runtime = \'" + runtime
-					+ "\', Country = \'" + country + "\', Awards = \'" + awards + "\', IMDb_Rating = \'" + imdbrating
-					+ "\', IMDb_ID = \'" + imdbid + "\' WHERE Title = \'" + movies.getMovies().get(index).getTitle()
-					+ "\'";
-			String query1 = "UPDATE Filepaths SET Title = \'" + titleField.getText() + "\' WHERE Title = \'"
-					+ movies.getMovies().get(index).getTitle() + "\'";
+		String query = "UPDATE Movies SET Title = \'" + title + "\', Director = \'" + director + "\', Writers = \'"
+				+ writers + "\', Plot = \'" + plot + "\', Completion_Year = \'" + year + "\', Language = \'"
+				+ language + "\', Actors = \'" + actors + "\', Rated = \'" + rated + "\', Runtime = \'" + runtime
+				+ "\', Country = \'" + country + "\', Awards = \'" + awards + "\', IMDb_Rating = \'" + imdbrating
+				+ "\', IMDb_ID = \'" + imdbid + "\' WHERE Title = \'" + movies.getMovies().get(index).getTitle()
+				+ "\'";
+		String query1 = "UPDATE Filepaths SET Title = \'" + titleField.getText() + "\' WHERE Title = \'"
+				+ movies.getMovies().get(index).getTitle() + "\'";
 
-			s.executeUpdate(query);
-			s.executeUpdate(query1);
-		} catch (SQLException ex) {
-			Logger.getLogger(EditFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		Database.connection().executeQuery(query);
+		Database.connection().executeQuery(query1);
+		Database.connection().close();
 
 		f.refreshMoviesList();
 

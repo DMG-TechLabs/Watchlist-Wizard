@@ -4,17 +4,27 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
-import kdesp73.madb.MADB;
+import kdesp73.databridge.connections.*;
+import kdesp73.databridge.connections.DatabaseConnection;
 
 public class Database {
-        private static final String FILEPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") +  "/data/MoviesDatabase.accdb";
+	private static final String FILEPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")
+			+ "/data/MoviesDatabase.accdb";
 
-        public static MADB db(){
-                try {
-                        return new MADB(FILEPATH);
-                } catch (SQLException ex) {
-                        Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                return null;
-        }
+	public static DatabaseConnection connection() {
+		String dbUrl = "jdbc:ucanaccess://" + FILEPATH;
+		String dbUsername = ""; // if necessary
+		String dbPassword = ""; // if necessary
+
+		// Create an instance of MSAccessConnection
+		MSAccessConnection msAccessConnection = new MSAccessConnection();
+		try {
+			msAccessConnection.connect(dbUrl, dbUsername, dbPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return msAccessConnection;
+	}
 }
