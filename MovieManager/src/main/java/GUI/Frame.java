@@ -33,6 +33,9 @@ import Exceptions.NoMediaPlayerDirectoryException;
 import Exceptions.NoMovieSelectedException;
 import Files.FilesList;
 import Files.ImagesUtils;
+import java.awt.Container;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import kdesp73.themeLib.JsonString;
 import kdesp73.themeLib.Theme;
 import kdesp73.themeLib.ThemeCollection;
@@ -994,8 +997,42 @@ public class Frame extends javax.swing.JFrame {
 				showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
 			}
 		} else if (evt.getButton() == 3) { // Right Click
-		}
-
+                    JPopupMenu options = new JPopupMenu();
+                    JMenuItem edit = new JMenuItem("Edit");
+                    JMenuItem delete = new JMenuItem("Delete");
+                    JMenuItem scrape = new JMenuItem("Scrape");
+                    
+                    ActionListener menuListener = new ActionListener() {
+                        String selectedItem;
+                        public void actionPerformed(ActionEvent event) {
+                            selectedItem = event.getActionCommand();
+                            if(selectedItem == "Edit"){
+                                System.out.println("Edit option selected");
+                                editButtonMouseClicked(evt);
+                            } else if(selectedItem == "Delete"){
+                                System.out.println("Delete option selected");                                  
+                            } else if(selectedItem == "Scrape"){
+                                System.out.println("Scrape option selected");                               
+                            }
+                        }
+                    };
+                    
+                    for(int i = 0; i < moviesList.getModel().getSize(); i++){
+                        System.out.println(i);
+                        if(moviesList.getSelectedIndex() ==  i){
+                            edit.addActionListener(menuListener);
+                            delete.addActionListener(menuListener);
+                            scrape.addActionListener(menuListener);
+                            
+                            options.add(edit);
+                            options.add(delete);
+                            options.add(scrape);
+                            
+                            options.show(evt.getComponent(), evt.getX(), evt.getY());
+                            
+                        }
+                    }
+                }
 	}// GEN-LAST:event_moviesListMouseClicked
 
 	private void SearchBarKeyPressed(java.awt.event.KeyEvent evt) {}
@@ -1181,8 +1218,8 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_playButtonMouseClicked
 
 	private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_SearchBarKeyReleased
-            ArrayList<String> tempArray = new ArrayList<>();
-            JPopupMenu moviesFoundList = new JPopupMenu();
+            ArrayList<String> moviesFoundList = new ArrayList<>();
+            JPopupMenu moviesFoundMenu = new JPopupMenu();
 
             ActionListener menuListener = (ActionEvent event) -> {
                 String valueSelected = event.getActionCommand();
@@ -1191,75 +1228,45 @@ public class Frame extends javax.swing.JFrame {
                         moviesList.setSelectedIndex(i);
                         SearchBar.setText(moviesList.getModel().getElementAt(i));
                         showInfo(i, this.movies.getMovies());
+                        this.getRootPane().requestFocus();
                     }
-                }
+                }                
             };
 
             for(int i = 0; i < moviesList.getModel().getSize(); i++){
                 if(moviesList.getModel().getElementAt(i).toLowerCase().contains(SearchBar.getText().toLowerCase())){
-                    tempArray.add(moviesList.getModel().getElementAt(i));
+                    moviesFoundList.add(moviesList.getModel().getElementAt(i));
                     JMenuItem item = new JMenuItem(moviesList.getModel().getElementAt(i));
                     item.addActionListener(menuListener);
-                    moviesFoundList.add(item);
+                    moviesFoundMenu.add(item);
                 }
-            }
-
-            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                SearchBar.requestFocus();
-                SearchBar.setText("");
-                System.out.println("Enter Pressed\nText: " + SearchBar.getText());
-                for(int i = 0; i < tempArray.size(); i++){
-                    if(tempArray.size() < 0) break;
-                    //System.out.println(tempArray.get(i));
-                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
-                        if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
-                            SearchBar.setText(tempArray.get(i));
-                            moviesList.setSelectedIndex(j);
-                            showInfo(j, this.movies.getMovies());
-                            tempArray.clear();
-                            this.getRootPane().requestFocus();
-                            return;
-                        }
-                    }
-                }
-                return;
-            }
-
-            if(evt.getKeyCode() == KeyEvent.VK_UP){
-                SearchBar.requestFocus();
-                //SearchBar.setText("");
-                System.out.println("Up arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
-                for(int i = 0; i < tempArray.size(); i++){
-                    if(tempArray.size() < 0) break;
-                    //System.out.println(tempArray.get(i));
-                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
-                        if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
-                            SearchBar.requestFocus();
-                            //moviesList.setSelectedIndex(j);
-                            //showInfo(j);
-                            this.getRootPane().requestFocus();
-                            tempArray.clear();
-                            return;
-                        }
-                    }
-                }
-                return;
             }
 
             if(evt.getKeyCode() == KeyEvent.VK_DOWN){
                 SearchBar.requestFocus();
-                //SearchBar.setText("");
                 System.out.println("Down arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
-                for(int i = 0; i < tempArray.size(); i++){
-                    if(tempArray.size() < 0) break;
-                    //System.out.println(tempArray.get(i));
+           
+                for(int i = 0; i < moviesFoundList.size(); i++){
+                    if(moviesFoundList.size() < 0) break;
                     for(int j = 0; j < moviesList.getModel().getSize(); j++){
-                        if(moviesList.getModel().getElementAt(j).matches(tempArray.get(i))){
-                            SearchBar.requestFocus();
-                            //moviesList.setSelectedIndex(j);
-                            //showInfo(j);
+                        if(moviesList.getModel().getElementAt(j).matches(moviesFoundList.get(i))){
                             this.getRootPane().requestFocus();
-                            tempArray.clear();
+                            return;
+                        }
+                    }
+                }
+                return;
+            }
+            
+            if(evt.getKeyCode() == KeyEvent.VK_UP){
+                SearchBar.requestFocus();
+                System.out.println("Up arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
+           
+                for(int i = 0; i < moviesFoundList.size(); i++){
+                    if(moviesFoundList.size() < 0) break;
+                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
+                        if(moviesList.getModel().getElementAt(j).matches(moviesFoundList.get(i))){
+                            this.getRootPane().requestFocus();
                             return;
                         }
                     }
@@ -1267,8 +1274,16 @@ public class Frame extends javax.swing.JFrame {
                 return;
             }
 
-            if(!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()) moviesFoundList.show(this, 496, 95);
-
+            if(SearchBar.getText().isBlank() || SearchBar.getText().isEmpty()){
+                if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+                    System.out.println(SearchBar.getText());  
+                    moviesFoundMenu.removeAll();
+                    moviesFoundMenu.setVisible(false);
+                }
+            }
+                
+            moviesFoundMenu.show(this, 498, 100);
+            
             SearchBar.requestFocus();
 	}// GEN-LAST:event_SearchBarKeyReleased
 
