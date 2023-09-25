@@ -694,9 +694,8 @@ public class EditFrame extends javax.swing.JFrame {
 		String query1 = "UPDATE Filepaths SET Title = \'" + titleField.getText() + "\' WHERE Title = \'"
 				+ movies.getMovies().get(index).getTitle() + "\'";
 
-		Database.connection().executeQuery(query);
-		Database.connection().executeQuery(query1);
-		Database.connection().close();
+		Database.connection().executeUpdate(query);
+		Database.connection().executeUpdate(query1);
 
 		f.refreshMoviesList();
 

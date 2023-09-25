@@ -48,16 +48,15 @@ public class DBMethods {
 
 		for (int i = 0; i < genre.length; i++) {
 			// Check if genre exists. If not add it and continue
-			rs = Database.connection().executeQuery("SELECT COUNT() FROM table_name WHERE column_name = '" + genre[i] + "'");
+			rs = Database.connection().executeQuery("SELECT Category FROM Categories WHERE Category = '" + genre[i] + "'");
 			rs.next();
-			if (rs.getInt(1) == 0) {
+			if (!rs.next()) {
 				System.out.println("Genre doesn't exist");
 				System.out.println("Adding genre...");
 
-				Database.connection().executeQuery(new QueryBuilder().insertInto("Categories").columns("Category").values(genre[i]).build());
+				Database.connection().executeUpdate(new QueryBuilder().insertInto("Categories").columns("Category").values(genre[i]).build());
 
 				System.out.println("Genre added.");
-				Database.connection().close();
 			}
 
 			String query = "SELECT Category_ID FROM Categories WHERE Category=\'" + genre[i] + "\'";
@@ -78,11 +77,10 @@ public class DBMethods {
 		int[] ids = matchCategoryID(m);
 
 		for (int i = 0; i < ids.length; i++) {
-			Database.connection().executeQuery("INSERT INTO Category_Matching(Category_ID, IMDb_ID) VALUES(" + ids[i] + ", \'"
+			Database.connection().executeUpdate("INSERT INTO Category_Matching(Category_ID, IMDb_ID) VALUES(" + ids[i] + ", \'"
 					+ m.getImdbID() + "\')");
 		}
 
-		Database.connection().close();
 	}
 
 	private static String matchCategories(int categoryId) throws SQLException { // Adds Category id's and imdb id in the
@@ -99,8 +97,7 @@ public class DBMethods {
 		String query = "INSERT INTO Movies(" + DBUtils.columnsToList(DBFields) + ") VALUES(" + DBUtils.objectToList(m)
 				+ ")";
 
-		Database.connection().executeQuery(query);
-		Database.connection().close();
+		Database.connection().executeUpdate(query);
 	}
 
 	public static ArrayList<String[]> getMovies() throws SQLException {
@@ -122,12 +119,12 @@ public class DBMethods {
 		return list;
 	}
 
-	public static ArrayList<String> getCategories(Statement s, String id) throws SQLException {
+	public static ArrayList<String> getCategories(String id) throws SQLException {
 		ArrayList<String> genres = new ArrayList<>();
 		ArrayList<Integer> categoryIDs = new ArrayList<>();
 
 		String query = "SELECT Category_ID FROM Category_Matching WHERE IMDb_ID = \'" + id + "\'";
-		ResultSet rs = s.executeQuery(query);
+		ResultSet rs = Database.connection().executeQuery(query);
 
 		while (rs.next()) {
 			categoryIDs.add(rs.getInt(1));
@@ -150,10 +147,10 @@ public class DBMethods {
 	}
 
 	public static void formatDatabase() throws SQLException {
-		Database.connection().executeQuery("TRUNCATE TABLE Movies");
-		Database.connection().executeQuery("TRUNCATE TABLE Filepaths");
-		Database.connection().executeQuery("TRUNCATE TABLE Scraped");
-		Database.connection().executeQuery("TRUNCATE TABLE Category_Matching");
+		Database.connection().execute("TRUNCATE TABLE Movies");
+		Database.connection().execute("TRUNCATE TABLE Filepaths");
+		Database.connection().execute("TRUNCATE TABLE Scraped");
+		Database.connection().execute("TRUNCATE TABLE Category_Matching");
 
 		ResultProcessor rp = new ResultProcessor();
 		ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Image_Directory").from("Images").build());
@@ -164,8 +161,7 @@ public class DBMethods {
 			ImagesUtils.delete(row.get("Image_Directory"));
 		}
 
-		Database.connection().executeQuery("TRUNCATE TABLE Images");
-		Database.connection().close();
+		Database.connection().execute("TRUNCATE TABLE Images");
 	}
 
 	private class DBUtils {

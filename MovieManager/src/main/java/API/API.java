@@ -117,7 +117,7 @@ public class API {
 							.build();
 
 
-						Database.connection().executeQuery(updateQuery);
+						Database.connection().executeUpdate(updateQuery);
 
 
 
@@ -126,9 +126,7 @@ public class API {
 							.build();
 
 
-						Database.connection().executeQuery(deleteQuery);
-
-						Database.connection().close();
+						Database.connection().executeUpdate(deleteQuery);
 
 
 						DBMethods.insertMovie(movie);

@@ -137,10 +137,7 @@ public class LoadingFrame extends javax.swing.JFrame {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} finally {
-					Database.connection().close();
 				}
-
 
 
                 System.out.println(dir);
