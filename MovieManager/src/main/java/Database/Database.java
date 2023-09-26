@@ -1,31 +1,38 @@
 package Database;
 
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
-import kdesp73.databridge.connections.*;
+
 import kdesp73.databridge.connections.DatabaseConnection;
+import kdesp73.databridge.connections.MSAccessConnection;
 
 public class Database {
 	private static final String FILEPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")
 			+ "/data/MoviesDatabase.accdb";
 
+	private static DatabaseConnection instance;
 
-	public static DatabaseConnection connection() {
-		String dbUrl = "jdbc:ucanaccess://" + FILEPATH;
-		String dbUsername = ""; // if necessary
-		String dbPassword = ""; // if necessary
+	private Database() {
+        // Private constructor to prevent external instantiation
+    }
 
-		// Create an instance of MSAccessConnection
-		MSAccessConnection connection = new MSAccessConnection();
-		try {
-			connection.connect(dbUrl, dbUsername, dbPassword);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+    public static DatabaseConnection connection() {
+		synchronized (DatabaseConnection.class) {
+			try {
+				// Initialize the database connection here
+				String url = "jdbc:ucanaccess://" + FILEPATH;
+				String username = "";
+				String password = "";
+				instance = new MSAccessConnection();
+				instance.connect(url, username, password);
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+				throw new RuntimeException("Failed to create the database connection.");
+			}
 		}
+        return instance;
+    }
 
-		return connection;
-	}
 }

@@ -15,8 +15,8 @@ import Files.FilesList;
 import Files.ImagesUtils;
 import GUI.GUIMethods;
 import kdesp73.databridge.helpers.QueryBuilder;
-import kdesp73.databridge.helpers.ResultProcessor;
 import kdesp73.databridge.helpers.ResultRow;
+import net.ucanaccess.jdbc.UcanaccessSQLException;
 
 public class MovieCollection {
 
@@ -65,15 +65,17 @@ public class MovieCollection {
     public MovieCollection() {
         //                filesList = new FilesList(dir, exts);
 
-		ResultProcessor rp = new ResultProcessor();
 		ResultSet rs = Database.connection()
 				.executeQuery(new QueryBuilder().select("Extension").from("Extensions").build());
 
-		List<ResultRow> table = rp.toList(rs);
-
-		for (ResultRow row : table) {
-			this.exts.add(row.get("Extension"));
+		try {
+			while(rs.next())
+				this.exts.add(rs.getString("Extension"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 
 
         try {
@@ -95,14 +97,16 @@ public class MovieCollection {
 
     public void refreshMovies() {
         exts.clear();
-		ResultProcessor rp = new ResultProcessor();
 		ResultSet rs = Database.connection()
 				.executeQuery(new QueryBuilder().select("Extension").from("Extensions").build());
 
-		List<ResultRow> table = rp.toList(rs);
-
-		for (ResultRow row : table) {
-			this.exts.add(row.get("Extension"));
+		try {
+			while (rs.next()) {
+				this.exts.add(rs.getString("Extension"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 
@@ -132,11 +136,15 @@ public class MovieCollection {
 			e.printStackTrace();
 		}
 
-		table = rp.toList(rs);
 
-        for (ResultRow row : table) {
-            filepathsInDB.add(row.get("Filepath"));
-        }
+        try {
+			while (rs.next()) {
+			    filepathsInDB.add(rs.getString("Filepath"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         for (int i=0; i < filepathsInDB.size(); i++){
             if(!exts.contains(DirFiles.GetExt(filepathsInDB.get(i))) || !paths.contains(filepathsInDB.get(i))){
@@ -211,7 +219,7 @@ public class MovieCollection {
 				temp[16] = rs.getString(1);
 //                System.out.println(temp[16]);
                 temp[17] = Files.DirFiles.GetName(temp[16]);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException | SQLException e) {
                 temp[16] = "";
                 temp[17] = "";
             }

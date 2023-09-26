@@ -110,7 +110,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 
 		try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settngs").build());
+			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settings").build());
 			rs.next();
 			fontsList.setSelectedItem(rs.getString(1));
 		} catch (SQLException ex) {

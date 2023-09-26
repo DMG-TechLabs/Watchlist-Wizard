@@ -4,13 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import Files.ImagesUtils;
 import info.movito.themoviedbapi.model.Data;
 import kdesp73.databridge.helpers.QueryBuilder;
-import kdesp73.databridge.helpers.ResultProcessor;
-import kdesp73.databridge.helpers.ResultRow;
 import main.Movie;
 
 public class DBMethods {
@@ -43,7 +40,6 @@ public class DBMethods {
 
 		int[] ids = new int[genre.length];
 
-		ResultProcessor resultProcessor = new ResultProcessor();
 		ResultSet rs;
 
 		for (int i = 0; i < genre.length; i++) {
@@ -147,21 +143,19 @@ public class DBMethods {
 	}
 
 	public static void formatDatabase() throws SQLException {
-		Database.connection().execute("TRUNCATE TABLE Movies");
-		Database.connection().execute("TRUNCATE TABLE Filepaths");
-		Database.connection().execute("TRUNCATE TABLE Scraped");
-		Database.connection().execute("TRUNCATE TABLE Category_Matching");
+		Database.connection().executeUpdate("DELETE FROM Movies");
+		Database.connection().executeUpdate("DELETE FROM Filepaths");
+		Database.connection().executeUpdate("DELETE FROM Scraped");
+		Database.connection().executeUpdate("DELETE FROM Category_Matching");
 
-		ResultProcessor rp = new ResultProcessor();
 		ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Image_Directory").from("Images").build());
 
-		List<ResultRow> table = rp.toList(rs);
 
-		for(ResultRow row : table) {
-			ImagesUtils.delete(row.get("Image_Directory"));
+		while(rs.next()){
+			ImagesUtils.delete(rs.getString("Image_Directory"));
 		}
 
-		Database.connection().execute("TRUNCATE TABLE Images");
+		Database.connection().executeUpdate("DELETE FROM Images");
 	}
 
 	private class DBUtils {

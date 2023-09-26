@@ -56,7 +56,11 @@ public class ImagesUtils {
 		}
 
 		try (InputStream in = new URL(url).openStream()) {
-			Files.copy(in, Paths.get(path + "\\" + ImageName));
+			String os = System.getProperty("os.name");
+			if(os.toLowerCase().contains("windows"))
+				Files.copy(in, Paths.get(path + "\\" + ImageName));
+			else if(os.toLowerCase().contains("linux"))
+				Files.copy(in, Paths.get(path + "/" + ImageName));
 		}
 
 		return ImageName;
@@ -94,8 +98,12 @@ public class ImagesUtils {
 		// Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
 		// }
 
-		Database.connection().executeUpdate(new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID")
-				.values(path + "\\" + imageName, imdbID).build());
+		String os = System.getProperty("os.name");
+		if(os.toLowerCase().contains("windows")){
+			Database.connection().executeUpdate(new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "\\" + imageName, imdbID).build());
+		} else if(os.toLowerCase().contains("linux")){
+			Database.connection().executeUpdate(new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "/" + imageName, imdbID).build());
+		}
 	}
 
 	public static String matchImage(String imdbID) throws SQLException {
