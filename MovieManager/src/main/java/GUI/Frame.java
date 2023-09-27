@@ -807,7 +807,7 @@ public class Frame extends javax.swing.JFrame {
 		} else if (evt.getButton() == 3) { // Right Click
                     JPopupMenu options = new JPopupMenu();
                     JMenuItem edit = new JMenuItem("Edit");
-                    //JMenuItem delete = new JMenuItem("Delete");
+                    JMenuItem delete = new JMenuItem("Delete");
                     JMenuItem scrape = new JMenuItem("Scrape");
                     
                     ActionListener menuListener = new ActionListener() {
@@ -817,8 +817,8 @@ public class Frame extends javax.swing.JFrame {
                             if(selectedItem == "Edit"){
                                 System.out.println("Edit option selected");
                                 optionsRightClick();
-//                            } else if(selectedItem == "Delete"){
-//                                System.out.println("Delete option selected");                                  
+                            } else if(selectedItem == "Delete"){
+                                System.out.println("Delete option selected");                                  
                             } else if(selectedItem == "Scrape"){
                                 System.out.println("Scrape option selected");                               
                             }
@@ -828,8 +828,8 @@ public class Frame extends javax.swing.JFrame {
                     edit.addActionListener(menuListener);
                     options.add(edit);
                     
-//                    delete.addActionListener(menuListener);
-//                    options.add(delete);
+                    delete.addActionListener(menuListener);
+                    options.add(delete);
                     
                     scrape.addActionListener(menuListener);
                     options.add(scrape);                    
