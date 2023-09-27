@@ -24,7 +24,6 @@ import Database.DBMethods;
 import Database.Database;
 import main.Movie;
 import main.MovieCollection;
-import kdesp73.databridge.*;
 import kdesp73.databridge.helpers.QueryBuilder;
 
 
