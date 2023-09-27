@@ -991,11 +991,9 @@ public class Frame extends javax.swing.JFrame {
 
 	private void moviesListMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_moviesListMouseClicked
 		if (evt.getButton() == 1) { // Left Click
-			if (!sorted) {
-				showInfo(moviesList, movies.getMovies());
-			} else {
-				showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
-			}
+			if (!sorted) showInfo(moviesList, movies.getMovies());
+			else showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
+			
 		} else if (evt.getButton() == 3) { // Right Click
                     JPopupMenu options = new JPopupMenu();
                     JMenuItem edit = new JMenuItem("Edit");
@@ -1028,8 +1026,7 @@ public class Frame extends javax.swing.JFrame {
                             options.add(delete);
                             options.add(scrape);
                             
-                            options.show(evt.getComponent(), evt.getX(), evt.getY());
-                            
+                            options.show(evt.getComponent(), evt.getX(), evt.getY());                         
                         }
                     }
                 }
@@ -1242,44 +1239,27 @@ public class Frame extends javax.swing.JFrame {
                 }
             }
 
-            if(evt.getKeyCode() == KeyEvent.VK_DOWN){
-                SearchBar.requestFocus();
-                System.out.println("Down arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
-           
-                for(int i = 0; i < moviesFoundList.size(); i++){
-                    if(moviesFoundList.size() < 0) break;
-                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
-                        if(moviesList.getModel().getElementAt(j).matches(moviesFoundList.get(i))){
-                            this.getRootPane().requestFocus();
-                            return;
+            if(evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP){
+                if(!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()){
+                    SearchBar.requestFocus();           
+                    for(int i = 0; i < moviesFoundList.size(); i++){
+                        if(moviesFoundList.size() < 0) break;
+                        for(int j = 0; j < moviesList.getModel().getSize(); j++){
+                            if(moviesList.getModel().getElementAt(j).matches(moviesFoundList.get(i))){
+                                this.getRootPane().requestFocus();
+                                return;
+                            }
                         }
                     }
-                }
-                return;
-            }
-            
-            if(evt.getKeyCode() == KeyEvent.VK_UP){
-                SearchBar.requestFocus();
-                System.out.println("Up arrow key Pressed\nSearchBar Text: " + SearchBar.getText());
-           
-                for(int i = 0; i < moviesFoundList.size(); i++){
-                    if(moviesFoundList.size() < 0) break;
-                    for(int j = 0; j < moviesList.getModel().getSize(); j++){
-                        if(moviesList.getModel().getElementAt(j).matches(moviesFoundList.get(i))){
-                            this.getRootPane().requestFocus();
-                            return;
-                        }
-                    }
+                    return;
                 }
                 return;
             }
 
-            if(SearchBar.getText().isBlank() || SearchBar.getText().isEmpty()){
-                if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-                    System.out.println(SearchBar.getText());  
-                    moviesFoundMenu.removeAll();
-                    moviesFoundMenu.setVisible(false);
-                }
+            if(SearchBar.getText().isBlank() || SearchBar.getText().isEmpty()){                
+                System.out.println(SearchBar.getText());  
+                moviesFoundMenu.removeAll();
+                moviesFoundMenu.setVisible(false);                  
             }
                 
             moviesFoundMenu.show(this, 498, 100);
