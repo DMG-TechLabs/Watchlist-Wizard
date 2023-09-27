@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
+import javax.management.Query;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
@@ -33,9 +35,13 @@ import Exceptions.NoMediaPlayerDirectoryException;
 import Exceptions.NoMovieSelectedException;
 import Files.FilesList;
 import Files.ImagesUtils;
+
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import kdesp73.databridge.helpers.QueryBuilder;
+
 import kdesp73.themeLib.JsonString;
 import kdesp73.themeLib.Theme;
 import kdesp73.themeLib.ThemeCollection;
@@ -69,7 +75,9 @@ public class Frame extends javax.swing.JFrame {
 		moviesList.setFocusable(false);
 
 		try {
-			Frame.dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
+			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+			rs.next();
+			Frame.dir = rs.getString(1);
 		} catch (SQLException ex) {
 			Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -933,24 +941,16 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_playButtonMouseEntered
 
 	private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseClicked
-		String mediaPlayerDir = null;
-		try {
-			mediaPlayerDir = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
-		} catch (SQLException ex) {
-			Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		if (mediaPlayerDir.equals("") || mediaPlayerDir == null) {
-			throw new NoMediaPlayerDirectoryException("Media player directory not found");
-		}
-
+		ResultSet rs = null;
 		if (moviesList.getSelectedIndex() < 0) {
 			throw new NoMovieSelectedException("No movie Selected");
 		}
 
 		String MediaPlayerPath = null;
 		try {
-			MediaPlayerPath = (String) Database.db().SELECT("Settings", "Media_Player").get(0);
+			rs = Database.connection().executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
+			rs.next();
+			MediaPlayerPath = rs.getString(1);
 		} catch (SQLException ex) {
 			Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}

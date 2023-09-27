@@ -17,6 +17,7 @@ import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.logging.Level;
@@ -31,6 +32,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicArrowButton;
 import org.imgscalr.Scalr;
+import org.springframework.expression.spel.ast.QualifiedIdentifier;
+
+import kdesp73.databridge.helpers.QueryBuilder;
 import kdesp73.themeLib.*;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -77,7 +81,9 @@ public class GUIMethods {
         }
 
         try {
-            String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
+			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
+			rs.next();
+            String themeName = rs.getString(1);
             ThemeCollection themes = GUIMethods.getThemes();
             theme = themes.matchTheme(themeName);
             ThemeCollection.applyTheme(frame, theme);
@@ -93,8 +99,9 @@ public class GUIMethods {
         }
 
         try {
-            GUIMethods.changeGlobalFont(new Component[]{frame}, 4,
-                    (String) Database.db().SELECT("Settings", "Font").get(0));
+			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settings").build());
+			rs.next();
+            GUIMethods.changeGlobalFont(new Component[]{frame}, 4, rs.getString(1));
         } catch (SQLException ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,7 +124,9 @@ public class GUIMethods {
         }
 
         try {
-            String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
+			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
+			rs.next();
+            String themeName = rs.getString(1);
             ThemeCollection themes = GUIMethods.getThemes();
             theme = themes.matchTheme(themeName);
             ThemeCollection.applyTheme(dialog, theme);
@@ -127,9 +136,10 @@ public class GUIMethods {
         }
 
         try {
-            GUIMethods.changeGlobalFont(new Component[]{dialog}, 4,
-                    (String) Database.db().SELECT("Settings", "Font").get(0));
-        } catch (SQLException ex) {
+			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settings").build());
+			rs.next();
+            GUIMethods.changeGlobalFont(new Component[]{dialog}, 4, rs.getString(1));
+		} catch (SQLException ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -196,7 +206,9 @@ public class GUIMethods {
         subtitle.setFont(font.deriveFont(Font.BOLD));
 
         try {
-            String themeName = (String) Database.db().SELECT("Settings", "Theme").get(0);
+   			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
+			rs.next();
+            String themeName = rs.getString(1);
             System.out.println(themeName);
             ThemeCollection themes = new ThemeCollection();
             themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/themes/"));
