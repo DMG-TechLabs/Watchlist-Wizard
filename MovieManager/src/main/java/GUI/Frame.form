@@ -47,6 +47,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="name" type="java.lang.String" value="bg" noResource="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -96,7 +97,7 @@
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
-        <Property name="name" type="java.lang.String" value="tabpane" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="list" noResource="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -158,7 +159,7 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="info1Background">
           <Properties>
-            <Property name="name" type="java.lang.String" value="background" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="bg" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -215,7 +216,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="background" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="bg" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[342, 513]"/>
                 </Property>
@@ -254,7 +255,7 @@
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Text Cursor"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="background2" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="bg_2" noResource="true"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel()"/>
@@ -414,18 +415,18 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="title">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="year">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="titleIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Title:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -434,7 +435,7 @@
                 <Component class="javax.swing.JLabel" name="yearIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Year:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -443,7 +444,7 @@
                 <Component class="javax.swing.JLabel" name="ratedIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rated:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -451,13 +452,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="rated">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="runtimeIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Runtime:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -465,13 +466,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="runtime">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="directorIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Director:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -482,13 +483,13 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="writersIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Writers:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -496,13 +497,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="writers">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="actorsIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Actors:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -510,13 +511,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="actors">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="languageIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Language:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -524,13 +525,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="genre">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="countryIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Country:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -538,13 +539,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="language">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="awardsIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Awards:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[70, 16]"/>
                     </Property>
@@ -552,46 +553,46 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="country">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="imdbratingIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="IMDb Rating:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="awards">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="imdbidIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="IMDb ID:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="imdbrating">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="plotIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Plot:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="genreIndicator">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Genre:"/>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="imdbid">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="tmdbLogo">
@@ -600,6 +601,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="new javax.swing.ImageIcon(IMGPATH)" type="code"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="" noResource="true"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="plotScrollPane">
@@ -607,14 +609,14 @@
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="scrollPane" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="textbox" noResource="true"/>
                   </Properties>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="plot">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="label" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="fg" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -629,7 +631,7 @@
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[75, 25]"/>
                 </Property>
@@ -663,7 +665,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="Play"/>
-                    <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -677,7 +679,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="93" green="5e" red="44" type="rgb"/>
         </Property>
-        <Property name="name" type="java.lang.String" value="toolbar" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="bg" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -691,9 +693,7 @@
                   <Component id="scrapeButton" min="-2" pref="66" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="sortButton" min="-2" pref="66" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="editButton" min="-2" pref="60" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                   <Component id="SearchBar" min="-2" pref="476" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="settingsButton" min="-2" pref="87" max="-2" attributes="0"/>
@@ -712,11 +712,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="sortButton" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="editButton" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="scrapeButton" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="SearchBar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="SearchBar" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="refreshButton" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="refreshButton" min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="settingsButton" min="-2" pref="23" max="-2" attributes="0"/>
@@ -733,7 +732,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="43" green="39" red="f9" type="rgb"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="toolbar" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="bg" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 100]"/>
             </Property>
@@ -782,7 +781,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[75, 25]"/>
             </Property>
@@ -816,54 +815,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Settings"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="editButton">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="51" green="3f" red="37" type="rgb"/>
-            </Property>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
-            </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[75, 25]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editButtonMouseClicked"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editButtonMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editButtonMouseExited"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GUI.RoundedPanel()"/>
-          </AuxValues>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="buttonLabel2" alignment="0" pref="60" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="buttonLabel2" alignment="1" pref="23" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="buttonLabel2">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Edit"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -876,7 +828,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[75, 25]"/>
             </Property>
@@ -910,7 +862,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Sort"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -923,7 +875,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[75, 25]"/>
             </Property>
@@ -957,7 +909,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Scrape"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -970,7 +922,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[75, 25]"/>
             </Property>
@@ -987,7 +939,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="refreshLabel" alignment="0" pref="71" max="32767" attributes="0"/>
+                  <Component id="refreshLabel" alignment="1" pref="71" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -1004,7 +956,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
