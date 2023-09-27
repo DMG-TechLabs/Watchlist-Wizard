@@ -349,7 +349,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteButtonMouseClicked"/>
@@ -380,7 +380,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Delete"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -393,7 +393,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelButtonMouseClicked"/>
@@ -424,7 +424,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -437,7 +437,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="button" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="btn" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="applyButtonMouseClicked"/>
@@ -471,7 +471,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Apply"/>
-                <Property name="name" type="java.lang.String" value="buttonLabel" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="btn_fg" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

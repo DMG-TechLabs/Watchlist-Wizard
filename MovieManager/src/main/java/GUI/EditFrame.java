@@ -256,7 +256,7 @@ public class EditFrame extends javax.swing.JFrame {
 
         deleteButton.setBackground(new java.awt.Color(68, 68, 68));
         deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        deleteButton.setName("button"); // NOI18N
+        deleteButton.setName("btn"); // NOI18N
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);
@@ -272,7 +272,7 @@ public class EditFrame extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Delete");
-        jLabel15.setName("buttonLabel"); // NOI18N
+        jLabel15.setName("btn_fg"); // NOI18N
 
         javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
         deleteButton.setLayout(deleteButtonLayout);
@@ -287,7 +287,7 @@ public class EditFrame extends javax.swing.JFrame {
 
         cancelButton.setBackground(new java.awt.Color(68, 68, 68));
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelButton.setName("button"); // NOI18N
+        cancelButton.setName("btn"); // NOI18N
         cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelButtonMouseClicked(evt);
@@ -303,7 +303,7 @@ public class EditFrame extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Cancel");
-        jLabel16.setName("buttonLabel"); // NOI18N
+        jLabel16.setName("btn_fg"); // NOI18N
 
         javax.swing.GroupLayout cancelButtonLayout = new javax.swing.GroupLayout(cancelButton);
         cancelButton.setLayout(cancelButtonLayout);
@@ -318,7 +318,7 @@ public class EditFrame extends javax.swing.JFrame {
 
         applyButton.setBackground(new java.awt.Color(68, 68, 68));
         applyButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        applyButton.setName("button"); // NOI18N
+        applyButton.setName("btn"); // NOI18N
         applyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 applyButtonMouseClicked(evt);
@@ -334,7 +334,7 @@ public class EditFrame extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Apply");
-        jLabel17.setName("buttonLabel"); // NOI18N
+        jLabel17.setName("btn_fg"); // NOI18N
 
         javax.swing.GroupLayout applyButtonLayout = new javax.swing.GroupLayout(applyButton);
         applyButton.setLayout(applyButtonLayout);
