@@ -1024,7 +1024,7 @@ public class Frame extends javax.swing.JFrame {
                 moviesFoundMenu.setVisible(false);                  
             }
                 
-            moviesFoundMenu.show(this, 497, 101);
+            moviesFoundMenu.show(this, 499, 101);
             
             SearchBar.requestFocus();
 	}// GEN-LAST:event_SearchBarKeyReleased
