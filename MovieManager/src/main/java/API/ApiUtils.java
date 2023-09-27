@@ -9,7 +9,6 @@ import Database.Database;
 import Exceptions.MovieNotFoundException;
 import Utils.JsonUtils;
 import Utils.Utils;
-import kdesp73.madb.Condition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +28,7 @@ import java.sql.SQLException;
 public class ApiUtils {
 
     /**
-     * 
+     *
      * @param s
      * @return
      */
@@ -40,7 +39,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param url
      * @return
      * @throws ConnectException
@@ -55,7 +54,7 @@ public class ApiUtils {
             .uri(URI.create(url))
             .method("GET", HttpRequest.BodyPublishers.noBody())
             .build();
-        
+
         response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         API.logger.logging("trace", "Url: "+url);
         API.logger.logging("trace", "Responce: "+response.statusCode());
@@ -63,7 +62,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param title String
      * @param api_key String
      * @param movies_lists String
@@ -95,10 +94,10 @@ public class ApiUtils {
         HttpResponse<String> response;
 
         String url = "";
-        // JSONObject json = 
-        ArrayList<String> total_results_list = new ArrayList<String>(Arrays.asList("total_results")); 
-        ArrayList<String> media_type__list = new ArrayList<String>(Arrays.asList("results", "0", "media_type")); 
-        ArrayList<String> id_list = new ArrayList<String>(Arrays.asList("results", "0", "id")); 
+        // JSONObject json =
+        ArrayList<String> total_results_list = new ArrayList<String>(Arrays.asList("total_results"));
+        ArrayList<String> media_type__list = new ArrayList<String>(Arrays.asList("results", "0", "media_type"));
+        ArrayList<String> id_list = new ArrayList<String>(Arrays.asList("results", "0", "id"));
 
         Dictionary<String, String> table = Utils.JsonToDictionary(movies_lists);
         // JsonUtils.
@@ -133,7 +132,7 @@ public class ApiUtils {
         String genre = table.get("genre_ids").toString();
         String genre_names = "";
         String current_gen;
-        
+
         // for (String gen : genre.split(",")) {
         //     // System.out.println("Genre_id: " + gen);
         //     current_gen = (String) Database.db().SELECT("Categories", "Category", new Condition("TMDB_id", gen));
@@ -174,7 +173,7 @@ public class ApiUtils {
         String writer = "";
         String actors = "";
         String rated = "";
-        
+
         try{
             director = JsonUtils.getMultipleValues(credids, credits_list, "job", "Director", 1).get(0).replaceAll(Pattern.quote("'"), "''");
             writer   = JsonUtils.getMultipleValues(credids, credits_list, "job", "Screenplay", 1).get(0).replaceAll(Pattern.quote("'"), "''");
@@ -211,7 +210,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param str
      * @return
      */
@@ -258,7 +257,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param obj
      * @return
      */
@@ -270,14 +269,14 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param json
      * @return
      */
     public static String find_actors(String json, ArrayList<String> list, String based_on, String equals_based_on, int pos_element) throws Exception {
         ArrayList<String> names = JsonUtils.getMultipleValues(json, list, based_on, equals_based_on, pos_element);
         String namesString = "";
-        
+
         for (String name : names) {
             namesString += name + ",";
         }
@@ -285,7 +284,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param json
      * @return
      */
@@ -314,7 +313,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param dir
      * @return
@@ -340,7 +339,7 @@ public class ApiUtils {
     }
 
     /**
-     * 
+     *
      * @param urlString
      * @return
      * @throws MalformedURLException

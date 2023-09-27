@@ -3,8 +3,6 @@ package API;
 import java.io.IOException;
 import java.net.http.*;
 import java.sql.SQLException;
-import Database.DBMethods;
-import Database.Database;
 import Exceptions.InvalidKeyException;
 import Exceptions.MovieNotFoundException;
 import Files.ImagesUtils;
@@ -20,10 +18,13 @@ import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
-import kdesp73.madb.Condition;
+
+import Database.DBMethods;
+import Database.Database;
 import main.Movie;
 import main.MovieCollection;
-
+import kdesp73.databridge.*;
+import kdesp73.databridge.helpers.QueryBuilder;
 
 
 public class API {
@@ -63,11 +64,11 @@ public class API {
 
         public ArrayList<HashMap<String, String>> getSearchResults(String title){
                 ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-                
+
                 try {
                         String s = search(title);
                         for(String sp:s.split(Pattern.quote("},{"))) list.add(HashMap.class.cast(Utils.JsonToDictionary(sp)));
-                        
+
                 } catch (IOException | InterruptedException e) {
                         // TODO Auto-generated catch block
                         logger.logging("warning", "WARNING: "+e.toString());
@@ -79,7 +80,7 @@ public class API {
         //Methods
         public String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
                 logger.logging("info", "Getting info for: "+title);
-                Dictionary<String, String> info = ApiUtils.infoToMap(title, this.api_key, search(title)); 
+                Dictionary<String, String> info = ApiUtils.infoToMap(title, this.api_key, search(title));
 
                 return "{"
                         + "    \"Title\":\"" +      info.get("Title")
@@ -107,11 +108,30 @@ public class API {
                 //System.out.println(json);
                 for (String title : Collections.list(movies_info.keys())) {
                         Movie movie = movies_info.get(title);
-                        Database.db().UPDATE("Scraped", "API_Done", true, new Condition("Filepath", movie.getDirectory()));
-                        Database.db().DELETE("Movies", "Title", title);
-                        DBMethods.insertMovie(movie);
+
+						QueryBuilder builder = new QueryBuilder();
+
+						String updateQuery = builder.update("Scraped")
+							.set("API_Done", true)
+							.where("Filepath = " + movie.getDirectory())
+							.build();
+
+
+						Database.connection().executeUpdate(updateQuery);
+
+
+
+						String deleteQuery = builder.deleteFrom("Movies")
+							.where("Title = '" + title + "'")
+							.build();
+
+
+						Database.connection().executeUpdate(deleteQuery);
+
+
+						DBMethods.insertMovie(movie);
                         String imdb_id = movie.getImdbID();
-                        if(imdb_id != null) ImagesUtils.imageToDatabase(imdb_id);    
+                        if(imdb_id != null) ImagesUtils.imageToDatabase(imdb_id);
                 }
         }
 
@@ -145,7 +165,7 @@ public class API {
                                 } catch (ConnectException e) {
                                         System.err.println("No Internet Connection");
                                         return m.getMovies();
-                                }     
+                                }
                         }
                 }
                 System.out.println("movies list:"+movies);
