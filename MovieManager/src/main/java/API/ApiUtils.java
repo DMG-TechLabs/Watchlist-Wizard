@@ -168,7 +168,7 @@ public class ApiUtils {
         ArrayList<String> actors_list = new ArrayList<String>(Arrays.asList("cast","0","original_name")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
         ArrayList<String> rated_list = new ArrayList<String>(Arrays.asList("results","0", "release_dates", "0","certification")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
         ArrayList<String> rated_based_on_list = new ArrayList<String>(Arrays.asList("results","0","iso_3166_1")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
-
+        
         String director = "";
         String writer = "";
         String actors = "";

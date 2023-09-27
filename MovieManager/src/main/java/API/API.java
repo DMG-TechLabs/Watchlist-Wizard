@@ -2,6 +2,7 @@ package API;
 
 import java.io.IOException;
 import java.net.http.*;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import Exceptions.InvalidKeyException;
 import Exceptions.MovieNotFoundException;
