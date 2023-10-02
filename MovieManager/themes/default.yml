@@ -3,7 +3,7 @@ name: Default
 # All values below should be in hex form without the '#'
 
 bg: "F0F0F0"
-fg: "FFFFFF"
+fg: "000000"
 
 bg_2: "381863"
 fg_2: "FFFFFF"

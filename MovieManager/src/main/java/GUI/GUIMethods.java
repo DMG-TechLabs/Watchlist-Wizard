@@ -34,6 +34,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import org.imgscalr.Scalr;
 import org.springframework.expression.spel.ast.QualifiedIdentifier;
 
+import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.helpers.QueryBuilder;
 import kdesp73.themeLib.*;
 import java.util.regex.Pattern;
@@ -67,7 +68,8 @@ public class GUIMethods {
     }
 
     public static Theme setupFrame(JFrame frame, Dimension dimension, String title) {
-        Theme theme = null;
+        DatabaseConnection db = Database.connection();
+		Theme theme = null;
 
         frame.setMinimumSize(dimension);
         frame.setLocationRelativeTo(null); // center frame
@@ -81,7 +83,7 @@ public class GUIMethods {
         }
 
         try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
 			rs.next();
             String themeName = rs.getString(1);
             ThemeCollection themes = GUIMethods.getThemes();
@@ -99,18 +101,20 @@ public class GUIMethods {
         }
 
         try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Font").from("Settings").build());
 			rs.next();
             GUIMethods.changeGlobalFont(new Component[]{frame}, 4, rs.getString(1));
         } catch (SQLException ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+		db.close();
         return theme;
     }
 
     public static Theme setupDialog(JDialog dialog, Dimension dimension, String title) {
-        Theme theme = null;
+        DatabaseConnection db = Database.connection();
+		Theme theme = null;
 
         dialog.setMinimumSize(dimension);
         dialog.setLocationRelativeTo(null); // center frame
@@ -124,7 +128,7 @@ public class GUIMethods {
         }
 
         try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Theme").from("Settings").build());
 			rs.next();
             String themeName = rs.getString(1);
             ThemeCollection themes = GUIMethods.getThemes();
@@ -136,13 +140,14 @@ public class GUIMethods {
         }
 
         try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Font").from("Settings").build());
 			rs.next();
             GUIMethods.changeGlobalFont(new Component[]{dialog}, 4, rs.getString(1));
 		} catch (SQLException ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+		db.close();
         return theme;
     }
 

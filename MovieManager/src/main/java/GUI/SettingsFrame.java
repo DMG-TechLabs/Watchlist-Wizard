@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
+import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.helpers.QueryBuilder;
 import kdesp73.themeLib.*;
 import main.MovieCollection;
@@ -46,6 +47,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	static DefaultListModel lm = new DefaultListModel();
 
 	public SettingsFrame() throws SQLException {
+		DatabaseConnection db = Database.connection();
+
 		// Frame setup
 		initComponents();
 		this.setResizable(false);
@@ -62,20 +65,24 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		}
 
 		try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
 			rs.next();
 			mediaPlayerPath.setText(rs.getString(1));
 
-			rs = Database.connection().executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+			rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
 			rs.next();
 			fileDirectory.setText(rs.getString(1));
 
 		} catch (SQLException ex) {
 			Logger.getLogger(SettingsFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
+		db.close();
 	}
 
 	public SettingsFrame(Frame f, EditFrame ef) {
+		DatabaseConnection db = Database.connection();
+
 		// Setup Frame
 		initComponents();
 		this.setResizable(false);
@@ -96,11 +103,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		refreshThemeCombo();
 		themesList.setSelectedItem(theme.getName());
 		try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
 			rs.next();
 			mediaPlayerPath.setText(rs.getString(1));
 
-			rs = Database.connection().executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+			rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
 			rs.next();
 			fileDirectory.setText(rs.getString(1));
 
@@ -110,7 +117,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 
 		try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Font").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Font").from("Settings").build());
 			rs.next();
 			fontsList.setSelectedItem(rs.getString(1));
 		} catch (SQLException ex) {
@@ -121,6 +128,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		issuesLinkLabel.setFont(font.deriveFont(attributes));
+
+		db.close();
 	}
 
 	/**
@@ -568,16 +577,20 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_removebtn2MouseEntered
 
 	private void removebtn2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_removebtn2MouseClicked
+		DatabaseConnection db = Database.connection();
+
 		int i = extensionsList.getSelectedIndex();
 		String ext = extensionsList.getSelectedValue();
 
 		lm.remove(i);
 
-		Database.connection().executeUpdate(new QueryBuilder().deleteFrom("Extensions").where("Extension = '" + ext + "'").build());
+		db.executeUpdate(new QueryBuilder().deleteFrom("Extensions").where("Extension = '" + ext + "'").build());
 
 		f.movies.removeExtension(ext);
 		f.movies.refreshMovies();
 		f.refreshMoviesList();
+
+		db.close();
 	}// GEN-LAST:event_removebtn2MouseClicked
 
 	private void addbtn2MouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_addbtn2MouseExited
@@ -589,6 +602,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_addbtn2MouseEntered
 
 	private void addbtn2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_addbtn2MouseClicked
+		DatabaseConnection db = Database.connection();
+
 		String ext = extensionField.getText().trim();
 
 		if (ext == null || ext.isBlank() || ext.isEmpty()) {
@@ -597,7 +612,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 		lm.addElement(ext);
 
-		Database.connection().executeUpdate(new QueryBuilder().insertInto("Extensions").columns("Extension").values(ext).build());
+		db.executeUpdate(new QueryBuilder().insertInto("Extensions").columns("Extension").values(ext).build());
 
 		f.movies.addExtension(ext);
 		f.movies.setDir(f.dir);
@@ -605,6 +620,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		f.movies.refreshMovies();
 		f.refreshMoviesList();
 		extensionField.setText("");
+
+		db.close();
 	}// GEN-LAST:event_addbtn2MouseClicked
 
 	private void changeMPbtnMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_changeMPbtnMouseExited
@@ -616,6 +633,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_changeMPbtnMouseEntered
 
 	private void changeMPbtnMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_changeMPbtnMouseClicked
+		DatabaseConnection db = Database.connection();
+
 		String dir = "";
 		int UserChoice = jFileChooser2.showOpenDialog(SettingsFrame.this);
 
@@ -629,7 +648,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
 			mediaPlayerPath.setText("No File Selected");
 		}
 
-		Database.connection().executeUpdate(new QueryBuilder().update("Settings").set("Media_Player", dir).where("Αναγνωριστικό = 1").build());
+		db.executeUpdate(new QueryBuilder().update("Settings").set("Media_Player", dir).where("Αναγνωριστικό = 1").build());
+		db.close();
 	}// GEN-LAST:event_changeMPbtnMouseClicked
 
 	private void changeFDbtnMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_changeFDbtnMouseExited
@@ -681,28 +701,35 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_extensionFieldKeyPressed
 
 	private void fontsListActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_fontsListActionPerformed
+		DatabaseConnection db = Database.connection();
+
 		String s = fontsList.getSelectedItem().toString();
 		GUIMethods.changeGlobalFont(new Component[] { this, f }, 4, s);
 
-		Database.connection().executeUpdate(
+		db.executeUpdate(
 				new QueryBuilder().update("Settings").set("Font", s).where("Αναγνωριστικό = 1").build());
 
+		db.close();
 	}// GEN-LAST:event_fontsListActionPerformed
 
 	private void mediaPlayerPathKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_mediaPlayerPathKeyPressed
+		DatabaseConnection db = Database.connection();
 		if (evt.getKeyCode() == 10) {
 			String dir = mediaPlayerPath.getText();
 
-			Database.connection().executeUpdate(
+			db.executeUpdate(
 				new QueryBuilder().update("Settings").set("Media_Player", dir).where("Αναγνωριστικό = 1").build());
 
 
 			mediaPlayerPath.setText(dir);
 			this.getRootPane().requestFocus();
 		}
+		db.close();
 	}// GEN-LAST:event_mediaPlayerPathKeyPressed
 
 	private void themesListActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_themesListActionPerformed
+		DatabaseConnection db = Database.connection();
+
 		String themeName = themesList.getSelectedItem().toString();
 		ThemeCollection themes = new ThemeCollection();
 		themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/themes/"));
@@ -710,7 +737,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 		System.out.println("Selected Theme: " + themeName);
 
-		Database.connection().executeUpdate(
+		db.executeUpdate(
 				new QueryBuilder().update("Settings").set("Theme", themeName).where("Αναγνωριστικό = 1").build());
 
 
@@ -720,13 +747,17 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		ThemeCollection.applyTheme(this, selectedTheme);
 		ThemeCollection.applyTheme(f, selectedTheme);
 		ThemeCollection.applyTheme(ef, selectedTheme);
+
+		db.close();
 	}// GEN-LAST:event_themesListActionPerformed
 
 	private void fileDirectoryKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_fileDirectoryKeyPressed
+		DatabaseConnection db = Database.connection();
+
 		if (evt.getKeyCode() == 10) {
 			String dir = fileDirectory.getText();
 
-			Database.connection().executeUpdate(
+			db.executeUpdate(
 				new QueryBuilder().update("Settings").set("Directory", dir).where("Αναγνωριστικό = 1").build());
 
 
@@ -734,6 +765,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 			fileDirectory.setText(dir);
 			this.getRootPane().requestFocus();
 		}
+		db.close();
 	}// GEN-LAST:event_fileDirectoryKeyPressed
 
 	public Theme getTheme() {
