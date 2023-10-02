@@ -227,11 +227,6 @@ public final class SettingsFrame extends javax.swing.JFrame {
         jLabel6.setName("fg"); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(42, 16));
 
-        fileDirectories.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         fileDirectories.setName("textbox"); // NOI18N
         jScrollPane1.setViewportView(fileDirectories);
 
@@ -509,10 +504,8 @@ public final class SettingsFrame extends javax.swing.JFrame {
                             .addGroup(settingsPanelLayout.createSequentialGroup()
                                 .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(settingsPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(settingsPanelLayout.createSequentialGroup()
@@ -615,7 +608,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
         fileDirLm.remove(i);
         
-        Database.connection().executeUpdate(new QueryBuilder().deleteFrom("Directories").where("Directory = '" + fd + "'").build());
+        //Database.connection().executeUpdate(new QueryBuilder().deleteFrom("Directories").where("Directory = '" + fd + "'").build());
 
         //f.movies.removeExtension(fd);     Αντι για removeExtension(...) πρεπει να μπει removeDirectory(...)
         f.movies.refreshMovies();
