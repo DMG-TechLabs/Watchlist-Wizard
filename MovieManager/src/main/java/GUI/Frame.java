@@ -965,9 +965,8 @@ public class Frame extends javax.swing.JFrame {
 		System.out.println("File Path: " + FilePath);
 
 		ProcessBuilder pb = new ProcessBuilder(MediaPlayerPath, FilePath);
-               	Process p = null;
 		try {
-                    p = pb.start();
+                    pb.start();
                     System.out.println("Proccess started");
                     this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
                     this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
