@@ -3,7 +3,6 @@ package GUI;
 import Exceptions.DatabaseStringOverflowException;
 import Database.Database;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -11,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.themeLib.*;
 import main.MovieCollection;
 
@@ -560,7 +561,9 @@ public class EditFrame extends javax.swing.JFrame {
 		cancelButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_cancelButtonMouseExited
 
-	private void applyButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseClicked
+	private void applyButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseClicked	
+		DatabaseConnection db = Database.connection();
+
 		System.out.println(index);
 		String title = titleField.getText();
 		String director = directorField.getText();
@@ -600,11 +603,12 @@ public class EditFrame extends javax.swing.JFrame {
 		String query1 = "UPDATE Filepaths SET Title = \'" + titleField.getText() + "\' WHERE Title = \'"
 				+ movies.getMovies().get(index).getTitle() + "\'";
 
-		Database.connection().executeUpdate(query);
-		Database.connection().executeUpdate(query1);
+		db.executeUpdate(query);
+		db.executeUpdate(query1);
 
 		f.refreshMoviesList();
 
+		db.close();
 		this.setVisible(false);
 	}// GEN-LAST:event_applyButtonMouseClicked
 

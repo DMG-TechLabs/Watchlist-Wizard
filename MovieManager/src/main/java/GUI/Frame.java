@@ -40,6 +40,7 @@ import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.helpers.QueryBuilder;
 
 import kdesp73.themeLib.JsonString;
@@ -74,8 +75,9 @@ public class Frame extends javax.swing.JFrame {
 		moviesList.setFixedCellHeight(CELL_HEIGHT);
 		moviesList.setFocusable(false);
 
+		DatabaseConnection db = Database.connection();
 		try {
-			ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+			ResultSet rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
 			rs.next();
 			Frame.dir = rs.getString(1);
 		} catch (SQLException ex) {
@@ -105,6 +107,8 @@ public class Frame extends javax.swing.JFrame {
 
 		logoLabel.setIcon(new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")
 				+ "/assets/ww-logo-png-100-empty.png"));
+
+		db.close();
 	}
 
 	/**
@@ -250,84 +254,84 @@ public class Frame extends javax.swing.JFrame {
         infoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         infoPanel.setName("bg_2"); // NOI18N
 
-        title.setName("fg"); // NOI18N
+        title.setName("fg_2"); // NOI18N
 
-        year.setName("fg"); // NOI18N
+        year.setName("fg_2"); // NOI18N
 
         titleIndicator.setText("Title:");
-        titleIndicator.setName("fg"); // NOI18N
+        titleIndicator.setName("fg_2"); // NOI18N
         titleIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
         yearIndicator.setText("Year:");
-        yearIndicator.setName("fg"); // NOI18N
+        yearIndicator.setName("fg_2"); // NOI18N
         yearIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
         ratedIndicator.setText("Rated:");
-        ratedIndicator.setName("fg"); // NOI18N
+        ratedIndicator.setName("fg_2"); // NOI18N
         ratedIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        rated.setName("fg"); // NOI18N
+        rated.setName("fg_2"); // NOI18N
 
         runtimeIndicator.setText("Runtime:");
-        runtimeIndicator.setName("fg"); // NOI18N
+        runtimeIndicator.setName("fg_2"); // NOI18N
         runtimeIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        runtime.setName("fg"); // NOI18N
+        runtime.setName("fg_2"); // NOI18N
 
         directorIndicator.setText("Director:");
-        directorIndicator.setName("fg"); // NOI18N
+        directorIndicator.setName("fg_2"); // NOI18N
         directorIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
         director.setBackground(java.awt.Color.white);
-        director.setName("fg"); // NOI18N
+        director.setName("fg_2"); // NOI18N
 
         writersIndicator.setText("Writers:");
-        writersIndicator.setName("fg"); // NOI18N
+        writersIndicator.setName("fg_2"); // NOI18N
         writersIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        writers.setName("fg"); // NOI18N
+        writers.setName("fg_2"); // NOI18N
 
         actorsIndicator.setText("Actors:");
-        actorsIndicator.setName("fg"); // NOI18N
+        actorsIndicator.setName("fg_2"); // NOI18N
         actorsIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        actors.setName("fg"); // NOI18N
+        actors.setName("fg_2"); // NOI18N
 
         languageIndicator.setText("Language:");
-        languageIndicator.setName("fg"); // NOI18N
+        languageIndicator.setName("fg_2"); // NOI18N
         languageIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        genre.setName("fg"); // NOI18N
+        genre.setName("fg_2"); // NOI18N
 
         countryIndicator.setText("Country:");
-        countryIndicator.setName("fg"); // NOI18N
+        countryIndicator.setName("fg_2"); // NOI18N
         countryIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        language.setName("fg"); // NOI18N
+        language.setName("fg_2"); // NOI18N
 
         awardsIndicator.setText("Awards:");
-        awardsIndicator.setName("fg"); // NOI18N
+        awardsIndicator.setName("fg_2"); // NOI18N
         awardsIndicator.setPreferredSize(new java.awt.Dimension(70, 16));
 
-        country.setName("fg"); // NOI18N
+        country.setName("fg_2"); // NOI18N
 
         imdbratingIndicator.setText("IMDb Rating:");
-        imdbratingIndicator.setName("fg"); // NOI18N
+        imdbratingIndicator.setName("fg_2"); // NOI18N
 
-        awards.setName("fg"); // NOI18N
+        awards.setName("fg_2"); // NOI18N
 
         imdbidIndicator.setText("IMDb ID:");
-        imdbidIndicator.setName("fg"); // NOI18N
+        imdbidIndicator.setName("fg_2"); // NOI18N
 
-        imdbrating.setName("fg"); // NOI18N
+        imdbrating.setName("fg_2"); // NOI18N
 
         plotIndicator.setText("Plot:");
-        plotIndicator.setName("fg"); // NOI18N
+        plotIndicator.setName("fg_2"); // NOI18N
 
         genreIndicator.setText("Genre:");
-        genreIndicator.setName("fg"); // NOI18N
+        genreIndicator.setName("fg_2"); // NOI18N
 
-        imdbid.setName("fg"); // NOI18N
+        imdbid.setName("fg_2"); // NOI18N
 
         tmdbLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         String IMGPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/tmdbLogo.png";
@@ -779,7 +783,7 @@ public class Frame extends javax.swing.JFrame {
 
 		moviesList.setModel(listModel);
 	}
-        
+
          public void optionsRightClick(){
             if (ef != null) ef.dispose();
 
@@ -798,18 +802,18 @@ public class Frame extends javax.swing.JFrame {
 
             ef.setVisible(true);
         }
- 
+
 	private void moviesListMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_moviesListMouseClicked
 		if (evt.getButton() == 1) { // Left Click
 			if (!sorted) showInfo(moviesList, movies.getMovies());
 			else showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
-			
+
 		} else if (evt.getButton() == 3) { // Right Click
                     JPopupMenu options = new JPopupMenu();
                     JMenuItem edit = new JMenuItem("Edit");
                     JMenuItem delete = new JMenuItem("Delete");
                     JMenuItem scrape = new JMenuItem("Scrape");
-                    
+
                     ActionListener menuListener = new ActionListener() {
                         String selectedItem;
                         public void actionPerformed(ActionEvent event) {
@@ -818,21 +822,21 @@ public class Frame extends javax.swing.JFrame {
                                 System.out.println("Edit option selected");
                                 optionsRightClick();
                             } else if(selectedItem == "Delete"){
-                                System.out.println("Delete option selected");                                  
+                                System.out.println("Delete option selected");
                             } else if(selectedItem == "Scrape"){
-                                System.out.println("Scrape option selected");                               
+                                System.out.println("Scrape option selected");
                             }
                         }
                     };
-                    
+
                     edit.addActionListener(menuListener);
                     options.add(edit);
-                    
+
                     delete.addActionListener(menuListener);
                     options.add(delete);
-                    
+
                     scrape.addActionListener(menuListener);
-                    options.add(scrape);                    
+                    options.add(scrape);
 
                     for(int i = 0; i < moviesList.getModel().getSize(); i++){
                         System.out.println(i);
@@ -941,6 +945,7 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_playButtonMouseEntered
 
 	private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseClicked
+		DatabaseConnection db = Database.connection();
 		ResultSet rs = null;
 		if (moviesList.getSelectedIndex() < 0) {
 			throw new NoMovieSelectedException("No movie Selected");
@@ -948,7 +953,7 @@ public class Frame extends javax.swing.JFrame {
 
 		String MediaPlayerPath = null;
 		try {
-			rs = Database.connection().executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
+			rs = db.executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
 			rs.next();
 			MediaPlayerPath = rs.getString(1);
 		} catch (SQLException ex) {
@@ -969,11 +974,12 @@ public class Frame extends javax.swing.JFrame {
 		try {
                     p = pb.start();
                     System.out.println("Proccess started");
-                    this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-                    this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+                    this.setDefaultCloseOperation(Frame.DISPOSE_ON_CLOSE);
+                    this.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
 		} catch (IOException ex) {
                     Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		db.close();
 	}// GEN-LAST:event_playButtonMouseClicked
 
 	private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_SearchBarKeyReleased
@@ -989,7 +995,7 @@ public class Frame extends javax.swing.JFrame {
                         showInfo(i, this.movies.getMovies());
                         this.getRootPane().requestFocus();
                     }
-                }                
+                }
             };
 
             for(int i = 0; i < moviesList.getModel().getSize(); i++){
@@ -1003,7 +1009,7 @@ public class Frame extends javax.swing.JFrame {
 
             if(evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP){
                 if(!SearchBar.getText().isBlank() && !SearchBar.getText().isEmpty()){
-                    SearchBar.requestFocus();           
+                    SearchBar.requestFocus();
                     for(int i = 0; i < moviesFoundList.size(); i++){
                         if(moviesFoundList.size() < 0) break;
                         for(int j = 0; j < moviesList.getModel().getSize(); j++){
@@ -1018,14 +1024,14 @@ public class Frame extends javax.swing.JFrame {
                 return;
             }
 
-            if(SearchBar.getText().isBlank() || SearchBar.getText().isEmpty()){                
-                System.out.println(SearchBar.getText());  
+            if(SearchBar.getText().isBlank() || SearchBar.getText().isEmpty()){
+                System.out.println(SearchBar.getText());
                 moviesFoundMenu.removeAll();
-                moviesFoundMenu.setVisible(false);                  
+                moviesFoundMenu.setVisible(false);
             }
-                
+
             moviesFoundMenu.show(this, 499, 101);
-            
+
             SearchBar.requestFocus();
 	}// GEN-LAST:event_SearchBarKeyReleased
 
