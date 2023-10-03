@@ -157,7 +157,7 @@ public class EditFrame extends javax.swing.JFrame {
         imdbratingField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         imdbidField = new javax.swing.JTextField();
-        deleteButton = new RoundedPanel();
+        // deleteButton = new RoundedPanel();
         jLabel15 = new javax.swing.JLabel();
         cancelButton = new RoundedPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -254,36 +254,36 @@ public class EditFrame extends javax.swing.JFrame {
 
         imdbidField.setName("textbox"); // NOI18N
 
-        deleteButton.setBackground(new java.awt.Color(68, 68, 68));
-        deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        deleteButton.setName("btn"); // NOI18N
-        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                deleteButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                deleteButtonMouseExited(evt);
-            }
-        });
-
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Delete");
-        jLabel15.setName("btn_fg"); // NOI18N
-
-        javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
-        deleteButton.setLayout(deleteButtonLayout);
-        deleteButtonLayout.setHorizontalGroup(
-            deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-        );
-        deleteButtonLayout.setVerticalGroup(
-            deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-        );
+        // deleteButton.setBackground(new java.awt.Color(68, 68, 68));
+        // deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        // deleteButton.setName("btn"); // NOI18N
+        // deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        //     public void mouseClicked(java.awt.event.MouseEvent evt) {
+        //         deleteButtonMouseClicked(evt);
+        //     }
+        //     public void mouseEntered(java.awt.event.MouseEvent evt) {
+        //         deleteButtonMouseEntered(evt);
+        //     }
+        //     public void mouseExited(java.awt.event.MouseEvent evt) {
+        //         deleteButtonMouseExited(evt);
+        //     }
+        // });
+        //
+        // jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        // jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        // jLabel15.setText("Delete");
+        // jLabel15.setName("btn_fg"); // NOI18N
+        //
+        // javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
+        // deleteButton.setLayout(deleteButtonLayout);
+        // deleteButtonLayout.setHorizontalGroup(
+        //     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        //     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+        // );
+        // deleteButtonLayout.setVerticalGroup(
+        //     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        //     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+        // );
 
         cancelButton.setBackground(new java.awt.Color(68, 68, 68));
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -388,7 +388,7 @@ public class EditFrame extends javax.swing.JFrame {
                                 .addComponent(directorField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout.createSequentialGroup()
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        // .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -452,7 +452,7 @@ public class EditFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    // .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -561,7 +561,7 @@ public class EditFrame extends javax.swing.JFrame {
 		cancelButton.setBackground(theme.getBtn());
 	}// GEN-LAST:event_cancelButtonMouseExited
 
-	private void applyButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseClicked	
+	private void applyButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseClicked
 		DatabaseConnection db = Database.connection();
 
 		System.out.println(index);
