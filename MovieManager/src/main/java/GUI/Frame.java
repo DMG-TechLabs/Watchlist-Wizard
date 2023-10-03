@@ -784,7 +784,23 @@ public class Frame extends javax.swing.JFrame {
 		moviesList.setModel(listModel);
 	}
 
-	public void optionsRightClick(){
+	private void deleteMovieFromDB() {
+		String imdbid = this.movies.getMovies().get(moviesList.getSelectedIndex()).getImdbID();
+		try {
+			this.movies.deleteMovie(this.movies.getMovies().get(moviesList.getSelectedIndex()));
+		} catch (SQLException ex) {
+			Logger.getLogger(EditFrame.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		this.refreshMoviesList();
+		JOptionPane.showMessageDialog(this, "Movie deleted successfully only from our database");
+		// GUIMethods.dialog("Movie deleted successfully only from our database", "Movie
+		// deleted", "Success");
+
+		this.clearInfo();
+
+	}
+
+	public void editAction(){
 		if (ef != null) ef.dispose();
 
 		int index = moviesList.getSelectedIndex();
@@ -803,6 +819,23 @@ public class Frame extends javax.swing.JFrame {
 		ef.setVisible(true);
 	}
 
+	public void deleteAction(){
+		int choice = JOptionPane.showConfirmDialog(null, "Delete movie? (Only from DB)", "Delete",
+				JOptionPane.WARNING_MESSAGE);
+
+		// System.out.println(choice);
+
+		switch (choice) {
+			case 0: // Confirm
+				deleteMovieFromDB();
+				break;
+			case 2: // Cancel
+
+				break;
+		}
+
+	}
+
 	private void moviesListMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_moviesListMouseClicked
 		if (evt.getButton() == 1) { // Left Click
 			if (!sorted) showInfo(moviesList, movies.getMovies());
@@ -812,7 +845,7 @@ public class Frame extends javax.swing.JFrame {
 			JPopupMenu options = new JPopupMenu();
 			JMenuItem edit = new JMenuItem("Edit");
 			JMenuItem delete = new JMenuItem("Delete");
-			JMenuItem scrape = new JMenuItem("Scrape");
+			// JMenuItem scrape = new JMenuItem("Scrape");
 
 			ActionListener menuListener = new ActionListener() {
 				String selectedItem;
@@ -820,9 +853,10 @@ public class Frame extends javax.swing.JFrame {
 					selectedItem = event.getActionCommand();
 					if(selectedItem == "Edit"){
 						System.out.println("Edit option selected");
-						optionsRightClick();
+						editAction();
 					} else if(selectedItem == "Delete"){
 						System.out.println("Delete option selected");
+						deleteAction();
 					} else if(selectedItem == "Scrape"){
 						System.out.println("Scrape option selected");
 					}
@@ -835,8 +869,8 @@ public class Frame extends javax.swing.JFrame {
 			delete.addActionListener(menuListener);
 			options.add(delete);
 
-			scrape.addActionListener(menuListener);
-			options.add(scrape);
+			// scrape.addActionListener(menuListener);
+			// options.add(scrape);
 
 			if(moviesList.getSelectedIndex() >= 0)
 				options.show(evt.getComponent(), evt.getX(), evt.getY());
