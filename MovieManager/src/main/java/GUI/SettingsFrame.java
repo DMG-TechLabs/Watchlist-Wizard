@@ -12,8 +12,6 @@ import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.junit.runner.Result;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +33,6 @@ import main.MovieCollection;
  * @author thana
  */
 public final class SettingsFrame extends javax.swing.JFrame {
-
 	static final String TITLE = "Settings";
 	Theme theme;
 
@@ -61,11 +58,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 		extensionsList.setModel(extFieldLm);
 		ArrayList<String> exts = movies.getExts();
-		for (int i = 0; i < exts.size(); i++) {
+		for(int i = 0; i < exts.size(); i++){
 			extFieldLm.add(i, exts.get(i));
 		}
                 
-                fileDirectories.setModel(fileDirLm);
+        fileDirectories.setModel(fileDirLm);
 
 		try {
 			ResultSet rs = db.executeQuery(new QueryBuilder().select("Media_Player").from("Settings").build());
@@ -99,11 +96,11 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 		extensionsList.setModel(extFieldLm);
 		ArrayList<String> exts = mc.getExts();
-		for (int i = 0; i < exts.size(); i++) {
+		for(int i = 0; i < exts.size(); i++){
 			extFieldLm.add(i, exts.get(i));
 		}
                 
-                fileDirectories.setModel(fileDirLm);
+        fileDirectories.setModel(fileDirLm);
 
 		refreshThemeCombo();
 		themesList.setSelectedItem(theme.getName());
@@ -697,7 +694,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 		String ext = extensionField.getText().trim();
 
-		if (ext == null || ext.isBlank() || ext.isEmpty()) {
+		if(ext == null || ext.isBlank() || ext.isEmpty()){
 			return;
 		}
 
@@ -729,13 +726,13 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		String dir = "";
 		int UserChoice = jFileChooser2.showOpenDialog(SettingsFrame.this);
 
-		if (UserChoice == JFileChooser.APPROVE_OPTION) {
+		if(UserChoice == JFileChooser.APPROVE_OPTION){
 			File SelectedFile = jFileChooser2.getSelectedFile();
 			dir = SelectedFile.getPath();
 			mediaPlayerPath.setText(dir);
 		}
 
-		if (UserChoice == JFileChooser.CANCEL_OPTION) {
+		if(UserChoice == JFileChooser.CANCEL_OPTION){
 			mediaPlayerPath.setText("No File Selected");
 		}
 
@@ -755,13 +752,13 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		String dir = "";
 		int UserChoice = jFileChooser1.showOpenDialog(SettingsFrame.this);
 
-		if (UserChoice == JFileChooser.APPROVE_OPTION) {
+		if(UserChoice == JFileChooser.APPROVE_OPTION){
 			File SelectedFile = jFileChooser1.getSelectedFile();
 			dir = SelectedFile.getPath();
 			fileDirLm.addElement(dir);
 		}
 
-		if (UserChoice == JFileChooser.CANCEL_OPTION) {
+		if(UserChoice == JFileChooser.CANCEL_OPTION){
 			//fileDirectory.setText("No File Selected");
 		}
 
@@ -786,7 +783,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	private void extensionFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_extensionFieldKeyPressed
 		String ext = extensionField.getText().trim();
 
-		if (evt.getKeyCode() == 10) {
+		if(evt.getKeyCode() == 10){
 			extFieldLm.addElement(ext);
 		}
 	}// GEN-LAST:event_extensionFieldKeyPressed
@@ -805,7 +802,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 	private void mediaPlayerPathKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_mediaPlayerPathKeyPressed
 		DatabaseConnection db = Database.connection();
-		if (evt.getKeyCode() == 10) {
+		if(evt.getKeyCode() == 10){
 			String dir = mediaPlayerPath.getText();
 
 			db.executeUpdate(
@@ -841,20 +838,6 @@ public final class SettingsFrame extends javax.swing.JFrame {
 
 		db.close();
 	}// GEN-LAST:event_themesListActionPerformed
-        
-//        public void getFileDir(java.awt.event.KeyEvent evt){
-//            if (evt.getKeyCode() == 10) {
-//                String dir = fileDirectory.getText();
-//
-//                Database.connection().executeUpdate(
-//                        new QueryBuilder().update("Settings").set("Directory", dir).where("Αναγνωριστικό = 1").build());
-//
-//
-//
-//                fileDirectory.setText(dir);
-//                this.getRootPane().requestFocus();
-//            }
-//        }
 
 	public Theme getTheme() {
 		return theme;
@@ -871,7 +854,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		ThemeCollection themes = new ThemeCollection();
 		themes.loadThemes(new File(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/themes/"));
 
-		for (Theme theme : themes.getThemes()) {
+		for(Theme theme : themes.getThemes()){
 			themeNames.add(theme.getName());
 		}
 
