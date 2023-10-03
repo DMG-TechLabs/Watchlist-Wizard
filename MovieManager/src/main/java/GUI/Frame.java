@@ -52,8 +52,10 @@ import main.MovieCollection;
 
 public class Frame extends javax.swing.JFrame {
 
-	static final String TITLE = "Movie-Manager";
+	static final String TITLE = "Watchlist Wizard";
 	Theme theme = null;
+    ImageIcon img = new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")
+					+ "/assets/ww-logo-png-100-empty.png");
 
 	static String dir = "$HOME";
 	MovieCollection movies;
@@ -105,6 +107,7 @@ public class Frame extends javax.swing.JFrame {
 			}
 		});
 
+        this.setIconImage(img.getImage());
 		logoLabel.setIcon(new ImageIcon(System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")
 					+ "/assets/ww-logo-png-100-empty.png"));
 
