@@ -59,7 +59,7 @@ public class MovieCollection {
     //                "yuv"
     //        };
 
-    private String dir;
+    private ArrayList<String> dir;
     private ArrayList<Movie> movies = new ArrayList<>();
     //        private FilesList filesList;
 
@@ -80,8 +80,9 @@ public class MovieCollection {
 
         try {
 			rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
-			rs.next();
-			this.dir = rs.getString(1);
+            while (rs.next()) {this.dir.add(rs.getString("Extension"));}
+			// rs.next();
+			// this.dir = rs.getString(1);
         } catch (SQLException ex) {
             Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +103,6 @@ public class MovieCollection {
 		exts.clear();
 		ResultSet rs = db
 				.executeQuery(new QueryBuilder().select("Extension").from("Extensions").build());
-        ResultSet rs2;
 		try {
 			while (rs.next()) {
 				this.exts.add(rs.getString("Extension"));
@@ -112,8 +112,20 @@ public class MovieCollection {
 			e.printStackTrace();
 		}
 
-
         movies.clear();
+
+        if(dir != null && !dir.isEmpty()){
+            for (String c_dir : dir) {
+                movies = refreshMoviesInDir(c_dir, this.exts, movies, db);
+            }
+        }
+
+		db.close();
+    }
+
+    private ArrayList<Movie> refreshMoviesInDir(String dir, ArrayList<String> exts, ArrayList<Movie> movies, DatabaseConnection db){
+        ResultSet rs;
+        ResultSet rs2;
         Movie m = null;
         FilesList filesList = new FilesList(dir, exts);
         // FindMultipleFiles filesList = new FindMultipleFiles(dir, exts);
@@ -185,7 +197,7 @@ public class MovieCollection {
             }
         }
 
-		db.close();
+        return movies;
     }
 
     public void load() throws SQLException {
@@ -300,11 +312,11 @@ public class MovieCollection {
         this.movies = movies;
     }
 
-    public String getDir() {
+    public ArrayList<String> getDir() {
         return dir;
     }
 
-    public void setDir(String dir) {
+    public void setDir(ArrayList<String> dir) {
         this.dir = dir;
     }
 

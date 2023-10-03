@@ -47,15 +47,17 @@ public class Frame extends javax.swing.JFrame {
 	static final String TITLE = "Movie-Manager";
 	Theme theme = null;
 
-	static String dir = "$HOME";
+	// static String dir = "$HOME";
+	static ArrayList<String> dir = new ArrayList<String>();
+	// dir.add("$HOME");
 	MovieCollection movies;
 	EditFrame ef = new EditFrame();
 	SettingsFrame sf;
 	boolean sorted = false;
-	static FilesList fl;
 	static final int CELL_HEIGHT = 40;
 
 	public Frame() {
+		Frame.dir.add("$HOME");
 		this.movies = new MovieCollection();
 		// Frame setup
 		initComponents();
@@ -71,13 +73,13 @@ public class Frame extends javax.swing.JFrame {
 		try {
 			ResultSet rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
 			rs.next();
-			Frame.dir = rs.getString(1);
+			Frame.dir.set(0, rs.getString(1));
+
+			while (rs.next()) {Frame.dir.add(rs.getString("Extension"));}
+
 		} catch (SQLException ex) {
 			Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-		if(dir != null)
-			fl = new FilesList(dir);
 
 		SearchBar.addFocusListener(new FocusListener() {
 			@Override
