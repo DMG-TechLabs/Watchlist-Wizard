@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
-import javax.management.Query;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
@@ -31,21 +30,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import API.API;
 import Database.Database;
-import Exceptions.NoMediaPlayerDirectoryException;
 import Exceptions.NoMovieSelectedException;
 import Files.FilesList;
 import Files.ImagesUtils;
 
-import java.awt.Container;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.helpers.QueryBuilder;
 
-import kdesp73.themeLib.JsonString;
 import kdesp73.themeLib.Theme;
-import kdesp73.themeLib.ThemeCollection;
 import main.Movie;
 import main.MovieCollection;
 
@@ -885,18 +878,20 @@ public class Frame extends javax.swing.JFrame {
 	}// GEN-LAST:event_moviesListMouseClicked
 
 	private void settingsButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseClicked
-		if (sf != null) {
-			sf.dispose();
-		}
+		if(evt.getButton() == 1){
+			if (sf != null) {
+				sf.dispose();
+			}
 
-		sf = new SettingsFrame(this, ef);
+			sf = new SettingsFrame(this, ef);
 
-		ImageIcon img = new ImageIcon(
-				System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/gear-solid.png");
+			ImageIcon img = new ImageIcon(
+					System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/") + "/assets/gear-solid.png");
 
-		sf.setIconImage(img.getImage());
+			sf.setIconImage(img.getImage());
 
-		sf.setVisible(true);
+			sf.setVisible(true); 
+        }            
 	}// GEN-LAST:event_settingsButtonMouseClicked
 
 	private void settingsButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseEntered
