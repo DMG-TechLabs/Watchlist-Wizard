@@ -5,86 +5,67 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import java.util.logging.Formatter;
 import java.util.logging.LogManager;
 import java.util.logging.FileHandler;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Filter;
-import java.util.logging.LogRecord;
-import java.util.logging.StreamHandler;
+import java.util.logging.ConsoleHandler;
+// import java.util.logging.Filter;
+// import java.util.logging.LogRecord;
+// import java.util.logging.StreamHandler;
 
 public class Logs {
+    private static boolean consoleLog = true;
+    private static int max_lines = 10000;
+    private static int max_files = 3;
+    private static Level default_level = Level.FINE; 
+    private static String default_file = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")+ "/data/logs/logs";
 
-    // private Logger logger = Logger.getLogger(Logs.class.getName());
-    public Logger logger = null;
+    public static Logger createLoger(String logger_name){
+        return createLoger(logger_name, default_level, default_file+"_"+logger_name);
+    }
 
-    public Logs(String logger_name, String log_file, int max_lines, int max_files) {
-        logger = Logger.getLogger(logger_name);
-        try {
-            LogManager.getLogManager().readConfiguration(new FileInputStream("mylogging.properties"));
-        } catch (SecurityException | IOException e1) {
-            e1.printStackTrace();
+    public static Logger createLoger(String logger_name, Level level){
+        return createLoger(logger_name, level, null);
+    }
+
+    public static Logger createLoger(String logger_name, Level level, String log_file){
+        Logger logger = Logger.getLogger(logger_name);
+        // try {
+        //     LogManager.getLogManager().readConfiguration(new FileInputStream("mylogging.properties"));
+        // } catch (SecurityException | IOException e1) {
+        //     // e1.printStackTrace();
+        // }
+
+        logger.setLevel(level);
+        logger.setFilter(new MyFilter());
+        if(consoleLog || log_file == null){
+            ConsoleHandler ch = new ConsoleHandler();
+            ch.setLevel(level);
+            ch.setFormatter(new MyFormatter());
+            logger.addHandler(ch);
         }
-
-        logger.setLevel(Level.FINER);
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.FINER);
-        logger.addHandler(ch);
-        // adding custom handler
-        // logger.addHandler(new MyHandler());
 
         if (log_file != null) {
             try {
-                // FileHandler file name with max size and number of log files limit
                 Handler fileHandler = new FileHandler(log_file, max_lines, max_files);
+                fileHandler.setLevel(level);
                 fileHandler.setFormatter(new MyFormatter());
-                // setting custom filter for FileHandler
-                // fileHandler.setFilter(new MyFilter());
                 logger.addHandler(fileHandler);
-
             } catch (SecurityException | IOException e) {
                 e.printStackTrace();
             }
         }
+
+        logger.log(level, logger_name+" logger created!");
+        return logger;
     }
+}
 
-    public Logs(String logger_name) {
-        logger = Logger.getLogger(logger_name);
-        // try {
-        //     LogManager.getLogManager().readConfiguration(new FileInputStream("mylogging.properties"));
-        // } catch (SecurityException | IOException e1) {
-        //     e1.printStackTrace();
-        // }
-        logger.addHandler(new ConsoleHandler());
-    }
-
-    public void logging(String log_level, String message){
-        switch (message) {
-            case "error":
-                this.logger.log(Level.SEVERE, message);
-                break;
-            case "warning":
-                this.logger.log(Level.WARNING, message);
-                break;
-            case "info":
-                this.logger.log(Level.INFO, message);
-                break;
-            case "config":
-                this.logger.log(Level.CONFIG, message);
-                break;
-            case "trace":
-                this.logger.log(Level.FINE, message);
-                break;
-            default:
-                this.logger.log(Level.FINEST, message);
-                break;
-        }
-    }
-
-    public static void logging(Logger logger, String log_level, String message) {
-
+    
         // SEVERE (highest value)
         // WARNING
         // INFO
@@ -92,28 +73,7 @@ public class Logs {
         // FINE
         // FINER
         // FINEST (lowest value)
-        switch (message) {
-            case "error":
-                logger.log(Level.SEVERE, message);
-                break;
-            case "warning":
-                logger.log(Level.WARNING, message);
-                break;
-            case "info":
-                logger.log(Level.INFO, message);
-                break;
-            case "config":
-                logger.log(Level.CONFIG, message);
-                break;
-            case "trace":
-                logger.log(Level.FINE, message);
-                break;
-            default:
-                logger.log(Level.FINEST, message);
-                break;
-        }
-    }
-}
+
 
 // final class MyHandler extends StreamHandler {
 
@@ -139,7 +99,16 @@ final class MyFormatter extends Formatter {
 
     @Override
     public String format(LogRecord record) {
-        return new Date(record.getMillis()) + " | " + record.getSourceClassName() + " -> "
+        return new Date(record.getMillis()) + " | " 
+                + "("
+                + record.getLoggerName()
+                + ") "
+                + "| "
+                + "("
+                + record.getLevel()
+                + ") "
+                + record.getSourceClassName() 
+                + " -> "
                 + record.getSourceMethodName()
                 + " >> "
                 + record.getMessage() + "\n";
@@ -147,13 +116,13 @@ final class MyFormatter extends Formatter {
 
 }
 
-// final class MyFilter implements Filter {
+final class MyFilter implements Filter {
 
-// @Override
-// public boolean isLoggable(LogRecord log) {
-// //don't log CONFIG logs in file
-// if(log.getLevel() == Level.CONFIG) return false;
-// return true;
-// }
+    @Override
+    public boolean isLoggable(LogRecord log) {
+    //don't log CONFIG logs in file
+    
+    return true;
+    }
 
-// }
+}

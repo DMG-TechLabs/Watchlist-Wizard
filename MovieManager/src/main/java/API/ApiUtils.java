@@ -3,12 +3,12 @@ package API;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
-import org.json.simple.JSONObject;
 
-import Database.Database;
 import Exceptions.MovieNotFoundException;
 import Utils.JsonUtils;
+import Utils.Logs;
 import Utils.Utils;
+import java.util.logging.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,12 +21,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.InputStream;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.net.URI;
 import java.net.http.*;
 import java.sql.SQLException;
 
 public class ApiUtils {
-
+    private static Logger logger = Logs.createLoger("ApiUtils");
     /**
      *
      * @param s
@@ -47,6 +48,7 @@ public class ApiUtils {
      * @throws IOException
      */
     public static HttpResponse<String> http_get(String url) throws ConnectException, InterruptedException, IOException{
+        Logger logger = Logger.getLogger("ApiUtils");
         HttpResponse<String> response;
         HttpRequest request;
 
@@ -56,8 +58,8 @@ public class ApiUtils {
             .build();
 
         response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        API.logger.logging("trace", "Url: "+url);
-        API.logger.logging("trace", "Responce: "+response.statusCode());
+        logger.log(Level.INFO, "Url: "+url);
+        logger.log(Level.INFO, "Responce: "+response.statusCode());
         return response;
     }
 
@@ -94,10 +96,21 @@ public class ApiUtils {
         HttpResponse<String> response;
 
         String url = "";
+        String media_type = "";
+        String movie_id = "";
+        String director = "";
+        String writer = "";
+        String actors = "";
+        String rated = "";
+        String overview = "";
         // JSONObject json =
         ArrayList<String> total_results_list = new ArrayList<String>(Arrays.asList("total_results"));
         ArrayList<String> media_type__list = new ArrayList<String>(Arrays.asList("results", "0", "media_type"));
         ArrayList<String> id_list = new ArrayList<String>(Arrays.asList("results", "0", "id"));
+        ArrayList<String> credits_list = new ArrayList<String>(Arrays.asList("crew","0","original_name"));
+        ArrayList<String> actors_list = new ArrayList<String>(Arrays.asList("cast","0","original_name"));
+        ArrayList<String> rated_list = new ArrayList<String>(Arrays.asList("results","0", "release_dates", "0","certification"));
+        ArrayList<String> rated_based_on_list = new ArrayList<String>(Arrays.asList("results","0","iso_3166_1"));
 
         Dictionary<String, String> table = Utils.JsonToDictionary(movies_lists);
         // JsonUtils.
@@ -110,19 +123,16 @@ public class ApiUtils {
                 throw new MovieNotFoundException("Api was unable to find info for the video:" + title);
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.toString());
         }
         // }
 
-        String media_type = "";
-        String movie_id = "";
+        
         try {
             media_type = JsonUtils.GetJsonValue(movies_lists, media_type__list);
             movie_id = JsonUtils.GetJsonValue(movies_lists, id_list);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.toString());
         }
 
         // throws NullPointerException{
@@ -144,43 +154,31 @@ public class ApiUtils {
         // "https://api.themoviedb.org/3/movie/"+table.get("id")+"?api_key="+api_key+"&language=en-US";}
         // else{url =
         // "https://api.themoviedb.org/3/tv/"+table.get("id")+"?api_key="+api_key+"&language=en-US";}
-        url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=" + api_key + "&language=en-US";
-        response = ApiUtils.http_get(url);
-        // Change table for movies list to movie info
-        table = Utils.JsonToDictionary(response.body());
-
-        // Get movie credits
-        url = "https://api.themoviedb.org/3/movie/" + movie_id + "/credits?api_key=" + api_key + "&language=en-US";
-        response = ApiUtils.http_get(url);
-        String credids = response.body();
-
-        // Get movie release date
-        url = "https://api.themoviedb.org/3/movie/" + movie_id + "/release_dates?api_key=" + api_key;
-        response = ApiUtils.http_get(url);
-
-        String release_dates = response.body();
-        System.out.println("Response Status: " + response.statusCode());
-
-        // Seperate info
-        String overview = table.get("overview").toString().replaceAll(Pattern.quote("'"), "''");
-        // System.out.println(credids);
-        ArrayList<String> credits_list = new ArrayList<String>(Arrays.asList("crew","0","original_name")); //ApiUtils.find_in_api(credids, "job", "Director")
-        ArrayList<String> actors_list = new ArrayList<String>(Arrays.asList("cast","0","original_name")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
-        ArrayList<String> rated_list = new ArrayList<String>(Arrays.asList("results","0", "release_dates", "0","certification")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
-        ArrayList<String> rated_based_on_list = new ArrayList<String>(Arrays.asList("results","0","iso_3166_1")); //ApiUtils.find_actors(credids).replaceAll("\"", "\"\"")
-
-        String director = "";
-        String writer = "";
-        String actors = "";
-        String rated = "";
-
         try{
+            url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=" + api_key + "&language=en-US";
+            response = ApiUtils.http_get(url);
+            // Change table for movies list to movie info
+            table = Utils.JsonToDictionary(response.body());
+
+            // Get movie credits
+            url = "https://api.themoviedb.org/3/movie/" + movie_id + "/credits?api_key=" + api_key + "&language=en-US";
+            response = ApiUtils.http_get(url);
+            String credids = response.body();
+
+            // Get movie release date
+            url = "https://api.themoviedb.org/3/movie/" + movie_id + "/release_dates?api_key=" + api_key;
+            response = ApiUtils.http_get(url);
+
+            String release_dates = response.body();
+        
+        
+            overview = table.get("overview").toString().replaceAll(Pattern.quote("'"), "''");
             director = JsonUtils.getMultipleValues(credids, credits_list, "job", "Director", 1).get(0).replaceAll(Pattern.quote("'"), "''");
             writer   = JsonUtils.getMultipleValues(credids, credits_list, "job", "Screenplay", 1).get(0).replaceAll(Pattern.quote("'"), "''");
             actors   = ApiUtils.find_actors(credids, actors_list, "order", "0", 1).replaceAll("'", "''");
             rated    = JsonUtils.getMultipleValues(release_dates, rated_list, rated_based_on_list, "US", 1).get(0);
         }catch(Exception e){
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.toString());
         }
         // String rated = ApiUtils.find_rated(release_dates);
 
@@ -204,7 +202,8 @@ public class ApiUtils {
         info_table.put("imdbRating", ApiUtils.some_error_handling(table.get("vote_average")));
         info_table.put("imdbID",     ApiUtils.some_error_handling(table.get("imdb_id")));
 
-        API.logger.logging("", "info for "+title+" : "+info_table.toString());
+        logger.log(Level.FINER, "info for "+title+" : "+info_table.toString());
+
 
         return info_table;
     }
@@ -349,9 +348,10 @@ public class ApiUtils {
         URL url = new URL(urlString);
         InputStream inputStream = url.openStream();
 
-        Scanner s = new Scanner(inputStream).useDelimiter("\\A");
-        String key = s.hasNext() ? s.next() : "";
-        s.close();
-        return key;
+        try (Scanner s = new Scanner(inputStream).useDelimiter("\\A")) {
+            String key = s.hasNext() ? s.next() : "";
+            s.close();
+            return key;
+        }
     }
 }

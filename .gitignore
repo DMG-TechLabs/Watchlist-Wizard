@@ -8,3 +8,4 @@
 /MovieManager/data/api_key.txt
 /MovieManager/MovieManager.jar
 .vscode/
+MovieManager/data/logs/*
