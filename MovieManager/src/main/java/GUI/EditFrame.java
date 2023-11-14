@@ -1,4 +1,4 @@
-package GUI;
+package GUI;//GEN-LINE:variables//GEN-LINE:variables
 
 import Exceptions.DatabaseStringOverflowException;
 import Database.Database;
@@ -126,351 +126,354 @@ public class EditFrame extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        background = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        titleField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        yearSpinner = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
-        directorField = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        writersField = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        langField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        plotArea = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        ratedField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        runtimeField = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        actorsField = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        countryField = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        awardsField = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        imdbratingField = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        imdbidField = new javax.swing.JTextField();
-        // deleteButton = new RoundedPanel();
-        jLabel15 = new javax.swing.JLabel();
-        cancelButton = new RoundedPanel();
-        jLabel16 = new javax.swing.JLabel();
-        applyButton = new RoundedPanel();
-        jLabel17 = new javax.swing.JLabel();
+		background = new javax.swing.JPanel();
+		jLabel1 = new javax.swing.JLabel();
+		titleField = new javax.swing.JTextField();
+		jLabel3 = new javax.swing.JLabel();
+		yearSpinner = new javax.swing.JSpinner();
+		jLabel4 = new javax.swing.JLabel();
+		directorField = new javax.swing.JTextField();
+		jLabel5 = new javax.swing.JLabel();
+		writersField = new javax.swing.JTextField();
+		jLabel6 = new javax.swing.JLabel();
+		langField = new javax.swing.JTextField();
+		jLabel2 = new javax.swing.JLabel();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		plotArea = new javax.swing.JTextArea();
+		jLabel7 = new javax.swing.JLabel();
+		ratedField = new javax.swing.JTextField();
+		jLabel8 = new javax.swing.JLabel();
+		runtimeField = new javax.swing.JTextField();
+		jLabel9 = new javax.swing.JLabel();
+		actorsField = new javax.swing.JTextField();
+		jLabel11 = new javax.swing.JLabel();
+		countryField = new javax.swing.JTextField();
+		jLabel12 = new javax.swing.JLabel();
+		awardsField = new javax.swing.JTextField();
+		jLabel13 = new javax.swing.JLabel();
+		imdbratingField = new javax.swing.JTextField();
+		jLabel14 = new javax.swing.JLabel();
+		imdbidField = new javax.swing.JTextField();
+		// deleteButton = new RoundedPanel();
+		jLabel15 = new javax.swing.JLabel();
+		cancelButton = new RoundedPanel();
+		jLabel16 = new javax.swing.JLabel();
+		applyButton = new RoundedPanel();
+		jLabel17 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setName("frame"); // NOI18N
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setName("frame"); // NOI18N
 
-        background.setName("bg"); // NOI18N
+		background.setName("bg"); // NOI18N
 
-        jLabel1.setText("Title: ");
-        jLabel1.setName("fg"); // NOI18N
+		jLabel1.setText("Title: ");
+		jLabel1.setName("fg"); // NOI18N
 
-        titleField.setName("textbox"); // NOI18N
+		titleField.setName("textbox"); // NOI18N
 
-        jLabel3.setText("Year:");
-        jLabel3.setName("fg"); // NOI18N
+		jLabel3.setText("Year:");
+		jLabel3.setName("fg"); // NOI18N
 
-        yearSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        yearSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        yearSpinner.setName("spinner"); // NOI18N
+		yearSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+		yearSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		yearSpinner.setName("spinner"); // NOI18N
 
-        jLabel4.setText("Director: ");
-        jLabel4.setName("fg"); // NOI18N
+		jLabel4.setText("Director: ");
+		jLabel4.setName("fg"); // NOI18N
 
-        directorField.setName("textbox"); // NOI18N
+		directorField.setName("textbox"); // NOI18N
 
-        jLabel5.setText("Writers:");
-        jLabel5.setName("fg"); // NOI18N
+		jLabel5.setText("Writers:");
+		jLabel5.setName("fg"); // NOI18N
 
-        writersField.setName("textbox"); // NOI18N
+		writersField.setName("textbox"); // NOI18N
 
-        jLabel6.setText("Language: ");
-        jLabel6.setName("fg"); // NOI18N
+		jLabel6.setText("Language: ");
+		jLabel6.setName("fg"); // NOI18N
 
-        langField.setName("textbox"); // NOI18N
+		langField.setName("textbox"); // NOI18N
 
-        jLabel2.setText("Plot:");
-        jLabel2.setName("fg"); // NOI18N
+		jLabel2.setText("Plot:");
+		jLabel2.setName("fg"); // NOI18N
 
-        plotArea.setColumns(20);
-        plotArea.setRows(5);
-        plotArea.setName("textbox"); // NOI18N
-        jScrollPane1.setViewportView(plotArea);
+		plotArea.setColumns(20);
+		plotArea.setRows(5);
+		plotArea.setName("textbox"); // NOI18N
+		jScrollPane1.setViewportView(plotArea);
 
-        jLabel7.setText("Rated:");
-        jLabel7.setName("fg"); // NOI18N
+		jLabel7.setText("Rated:");
+		jLabel7.setName("fg"); // NOI18N
 
-        ratedField.setName("textbox"); // NOI18N
-        ratedField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ratedFieldActionPerformed(evt);
-            }
-        });
+		ratedField.setName("textbox"); // NOI18N
+		ratedField.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				ratedFieldActionPerformed(evt);
+			}
+		});
 
-        jLabel8.setText("Runtime:");
-        jLabel8.setName("fg"); // NOI18N
+		jLabel8.setText("Runtime:");
+		jLabel8.setName("fg"); // NOI18N
 
-        runtimeField.setName("textbox"); // NOI18N
+		runtimeField.setName("textbox"); // NOI18N
 
-        jLabel9.setText("Actors:");
-        jLabel9.setName("fg"); // NOI18N
+		jLabel9.setText("Actors:");
+		jLabel9.setName("fg"); // NOI18N
 
-        actorsField.setName("textbox"); // NOI18N
+		actorsField.setName("textbox"); // NOI18N
 
-        jLabel11.setText("Country:");
-        jLabel11.setName("fg"); // NOI18N
+		jLabel11.setText("Country:");
+		jLabel11.setName("fg"); // NOI18N
 
-        countryField.setName("textbox"); // NOI18N
-        countryField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                countryFieldActionPerformed(evt);
-            }
-        });
+		countryField.setName("textbox"); // NOI18N
+		countryField.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				countryFieldActionPerformed(evt);
+			}
+		});
 
-        jLabel12.setText("Awards:");
-        jLabel12.setName("fg"); // NOI18N
+		jLabel12.setText("Awards:");
+		jLabel12.setName("fg"); // NOI18N
 
-        awardsField.setName("textbox"); // NOI18N
+		awardsField.setName("textbox"); // NOI18N
 
-        jLabel13.setText("IMDb Rating:");
-        jLabel13.setName("fg"); // NOI18N
+		jLabel13.setText("IMDb Rating:");
+		jLabel13.setName("fg"); // NOI18N
 
-        imdbratingField.setName("textbox"); // NOI18N
-        imdbratingField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imdbratingFieldActionPerformed(evt);
-            }
-        });
+		imdbratingField.setName("textbox"); // NOI18N
+		imdbratingField.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				imdbratingFieldActionPerformed(evt);
+			}
+		});
 
-        jLabel14.setText("IMDb ID:");
-        jLabel14.setName("fg"); // NOI18N
+		jLabel14.setText("IMDb ID:");
+		jLabel14.setName("fg"); // NOI18N
 
-        imdbidField.setName("textbox"); // NOI18N
+		imdbidField.setName("textbox"); // NOI18N
 
-        // deleteButton.setBackground(new java.awt.Color(68, 68, 68));
-        // deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        // deleteButton.setName("btn"); // NOI18N
-        // deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-        //     public void mouseClicked(java.awt.event.MouseEvent evt) {
-        //         deleteButtonMouseClicked(evt);
-        //     }
-        //     public void mouseEntered(java.awt.event.MouseEvent evt) {
-        //         deleteButtonMouseEntered(evt);
-        //     }
-        //     public void mouseExited(java.awt.event.MouseEvent evt) {
-        //         deleteButtonMouseExited(evt);
-        //     }
-        // });
-        //
-        // jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        // jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        // jLabel15.setText("Delete");
-        // jLabel15.setName("btn_fg"); // NOI18N
-        //
-        // javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
-        // deleteButton.setLayout(deleteButtonLayout);
-        // deleteButtonLayout.setHorizontalGroup(
-        //     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        //     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-        // );
-        // deleteButtonLayout.setVerticalGroup(
-        //     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        //     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-        // );
+		// deleteButton.setBackground(new java.awt.Color(68, 68, 68));
+		// deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		// deleteButton.setName("btn"); // NOI18N
+		// deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		//     public void mouseClicked(java.awt.event.MouseEvent evt) {
+		//         deleteButtonMouseClicked(evt);
+		//     }
+		//     public void mouseEntered(java.awt.event.MouseEvent evt) {
+		//         deleteButtonMouseEntered(evt);
+		//     }
+		//     public void mouseExited(java.awt.event.MouseEvent evt) {
+		//         deleteButtonMouseExited(evt);
+		//     }
+		// });
+		//
+		// jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+		// jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		// jLabel15.setText("Delete");
+		// jLabel15.setName("btn_fg"); // NOI18N
+		//
+		// javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
+		// deleteButton.setLayout(deleteButtonLayout);
+		// deleteButtonLayout.setHorizontalGroup(
+		//     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		//     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+		// );
+		// deleteButtonLayout.setVerticalGroup(
+		//     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		//     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+		// );
+		cancelButton.setBackground(new java.awt.Color(68, 68, 68));
+		cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		cancelButton.setName("btn"); // NOI18N
+		cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				cancelButtonMouseClicked(evt);
+			}
 
-        cancelButton.setBackground(new java.awt.Color(68, 68, 68));
-        cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelButton.setName("btn"); // NOI18N
-        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelButtonMouseExited(evt);
-            }
-        });
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				cancelButtonMouseEntered(evt);
+			}
 
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Cancel");
-        jLabel16.setName("btn_fg"); // NOI18N
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				cancelButtonMouseExited(evt);
+			}
+		});
 
-        javax.swing.GroupLayout cancelButtonLayout = new javax.swing.GroupLayout(cancelButton);
-        cancelButton.setLayout(cancelButtonLayout);
-        cancelButtonLayout.setHorizontalGroup(
-            cancelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-        );
-        cancelButtonLayout.setVerticalGroup(
-            cancelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-        );
+		jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+		jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jLabel16.setText("Cancel");
+		jLabel16.setName("btn_fg"); // NOI18N
 
-        applyButton.setBackground(new java.awt.Color(68, 68, 68));
-        applyButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        applyButton.setName("btn"); // NOI18N
-        applyButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                applyButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                applyButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                applyButtonMouseExited(evt);
-            }
-        });
+		javax.swing.GroupLayout cancelButtonLayout = new javax.swing.GroupLayout(cancelButton);
+		cancelButton.setLayout(cancelButtonLayout);
+		cancelButtonLayout.setHorizontalGroup(
+				cancelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+		);
+		cancelButtonLayout.setVerticalGroup(
+				cancelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+		);
 
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Apply");
-        jLabel17.setName("btn_fg"); // NOI18N
+		applyButton.setBackground(new java.awt.Color(68, 68, 68));
+		applyButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		applyButton.setName("btn"); // NOI18N
+		applyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				applyButtonMouseClicked(evt);
+			}
 
-        javax.swing.GroupLayout applyButtonLayout = new javax.swing.GroupLayout(applyButton);
-        applyButton.setLayout(applyButtonLayout);
-        applyButtonLayout.setHorizontalGroup(
-            applyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-        );
-        applyButtonLayout.setVerticalGroup(
-            applyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, applyButtonLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				applyButtonMouseEntered(evt);
+			}
 
-        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
-        background.setLayout(backgroundLayout);
-        backgroundLayout.setHorizontalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(langField)
-                            .addComponent(countryField)
-                            .addComponent(awardsField)
-                            .addComponent(writersField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(actorsField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(imdbratingField)
-                            .addComponent(imdbidField)
-                            .addComponent(jScrollPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(directorField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout.createSequentialGroup()
-                        // .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        backgroundLayout.setVerticalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(directorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(writersField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(actorsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(langField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(awardsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(imdbratingField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(imdbidField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    // .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				applyButtonMouseExited(evt);
+			}
+		});
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+		jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+		jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jLabel17.setText("Apply");
+		jLabel17.setName("btn_fg"); // NOI18N
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		javax.swing.GroupLayout applyButtonLayout = new javax.swing.GroupLayout(applyButton);
+		applyButton.setLayout(applyButtonLayout);
+		applyButtonLayout.setHorizontalGroup(
+				applyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+		);
+		applyButtonLayout.setVerticalGroup(
+				applyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, applyButtonLayout.createSequentialGroup()
+								.addGap(0, 0, Short.MAX_VALUE)
+								.addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+		);
+
+		javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+		background.setLayout(backgroundLayout);
+		backgroundLayout.setHorizontalGroup(
+				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(backgroundLayout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+										.addGroup(backgroundLayout.createSequentialGroup()
+												.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+														.addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+														.addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+												.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+														.addComponent(langField)
+														.addComponent(countryField)
+														.addComponent(awardsField)
+														.addComponent(writersField, javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(actorsField, javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(imdbratingField)
+														.addComponent(imdbidField)
+														.addComponent(jScrollPane1)
+														.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+																.addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(directorField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+										.addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout.createSequentialGroup()
+												// .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addContainerGap())
+		);
+		backgroundLayout.setVerticalGroup(
+				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(backgroundLayout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel1)
+										.addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel3)
+										.addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel7)
+										.addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel8)
+										.addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel4)
+										.addComponent(directorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel5)
+										.addComponent(writersField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel9)
+										.addComponent(actorsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel6)
+										.addComponent(langField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel11)
+										.addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel12)
+										.addComponent(awardsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel13)
+										.addComponent(imdbratingField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel14)
+										.addComponent(imdbidField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel2)
+										.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										// .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addContainerGap())
+		);
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+		);
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
+
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
 
 	private void ratedFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ratedFieldActionPerformed
 		// TODO add your handling code here:
@@ -489,7 +492,6 @@ public class EditFrame extends javax.swing.JFrame {
 				JOptionPane.WARNING_MESSAGE);
 
 		// System.out.println(choice);
-
 		switch (choice) {
 			case 0: // Confirm
 				deleteMovieFromDB();
@@ -622,12 +624,9 @@ public class EditFrame extends javax.swing.JFrame {
 
 	/**
 	 * @param args the command line arguments
-	 * @throws
-	 * java.lang.ClassNotFoundException
-	 * @throws
-	 * java.lang.InstantiationException
-	 * @throws
-	 * java.lang.IllegalAccessException
+	 * @throws java.lang.ClassNotFoundException
+	 * @throws java.lang.InstantiationException
+	 * @throws java.lang.IllegalAccessException
 	 * @throws
 	 * javax.swing.UnsupportedLookAndFeelException
 	 */
@@ -650,40 +649,40 @@ public class EditFrame extends javax.swing.JFrame {
 		this.theme = theme;
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField actorsField;
-    private javax.swing.JPanel applyButton;
-    private javax.swing.JTextField awardsField;
-    private javax.swing.JPanel background;
-    private javax.swing.JPanel cancelButton;
-    private javax.swing.JTextField countryField;
-    private javax.swing.JPanel deleteButton;
-    private javax.swing.JTextField directorField;
-    private javax.swing.JTextField imdbidField;
-    private javax.swing.JTextField imdbratingField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField langField;
-    private javax.swing.JTextArea plotArea;
-    private javax.swing.JTextField ratedField;
-    private javax.swing.JTextField runtimeField;
-    private javax.swing.JTextField titleField;
-    private javax.swing.JTextField writersField;
-    private javax.swing.JSpinner yearSpinner;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JTextField actorsField;
+	private javax.swing.JPanel applyButton;
+	private javax.swing.JTextField awardsField;
+	private javax.swing.JPanel background;
+	private javax.swing.JPanel cancelButton;
+	private javax.swing.JTextField countryField;
+	private javax.swing.JPanel deleteButton;
+	private javax.swing.JTextField directorField;
+	private javax.swing.JTextField imdbidField;
+	private javax.swing.JTextField imdbratingField;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel11;
+	private javax.swing.JLabel jLabel12;
+	private javax.swing.JLabel jLabel13;
+	private javax.swing.JLabel jLabel14;
+	private javax.swing.JLabel jLabel15;
+	private javax.swing.JLabel jLabel16;
+	private javax.swing.JLabel jLabel17;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JLabel jLabel3;
+	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
+	private javax.swing.JLabel jLabel6;
+	private javax.swing.JLabel jLabel7;
+	private javax.swing.JLabel jLabel8;
+	private javax.swing.JLabel jLabel9;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTextField langField;
+	private javax.swing.JTextArea plotArea;
+	private javax.swing.JTextField ratedField;
+	private javax.swing.JTextField runtimeField;
+	private javax.swing.JTextField titleField;
+	private javax.swing.JTextField writersField;
+	private javax.swing.JSpinner yearSpinner;
+	// End of variables declaration//GEN-END:variables
 }

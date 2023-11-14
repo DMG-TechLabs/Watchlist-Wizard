@@ -72,7 +72,7 @@ public class DBMethods {
 	}
 
 	private static void matchCategories(Movie m) throws SQLException { // Adds Category id's and imdb id in the in
-																	   // beteween table
+		// beteween table
 		DatabaseConnection db = Database.connection();
 		int[] ids = matchCategoryID(m);
 
@@ -84,8 +84,8 @@ public class DBMethods {
 	}
 
 	private static String matchCategories(int categoryId) throws SQLException { // Adds Category id's and imdb id in the
-																				// in beteween table
-	
+		// in beteween table
+
 		DatabaseConnection db = Database.connection();
 		String query = "SELECT Category FROM Categories WHERE Category_ID = " + categoryId;
 		ResultSet rs = db.executeQuery(query);
@@ -96,10 +96,10 @@ public class DBMethods {
 		return rs.getString(1);
 	}
 
-	public static void insertMovie(Movie m) {	
+	public static void insertMovie(Movie m) {
 		DatabaseConnection db = Database.connection();
 		String query = "INSERT INTO Movies(" + DBUtils.columnsToList(DBFields) + ") VALUES(" + DBUtils.objectToList(m)
-			+ ")";
+				+ ")";
 
 		db.executeUpdate(query);
 		db.close();
@@ -140,7 +140,7 @@ public class DBMethods {
 		for (int i = 0; i < categoryIDs.size(); i++) {
 			genres.add(matchCategories(categoryIDs.get(i)));
 		}
-		
+
 		db.close();
 		return genres;
 	}
@@ -163,8 +163,7 @@ public class DBMethods {
 
 		ResultSet rs = db.executeQuery(new QueryBuilder().select("Image_Directory").from("Images").build());
 
-
-		while(rs.next()){
+		while (rs.next()) {
 			ImagesUtils.delete(rs.getString("Image_Directory"));
 		}
 
@@ -259,7 +258,7 @@ public class DBMethods {
 				s = m.getGenre().split(", ");
 			} catch (NullPointerException e) {
 				System.out.println("ERROR");
-				s = new String[] { "null" };
+				s = new String[]{"null"};
 			}
 
 			return s;
