@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -130,21 +131,8 @@ public class LoadingFrame extends javax.swing.JFrame {
 		TimeUnit.MILLISECONDS.sleep(500);
 
 		task.setText("Searching directory...");
-		String dir = "";
-		ResultSet rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
-		try {
-			rs.next();
-			dir = rs.getString(1);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-		System.out.println(dir);
-		if(dir != "" || dir != null){
-			mainFrame.movies.refreshMovies();
-		}
+		mainFrame.movies.refreshMovies();
+		
 
 		TimeUnit.MILLISECONDS.sleep(1000);
 		progressBar.setValue(75);

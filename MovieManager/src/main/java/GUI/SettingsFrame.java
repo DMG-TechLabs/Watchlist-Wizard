@@ -749,13 +749,16 @@ public final class SettingsFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_changeFDbtnMouseEntered
 
 	private void addFDbtnMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_changeFDbtnMouseClicked
-		String dir = "";
+		// String dir = "";
+        String c_dir = "";
+		ArrayList<String> dir = new ArrayList<String>();
 		int UserChoice = jFileChooser1.showOpenDialog(SettingsFrame.this);
 
 		if(UserChoice == JFileChooser.APPROVE_OPTION){
 			File SelectedFile = jFileChooser1.getSelectedFile();
-			dir = SelectedFile.getPath();
-			fileDirLm.addElement(dir);
+
+			c_dir = SelectedFile.getPath();
+			fileDirLm.addElement(c_dir);
 		}
 
 		if(UserChoice == JFileChooser.CANCEL_OPTION){
@@ -763,7 +766,7 @@ public final class SettingsFrame extends javax.swing.JFrame {
 		}
 
 		Database.connection().executeUpdate(
-				new QueryBuilder().update("Settings").set("Directory", dir).where("Αναγνωριστικό = 1").build());
+				new QueryBuilder().update("Settings").set("Directory", c_dir).where("Αναγνωριστικό = 1").build());
 
 		f.dir = dir;
 	}// GEN-LAST:event_changeFDbtnMouseClicked
