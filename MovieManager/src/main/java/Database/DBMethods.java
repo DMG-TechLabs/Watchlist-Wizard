@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.apache.commons.dbcp.DbcpException;
 
 import Files.ImagesUtils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.helpers.QueryBuilder;
 import main.Movie;
@@ -35,7 +37,7 @@ public class DBMethods {
 		return DBFields;
 	}
 
-	public static int selectMovieId(String imdb_id) {
+	public static int getMovieId(String imdb_id) {
 		DatabaseConnection db = Database.connection();
 
 		ResultSet rs = db.executeQuery(new QueryBuilder().select("movie_id").from("Movies").where("imdb_id = \'" + imdb_id + "\'").build());
@@ -50,6 +52,103 @@ public class DBMethods {
 
 		db.close();
 		return id;
+	}
+
+	public static void updateMovie(Movie m) {
+		String updateQuery = "UPDATE Movies SET ("
+				+ "title = \'" + m.getTitle() + "\',"
+				+ "year = \'" + m.getYear() + "\',"
+				+ "runtime = \'" + m.getRuntime() + "\',"
+				+ "plot = \'" + m.getPlot() + "\',"
+				+ "image_url = \'" + m.getPoster() + "\',"
+				+ "image_path = \'" + m.getImagePath() + "\',"
+				+ "imdb_rating = \'" + m.getImdbRating() + "\',"
+				+ "imdb_id = \'" + m.getImdbID() + "\',"
+				+ "filepath = \'" + m.getDirectory() + "\',"
+				+ ")";
+
+	}
+
+	public static void insertDirectorForMatching(Movie m) {
+		DatabaseConnection db = Database.connection();
+
+		int director_id = getDirectorId(m.getDirector());
+		int movie_id = getMovieId(m.getImdbID());
+
+		if (director_id == -1 || movie_id == -1) {
+			System.err.println("Director or Movie doesn't exist in Database");
+			return;
+		}
+
+		db.executeUpdate(new QueryBuilder().insertInto("Directors_Matching").columns("director_id", "movie_id").values(director_id, movie_id).build());
+
+		db.close();
+	}
+
+	public static void insertWritersForMatching(Movie m) {
+		DatabaseConnection db = Database.connection();
+
+		int director_id = getDirectorId(m.getDirector());
+		int movie_id = getMovieId(m.getImdbID());
+
+		if (director_id == -1 || movie_id == -1) {
+			System.err.println("Director or Movie doesn't exist in Database");
+			return;
+		}
+
+		db.executeUpdate(new QueryBuilder().insertInto("Writers_Matching").columns("writer_id", "movie_id").values(director_id, movie_id).build());
+
+		db.close();
+	}
+
+	public static void insertDirectorForMatching(Movie m) {
+		DatabaseConnection db = Database.connection();
+
+		int director_id = getDirectorId(m.getDirector());
+		int movie_id = getMovieId(m.getImdbID());
+
+		if (director_id == -1 || movie_id == -1) {
+			System.err.println("Director or Movie doesn't exist in Database");
+			return;
+		}
+
+		db.executeUpdate(new QueryBuilder().insertInto("Directors_Matching").columns("director_id", "movie_id").values(director_id, movie_id).build());
+
+		db.close();
+	}
+
+	public static void insertDirectorForMatching(Movie m) {
+		DatabaseConnection db = Database.connection();
+
+		int director_id = getDirectorId(m.getDirector());
+		int movie_id = getMovieId(m.getImdbID());
+
+		if (director_id == -1 || movie_id == -1) {
+			System.err.println("Director or Movie doesn't exist in Database");
+			return;
+		}
+
+		db.executeUpdate(new QueryBuilder().insertInto("Directors_Matching").columns("director_id", "movie_id").values(director_id, movie_id).build());
+
+		db.close();
+	}
+
+	public static int getDirectorId(String director) {
+		DatabaseConnection db = Database.connection();
+
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("id").from("Directors").where("director = \'" + director + "\'").build());
+		int id = -1;
+		try {
+			rs.next();
+			id = rs.getInt(1);
+		} catch (SQLException ex) {
+			Logger.getLogger(DBMethods.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		db.close();
+
+		return id;
+
 	}
 
 	public static void insertMovie(Movie m) {
@@ -71,6 +170,8 @@ public class DBMethods {
 		db.executeUpdate(insertQuery);
 
 		db.close();
+
+		insertDirectorForMatching(m);
 	}
 
 	public static ArrayList<Movie> getMovies() throws SQLException {

@@ -890,8 +890,8 @@ public class Frame extends javax.swing.JFrame {
 
 			sf.setIconImage(img.getImage());
 
-			sf.setVisible(true); 
-        }            
+			sf.setVisible(true);
+        }
 	}// GEN-LAST:event_settingsButtonMouseClicked
 
 	private void settingsButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_settingsButtonMouseEntered

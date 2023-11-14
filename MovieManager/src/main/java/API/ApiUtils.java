@@ -120,22 +120,7 @@ public class ApiUtils {
 		// media_type = table.get("media_type").toString();
 		// }
 		String genre = table.get("genre_ids").toString();
-		String genre_names = "";
-		String current_gen = "";
 
-		//for (String gen : genre.split(",")) {
-		//	System.out.println("Genre_id: " + gen);
-		ArrayList<String> categories = DBMethods.getCategories(table.get("imdb_id"));
-
-		current_gen.substring(0, current_gen.length() - 2);
-
-		//     genre_names = genre_names + current_gen + ",";
-		// }
-		// Get Movie from movie id
-		// if (media_type == "movie"){url =
-		// "https://api.themoviedb.org/3/movie/"+table.get("id")+"?api_key="+api_key+"&language=en-US";}
-		// else{url =
-		// "https://api.themoviedb.org/3/tv/"+table.get("id")+"?api_key="+api_key+"&language=en-US";}
 		url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=" + api_key + "&language=en-US";
 		response = ApiUtils.http_get(url);
 		// Change table for movies list to movie info
@@ -183,7 +168,7 @@ public class ApiUtils {
 		info_table.put("Rated", ApiUtils.some_error_handling(rated));
 		info_table.put("Released", ApiUtils.some_error_handling(table.get("release_date")));
 		info_table.put("Runtime", ApiUtils.some_error_handling(table.get("runtime")) + "min");
-		info_table.put("Genre", ApiUtils.some_error_handling(genre_names));
+		info_table.put("Genre", ApiUtils.some_error_handling(genre));
 		info_table.put("Director", ApiUtils.some_error_handling(director));
 		info_table.put("Writer", ApiUtils.some_error_handling(writer));
 		info_table.put("Actors", ApiUtils.some_error_handling(actors));
