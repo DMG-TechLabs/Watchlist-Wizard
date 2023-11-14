@@ -10,10 +10,12 @@ import kdesp73.databridge.helpers.ResultProcessor;
 public class Main {
 	public static void main(String[] args) throws SQLException {
 
-		ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select().from("Images").build());
+
+		String column = "Movie_ID";
+		ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select(column).from("Movies").build());
 
 		while(rs.next()){
-			System.out.println(rs.getString(2));
+				System.out.println(rs.getString(column));
 		}
 	}
 }

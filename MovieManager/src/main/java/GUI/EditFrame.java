@@ -594,17 +594,7 @@ public class EditFrame extends javax.swing.JFrame {
 			year = "";
 		}
 
-		String query = "UPDATE Movies SET Title = \'" + title + "\', Director = \'" + director + "\', Writers = \'"
-				+ writers + "\', Plot = \'" + plot + "\', Completion_Year = \'" + year + "\', Language = \'"
-				+ language + "\', Actors = \'" + actors + "\', Rated = \'" + rated + "\', Runtime = \'" + runtime
-				+ "\', Country = \'" + country + "\', Awards = \'" + awards + "\', IMDb_Rating = \'" + imdbrating
-				+ "\', IMDb_ID = \'" + imdbid + "\' WHERE Title = \'" + movies.getMovies().get(index).getTitle()
-				+ "\'";
-		String query1 = "UPDATE Filepaths SET Title = \'" + titleField.getText() + "\' WHERE Title = \'"
-				+ movies.getMovies().get(index).getTitle() + "\'";
-
-		db.executeUpdate(query);
-		db.executeUpdate(query1);
+		// TODO Update movie info in database
 
 		f.refreshMoviesList();
 

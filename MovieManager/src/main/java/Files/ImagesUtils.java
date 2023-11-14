@@ -1,4 +1,3 @@
-
 package Files;
 
 import Database.Database;
@@ -17,12 +16,14 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import main.Movie;
 
 /**
  *
  * @author kosta
  */
 public class ImagesUtils {
+
 	public static String SaveImg(String path, String url) throws IOException {
 		// url = url.replaceAll(Pattern.quote("\\"), "");
 		// url = url.replaceAll(Pattern.quote("300"), "700");
@@ -58,67 +59,25 @@ public class ImagesUtils {
 
 		try (InputStream in = new URL(url).openStream()) {
 			String os = System.getProperty("os.name");
-			if(os.toLowerCase().contains("windows"))
+			if (os.toLowerCase().contains("windows")) {
 				Files.copy(in, Paths.get(path + "\\" + ImageName));
-			else if(os.toLowerCase().contains("linux"))
+			} else if (os.toLowerCase().contains("linux")) {
 				Files.copy(in, Paths.get(path + "/" + ImageName));
+			}
 		}
 
 		return ImageName;
 	}
 
-	public static void imageToDatabase(String imdbID) throws SQLException {
-		DatabaseConnection db = Database.connection();
-		ResultSet rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
-		rs.next();
-		String path = rs.getString(1);
-
-		rs = db.executeQuery(
-				new QueryBuilder().select("Poster_URL").from("Movies").where("IMDb_ID = '" + imdbID + "'").build());
-		rs.next();
-		String url = rs.getString(1);
-
-		// String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new
-		// Condition("Title", title));
-
-		System.out.println("Path: " + path);
-		System.out.println("URL: " + url);
-		System.out.println("IMDb ID: " + imdbID);
-
-		String imageName = "";
-
+	public static void imageToDatabase(Movie movie) throws SQLException {
+		String imageName = "ERROR";
 		try {
-			imageName = SaveImg(path, url, "w342");
+			imageName = SaveImg(movie.getDirectory(), movie.getImagePath(), "w342");
 		} catch (IOException ex) {
 			Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		// try {
-		// SaveImg(path, url, "original");
-		// } catch (IOException ex) {
-		// Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
-		// }
-
-		String os = System.getProperty("os.name"), query = "";
-		if(os.toLowerCase().contains("windows")){
-			query = new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "\\" + imageName, imdbID).build();
-		} else if(os.toLowerCase().contains("linux")){
-			query = new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "/" + imageName, imdbID).build();
-		}
-
-		db.executeUpdate(query);
-		db.close();
-	}
-
-	public static String matchImage(String imdbID) throws SQLException {
-		DatabaseConnection db = Database.connection();
-
-		ResultSet rs = db.executeQuery(new QueryBuilder().select("Image_Directory").from("Images")
-				.where("IMDb_ID = '" + imdbID + "'").build());
-		rs.next();
-
-		db.close();
-		return rs.getString(1);
+		System.out.println(imageName + " saved");
 	}
 
 	public static File delete(String dir) {

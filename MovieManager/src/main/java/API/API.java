@@ -2,6 +2,7 @@ package API;
 
 import java.io.IOException;
 import java.net.http.*;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import Exceptions.InvalidKeyException;
 import Exceptions.MovieNotFoundException;
@@ -26,8 +27,8 @@ import main.MovieCollection;
 import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.helpers.QueryBuilder;
 
-
 public class API {
+
 	public static Logs logger = new Logs("API");
 
 	private Dictionary<String, Movie> movies_info = new Hashtable<String, Movie>();
@@ -35,7 +36,9 @@ public class API {
 	private HttpResponse<String> response;
 
 	/**
-	 * Api constractor. If it is unable to load the api key throws an error
+	 * Api constractor. If it is unable to load
+	 * the api key throws an error
+	 *
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
@@ -56,83 +59,76 @@ public class API {
 		response = ApiUtils.http_get(url);
 
 		System.out.println("Response Status: " + response.statusCode());
-		if (response.statusCode() == 401) throw new InvalidKeyException("Invalid key");
+		if (response.statusCode() == 401) {
+			throw new InvalidKeyException("Invalid key");
+		}
 		// System.out.println(url);
 		// System.out.println(response.body());
 		return response.body();
 	}
 
-	public ArrayList<HashMap<String, String>> getSearchResults(String title){
+	public ArrayList<HashMap<String, String>> getSearchResults(String title) {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		try {
 			String s = search(title);
-			for(String sp:s.split(Pattern.quote("},{"))) list.add(HashMap.class.cast(Utils.JsonToDictionary(sp)));
+			for (String sp : s.split(Pattern.quote("},{"))) {
+				list.add(HashMap.class.cast(Utils.JsonToDictionary(sp)));
+			}
 
 		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
-			logger.logging("warning", "WARNING: "+e.toString());
+			logger.logging("warning", "WARNING: " + e.toString());
 		}
 		return list;
 	}
 
-
 	//Methods
 	public String GET(String title) throws IOException, InterruptedException, SQLException, ConnectException, NullPointerException, InvalidKeyException {
-		logger.logging("info", "Getting info for: "+title);
+		logger.logging("info", "Getting info for: " + title);
 		Dictionary<String, String> info = ApiUtils.infoToMap(title, this.api_key, search(title));
 
 		return "{"
-			+ "    \"Title\":\"" +      info.get("Title")
-			+ "\" ,\"Year\":\"" +       info.get("Year")
-			+ "\" ,\"Rated\":\"" +      info.get("Rated")
-			+ "\" ,\"Released\":\"" +   info.get("Released")
-			+ "\" ,\"Runtime\":\"" +    info.get("Runtime")
-			+ "\" ,\"Genre\":\"" +      info.get("Genre")
-			+ "\" ,\"Director\":\"" +   info.get("Director")
-			+ "\" ,\"Writer\":\"" +     info.get("Writer")
-			+ "\" ,\"Actors\":\"" +     info.get("Actors")
-			+ "\" ,\"Plot\":\"" +       info.get("Plot")
-			+ "\" ,\"Language\":\"" +   info.get("Language")
-			+ "\" ,\"Country\":\"" +    info.get("Country")
-			+ "\" ,\"Awards\":\"" +     info.get("Awards")
-			+ "\" ,\"Poster\":\"" +     info.get("Poster")
-			+ "\" ,\"Type\":\"" +       info.get("Type")
-			+ "\" ,\"imdbRating\":\"" + info.get("imdbRating")
-			+ "\" ,\"imdbID\":\"" +     info.get("imdbID")
-			+ "\" }";
+				+ "    \"Title\":\"" + info.get("Title")
+				+ "\" ,\"Year\":\"" + info.get("Year")
+				+ "\" ,\"Rated\":\"" + info.get("Rated")
+				+ "\" ,\"Released\":\"" + info.get("Released")
+				+ "\" ,\"Runtime\":\"" + info.get("Runtime")
+				+ "\" ,\"Genre\":\"" + info.get("Genre")
+				+ "\" ,\"Director\":\"" + info.get("Director")
+				+ "\" ,\"Writer\":\"" + info.get("Writer")
+				+ "\" ,\"Actors\":\"" + info.get("Actors")
+				+ "\" ,\"Plot\":\"" + info.get("Plot")
+				+ "\" ,\"Language\":\"" + info.get("Language")
+				+ "\" ,\"Country\":\"" + info.get("Country")
+				+ "\" ,\"Awards\":\"" + info.get("Awards")
+				+ "\" ,\"Poster\":\"" + info.get("Poster")
+				+ "\" ,\"Type\":\"" + info.get("Type")
+				+ "\" ,\"imdbRating\":\"" + info.get("imdbRating")
+				+ "\" ,\"imdbID\":\"" + info.get("imdbID")
+				+ "\" }";
 	}
 
-
-	public void saveToDatabase() throws SQLException{
+	public void saveToDatabase() throws SQLException {
 		DatabaseConnection db = Database.connection();
 		//System.out.println(json);
+
+		ResultSet rs;
+
 		for (String title : Collections.list(movies_info.keys())) {
 			Movie movie = movies_info.get(title);
 
 			QueryBuilder builder = new QueryBuilder();
 
-			String updateQuery = builder.update("Scraped")
-				.set("API_Done", true)
-				.where("Filepath = '" + movie.getDirectory() + "'")
-				.build();
-
-
-			db.executeUpdate(updateQuery);
-
-
-
-			String deleteQuery = builder.deleteFrom("Movies")
-				.where("Title = '" + title + "'")
-				.build();
-
-
-			db.executeUpdate(deleteQuery);
-
+			rs = db.executeQuery(builder.select("movie_id").from("Movies").where("filepath = '" + movie.getDirectory() + "'").build());
+			rs.next();
+			db.executeUpdate(builder.update("Scraped").set("is_scraped", true).where("movie_id = '" + rs.getString("movie_id") + "'").build());
 
 			DBMethods.insertMovie(movie);
 			String imdb_id = movie.getImdbID();
-			if(imdb_id != null) ImagesUtils.imageToDatabase(imdb_id);
+			if (imdb_id != null) {
+				ImagesUtils.imageToDatabase(movie);
+			}
 		}
 		db.close();
 	}
@@ -170,7 +166,7 @@ public class API {
 				}
 			}
 		}
-		System.out.println("movies list:"+movies);
+		System.out.println("movies list:" + movies);
 		saveToDatabase();
 		return movies;
 	}

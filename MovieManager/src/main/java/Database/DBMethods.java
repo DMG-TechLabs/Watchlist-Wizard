@@ -2,8 +2,9 @@ package Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.apache.commons.dbcp.DbcpException;
 
 import Files.ImagesUtils;
 import kdesp73.databridge.connections.DatabaseConnection;
@@ -34,141 +35,276 @@ public class DBMethods {
 		return DBFields;
 	}
 
-	// Adds genres to DB and returns their Category_ID's
-	private static int[] matchCategoryID(Movie m) throws SQLException {
+	public static int selectMovieId(String imdb_id) {
 		DatabaseConnection db = Database.connection();
 
-		String[] genre = DBUtils.genreToArray(m);
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("movie_id").from("Movies").where("imdb_id = \'" + imdb_id + "\'").build());
 
-		int[] ids = new int[genre.length];
-
-		ResultSet rs;
-
-		for (int i = 0; i < genre.length; i++) {
-			// Check if genre exists. If not add it and continue
-			rs = db.executeQuery("SELECT Category FROM Categories WHERE Category = '" + genre[i] + "'");
+		int id = -1;
+		try {
 			rs.next();
-			if (!rs.next()) {
-				System.out.println("Genre doesn't exist");
-				System.out.println("Adding genre...");
-
-				db.executeUpdate(new QueryBuilder().insertInto("Categories").columns("Category").values(genre[i]).build());
-
-				System.out.println("Genre added.");
-			}
-
-			String query = "SELECT Category_ID FROM Categories WHERE Category=\'" + genre[i] + "\'";
-			// System.out.println(query);
-
-			rs = db.executeQuery(query);
-
-			while (rs.next()) {
-				ids[i] = rs.getInt(1);
-			}
+			id = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		db.close();
-		return ids;
+		return id;
 	}
 
-	private static void matchCategories(Movie m) throws SQLException { // Adds Category id's and imdb id in the in
-																	   // beteween table
-		DatabaseConnection db = Database.connection();
-		int[] ids = matchCategoryID(m);
+	public static void insertMovie(Movie m) {
+		String insertQuery = "INSERT INTO Movies (title, year, runtime, plot, image_url, image_path, imdb_rating, imdb_id, filepath) "
+				+ "VALUES("
+				+ "\'" + m.getTitle() + "\'"
+				+ "\'" + m.getYear() + "\'"
+				+ "\'" + m.getRuntime() + "\'"
+				+ "\'" + m.getPlot() + "\'"
+				+ "\'" + m.getPoster() + "\'"
+				+ "\'" + m.getImagePath() + "\'"
+				+ "\'" + m.getImdbRating() + "\'"
+				+ "\'" + m.getImdbID() + "\'"
+				+ "\'" + m.getDirectory() + "\'"
+				+ ")";
 
-		for (int i = 0; i < ids.length; i++) {
-			db.executeUpdate("INSERT INTO Category_Matching(Category_ID, IMDb_ID) VALUES(" + ids[i] + ", \'"
-					+ m.getImdbID() + "\')");
-		}
+		DatabaseConnection db = Database.connection();
+
+		db.executeUpdate(insertQuery);
+
 		db.close();
 	}
 
-	private static String matchCategories(int categoryId) throws SQLException { // Adds Category id's and imdb id in the
-																				// in beteween table
-	
+	public static ArrayList<Movie> getMovies() throws SQLException {
 		DatabaseConnection db = Database.connection();
-		String query = "SELECT Category FROM Categories WHERE Category_ID = " + categoryId;
-		ResultSet rs = db.executeQuery(query);
+		ArrayList<Movie> list = new ArrayList<>();
 
-		rs.next();
+		ResultSet moviesRS = db.executeQuery(new QueryBuilder().select().from("Movies").build());
 
-		db.close();
-		return rs.getString(1);
-	}
+		while (moviesRS.next()) {
+			Movie m = new Movie();
 
-	public static void insertMovie(Movie m) {	
-		DatabaseConnection db = Database.connection();
-		String query = "INSERT INTO Movies(" + DBUtils.columnsToList(DBFields) + ") VALUES(" + DBUtils.objectToList(m)
-			+ ")";
+			String imdb_id = moviesRS.getString("imdb_id");
+			if (imdb_id != null || "".equals(imdb_id)) {
+				m.setImdbID(imdb_id);
+				m.setImdbRating(moviesRS.getString("imdb_rating"));
+				m.setPlot(moviesRS.getString("plot"));
+				m.setYear(moviesRS.getString("year"));
+				m.setRuntime(moviesRS.getString("runtime"));
+				m.setPoster(moviesRS.getString("image_url"));
+				m.setImagePath(moviesRS.getString("image_path"));
 
-		db.executeUpdate(query);
-		db.close();
-	}
+				m.setGenre(DBUtils.arrayToList(getCategories(imdb_id)));
+				m.setActors(DBUtils.arrayToList(getActors(imdb_id)));
+				m.setWriter(DBUtils.arrayToList(getWriters(imdb_id)));
+				m.setDirector(DBUtils.arrayToList(getDirectors(imdb_id)));
+				m.setDirector(DBUtils.arrayToList(getDirectors(imdb_id)));
 
-	public static ArrayList<String[]> getMovies() throws SQLException {
-		DatabaseConnection db = Database.connection();
-		ArrayList<String[]> list = new ArrayList<>();
-
-		String query = "SELECT " + DBUtils.columnsToList(DBFields) + " FROM Movies";
-		ResultSet rs = db.executeQuery(query);
-
-		while (rs.next()) {
-			String[] str = new String[DBFields.length];
-
-			for (int i = 0; i < DBFields.length; i++) {
-				str[i] = rs.getString(i + 1);
+				m.setRated(getRated(imdb_id));
+				m.setLanguage(getLanguage(imdb_id));
+				m.setCountry(getCountry(imdb_id));
 			}
 
-			list.add(str);
+			m.setTitle(moviesRS.getString("title"));
+			m.setTitle(moviesRS.getString("filepath"));
+
+			list.add(m);
 		}
+
 		db.close();
 		return list;
 	}
 
-	public static ArrayList<String> getCategories(String id) throws SQLException {
+	public static ArrayList<String> getCategories(String imdb_id) throws SQLException {
 		DatabaseConnection db = Database.connection();
-		ArrayList<String> genres = new ArrayList<>();
-		ArrayList<Integer> categoryIDs = new ArrayList<>();
+		QueryBuilder builder = new QueryBuilder();
 
-		String query = "SELECT Category_ID FROM Category_Matching WHERE IMDb_ID = \'" + id + "\'";
-		ResultSet rs = db.executeQuery(query);
+		ArrayList<String> genres = new ArrayList<>();
+		ArrayList<String> categoryIds = new ArrayList<>();
+
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("category_id").from("Categories_Matching").where("movie_id = '" + movie_id + "'").build());
 
 		while (rs.next()) {
-			categoryIDs.add(rs.getInt(1));
+			categoryIds.add(rs.getString("category_id"));
 		}
 
-		for (int i = 0; i < categoryIDs.size(); i++) {
-			genres.add(matchCategories(categoryIDs.get(i)));
+		for (String i : categoryIds) {
+			rs = db.executeQuery(builder.select("category").from("Categories").where("id = '" + i + "'").build());
+			rs.next();
+			genres.add(rs.getString("category"));
 		}
-		
 		db.close();
 		return genres;
 	}
 
-	public static void getFilename(Statement s, Movie m) throws SQLException {
-		String query = "SELECT Filename FROM Filenames WHERE Filename = " + m.getImdbID();
+	public static ArrayList<String> getActors(String imdb_id) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
 
-		ResultSet rs = s.executeQuery(query);
+		ArrayList<String> actors = new ArrayList<>();
+		ArrayList<String> actorsIds = new ArrayList<>();
 
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("actor_id").from("Actors_Matching").where("movie_id = '" + movie_id + "'").build());
+
+		while (rs.next()) {
+			actorsIds.add(rs.getString("actor_id"));
+		}
+
+		for (String i : actorsIds) {
+			rs = db.executeQuery(builder.select("actor").from("Actors").where("id = '" + i + "'").build());
+			rs.next();
+			actors.add(rs.getString("actor"));
+		}
+
+		db.close();
+		return actors;
+	}
+
+	public static ArrayList<String> getWriters(String imdb_id) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
+
+		ArrayList<String> writers = new ArrayList<>();
+		ArrayList<String> writersIds = new ArrayList<>();
+
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("writer_id").from("Writers_Matching").where("movie_id = '" + movie_id + "'").build());
+
+		while (rs.next()) {
+			writersIds.add(rs.getString("writer_id"));
+		}
+
+		for (String i : writersIds) {
+			rs = db.executeQuery(builder.select("writer").from("Writers").where("id = '" + i + "'").build());
+			rs.next();
+			writers.add(rs.getString("writer"));
+		}
+
+		db.close();
+		return writers;
+	}
+
+	public static String getCountry(String imdb_id) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
+
+		String country;
+		String countryId;
+
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("country_id").from("Countries_Matching").where("movie_id = '" + movie_id + "'").build());
 		rs.next();
-		m.setFilename(rs.getString(1));
+		countryId = rs.getString("country_id");
+
+		rs = db.executeQuery(builder.select("country").from("Countries").where("id = '" + countryId + "'").build());
+		rs.next();
+		country = rs.getString("country");
+
+		db.close();
+		return country;
+	}
+
+	public static ArrayList<String> getDirectors(String imdb_id) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
+
+		ArrayList<String> directors = new ArrayList<>();
+		ArrayList<String> directorsIds = new ArrayList<>();
+
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("director_id").from("Directors_Matching").where("movie_id = '" + movie_id + "'").build());
+
+		while (rs.next()) {
+			directorsIds.add(rs.getString("director_id"));
+		}
+
+		for (String i : directorsIds) {
+			rs = db.executeQuery(builder.select("director").from("Directors").where("id = '" + i + "'").build());
+			rs.next();
+			directors.add(rs.getString("director"));
+		}
+
+		db.close();
+		return directors;
+	}
+
+	public static String getLanguage(String imdb_id) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
+
+		String language;
+		String languageId;
+
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("language_id").from("Languages_Matching").where("movie_id = '" + movie_id + "'").build());
+		rs.next();
+		languageId = rs.getString("language_id");
+
+		rs = db.executeQuery(builder.select("language").from("Languages").where("id = '" + languageId + "'").build());
+		rs.next();
+		language = rs.getString("language");
+
+		db.close();
+		return language;
+	}
+
+	public static String getRated(String imdb_id) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
+
+		String rated;
+		String rated_id;
+
+		String movie_id = getMovieID("imdb_id = '" + imdb_id + "'");
+
+		ResultSet rs = db.executeQuery(builder.select("rated_id").from("Rated_Matching").where("movie_id = '" + movie_id + "'").build());
+		rs.next();
+		rated_id = rs.getString("rated_id");
+
+		rs = db.executeQuery(builder.select("rating").from("Ratings").where("id = '" + rated_id + "'").build());
+		rs.next();
+		rated = rs.getString("rating");
+
+		db.close();
+		return rated;
+	}
+
+	public static String getMovieID(String where) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		QueryBuilder builder = new QueryBuilder();
+
+		ResultSet rs = db.executeQuery(builder.select("movie_id").from("Movies").where(where).build());
+		rs.next();
+		db.close();
+
+		return rs.getString("movie_id");
 	}
 
 	public static void formatDatabase() throws SQLException {
 		DatabaseConnection db = Database.connection();
-		db.executeUpdate("DELETE FROM Movies");
-		db.executeUpdate("DELETE FROM Filepaths");
+		db.executeUpdate("DELETE FROM Directories");
 		db.executeUpdate("DELETE FROM Scraped");
 		db.executeUpdate("DELETE FROM Category_Matching");
+		db.executeUpdate("DELETE FROM Actors_Matching");
+		db.executeUpdate("DELETE FROM Countries_Matching");
+		db.executeUpdate("DELETE FROM Directors_Matching");
+		db.executeUpdate("DELETE FROM Language_Matching");
+		db.executeUpdate("DELETE FROM Rated_Matching");
+		db.executeUpdate("DELETE FROM Writers_Matching");
 
-		ResultSet rs = db.executeQuery(new QueryBuilder().select("Image_Directory").from("Images").build());
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("image_path").from("Movies").build());
 
+		rs.next();
+		ImagesUtils.delete(rs.getString("image_path"));
 
-		while(rs.next()){
-			ImagesUtils.delete(rs.getString("Image_Directory"));
-		}
+		db.executeUpdate("DELETE FROM Movies");
 
-		db.executeUpdate("DELETE FROM Images");
 		db.close();
 	}
 
@@ -230,28 +366,26 @@ public class DBMethods {
 			return s;
 		}
 
-		public static String objectToList(Movie m) {
-			String[] info = m.getInfo();
-			String s = "";
-
-			for (int i = 0; i < info.length; i++) {
-				if (info[i] == null) {
-					if (i == info.length - 1) {
-						s = s.concat("\'" + info[i] + "\'");
-					} else {
-						s = s.concat("\'" + info[i] + "\', ");
-					}
-				} else {
-					if (i == info.length - 1) {
-						s = s.concat("\'" + info[i].replaceAll("\'", "\\\'") + "\'");
-					} else {
-						s = s.concat("\'" + info[i].replaceAll("\'", "\\\'") + "\', ");
-					}
-				}
-			}
-			return s;
-		}
-
+//		public static String objectToList(Movie m) {
+//			String s = "";
+//
+//			for (int i = 0; i < info.length; i++) {
+//				if (info[i] == null) {
+//					if (i == info.length - 1) {
+//						s = s.concat("\'" + info[i] + "\'");
+//					} else {
+//						s = s.concat("\'" + info[i] + "\', ");
+//					}
+//				} else {
+//					if (i == info.length - 1) {
+//						s = s.concat("\'" + info[i].replaceAll("\'", "\\\'") + "\'");
+//					} else {
+//						s = s.concat("\'" + info[i].replaceAll("\'", "\\\'") + "\', ");
+//					}
+//				}
+//			}
+//			return s;
+//		}
 		public static String[] genreToArray(Movie m) {
 			String[] s;
 			// s = m.getGenre();
@@ -259,7 +393,7 @@ public class DBMethods {
 				s = m.getGenre().split(", ");
 			} catch (NullPointerException e) {
 				System.out.println("ERROR");
-				s = new String[] { "null" };
+				s = new String[]{"null"};
 			}
 
 			return s;

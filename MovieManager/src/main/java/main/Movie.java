@@ -1,7 +1,5 @@
 package main;
 
-import Database.DBMethods;
-
 public class Movie implements Comparable<Movie>{
 
         private String Title;
@@ -21,41 +19,26 @@ public class Movie implements Comparable<Movie>{
         private String Type;
         private String imdbRating;
         private String imdbID;
-        
-        private String[] info;
+
         private String directory;
         private String filename;
+		private String imagePath;
 
         public Movie() {
-                info = new String[DBMethods.getDBFields().length];
         }
 
         Movie(String Title) {
                 this.Title = Title;
         }
-        
-        public String[] getInfo() {
-                
-                info[0] = Title;
-                info[1] = Year;
-                info[2] = Rated;
-                info[3] = Released;
-                info[4] = Runtime;
-                info[5] = Director;
-                info[6] = Writer;
-                info[7] = Actors;
-                info[8] = Plot;
-                info[9] = Language;
-                info[10] = Country;
-                info[11] = Awards;
-                info[12] = Poster;
-                info[13] = imdbRating;
-                info[14] = imdbID;
-                
-                
-                return info;
-        }
-        
+
+		public String getImagePath(){
+			return imagePath;
+		}
+
+		public void setImagePath(String imagePath){
+			this.imagePath = imagePath;
+		}
+
         public String getTitle() {
                 return Title;
         }
@@ -193,14 +176,6 @@ public class Movie implements Comparable<Movie>{
                 this.Type = Type;
         }
 
-        
-        
-        
-
-        public void setInfo(String[] info) {
-                this.info = info;
-        }
-
         public String getDirectory() {
                 return directory;
         }
@@ -216,32 +191,6 @@ public class Movie implements Comparable<Movie>{
         public void setFilename(String filename) {
                 this.filename = filename;
         }
-        
-        
-        
-        public void addInfo(String[] info) {
-                setInfo(info);
-                
-                setTitle(info[0]);
-                setYear(info[1]);
-                setRated(info[2]);
-                setReleased(info[3]);
-                setRuntime(info[4]);
-                setGenre(info[5]);
-                setDirector(info[6]);
-                setWriter(info[7]);
-                setActors(info[8]);
-                setPlot(info[9]);
-                setLanguage(info[10]);
-                setCountry(info[11]);
-                setAwards(info[12]);
-                setPoster(info[13]);
-                //setType(info[14]);
-                setImdbRating(info[14]);
-                setImdbID(info[15]);
-                setDirectory(info[16]);
-                setFilename(info[17]);
-        }
 
         @Override
         public String toString() {
@@ -252,7 +201,7 @@ public class Movie implements Comparable<Movie>{
         public int compareTo(Movie m) {
             return this.Title.compareTo(m.Title);
         }
-        
+
         public boolean equals(String title) {
                 return this.Title.compareTo(title) == 0;
         }

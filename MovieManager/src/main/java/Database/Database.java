@@ -7,10 +7,11 @@ import java.util.regex.Pattern;
 
 import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.databridge.connections.MSAccessConnection;
+import kdesp73.databridge.connections.SQLiteConnection;
 
 public class Database {
 	private static final String FILEPATH = System.getProperty("user.dir").replaceAll(Pattern.quote("\\"), "/")
-			+ "/data/MoviesDatabase.accdb";
+			+ "/data/movies.db";
 
 	private static DatabaseConnection instance;
 
@@ -22,10 +23,10 @@ public class Database {
 		synchronized (DatabaseConnection.class) {
 			try {
 				// Initialize the database connection here
-				String url = "jdbc:ucanaccess://" + FILEPATH;
+				String url = "jdbc:sqlite://" + FILEPATH;
 				String username = "";
 				String password = "";
-				instance = new MSAccessConnection();
+				instance = new SQLiteConnection();
 				instance.connect(url, username, password);
 			} catch (RuntimeException e) {
 				e.printStackTrace();
