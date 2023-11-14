@@ -79,13 +79,13 @@ public class Frame extends javax.swing.JFrame {
 			Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		if (dir != null)
+		if(dir != null)
 			fl = new FilesList(dir);
 
 		SearchBar.addFocusListener(new FocusListener() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (SearchBar.getText().equals("Search")) {
+				if(SearchBar.getText().equals("Search")){
 					SearchBar.setText("");
 					SearchBar.setForeground(theme.getTextbox_fg());
 				}
@@ -93,7 +93,7 @@ public class Frame extends javax.swing.JFrame {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (SearchBar.getText().isEmpty()) {
+				if(SearchBar.getText().isEmpty()){
 					SearchBar.setForeground(theme.getTextbox_fg());
 					SearchBar.setText("Search");
 				}
@@ -760,7 +760,7 @@ public class Frame extends javax.swing.JFrame {
 
 		DefaultListModel listModel = new DefaultListModel();
 
-		for (int i = 0; i < movies.getMovies().size(); i++) {
+		for(int i = 0; i < movies.getMovies().size(); i++){
 			listModel.addElement(movies.getMovies().get(i).getTitle());
 		}
 
@@ -773,7 +773,7 @@ public class Frame extends javax.swing.JFrame {
 
 		DefaultListModel listModel = new DefaultListModel();
 
-		for (int i = 0; i < sortedList.size(); i++) {
+		for(int i = 0; i < sortedList.size(); i++){
 			listModel.addElement(sortedList.get(i).getTitle());
 		}
 
@@ -800,7 +800,7 @@ public class Frame extends javax.swing.JFrame {
 		if (ef != null) ef.dispose();
 
 		int index = moviesList.getSelectedIndex();
-		if (index < 0){
+		if(index < 0){
 			GUIMethods.dialogError("No movie selected for editing");
 			throw new NoMovieSelectedException("No movie selected for editing");
 		}
@@ -833,11 +833,11 @@ public class Frame extends javax.swing.JFrame {
 	}
 
 	private void moviesListMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_moviesListMouseClicked
-		if (evt.getButton() == 1) { // Left Click
-			if (!sorted) showInfo(moviesList, movies.getMovies());
+		if(evt.getButton() == 1){ // Left Click
+			if(!sorted) showInfo(moviesList, movies.getMovies());
 			else showInfo(moviesList, Utils.Utils.sortTitle(movies.getMovies()));
 
-		} else if (evt.getButton() == 3) { // Right Click
+		} else if(evt.getButton() == 3){ // Right Click
 			JPopupMenu options = new JPopupMenu();
 			JMenuItem edit = new JMenuItem("Edit");
 			JMenuItem delete = new JMenuItem("Delete");
@@ -905,10 +905,10 @@ public class Frame extends javax.swing.JFrame {
 	private void sortButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sortButtonMouseClicked
 		sorted = !sorted;
 
-		if (sorted) {
+		if(sorted){
 			refreshSorted();
 			sortLabel.setText("Unsort");
-		} else {
+		} else{
 			refreshMoviesList();
 			sortLabel.setText("Sort");
 		}
@@ -981,7 +981,7 @@ public class Frame extends javax.swing.JFrame {
 	private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_playButtonMouseClicked
 		DatabaseConnection db = Database.connection();
 		ResultSet rs = null;
-		if (moviesList.getSelectedIndex() < 0) {
+		if(moviesList.getSelectedIndex() < 0){
 			throw new NoMovieSelectedException("No movie Selected");
 		}
 
@@ -997,19 +997,18 @@ public class Frame extends javax.swing.JFrame {
 		System.out.println("\nMedia Player Path: " + MediaPlayerPath);
 
 		String FilePath = movies.getMovies().get(moviesList.getSelectedIndex()).getDirectory();
-		if ("".equals(FilePath)) {
+		if("".equals(FilePath)){
 			return;
 		}
 
 		System.out.println("File Path: " + FilePath);
 
 		ProcessBuilder pb = new ProcessBuilder(MediaPlayerPath, FilePath);
-		Process p = null;
 		try {
-			p = pb.start();
-			System.out.println("Proccess started");
-			this.setDefaultCloseOperation(Frame.DISPOSE_ON_CLOSE);
-			this.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
+            pb.start();
+            System.out.println("Proccess started");
+            this.setDefaultCloseOperation(Frame.DISPOSE_ON_CLOSE);
+            this.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
 		} catch (IOException ex) {
 			Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -1074,17 +1073,17 @@ public class Frame extends javax.swing.JFrame {
 		int index = list.getSelectedIndex();
 		String imdbID = m.get(index).getImdbID();
 
-		if (index < 0) {
+		if(index < 0){
 			throw new NoMovieSelectedException("No movie Selected");
 		}
 
-		if (imdbID != null) {
+		if(imdbID != null){
 			try {
 				loadImage(ImagesUtils.matchImage(imdbID));
 			} catch (SQLException ex) {
 				Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
 			}
-		} else {
+		} else{
 			imageLabel.setIcon(null);
 		}
 
@@ -1107,7 +1106,7 @@ public class Frame extends javax.swing.JFrame {
 	}
 
 	public void showInfo(int idloc, ArrayList<Movie> m) {
-		if (idloc < 0) {
+		if(idloc < 0){
 			throw new NoMovieSelectedException("No movie Selected");
 		}
 		String imdbID = m.get(idloc).getImdbID();
@@ -1142,15 +1141,15 @@ public class Frame extends javax.swing.JFrame {
 	private void printPlot(int idloc) {
 		String plotString = movies.getMovies().get(idloc).getPlot();
 
-		if (plotString == null) {
+		if(plotString == null){
 			plotString = "";
 		}
 
-		if (plotString.length() <= 50) {
+		if(plotString.length() <= 50){
 			plot.setText(GUIMethods.breakString(plotString, 1));
-		} else if (plotString.length() > 50 && plotString.length() <= 100) {
+		} else if(plotString.length() > 50 && plotString.length() <= 100){
 			plot.setText(GUIMethods.breakString(plotString, 2));
-		} else if (plotString.length() > 100) {
+		} else if(plotString.length() > 100){
 			plot.setText(GUIMethods.breakString(plotString, 3));
 		}
 	}
