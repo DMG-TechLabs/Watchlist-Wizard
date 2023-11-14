@@ -1,121 +1,143 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Files;
 
 import Database.Database;
+import kdesp73.databridge.helpers.QueryBuilder;
+import kdesp73.databridge.connections.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
-import kdesp73.madb.Condition;
 
 /**
  *
  * @author kosta
  */
 public class ImagesUtils {
-        public static String SaveImg(String path, String url) throws IOException {
-                //url = url.replaceAll(Pattern.quote("\\"), "");
-                //url = url.replaceAll(Pattern.quote("300"), "700");
-                //String ImageName = FilesList.GetOnlyPath(path, name)+name+".jpg";
-                String ImageName = generateRandomString(10) + ".jpg";
-                System.out.println(ImageName);
-                if (url.contains("media-amazon")) {
-                        url = url.replaceAll(Pattern.quote("\\"), "");
-                        url = url.replaceAll(Pattern.quote("300"), "229");
-                } else {
-                        url = "https://image.tmdb.org/t/p/original/" + url;
-                }
+	public static String SaveImg(String path, String url) throws IOException {
+		// url = url.replaceAll(Pattern.quote("\\"), "");
+		// url = url.replaceAll(Pattern.quote("300"), "700");
+		// String ImageName = FilesList.GetOnlyPath(path, name)+name+".jpg";
+		String ImageName = generateRandomString(10) + ".jpg";
+		System.out.println(ImageName);
+		if (url.contains("media-amazon")) {
+			url = url.replaceAll(Pattern.quote("\\"), "");
+			url = url.replaceAll(Pattern.quote("300"), "229");
+		} else {
+			url = "https://image.tmdb.org/t/p/original/" + url;
+		}
 
-                try ( InputStream in = new URL(url).openStream()) {
-                        Files.copy(in, Paths.get(path + "\\"+ ImageName));
-                }
-                
-                return ImageName;
-        }
+		try (InputStream in = new URL(url).openStream()) {
+			Files.copy(in, Paths.get(path + "\\" + ImageName));
+		}
 
-        public static String SaveImg(String path, String url, String rescale) throws IOException {
-                //url = url.replaceAll(Pattern.quote("\\"), "");
-                //url = url.replaceAll(Pattern.quote("300"), "700");
-                //String ImageName = FilesList.GetOnlyPath(path, name)+name+".jpg";
-                String ImageName = generateRandomString(10) + ".jpg";
-                System.out.println(ImageName);
-                if (url.contains("media-amazon")) {
-                        url = url.replaceAll(Pattern.quote("\\"), "");
-                        url = url.replaceAll(Pattern.quote("300"), "229");
-                } else {
-                        url = "https://image.tmdb.org/t/p/"+ rescale + "/" + url;
-                }
+		return ImageName;
+	}
 
-                try ( InputStream in = new URL(url).openStream()) {
-                        Files.copy(in, Paths.get(path + "\\"+ ImageName));
-                }
-                
-                return ImageName;
-        }
-        
-        public static void imageToDatabase(String imdbID) throws SQLException{
-                String path = (String) Database.db().SELECT("Settings", "Directory").get(0);
-                String url = (String) Database.db().SELECT("Movies", "Poster_URL", new Condition("IMDb_ID", imdbID));
-                //String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new Condition("Title", title));
-                
-                System.out.println("Path: " + path);
-                System.out.println("URL: " + url);
-                System.out.println("IMDb ID: " + imdbID);
-                
-                String imageName = "";
-                
-                try {
-                        imageName = SaveImg(path, url, "w342");
-                } catch (IOException ex) {
-                        Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-//                try {
-//                        SaveImg(path, url, "original");
-//                } catch (IOException ex) {
-//                        Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-                
-                Database.db().INSERT("Images", new String[]{"Image_Directory", "IMDb_ID"}, new String[]{path +"\\"+ imageName, imdbID});
-        }
-        
-        public static String matchImage(String imdbID) throws SQLException{
-                //String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new Condition("Title", title));
-                
-                String imgDir = (String) Database.db().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbID));
-                
-                return imgDir;
-        }
-        
-        public static File delete(String dir) {
-                File file = new File(dir);
-                if (file.delete()) {
-                        System.out.println("Deleted the file: " + file.getName());
-                        return file;
-                } else {
-                        System.out.println("Failed to delete the file.");
-                }
-                return null;
-        }
-        
-        
-        private static String generateRandomString(int length){
-                String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                String s = "";
-                for (int i = 0; i < length; i++) {
-                        s = s + characters.charAt(new Random().nextInt(characters.length()));
-                }
-                
-                return s;
-        }
+	public static String SaveImg(String path, String url, String rescale) throws IOException {
+		// url = url.replaceAll(Pattern.quote("\\"), "");
+		// url = url.replaceAll(Pattern.quote("300"), "700");
+		// String ImageName = FilesList.GetOnlyPath(path, name)+name+".jpg";
+		String ImageName = generateRandomString(10) + ".jpg";
+		System.out.println(ImageName);
+		if (url.contains("media-amazon")) {
+			url = url.replaceAll(Pattern.quote("\\"), "");
+			url = url.replaceAll(Pattern.quote("300"), "229");
+		} else {
+			url = "https://image.tmdb.org/t/p/" + rescale + "/" + url;
+		}
+
+		try (InputStream in = new URL(url).openStream()) {
+			String os = System.getProperty("os.name");
+			if(os.toLowerCase().contains("windows"))
+				Files.copy(in, Paths.get(path + "\\" + ImageName));
+			else if(os.toLowerCase().contains("linux"))
+				Files.copy(in, Paths.get(path + "/" + ImageName));
+		}
+
+		return ImageName;
+	}
+
+	public static void imageToDatabase(String imdbID) throws SQLException {
+		DatabaseConnection db = Database.connection();
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+		rs.next();
+		String path = rs.getString(1);
+
+		rs = db.executeQuery(
+				new QueryBuilder().select("Poster_URL").from("Movies").where("IMDb_ID = '" + imdbID + "'").build());
+		rs.next();
+		String url = rs.getString(1);
+
+		// String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new
+		// Condition("Title", title));
+
+		System.out.println("Path: " + path);
+		System.out.println("URL: " + url);
+		System.out.println("IMDb ID: " + imdbID);
+
+		String imageName = "";
+
+		try {
+			imageName = SaveImg(path, url, "w342");
+		} catch (IOException ex) {
+			Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		// try {
+		// SaveImg(path, url, "original");
+		// } catch (IOException ex) {
+		// Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
+		// }
+
+		String os = System.getProperty("os.name"), query = "";
+		if(os.toLowerCase().contains("windows")){
+			query = new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "\\" + imageName, imdbID).build();
+		} else if(os.toLowerCase().contains("linux")){
+			query = new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "/" + imageName, imdbID).build();
+		}
+
+		db.executeUpdate(query);
+		db.close();
+	}
+
+	public static String matchImage(String imdbID) throws SQLException {
+		DatabaseConnection db = Database.connection();
+
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("Image_Directory").from("Images")
+				.where("IMDb_ID = '" + imdbID + "'").build());
+		rs.next();
+
+		db.close();
+		return rs.getString(1);
+	}
+
+	public static File delete(String dir) {
+		File file = new File(dir);
+		if (file.delete()) {
+			System.out.println("Deleted the file: " + file.getName());
+			return file;
+		} else {
+			System.out.println("Failed to delete the file.");
+		}
+		return null;
+	}
+
+	private static String generateRandomString(int length) {
+		String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String s = "";
+		for (int i = 0; i < length; i++) {
+			s = s + characters.charAt(new Random().nextInt(characters.length()));
+		}
+
+		return s;
+	}
 }

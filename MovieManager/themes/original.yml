@@ -1,0 +1,34 @@
+name: Original
+
+# All values below should be in hex form without the '#'
+
+bg: "F0F0F0"
+fg: "000000"
+
+bg_2: "FFFFFF"
+fg_2: "000"
+
+btn: "373F51"
+btn_fg: "FFFFFF"
+
+textbox: "FFFFFF"
+textbox_fg: "000000"
+
+list: "373F51"
+list_fg: "FFFFFF"
+list_focus: "21262A"
+
+scrollbar: "0B3948"
+progress_bar: "44AF69"
+
+# extra slots for additional colors
+extra_0: "5F6574"
+extra_1: "445E93"
+extra_2: "000002"
+extra_3: "000003"
+extra_4: "000004"
+extra_5: "000005"
+extra_6: "000006"
+extra_7: "000007"
+extra_8: "000008"
+extra_9: "000009"

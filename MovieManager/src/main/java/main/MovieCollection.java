@@ -1,300 +1,341 @@
 package main;
 
-import Database.Database;
-import Database.DBMethods;
-import Files.DirFiles;
-import Files.FilesList;
-import Files.ImagesUtils;
-import GUI.GUIMethods;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import kdesp73.madb.Condition;
+
+import Database.DBMethods;
+import Database.Database;
+import Files.DirFiles;
+import Files.FilesList;
+import Files.ImagesUtils;
+import GUI.GUIMethods;
+import kdesp73.databridge.connections.DatabaseConnection;
+import kdesp73.databridge.helpers.QueryBuilder;
+import kdesp73.databridge.helpers.ResultRow;
+import net.ucanaccess.jdbc.UcanaccessSQLException;
 
 public class MovieCollection {
 
-        private ArrayList<String> exts = new ArrayList<>();
-//        private String[] exts = {
-//                "3g2",
-//                "3gp",
-//                "aaf",
-//                "asf",
-//                "avchd",
-//                "avi",
-//                "drc",
-//                "flv",
-//                "m2v",
-//                "m3u8",
-//                "m4p",
-//                "m4v",
-//                "mkv",
-//                "mng",
-//                "mov",
-//                "mp2",
-//                "mp4",
-//                "mpe",
-//                "mpeg",
-//                "mpg",
-//                "mpv",
-//                "mxf",
-//                "nsv",
-//                "ogg",
-//                "ogv",
-//                "qt",
-//                "rm",
-//                "rmvb",
-//                "roq",
-//                "svi",
-//                "vob",
-//                "webm",
-//                "wmv",
-//                "yuv"
-//        };
+    private ArrayList<String> exts = new ArrayList<>();
+    //        private String[] exts = {
+    //                "3g2",
+    //                "3gp",
+    //                "aaf",
+    //                "asf",
+    //                "avchd",
+    //                "avi",
+    //                "drc",
+    //                "flv",
+    //                "m2v",
+    //                "m3u8",
+    //                "m4p",
+    //                "m4v",
+    //                "mkv",
+    //                "mng",
+    //                "mov",
+    //                "mp2",
+    //                "mp4",
+    //                "mpe",
+    //                "mpeg",
+    //                "mpg",
+    //                "mpv",
+    //                "mxf",
+    //                "nsv",
+    //                "ogg",
+    //                "ogv",
+    //                "qt",
+    //                "rm",
+    //                "rmvb",
+    //                "roq",
+    //                "svi",
+    //                "vob",
+    //                "webm",
+    //                "wmv",
+    //                "yuv"
+    //        };
 
-        private String dir;
-        private ArrayList<Movie> movies = new ArrayList<>();
-//        private FilesList filesList;
+    private String dir;
+    private ArrayList<Movie> movies = new ArrayList<>();
+    //        private FilesList filesList;
 
-        public MovieCollection() {
-//                filesList = new FilesList(dir, exts);
-                
-                ArrayList<Object> objectList = new ArrayList<>();
+    public MovieCollection() {
+		DatabaseConnection db = Database.connection();
 
-                try {
-                        objectList = Database.db().SELECT("Extensions", "Extension");
-                } catch (SQLException ex) {
-                        Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                for (Object obj : objectList) {
-                        this.exts.add((String)obj);
-                }
-                
-                try {
-                        this.dir = (String) Database.db().SELECT("Settings", "Directory").get(0);
-                } catch (SQLException ex) {
-                        Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
-                }
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("Extension").from("Extensions").build());
+
+		try {
+			while(rs.next())
+				this.exts.add(rs.getString("Extension"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+
+        try {
+			rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+			rs.next();
+			this.dir = rs.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		db.close();
+	}
+
+    public void print() {
+        for (int i = 0; i < movies.size(); i++) {
+            System.out.println("movies[" + i + "]");
+            System.out.println(movies.get(i).toString());
+            System.out.println("");
+        }
+    }
+
+    public void refreshMovies() {
+        DatabaseConnection db = Database.connection();
+
+		exts.clear();
+		ResultSet rs = db
+				.executeQuery(new QueryBuilder().select("Extension").from("Extensions").build());
+        ResultSet rs2;
+		try {
+			while (rs.next()) {
+				this.exts.add(rs.getString("Extension"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+        movies.clear();
+        Movie m = null;
+        FilesList filesList = new FilesList(dir, exts);
+        // FindMultipleFiles filesList = new FindMultipleFiles(dir, exts);
+        List<String> paths = new ArrayList<String>();
+        List<String> names = new ArrayList<String>();
+        try {
+            paths = filesList.getPaths();
+            names = filesList.getNames();
+            if(paths.size() != names.size()) throw new Exception("Different number of names and paths");
+        //TODO when add my lib make it IOexeption
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Can't find or open this directory!");
         }
 
-        public void print() {
-                for (int i = 0; i < movies.size(); i++) {
-                        System.out.println("movies[" + i + "]");
-                        System.out.println(movies.get(i).toString());
-                        System.out.println("");
-                }
-        }
+        ArrayList<String> filepathsInDB = new ArrayList<String>();
+		rs = db.executeQuery(new QueryBuilder().select("Filepath").from("Filepaths").build());
 
-        public void refreshMovies() {
-                exts.clear();
-                
-                ArrayList<Object> objectList = new ArrayList<>();
-                try {
-                         objectList = Database.db().SELECT("Extensions", "Extension");
-                } catch (SQLException ex) {
-                        Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
-                        return;
-                } catch (Exception ex){
-                    System.out.println("");
-                }
-                
-                for (Object obj : objectList) {
-                        this.exts.add((String)obj);
-                }
-                
-                objectList.clear();
-                
-                movies.clear();
-                Movie m = null;
-                FilesList filesList = new FilesList(dir, exts);
-                List<String> names = filesList.getNames();
-                List<String> paths = filesList.getPaths();
-                
-                ArrayList<String> filepathsInDB = new ArrayList<>();
-                try {
-                        objectList = Database.db().SELECT("Filepaths", "Filepath");
-                } catch (SQLException e1) {
-                        System.out.println("Movies exists in Database");
-                }
-                
-                for (Object obj : objectList) {
-                        filepathsInDB.add((String)obj);
-                }
-                
-                for (int i=0; i < filepathsInDB.size(); i++){
-                    if(!exts.contains(DirFiles.GetExt(filepathsInDB.get(i))) || !paths.contains(filepathsInDB.get(i))){
-                        try {
-                            
-                            String titleToDelete = (String) Database.db().SELECT("Filepaths", "Title", new Condition("Filepath", filepathsInDB.get(i)));
-                            
-                            Database.db().DELETE("Movies", "Title", titleToDelete);
-                            Database.db().DELETE("Filepaths", "Title", titleToDelete);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+        String path = "";
+        try {
+			while (rs.next()) {
+			    filepathsInDB.add(rs.getString("Filepath"));
+                path = rs.getString("Filepath");
+                if(!exts.contains(DirFiles.GetExt(path)) || !paths.contains(path)){
+                    String titleToDelete = "";
+                    rs2 = db.executeQuery(new QueryBuilder().select("Title").from("Filepaths")
+                            .where("Filepath = '" + path + "'").build());
+                    try {
+                        rs2.next();
+                        titleToDelete = rs2.getString(1);
+
+                        db.executeUpdate(
+                            new QueryBuilder().deleteFrom("Movies").where("Title = '" + titleToDelete + "'").build());
+                        db.executeUpdate(new QueryBuilder().deleteFrom("Filepaths")
+                            .where("Title = '" + titleToDelete + "'").build());
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 }
-                
-                for (int i = 0; i < names.size(); i++) {
-                        if (filepathsInDB.contains(paths.get(i))) {
-                                continue;
-                        }
-                        try {
-                                m = insertMovie(names.get(i));
-                                m.setDirectory(paths.get(i));
-                                m.setFilename(names.get(i));
-                                movies.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-                                Database.db().INSERT("Filepaths", new String[]{"Filepath", "Title"}, new String[]{paths.get(i), m.getTitle()});
-                                Database.db().INSERT("Scraped", new String[]{"Filepath", "API_Done"}, new Object[]{movies.get(i).getDirectory(), false});
-
-                        } catch (IOException | InterruptedException | SQLException | NullPointerException e) { //Make proper exceptions
-                                System.out.println("Movie is null");
-                        } catch (IndexOutOfBoundsException e) {
-                                System.out.println("Movies.get(i) IndexOutOfBoundsException");
-                        }
-                }
-                
-            
-        }
-
-        public void load() throws SQLException {
-                movies.clear();
-
-                ArrayList<String[]> infoList = DBMethods.getMovies();
-
-                for (int i = 0; i < infoList.size(); i++) {
-                        Movie m = new Movie();
-
-                        String[] info = infoList.get(i);
-
-                        String[] temp = new String[DBMethods.getDBFields().length + 3];
-                        for (int j = 0; j < temp.length - 2; j++) {
-                                if (j < 5) {
-                                        temp[j] = info[j];
-                                }
-                                if (j == 5) {
-                                        temp[j] = MovieUtils.arrayToList(DBMethods.getCategories(Database.db().getStatement(), info[14]));
-                                }
-                                if (j > 5) {
-                                        temp[j] = info[j - 1];
-                                }
-                        }
-
-                        try {
-                                temp[16] = (String) Database.db().SELECT("Filepaths", "Filepath", new Condition("Title", temp[0]));
-                                System.out.println(temp[16]);
-                                temp[17] = Files.DirFiles.GetName(temp[16]);
-                        } catch (IndexOutOfBoundsException e) {
-                                temp[16] = "";
-                                temp[17] = "";
-                        }
-                        m.addInfo(temp);
-                        movies.add(m);
-                }
-
-        }
-
-        public Movie insertMovie(String title) throws IOException, InterruptedException, SQLException {
-                Movie m;
-
-                if (Database.db().valueExists("Movies", "Title", title) && Database.db().valueExists("Filepaths", "Title", title)) {
-                        System.out.println("Movie already exists");
-                        GUIMethods.dialogError("Movie already exists");
-                        return null;
-                } else if (Database.db().valueExists("Movies", "Title", title)) {
-                        Database.db().DELETE("Movies", "Title", title);
-                }
-
-                m = new Movie(title);
-                //movies.add(m);
+        String c_path = "";
+        String c_name = "";
+        for (int i = 0; i < names.size(); i++) {
+            c_path = "";
+            c_name = "";
+            if (!filepathsInDB.contains(paths.get(i))) {
                 try {
-                        Database.db().INSERT("Movies", "Title", title);
-                } catch (SQLException | NullPointerException ex) {
-                        Logger.getLogger(MovieCollection.class.getName()).log(Level.SEVERE, null, ex);
-                        System.out.println("Movies insert error");
-                        return null;
+                    c_path = paths.get(i);
+                    c_name = names.get(i);
+                    m = insertMovie(c_name);
+                    m.setDirectory(c_path);
+                    m.setFilename(c_name);
+                    movies.add(m);
+
+                    db.executeUpdate(new QueryBuilder().insertInto("Filepaths").columns("Filepath", "Title").values(c_path, m.getTitle()).build());
+                    db.executeUpdate(new QueryBuilder().insertInto("Scraped").columns("Filepath", "API_Done").values(c_path, false).build());
+
+                } catch (IOException | InterruptedException | SQLException | NullPointerException e) { //Make proper exceptions
+                    System.out.println("Movie is null");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Movies.get(i) IndexOutOfBoundsException");
                 }
-
-                return m;
+            }
         }
 
-        public void deleteMovie(Movie m) throws SQLException {
-                String title = m.getTitle();
-                String imdbid = m.getImdbID();
+		db.close();
+    }
 
-                if (!"".equals(imdbid) && imdbid != null) {
-                        ImagesUtils.delete( (String) Database.db().SELECT("Images", "Image_Directory", new Condition("IMDb_ID", imdbid))); //Delete image from directory
-                        Database.db().DELETE("Category_Matching", "IMDb_ID", imdbid);
-                        Database.db().DELETE("Images", "IMDb_ID", imdbid); // Delete image from database
+    public void load() throws SQLException {
+        DatabaseConnection db = Database.connection();
+		movies.clear();
+
+        ArrayList<String[]> infoList = DBMethods.getMovies();
+
+        for (int i = 0; i < infoList.size(); i++) {
+            Movie m = new Movie();
+
+            String[] info = infoList.get(i);
+
+            String[] temp = new String[DBMethods.getDBFields().length + 3];
+            for (int j = 0; j < temp.length - 2; j++) {
+                if (j < 5) {
+                    temp[j] = info[j];
                 }
-     
-                Database.db().DELETE("Movies", "Title", title);
-                Database.db().DELETE("Filepaths", "Filepath", m.getDirectory());
-                Database.db().DELETE("Scraped", "Filepath", m.getDirectory());
-                
-                movies.remove(m);
+                if (j == 5) {
+                    temp[j] = MovieUtils.arrayToList(DBMethods.getCategories(info[14]));
+                }
+                if (j > 5) {
+                    temp[j] = info[j - 1];
+                }
+            }
 
-                System.out.println("Movie removed completely");
+            try {
+				ResultSet rs = db.executeQuery(new QueryBuilder().select("Filepath").from("Filepaths").where("Title = '" + temp[0] + "'").build());
+				rs.next();
+				temp[16] = rs.getString(1);
+//                System.out.println(temp[16]);
+                temp[17] = Files.DirFiles.GetName(temp[16]);
+            } catch (IndexOutOfBoundsException | SQLException e) {
+                temp[16] = "";
+                temp[17] = "";
+            }
+            m.addInfo(temp);
+            movies.add(m);
         }
 
-        public void addExtension(String ext) {
-                exts.add(ext);
-                //DirFiles.setExtList(exts);
+		db.close();
+    }
+
+    public Movie insertMovie(String title) throws IOException, InterruptedException, SQLException {
+        DatabaseConnection db = Database.connection();
+		Movie m;
+
+		boolean movieTitleExists = false, moviePathExists = false;
+
+		ResultSet rs = db.executeQuery("SELECT Title FROM Movies WHERE Title = '" + title + "'");
+		movieTitleExists = (rs.next());
+
+		rs = db.executeQuery("SELECT Title FROM Filepaths WHERE Title = '" + title + "'");
+		moviePathExists = (rs.next());
+
+        if (movieTitleExists && moviePathExists) {
+            System.out.println("Movie already exists");
+            GUIMethods.dialogError("Movie already exists");
+            return null;
+        } else if (movieTitleExists) {
+			db.executeUpdate(new QueryBuilder().deleteFrom("Movies").where("Title = '" + title + "'").build());
         }
 
-        public void removeExtension(String ext) {
-                exts.remove(ext);
-                //DirFiles.setExtList(exts);
+        m = new Movie(title);
+		db.executeUpdate(new QueryBuilder().insertInto("Movies").columns("Title").values(title).build());
+		db.close();
+
+        return m;
+    }
+
+    public void deleteMovie(Movie m) throws SQLException {
+        String title = m.getTitle();
+        String imdbid = m.getImdbID();
+
+		DatabaseConnection db = Database.connection();
+		ResultSet rs = null;
+
+        if (!"".equals(imdbid) && imdbid != null) {
+			rs = db.executeQuery(new QueryBuilder().select("Image_Directory").from("Images").where("IMDb_ID = '" + imdbid + "'").build());
+			rs.next();
+			ImagesUtils.delete(rs.getString(1)); //Delete image from directory
+
+			db.executeUpdate(new QueryBuilder().deleteFrom("Category_Matching").where("IMDb_ID = '" + imdbid + "'").build());
+			db.executeUpdate(new QueryBuilder().deleteFrom("Images").where("IMDb_ID = '" + imdbid + "'").build());
         }
 
-        public ArrayList<Movie> getMovies() {
-                return movies;
-        }
+		db.executeUpdate(new QueryBuilder().deleteFrom("Movies").where("Title = '" + title + "'").build());
+		db.executeUpdate(new QueryBuilder().deleteFrom("Filepaths").where("Filepath = '" + m.getDirectory() + "'").build());
+		db.executeUpdate(new QueryBuilder().deleteFrom("Scraped").where("Filepath = '" + m.getDirectory() + "'").build());
 
-        public void setMovies(ArrayList<Movie> movies) {
-                this.movies = movies;
-        }
+        movies.remove(m);
 
-        public String getDir() {
-                return dir;
-        }
+		db.close();
+        System.out.println("Movie removed completely");
+    }
 
-        public void setDir(String dir) {
-                this.dir = dir;
-        }
+    public void addExtension(String ext) {
+        exts.add(ext);
+        //DirFiles.setExtList(exts);
+    }
 
-        public ArrayList<String> getExts() {
-                return exts;
-        }
+    public void removeExtension(String ext) {
+        exts.remove(ext);
+        //DirFiles.setExtList(exts);
+    }
 
-        public void setExts(ArrayList<String> exts) {
-                this.exts = exts;
-        }
+    public ArrayList<Movie> getMovies() {
+        return movies;
+    }
 
-        @Override
-        public String toString() {
-                return """
-                       Movies{
-                       """ + movies + "\n" + '}';
-        }
-        
+    public void setMovies(ArrayList<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    public ArrayList<String> getExts() {
+        return exts;
+    }
+
+    public void setExts(ArrayList<String> exts) {
+        this.exts = exts;
+    }
+
+    @Override
+    public String toString() {
+        return """
+            Movies{
+                """ + movies + "\n" + '}';
+            }
+
         private class MovieUtils{
-                public static String arrayToList(ArrayList<String> arr) {
+            public static String arrayToList(ArrayList<String> arr) {
                 String s = "";
 
                 for (int i = 0; i < arr.size(); i++) {
-                        if (i == arr.size() - 1) {
-                                s = s.concat(arr.get(i));
-                        } else {
-                                s = s.concat(arr.get(i) + ", ");
-                        }
+                    if (i == arr.size() - 1) {
+                        s = s.concat(arr.get(i));
+                    } else {
+                        s = s.concat(arr.get(i) + ", ");
+                    }
                 }
 
                 return s;
+            }
         }
-        }
-}
+    }

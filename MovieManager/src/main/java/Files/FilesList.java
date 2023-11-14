@@ -1,5 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Files;
@@ -16,7 +16,7 @@ import java.util.List;
 public class FilesList {
     private List<String> path = new ArrayList<>();
     private List<String> names = new ArrayList<>();
-    
+
     public FilesList(String dir) {
         DirFiles paths = new DirFiles(dir);
         try {
@@ -28,7 +28,7 @@ public class FilesList {
             System.out.println("The directory was not found");
         }
     }
-    
+
     public FilesList(String dir, ArrayList<String> exts){
         DirFiles paths = new DirFiles(dir, exts);
         try {
@@ -39,8 +39,8 @@ public class FilesList {
             System.out.println("The directory was not found");
         }
     }
-    
-    
+
+
 
     public List<String> getPaths() {
         return path;
@@ -49,7 +49,7 @@ public class FilesList {
     public List<String> getNames() {
         return names;
     }
-    
+
     public String getPath(int index) {
         return path.get(index);
     }
@@ -57,7 +57,7 @@ public class FilesList {
     public String getName(int index) {
         return names.get(index);
     }
-    
+
     public int length() {
         return names.size();
     }
