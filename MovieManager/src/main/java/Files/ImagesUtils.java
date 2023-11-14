@@ -1,8 +1,8 @@
-
 package Files;
 
 import Database.Database;
 import kdesp73.databridge.helpers.QueryBuilder;
+import kdesp73.databridge.connections.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -67,12 +67,12 @@ public class ImagesUtils {
 	}
 
 	public static void imageToDatabase(String imdbID) throws SQLException {
-		ResultSet rs = Database.connection()
-				.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
+		DatabaseConnection db = Database.connection();
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("Directory").from("Settings").build());
 		rs.next();
 		String path = rs.getString(1);
 
-		rs = Database.connection().executeQuery(
+		rs = db.executeQuery(
 				new QueryBuilder().select("Poster_URL").from("Movies").where("IMDb_ID = '" + imdbID + "'").build());
 		rs.next();
 		String url = rs.getString(1);
@@ -98,22 +98,25 @@ public class ImagesUtils {
 		// Logger.getLogger(ImagesUtils.class.getName()).log(Level.SEVERE, null, ex);
 		// }
 
-		String os = System.getProperty("os.name");
+		String os = System.getProperty("os.name"), query = "";
 		if(os.toLowerCase().contains("windows")){
-			Database.connection().executeUpdate(new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "\\" + imageName, imdbID).build());
+			query = new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "\\" + imageName, imdbID).build();
 		} else if(os.toLowerCase().contains("linux")){
-			Database.connection().executeUpdate(new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "/" + imageName, imdbID).build());
+			query = new QueryBuilder().insertInto("Images").columns("Image_Directory", "IMDb_ID").values(path + "/" + imageName, imdbID).build();
 		}
+
+		db.executeUpdate(query);
+		db.close();
 	}
 
 	public static String matchImage(String imdbID) throws SQLException {
-		// String imdbID = (String) Database.db().SELECT("Movies", "IMDb_ID", new
-		// Condition("Title", title));
+		DatabaseConnection db = Database.connection();
 
-		ResultSet rs = Database.connection().executeQuery(new QueryBuilder().select("Image_Directory").from("Images")
+		ResultSet rs = db.executeQuery(new QueryBuilder().select("Image_Directory").from("Images")
 				.where("IMDb_ID = '" + imdbID + "'").build());
 		rs.next();
 
+		db.close();
 		return rs.getString(1);
 	}
 

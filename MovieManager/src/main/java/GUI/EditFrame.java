@@ -1,9 +1,8 @@
-package GUI;
+package GUI;//GEN-LINE:variables//GEN-LINE:variables
 
 import Exceptions.DatabaseStringOverflowException;
 import Database.Database;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -11,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import kdesp73.databridge.connections.DatabaseConnection;
 import kdesp73.themeLib.*;
 import main.MovieCollection;
 
@@ -125,7 +126,7 @@ public class EditFrame extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
+	// <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
 		background = new javax.swing.JPanel();
@@ -156,7 +157,7 @@ public class EditFrame extends javax.swing.JFrame {
 		imdbratingField = new javax.swing.JTextField();
 		jLabel14 = new javax.swing.JLabel();
 		imdbidField = new javax.swing.JTextField();
-		deleteButton = new RoundedPanel();
+		// deleteButton = new RoundedPanel();
 		jLabel15 = new javax.swing.JLabel();
 		cancelButton = new RoundedPanel();
 		jLabel16 = new javax.swing.JLabel();
@@ -166,7 +167,7 @@ public class EditFrame extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setName("frame"); // NOI18N
 
-		background.setName("background"); // NOI18N
+		background.setName("bg"); // NOI18N
 
 		jLabel1.setText("Title: ");
 		jLabel1.setName("fg"); // NOI18N
@@ -253,37 +254,36 @@ public class EditFrame extends javax.swing.JFrame {
 
 		imdbidField.setName("textbox"); // NOI18N
 
-		deleteButton.setBackground(new java.awt.Color(68, 68, 68));
-		deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		deleteButton.setName("btn"); // NOI18N
-		deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				deleteButtonMouseClicked(evt);
-			}
-
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				deleteButtonMouseEntered(evt);
-			}
-
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				deleteButtonMouseExited(evt);
-			}
-		});
-
-		jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-		jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		jLabel15.setText("Delete");
-		jLabel15.setName("btn_fg"); // NOI18N
-
-		javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
-		deleteButton.setLayout(deleteButtonLayout);
-		deleteButtonLayout.setHorizontalGroup(
-				deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE));
-		deleteButtonLayout.setVerticalGroup(
-				deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE));
-
+		// deleteButton.setBackground(new java.awt.Color(68, 68, 68));
+		// deleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		// deleteButton.setName("btn"); // NOI18N
+		// deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		//     public void mouseClicked(java.awt.event.MouseEvent evt) {
+		//         deleteButtonMouseClicked(evt);
+		//     }
+		//     public void mouseEntered(java.awt.event.MouseEvent evt) {
+		//         deleteButtonMouseEntered(evt);
+		//     }
+		//     public void mouseExited(java.awt.event.MouseEvent evt) {
+		//         deleteButtonMouseExited(evt);
+		//     }
+		// });
+		//
+		// jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+		// jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		// jLabel15.setText("Delete");
+		// jLabel15.setName("btn_fg"); // NOI18N
+		//
+		// javax.swing.GroupLayout deleteButtonLayout = new javax.swing.GroupLayout(deleteButton);
+		// deleteButton.setLayout(deleteButtonLayout);
+		// deleteButtonLayout.setHorizontalGroup(
+		//     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		//     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+		// );
+		// deleteButtonLayout.setVerticalGroup(
+		//     deleteButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		//     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+		// );
 		cancelButton.setBackground(new java.awt.Color(68, 68, 68));
 		cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		cancelButton.setName("btn"); // NOI18N
@@ -310,11 +310,12 @@ public class EditFrame extends javax.swing.JFrame {
 		cancelButton.setLayout(cancelButtonLayout);
 		cancelButtonLayout.setHorizontalGroup(
 				cancelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE));
+						.addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+		);
 		cancelButtonLayout.setVerticalGroup(
 				cancelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE));
+						.addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+		);
 
 		applyButton.setBackground(new java.awt.Color(68, 68, 68));
 		applyButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -342,13 +343,14 @@ public class EditFrame extends javax.swing.JFrame {
 		applyButton.setLayout(applyButtonLayout);
 		applyButtonLayout.setHorizontalGroup(
 				applyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE));
+						.addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+		);
 		applyButtonLayout.setVerticalGroup(
 				applyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, applyButtonLayout.createSequentialGroup()
 								.addGap(0, 0, Short.MAX_VALUE)
-								.addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
-										javax.swing.GroupLayout.PREFERRED_SIZE)));
+								.addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+		);
 
 		javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
 		background.setLayout(backgroundLayout);
@@ -356,211 +358,119 @@ public class EditFrame extends javax.swing.JFrame {
 				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(backgroundLayout.createSequentialGroup()
 								.addContainerGap()
-								.addGroup(backgroundLayout
-										.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
 										.addGroup(backgroundLayout.createSequentialGroup()
-												.addGroup(backgroundLayout
-														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-																false)
-														.addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE,
-																114, Short.MAX_VALUE)
-														.addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+														.addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+														.addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-												.addGroup(backgroundLayout
-														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-																false)
+												.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
 														.addComponent(langField)
 														.addComponent(countryField)
 														.addComponent(awardsField)
-														.addComponent(writersField,
-																javax.swing.GroupLayout.Alignment.TRAILING)
-														.addComponent(actorsField,
-																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(writersField, javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(actorsField, javax.swing.GroupLayout.Alignment.TRAILING)
 														.addComponent(imdbratingField)
 														.addComponent(imdbidField)
 														.addComponent(jScrollPane1)
-														.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-																backgroundLayout.createParallelGroup(
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		false)
-																		.addComponent(titleField,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				315,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(runtimeField,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				315,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(ratedField,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				315,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(directorField,
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				315,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(yearSpinner,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				61,
-																				javax.swing.GroupLayout.PREFERRED_SIZE))))
-										.addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout
-												.createSequentialGroup()
-												.addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-														javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap()));
+														.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+																.addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(directorField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+										.addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout.createSequentialGroup()
+												// .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addContainerGap())
+		);
 		backgroundLayout.setVerticalGroup(
 				backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(backgroundLayout.createSequentialGroup()
 								.addContainerGap()
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel1)
-												.addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel1)
+										.addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel3)
-												.addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel3)
+										.addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel7)
-												.addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel7)
+										.addComponent(ratedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel8)
-												.addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel8)
+										.addComponent(runtimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel4)
-												.addComponent(directorField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel4)
+										.addComponent(directorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel5)
-												.addComponent(writersField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel5)
+										.addComponent(writersField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel9)
-												.addComponent(actorsField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel9)
+										.addComponent(actorsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel6)
-												.addComponent(langField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel6)
+										.addComponent(langField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel11)
-												.addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel11)
+										.addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel12)
-												.addComponent(awardsField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel12)
+										.addComponent(awardsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel13)
-												.addComponent(imdbratingField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel13)
+										.addComponent(imdbratingField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel14)
-												.addComponent(imdbidField, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel14)
+										.addComponent(imdbidField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel2)
-												.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149,
-										Short.MAX_VALUE)
-								.addGroup(
-										backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addContainerGap()));
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel2)
+										.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+								.addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										// .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addContainerGap())
+		);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
 				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+						.addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+		);
 		layout.setVerticalGroup(
 				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						.addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -582,7 +492,6 @@ public class EditFrame extends javax.swing.JFrame {
 				JOptionPane.WARNING_MESSAGE);
 
 		// System.out.println(choice);
-
 		switch (choice) {
 			case 0: // Confirm
 				deleteMovieFromDB();
@@ -655,6 +564,8 @@ public class EditFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_cancelButtonMouseExited
 
 	private void applyButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_applyButtonMouseClicked
+		DatabaseConnection db = Database.connection();
+
 		System.out.println(index);
 		String title = titleField.getText();
 		String director = directorField.getText();
@@ -694,11 +605,12 @@ public class EditFrame extends javax.swing.JFrame {
 		String query1 = "UPDATE Filepaths SET Title = \'" + titleField.getText() + "\' WHERE Title = \'"
 				+ movies.getMovies().get(index).getTitle() + "\'";
 
-		Database.connection().executeUpdate(query);
-		Database.connection().executeUpdate(query1);
+		db.executeUpdate(query);
+		db.executeUpdate(query1);
 
 		f.refreshMoviesList();
 
+		db.close();
 		this.setVisible(false);
 	}// GEN-LAST:event_applyButtonMouseClicked
 
@@ -712,12 +624,9 @@ public class EditFrame extends javax.swing.JFrame {
 
 	/**
 	 * @param args the command line arguments
-	 * @throws
-	 * java.lang.ClassNotFoundException
-	 * @throws
-	 * java.lang.InstantiationException
-	 * @throws
-	 * java.lang.IllegalAccessException
+	 * @throws java.lang.ClassNotFoundException
+	 * @throws java.lang.InstantiationException
+	 * @throws java.lang.IllegalAccessException
 	 * @throws
 	 * javax.swing.UnsupportedLookAndFeelException
 	 */

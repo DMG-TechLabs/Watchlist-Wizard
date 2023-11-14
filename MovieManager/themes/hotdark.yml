@@ -16,7 +16,7 @@ textbox_fg: "EDEDED"
 
 list: "DA0037"
 list_fg: "EDEDED"
-list_focus: "6D0101C"
+list_focus: "444444"
 
 scrollbar: "0B3948"
 progress_bar: "44AF69"
